@@ -1,0 +1,18 @@
+    14.3: flog total
+     7.1: flog/method average
+
+    11.8: Notifier#password_reset_instructions app/models/notifier.rb:5
+     1.6:   perishable_token
+     1.4:   edit_password_reset_url
+     1.4:   now
+     1.4:   email
+     1.2:   from
+     1.2:   sent_on
+     1.2:   recipients
+     1.2:   subject
+     1.2:   body
+
+     2.5: Notifier#none
+     2.2:   assignment
+     1.1:   default_url_options
+

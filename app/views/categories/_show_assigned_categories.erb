@@ -1,0 +1,14 @@
+<table id="TabProduct">
+   <tr>
+    <td class="boldColl">Przypisane kategorie:</td>
+   <td>
+      <% if @product.auction.categories.count>0 %>
+          <% @product.auction.categories.each do |category|%>
+                  <%= category.name %><br />
+          <%end%>
+      <% else %>
+      Brak przypisanych kategorii
+      <% end %>
+   </td>
+   <tr>
+</table>

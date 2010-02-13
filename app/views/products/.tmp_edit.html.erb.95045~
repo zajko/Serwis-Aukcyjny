@@ -1,0 +1,8 @@
+<% form_for :product, :url => product_path(@project) do |f| %>
+<%= render :partial => "form_#{@controller.product_type}", :html => {:method => 'put'}, :locals => {:form => f}, :object => f %>
+<%= params[:product][:auction_attributes][:start]%>	
+<%= render :partial => "form", :locals => {:form => f}%>
+		
+		
+<p><%= submit_tag "Update" %></p>
+<%end%>

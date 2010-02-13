@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "products" %>
+<% content_for :optional_menus do %>
+
+                        <div id="leftMenu">
+                           <p class="naglowek">Opcje ról</p>
+                           <ul>
+                               <li><%= link_to "Zarządzanie rolami", "/roles/index" %></li>
+                               <li><%= link_to "Dodaj rolę", "/roles/new" %></li>
+                               
+                           </ul>
+                        </div>
+<% end %>

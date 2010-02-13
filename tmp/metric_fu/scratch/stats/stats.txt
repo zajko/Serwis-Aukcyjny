@@ -1,0 +1,22 @@
+(in /home/agnieszka/zajko-Serwis-Aukcyjny-2b6247a)
++----------------------+-------+-------+---------+---------+-----+-------+
+| Name                 | Lines |   LOC | Classes | Methods | M/C | LOC/M |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Controllers          |   940 |   739 |      10 |      79 |   7 |     7 |
+| Helpers              |   224 |   154 |       1 |      18 |  18 |     6 |
+| Models               |  1270 |  1047 |      25 |      86 |   3 |    10 |
+| Libraries            |    85 |    79 |       2 |       8 |   4 |     7 |
+| Integration tests    |    53 |    37 |       1 |       5 |   5 |     5 |
+| Functional tests     |   367 |   218 |      11 |      28 |   2 |     5 |
+| Unit tests           |   774 |   416 |      29 |      51 |   1 |     6 |
++----------------------+-------+-------+---------+---------+-----+-------+
+| Total                |  3713 |  2690 |      79 |     275 |   3 |     7 |
++----------------------+-------+-------+---------+---------+-----+-------+
+  Code LOC: 2019     Test LOC: 671     Code to Test Ratio: 1:0.3
+
+Loaded suite /usr/bin/rake
+Started
+
+Finished in 0.000154 seconds.
+
+0 tests, 0 assertions, 0 failures, 0 errors

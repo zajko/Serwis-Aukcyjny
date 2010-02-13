@@ -1,0 +1,14 @@
+<% if !current_user %>
+			Użytkownik: 
+			<%= link_to "Zaloguj się", new_user_session_path  %> |
+
+			<%= link_to "Zarejestruj się", new_account_path   %>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <%= link_to "Zapomniałeś hasła?", new_password_reset_path %>		
+                        
+		<% else %>
+			Jesteś zalogowany jako:  <b><%= current_user.login%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= link_to "Wyloguj się", :controller => "user_sessions", :action => :destroy%>
+		<% end %>
+		
+

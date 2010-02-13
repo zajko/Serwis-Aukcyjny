@@ -1,0 +1,11 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "users/user_account_options"  %>
+
+<h1>Ustawienia konta</h1>
+ 
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <br />
+  <%= f.submit "Zapisz zmiany" %>
+<% end %>

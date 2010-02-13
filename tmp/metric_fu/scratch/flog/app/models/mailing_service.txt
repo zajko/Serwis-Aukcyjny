@@ -1,0 +1,9 @@
+     5.5: flog total
+     5.5: flog/method average
+
+     5.5: MailingService#none
+     2.2:   validates_numericality_of
+     1.1:   accepts_nested_attributes_for
+     1.1:   has_one
+     1.1:   has_many
+

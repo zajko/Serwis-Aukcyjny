@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag "protucts" %>
+
+
+<% form_for :search, {:url => "/products/index?[product_type]=#{@controller.product_type}"} do |f|%>
+
+<table id="TabAdvancedSearchForm" class="YellowBox">
+<tr>
+  <td class="label"><%= f.label :auction_end_between, "Data zakończenia aukcji: "%></td>
+  <td>od: <%= f.text_field :minimum_days_until_end_of_auction, :size => 8 %></td>
+  <td>do: <%= f.text_field :maximum_days_until_end_of_auction, :size =>8, :default => 2.days.from_now  %></td>
+<tr>
+  <td class="label"><%= f.label :Pagerank_between, "Pagerank:"%></td>
+  <td>od: <%= f.text_field :pagerank_gte, :size => 8, :value=>"1"  %></td>
+  <td>do: <%= f.text_field :pagerank_lte, :size => 8, :value=>"10" %></td>
+</tr>
+<tr>
+  <td class="label"><%= f.label :Users_daily_between, "Użytkownicy dziennie pomiędzy:"%></td>
+  <td>od: <%= f.text_field :users_daily_gte, :size => 8  %></td>
+  <td>do: <%= f.text_field :users_daily_lte, :size => 8 %></td>
+</tr>
+<tr>
+  <td class="label"><br />Kategorie:</td>
+  <td colspan="2"><br />
+    <%= render :partial=>"categories/show_available_categories" %>
+  </td>
+</tr>
+<tr>
+  
+  <td colspan="3"><br /><%=f.submit "Szukaj"%></td>
+
+</tr>
+
+</table>
+<% end %>
+
+
+<% if @products.count == 0 %>
+Brak aukcji tego typu
+<% else %>
+
+        <table id="TabFullSize">
+        <tr>
+                <td>Szczegóły</td>
+                <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search => params[:search]%></td>
+                <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "site_link", :search => params[:search]%></td>
+                <td><%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "site_link", :search => params[:search]%></td>
+                <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "site_link", :search => params[:search]%>	</td></td>
+                <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> "current_price", :product_type => "site_link", :search => params[:search]%></td>
+        </tr>
+
+        <% @products.each do |product| %>
+        <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
+                <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "site_link"} %></td>
+                <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
+                <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
+                <td><%=product.pagerank%></td>
+                <td><%=product.users_daily%></td>
+                <td><%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+                    <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
+                </td>
+        </tr>
+        <% end %>
+
+        </table>
+<%end%>

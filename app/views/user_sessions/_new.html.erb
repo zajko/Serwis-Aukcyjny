@@ -1,0 +1,16 @@
+<h1>Login</h1>
+ 
+<% form_for @user_session do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :login, "Login: " %><br />
+  <%= f.text_field :login %><br />
+  <br />
+  <%= f.label :password, "Hasło:" %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.check_box :remember_me %>&nbsp;<%= f.label :remember_me %><br />
+  <br /><br />
+  <%= f.submit "Login" %>
+
+<% end %>
+

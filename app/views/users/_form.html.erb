@@ -1,0 +1,38 @@
+<table border="0" id="TabFormContainer">
+  <tr>
+    <td class="label"><%= form.label :login,"Login:" %></td>
+    <td><%= form.text_field :login, :disabled => !@user.new_record?%></td>
+  </tr>
+  <tr>
+    <td class="label"><%= form.label :email, "E-mail:"%></td>
+    <td><%= form.text_field :email %></td>
+  </tr>
+  <tr>
+    <td class="label"><%= form.label :imię, "Imię:"%></td>
+    <td><%= form.text_field :first_name,  :disabled => !@user.new_record? %></td>
+  </tr>
+  <tr>
+    <td class="label"><%= form.label :nazwisko,"Nazwisko:" %></td>
+    <td><%= form.text_field :surname, :disabled => !@user.new_record? %></td>
+  </tr>
+  <tr>
+    <td class="label"><%= form.label :password,form.object.new_record? ? nil : "Nowe hasło:" %></td>
+    <td><%= form.password_field :password%></td>
+  </tr>
+  <tr>
+    <td class="label"><%= form.label :password_confirmation,"Powtórz nowe hasło:" %></td>
+    <td><%= form.password_field :password_confirmation %></td>
+  </tr>
+  <tr>
+    <td>Zainteresowania: </td>
+    <td>
+        <% if !@user.new_record? %>
+        <%= render :partial => "users/user_interests"  %>
+        <%end%>
+    </td>
+  </tr>
+</table>
+
+<br/>
+
+

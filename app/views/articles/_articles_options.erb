@@ -1,0 +1,19 @@
+
+<%= stylesheet_link_tag "articles" %>
+
+
+<% content_for :optional_menus do %>
+  <% if  current_user%>
+            <% if  current_user.is_admin? %>
+                        <div id="leftMenu">
+                           <p class="naglowek">Opcje artykułów</p>
+                           <ul>
+
+                               <li><%= link_to "Dodaj artykuł", "articles/new"  %> </li>
+                                <li><%= link_to "Zarządzanie artykułami", "articles/index"  %> </li>
+                               
+                           </ul>
+                        </div>
+           <%  end %>
+   <%  end %>
+<% end %>

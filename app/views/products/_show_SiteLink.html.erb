@@ -1,0 +1,16 @@
+<table id="TabProduct">
+  <% if @product.auction and (current_user == @product.auction.user or current_user.is_admin?) %>
+      <tr>
+        <td class="boldColl">Adres strony:</td>
+        <td><%= @product.url %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td class="boldColl">Pagerank:</td>
+    <td><%= @product.pagerank %></td>
+  </tr>
+  <tr>
+    <td class="boldColl">Użytkownicy dziennie:</td>
+    <td><%= @product.users_daily %></td>
+  </tr>
+</table>

@@ -1,0 +1,33 @@
+<%#= render :partial => "auctions/user_auctions_options"  %>
+<%#*<h1>Dane aukcji nr <%=h @auction.id %></h1>%>
+
+<%#*<table id="TabShowAuction">%>
+  <%#*<tr>%>
+      <%#*<td class="boldColl">Identyfikator aukcji:</td>%>
+      <%#*<td> <%=h @auction.id %></td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+      <%#*<td class="boldColl">Typ aukcji:</td>%>
+      <%#*<td> kup teraz / licytacja</td>%>
+  <%#*</tr>%>
+    <%#*<tr>%>
+      <%#*<td class="boldColl">Data rozpoczęcia:</td>%>
+      <%#*<td> <%=h @auction.start %></td>%>
+  <%#*</tr>%>
+    <%#*<tr>%>
+      <%#*<td class="boldColl">Data zakończenia:</td>%>
+      <%#*<td> <%=h @auction.end %></td>%>
+  <%#*</tr>%>
+    <%#*<tr>%>
+      <%#*<td class="boldColl">Cena (kup teraz):</td>%>
+      <%#*<td> <%=h @auction.minimal_price %></td>%>
+  <%#*</tr>%>
+    <%#*<tr>%>
+      <%#*<td class="boldColl">Cena (licytacja):</td>%>
+      <%#*<td> <%=h @auction.buy_now_price %></td>%>
+  <%#*</tr>%>
+<%#*</table>%>
+
+<%# if @auction.auctionable %>
+<%#*<h1><%=@auction.auctionable.buy_now_price%></h1>%>
+<%#end%>

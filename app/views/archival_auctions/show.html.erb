@@ -1,0 +1,12 @@
+< title "Archival Auctions" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @archival_auctions.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_archival_auctions_path(@archival_auctions) %> |
+  <%= link_to "Destroy", @archival_auctions, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", archival_auctions_path %>
+</p>

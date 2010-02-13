@@ -1,0 +1,24 @@
+<table id="TabProduct">
+  <% if @product.auction and (current_user == @product.auction.user or current_user.is_admin?) %>
+      <tr>
+        <td class="boldColl">Adres strony:</td>
+        <td><%= @product.url %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td class="boldColl">Pagerank:</td>
+    <td><%= @product.pagerank %></td>
+  </tr>
+  <tr>
+    <td class="boldColl">Użytkownicy dziennie:</td>
+    <td><%= @product.users_daily %></td>
+  </tr>
+    <tr>
+    <td class="boldColl"> Rozmiary pop up'a (wysokość,szerokość) :</td>
+    <td>(<%= @product.height.to_s + "px , " + @product.width.to_s+"px" %>)</td>
+  </tr>
+    <tr>
+    <td class="boldColl">Częstość wyświetlania</td>
+    <td><%= 1 / @product.frequency %> wyświetlań</td>
+  </tr>
+</table>

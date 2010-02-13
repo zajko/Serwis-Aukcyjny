@@ -1,0 +1,13 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%#= render :partial => "home/home_options" %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<h1>Rejestracja</h1>
+<% form_for @user, :url => account_path do |f| %>	
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+
+  <%= f.submit "Rejestruj" %>
+<% end %>
+
+
+

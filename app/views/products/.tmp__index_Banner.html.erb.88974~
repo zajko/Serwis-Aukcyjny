@@ -1,0 +1,92 @@
+<% form_for :search, {:url => "/products/index?[product_type]=#{@controller.product_type}"} do |f|%>
+	<%= f.label :auction_end_between%>
+	<%= f.text_field :minimum_days_until_end_of_auction, :size => 8 %> - <%= f.text_field :maximum_days_until_end_of_auction, :size =>8%>
+	<%= f.label :Pagerank_between%> 
+	<%= f.text_field :pagerank_gte, :size => 8  %> - <%= f.text_field :pagerank_lte, :size => 8 %>
+	<%= f.label :Users_daily_between%> 
+	<%= f.text_field :users_daily_gte, :size => 8  %> - <%= f.text_field :users_daily_lte, :size => 8 %>
+	<%= f.label :X_position_between%> 
+	<%= f.text_field :x_pos_gte, :size => 8  %> - <%= f.text_field :x_pos_lte, :size => 8 %>
+	<%= f.label :Y_position_between%> 
+	<%= f.text_field :y_pos_gte, :size => 8  %> - <%= f.text_field :y_pos_lte, :size => 8 %>
+	<%= f.label :Width_between%>
+	<%= f.text_field :width_gte, :size => 8  %> - <%= f.text_field :width_lte, :size => 8 %>
+	<%= f.label :Height_between%>
+	<%= f.text_field :height_gte, :size => 8  %> - <%= f.text_field :height_lte, :size => 8 %>
+	<%= f.label :Frequency_between%>
+	<%= f.text_field :frequency_gte, :size => 8  %> - <%= f.text_field :frequency_lte, :size => 8 %>
+	<% for category in Category.all %>
+ 		<%= check_box_tag("search[categories_attributes][]",category.id,  params[:search] && params[:search][:categories_attributes] && params[:search][:categories_attributes].include?(category.id.to_s)) %>
+ 		<%= category.name %>
+ 		<br/>
+	<% end %>
+  	<%=f.submit "Search"%>
+<% end %>
+<table>
+<tr>
+	<td bgcolor="red">
+		
+	</td>
+	<td>
+		<%= link_to "Start", :action => 'order_by', :column_name=> "start", :product_type => "banner", :search => params[:search]%>
+	</td>
+	<td>
+		<%= link_to "End", :action => 'order_by', :column_name=> "end", :product_type => "banner", :search => params[:search]%>
+		</td>
+	<td>
+		<%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "banner", :search => params[:search]%>
+	</td>
+	<td>
+		<%= link_to "Users Daily", :action => 'order_by', :column_name=> "users_daily", :product_type => "banner", :search => params[:search]%>
+	</td>
+	<td>
+		< order @search, :by => :current_price %>
+		Current price
+	</td>
+
+	<td>
+		<%= link_to "Width", :action => 'order_by', :column_name=> "width", :product_type => "banner", :search => params[:search]%>
+	</td>
+	<td>
+		<%= link_to "Height", :action => 'order_by', :column_name=> "height", :product_type => "banner", :search => params[:search]%>
+		< order @search, :by => :height %>
+	</td>
+	<td>
+		Location(X, Y)
+	</td>
+</tr>
+
+<% @products.each do |product| %>
+<tr>
+	<td>
+		<%= link_to "Show", {:action => "show", :id => product.id, :product_type => "banner"} %>
+	</td>
+	<td>
+		<%=product.auction.start%>
+	</td>
+	<td>
+		<%=product.auction.end%>
+	</td>
+	<td>
+		<%=product.pagerank%>
+	</td>
+	<td>
+		<%=product.users_daily%>
+	</td>
+	
+	<td>
+		<%=product.auction.highest_bid %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+	</td>
+	<td>
+		<%= product.width%>
+	</td>
+	<td>
+		<%= product.height%>
+	</td>
+	<td>
+		(<%= product.x_pos%> , <%= product.y_pos%>)
+	</td>
+</tr>
+<% end %>
+
+</table>

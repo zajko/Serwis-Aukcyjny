@@ -1,0 +1,2 @@
+class RegulaminController < ApplicationController
+end

@@ -1,0 +1,30 @@
+<html>
+	<head>
+	<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+		<script type="text/javascript" >
+			tinyMCE.init({
+				mode:"textareas", 
+				editor_selector : "tiny_mce"
+			});  
+		</script> 
+	</head>
+<body>
+<%= render :partial => "product_options" %>
+<h1> Edycja aukcji</h1>
+	
+<% form_for  @product, :url => {:action => "update", :product_type => @controller.product_type} do |form| %>
+	<%= form.error_messages %>
+		
+		<%= render :partial => "form_#{@controller.product_type.classify}", :locals => {:form => form}%>
+		
+		<% form.fields_for :auction do |auction_form| %>
+			<%= auction_form.error_messages %>
+			<%= render :partial => "form_edit", :locals => {:auction_form => auction_form}%>
+			<%= auction_form.hidden_field :id,  :value => @product.auction.id%>
+		<% end %>
+		<%= form.hidden_field :id,  :value => @product.id%>
+		<font color = "red" size="30"> <%= link_to "Usuń aukcję", {:controller => "products", :action=> "delete", :id => @product.id, :product_type => @product.class.to_s}, :confirm => "Czy jesteś pewien ?" %> </font>
+		<%= form.submit "update auction" %>
+
+<% end %>
+

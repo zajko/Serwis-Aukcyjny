@@ -1,0 +1,7 @@
+<% for category in Category.all %>
+      <%= check_box_tag("search[categories_attributes][]",
+                        category.id,
+                       params[:search] && params[:search][:categories_attributes] &&
+                       params[:search][:categories_attributes].include?(category.id.to_s)) %>
+      <%= category.name %>&nbsp;&nbsp;&nbsp;&nbsp;
+<% end %>

@@ -1,0 +1,15 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<%= stylesheet_link_tag "users" %>
+<% content_for :optional_menus do %>
+
+                        <div id="leftMenu">
+                           <p class="naglowek">Opcje konta</p>
+                           <ul>
+                               <li><%= link_to 'Edycja  danych', edit_account_path %></li>
+                               <li><%= link_to "Statystyki konta", account_path  %> </li>
+                           </ul>
+                        </div>
+<% end %>  

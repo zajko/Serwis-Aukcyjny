@@ -1,0 +1,29 @@
+
+<html>
+	<head>
+	<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+		<script type="text/javascript" >
+			tinyMCE.init({
+				mode:"textareas", 
+				editor_selector : "tiny_mce"
+			});  
+		</script> 
+	</head>
+<body> 
+<% form_for :product, :url => {:action => "create"}  do |form| %>
+	<%= form.error_messages %>
+		
+		<%= render :partial => "form_#{@controller.product_type}", :locals => {:form => form}, :object => form %>
+		
+		<% fields_for "product[auction_attributes]" do |auction_form| %>
+			<%= render :partial => "form", :object => auction_form%>
+			<%= auction_form.hidden_field :user_attributes, :value => current_user.id%>
+		<% end %>
+		
+		<%= form.submit "Create auction" %>
+
+<% end %>
+
+	
+</body>
+</html>

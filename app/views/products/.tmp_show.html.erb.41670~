@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag "products" %>
+<% render :partial => "product_options" %>
+<h1>Szczegóły aukcji</h1>
+
+<div class="boxcondainer">
+
+      <!-- Okienko do licytowania  -->
+      <div class="box" style=" width:200px; float:right;padding:10px; border: 1px solid gray; background:#FFF286">
+        <center>LICYTUJ</center><br />
+            <%form_for @bid, :url => {:action => "bid", :product_id => @product.id, :product_type => @controller.product_type} do |bid_form|%>
+              <%=bid_form.error_messages%>
+              <%=bid_form.hidden_field :auction_id, :value => @product.auction.id %>
+              <%=bid_form.hidden_field :user_id, :value => current_user.id %>
+              <%=bid_form.label "Oferowana cena:"%>
+
+              <% if @product.auction.buy_now_price > 0 %>
+                      <%=bid_form.text_field :inactive_label_price,:value => @product.auction.buy_now_price, :disabled => true,:class=>"inputCena" %> <br/>
+                      <%=bid_form.hidden_field :offered_price, :value => @product.auction.buy_now_price%>
+              <%else%>
+                      <%=bid_form.text_field :offered_price,:class=>"inputCena" %><br /><br /><br />
+                      <i>(Min.podbicie ceny: <%=bid_form.label number_to_currency(@product.auction.minimal_bid.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%>)</i><br/>
+              <% end %>
+                      <br />
+              <%=bid_form.submit "Licytuj"%>
+
+            <% end %>
+      </div>
+
+      <!-- Wszystkie dane aukcji  -->
+      <div class="box" style="float:left;">
+
+
+            <h2>Dane produktu:</h2>
+            <%= render :partial => "show_#{@product.class}"%>
+            <h2>Dane aukcji:</h2>
+            <%= render :partial => "show"%>
+
+            <h2>Kategorie produktu:</h2>
+            <p>
+              <% @product.auction.categories.each do |category|%>
+                      <%= category.name %>
+              <%end%>
+            </p>
+
+            <h2>Licytowane ceny:</h2>
+            <% @product.auction.bids.not_cancelled.by_offered_price.each do |bid| %>
+                    <%= bid.user.login %> |
+                    <%= bid.offered_price %> |
+                    <%= bid.user.login %> |  	<%= bid.user.created_at%>
+                    <% if current_user.id == bid.user.id%>
+                            <%if !bid.asking_for_cancellation and !bid.cancelled %>
+                                    <%=link_to "ask owner to cancell your offer", :action => :ask_for_bid_cancellation, :product_id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s%>
+                            <%end%>
+                    <%end%>
+                    <%if bid.asking_for_cancellation and (bid.auction.user.id == current_user.id) or current_user.has_role?(:admin)%>
+                            <%=link_to "cancell offer", :action => :cancell_bid, :decision => true, :product_id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s%>
+
+                            <%=link_to "revoke cancell offer", :action => :cancell_bid, :decision => false, :product_id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s  if bid.asking_for_cancellation%>
+                    <%end%>
+                    <br />
+            <% end %>
+
+
+            <h2>Odwołane:</h2>
+            <% @product.auction.bids.cancelled.by_offered_price.each do |bid| %>
+                    <%= bid.user.login %> |
+                    <%= bid.offered_price %> |
+                    <%= bid.user.login %> |  	<%= bid.user.created_at%>
+                    <br />
+            <% end %>
+        </div>
+
+</div>

@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+<% for i in 1..250 %>
+pop_up_<%=i%>:
+ url: <%= "http://www.o#{i}.pl" %>
+ pagerank: <%=(( 8* (i/250) + 2)/250).to_i.to_s %>
+ users_daily: <%= (( 500* (i/250))/250).to_i %>
+ width: <%= 30 + ((100 *i/250).to_i) %>
+ height: <%= 30 + ((100 *i/250).to_i) %>
+ frequency: <%= ((i/250)/2 + rand(51) / 100) %>
+<%end%>

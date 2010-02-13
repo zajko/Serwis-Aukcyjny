@@ -1,0 +1,12 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "roles_options" %> 
+<h1>Dodaj rolę</h1>
+
+<% form_for :role, @role, :url => { :action => "create" } do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :name, "Nazwa roli: " %>
+  <%= f.text_field :name%><br />
+  <br />
+  
+  <%= f.submit "Utwórz" %>
+<% end %>

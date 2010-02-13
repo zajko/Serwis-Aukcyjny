@@ -1,0 +1,20 @@
+<%= render :partial => "articles_options" %> 
+<h1>Artykuł nr.<%=h @article.id %>: <b style="color:#92DF01"> <%=h @article.title %> </b></h1>
+<p>
+  <strong>Tytuł:</strong>
+  <%=h @article.title %>
+</p>
+<p>
+  <strong>Treść:</strong>
+  <%=h @article.text %>
+</p>
+<p>
+  <strong>Autor:</strong>
+  <%=h @article.user %>
+</p>
+<br /><br />
+<p>Inne opcje:
+  <%= link_to "Edytuj", edit_article_path(@article) %> |
+  <%= link_to "Usuń", @article, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Zobacz wszystkie", articles_path %>
+</p>

@@ -1,0 +1,101 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#create_table :users do |t|
+#      t.string :login,                {:null => false, :unique => true}
+#      t.string :email,                :null => false
+#      t.string :crypted_password,     :null => false
+#      t.string :password_salt,        :null => false
+#      t.string :persistence_token,    :null => false
+#      t.string :single_access_token,  :null => false
+#      t.string :perishable_token,     :null => false
+#      t.integer :login_count,         :null => false, :default => 0
+#      t.integer :failed_login_count,  :null => false, :default => 0
+#      t.datetime :last_request_at
+#      t.datetime :current_login_at
+#      t.datetime :last_login_at
+#      t.string :current_login_ip
+#      t.string :last_login_ip
+#      t.string :first_name, {:default => " ",:null => false}
+#      t.string :surname, {:default => " ", :null => false}
+#     #t.string :openid_identifier
+#      t.timestamps
+
+admin:
+  login:                     admin
+  email:                     admin@example.com
+  password_salt:             <%= salt = Authlogic::Random.hex_token %>
+  crypted_password:          <%= Authlogic::CryptoProviders::Sha512.encrypt("admin" + salt) %>
+  persistence_token:         <%= Authlogic::Random.hex_token %>
+  single_access_token:       <%= Authlogic::Random.friendly_token %>
+  perishable_token:          <%= Authlogic::Random.friendly_token %>
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+admin2:
+  login:                     admin2
+  email:                     admi2n@example.com
+  password_salt:             <%= salt = Authlogic::Random.hex_token %>
+  crypted_password:          <%= Authlogic::CryptoProviders::Sha512.encrypt("admin" + salt) %>
+  persistence_token:         <%= Authlogic::Random.hex_token %>
+  single_access_token:       <%= Authlogic::Random.friendly_token %>
+  perishable_token:          <%= Authlogic::Random.friendly_token %>
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+
+jarek1:
+  id:                        1
+  login:                     jarek1
+  email:                     quentin@example.com
+  crypted_password:          b5467860f81061e83ec147ec0016466852ad5c44 # 'monkey'
+  password_salt:             356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  persistence_token:         7de68daecd823babbb58edb1c8e14d7106e83bb
+  single_access_token:       7de68daecd823babbb58edb1c8e14d7106e83ss
+  perishable_token:          7de68daecd823babbb58edb1c8e14d7106e83cc
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+jarek2:
+  id:                        2
+  login:                     jarek2
+  email:                     154225@student.pwr.wroc.pl
+  crypted_password:          b5467860f81061e83ec147ec0016466852ad5c44 # 'monkey'
+  password_salt:             da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
+  persistence_token:         7de68daecd823babbb58edb1c8e14d3333383bb
+  single_access_token:       7de68daecd823babbb58edb1ss8e14d7106e83s
+  perishable_token:          7de68daecd823babbb58edb1c8e14d710ss83cc
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+user_not_active:
+    login: user_not_active
+    email: user_not_active@example.com
+    crypted_password:          b5467860f81061e83ec147ec0016466852ad5c44 # 'monkey'
+    password_salt:             356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+    persistence_token:         7de68daecd823babbb58edb1c8e14d7106e83bb
+    single_access_token:       7de68daecd823babbb58edb1c8e14d7106e83ss
+    perishable_token:          7de68daecd823babbb58edb1c8e14d7106e83cc
+    roles: not_activated
+    
+user_superuser:
+    login: user_superuser
+    email: user_superuser@example.com
+    crypted_password:          b5467860f81061e83ec147ec0016466852ad5c44 # 'monkey'
+    password_salt:             356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+    persistence_token:         7de68daecd823babbb58edb1c8e14d7106e83bb
+    single_access_token:       7de68daecd823babbb58edb1c8e14d7106e83ss
+    perishable_token:          7de68daecd823babbb58edb1c8e14d7106e83cc
+    roles: superuser
+
+aga:
+  id:                        100
+  login:                     aga
+  email:                     queadasdasddn@example.com
+  crypted_password:          b5467860f81061e83ec147ec0016466852ad5c44 # '111111'
+  password_salt:             da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
+  persistence_token:         7de68daecd823babbb58edb1c8e14d3333383bb
+  single_access_token:       7de68daecd823babbb58edb1ss8e14d7106e83s
+  perishable_token:          7de68daecd823babbb58edb1c8e14d710ss83cc
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+
+
+
+
+ 

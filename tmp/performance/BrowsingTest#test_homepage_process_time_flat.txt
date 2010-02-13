@@ -1,0 +1,11 @@
+Thread ID: -605583138
+Total: 0.070000
+
+ %self     total     self     wait    child    calls  name
+ 14.29      0.01     0.01     0.00     0.00        2  ActionView::Helpers::AssetTagHelper#javascript_include_tag
+ 14.29      0.01     0.01     0.00     0.00        1  ActionController::Base#log_processing_for_parameters
+ 14.29      0.01     0.01     0.00     0.00        2  Authlogic::Session::Klass::InstanceMethods#initialize
+ 14.29      0.01     0.01     0.00     0.00     1338  <Module::ActiveSupport::Multibyte>#valid_character
+ 14.29      0.01     0.01     0.00     0.00       58  String#split
+
+

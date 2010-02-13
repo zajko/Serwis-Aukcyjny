@@ -1,0 +1,5090 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='en' http-equiv='Content-Language' />
+    <title>metrics</title>
+    <style>
+    /*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+    /* --------------------------------------------------------------
+
+   buttons.css
+   * Gives you some great CSS-only buttons.
+
+   Created by Kevin Hale [particletree.com]
+   * particletree.com/features/rediscovering-the-button-element
+
+   See Readme.txt in this folder for instructions.
+
+-------------------------------------------------------------- */
+
+button {
+  display:block;
+  float:left;
+  margin:0 0.583em 0.667em 0;
+  padding:5px 10px 5px 7px;   /* Links */
+
+  border:1px solid #dedede;
+  border-top:1px solid #eee;
+  border-left:1px solid #eee;
+
+  background-color:#f5f5f5;
+  font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+  font-size:100%;
+  line-height:130%;
+  text-decoration:none;
+  font-weight:bold;
+  color:#565656;
+  cursor:pointer;
+}
+button {
+  width:auto;
+  overflow:visible;
+  padding:4px 10px 3px 7px;   /* IE6 */
+}
+button[type] {
+  padding:4px 10px 4px 7px;   /* Firefox */
+  line-height:17px;           /* Safari */
+}
+*:first-child+html button[type] {
+  padding:4px 10px 3px 7px;   /* IE7 */
+}
+button img {
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+  float:none;
+}
+
+
+/* Button colors
+-------------------------------------------------------------- */
+
+/* Standard */
+button:hover {
+  background-color:#dff4ff;
+  border:1px solid #c2e1ef;
+  color:#336699;
+}
+
+/* Positive */
+body .positive {
+  color:#529214;
+}
+button.positive:hover {
+  background-color:#E6EFC2;
+  border:1px solid #C6D880;
+  color:#529214;
+}
+
+/* Negative */
+body .negative {
+  color:#d12f19;
+}
+button.negative:hover {
+  background:#fbe3e4;
+  border:1px solid #fbc2c4;
+  color:#d12f19;
+}
+
+    html {
+  background-color: #e0e0e0; }
+
+body {
+  font-size: 100%;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #333333; }
+
+a {
+  color: #ed1556;
+  text-decoration: none; }
+  a:hover {
+    color: #ffffff;
+    background-color: #ed1556; }
+
+#header, #content, #footer {
+  margin: 0 auto;
+  background: #eeeeee;
+  padding: 0 2em;
+  z-index: 0;
+  position: relative;
+  font-size: 1em; }
+
+#header {
+  background: #ffffff; }
+  #header h1 {
+    font-weight: bold;
+    font-size: 1.5em; }
+  #header address.watermark {
+    position: absolute;
+    font-weight: bold;
+    right: 3em;
+    top: 0;
+    font-size: .75em;
+    color: #cccccc; }
+    #header address.watermark a {
+      color: #cccccc;
+      font-weight: bold;
+      font-size: 2em; }
+      #header address.watermark a:hover {
+        background: transparent;
+        color: #aaaaaa; }
+
+#content {
+  padding-top: 1em;
+  padding-bottom: 2em; }
+  #content strong {
+    font-weight: bold; }
+  #content em {
+    font-style: italic; }
+  #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    color: #4e4e4e; }
+  #content h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: .75em;
+    padding: .25em 0;
+    line-height: 1.2;
+    border-bottom: 1px solid #c0c0c0; }
+  #content h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 1em 0 .2em; }
+  #content h3 {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin: .25em 0; }
+  #content h4, #content h5, #content h6 {
+    font-weight: bold;
+    margin-top: .5em; }
+  #content code, #content pre, #content textarea, #content input {
+    font-family: Monaco, Deja Vu Sans Mono, Inconsolata, Consolas, monospace; }
+  #content form p {
+    margin-top: 1em;
+    position: relative; }
+    #content form p.checkbox label {
+      margin-top: 0 !important; }
+  #content form input.text, #content form textarea {
+    width: 30em;
+    padding: .2em .4em;
+    color: #4e4e4e; }
+  #content form input.text {
+    height: 1.4em; }
+  #content form label {
+    float: left;
+    display: block;
+    margin-top: .5em;
+    width: 8em;
+    margin-right: .75em; }
+  #content form .with_errors label {
+    background: red;
+    color: white;
+    position: relative;
+    top: -.7em; }
+  #content form .with_errors.required label {
+    position: static;
+    margin-right: .25em;
+    padding: 0 .2em; }
+  #content form .with_errors input, #content form .with_errors textarea {
+    border: 2px solid #f22;
+    background: #fee;
+    color: #222222; }
+  #content form .required label {
+    float: none;
+    display: block;
+    width: auto;
+    position: relative;
+    font-weight: bold;
+    margin-top: 1em;
+    text-indent: -.65em; }
+    #content form .required label:before {
+      content: "* ";
+      color: #ed1556; }
+  #content form .required input.text {
+    width: 25.6em;
+    font-size: 24px;
+    font-weight: bold; }
+  #content form .normal {
+    margin-top: 2em; }
+  #content form h2.notifier label {
+    float: none;
+    width: auto;
+    margin-right: 0; }
+    #content form h2.notifier label .warning {
+      font-size: .5em;
+      font-weight: normal;
+      color: #999999; }
+  #content form fieldset {
+    padding-bottom: 1em;
+    margin-left: 1.35em;
+    border-bottom: 1px solid #c0c0c0;
+    margin-bottom: 1em; }
+    #content form fieldset h3 {
+      margin-top: 1em;
+      margin-bottom: 0; }
+    #content form fieldset p.normal {
+      margin-top: 1em; }
+    #content form fieldset p label {
+      width: 6.7em; }
+  #content form p.submit {
+    margin-top: 2em; }
+    #content form p.submit:after {
+      display: block;
+      clear: both;
+      float: none;
+      content: ".";
+      text-indent: -9999em;
+      text-align: left; }
+    #content form p.submit.destroy button,     #content form p.submit.manual-build button {
+      float: none;
+      display: inline; }
+    #content form p.submit.manual-build button {
+      margin-right: 0; }
+  #content #build form, #content #last_build form {
+    font-size: .75em; }
+    #content #build form p.submit,     #content #last_build form p.submit {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: .5em;
+      top: 1.25em; }
+  #content .blank_slate p,   #content .error p {
+    position: relative;
+    top: .3em; }
+  #content .blank_slate h1,   #content .error h1 {
+    border-width: 0;
+    margin: 0;
+    padding: 0; }
+    #content .blank_slate h1 button,     #content .error h1 button {
+      float: none;
+      border: 0 none;
+      background: transparent;
+      display: inline;
+      color: #ed1556;
+      padding: 0.25em 0;
+      margin: 0; }
+      #content .blank_slate h1 button:hover,       #content .error h1 button:hover {
+        background: #ed1556;
+        color: #ffffff; }
+  #content .error dt {
+    margin-top: 1.4em;
+    margin-bottom: .3em;
+    font-size: 1.75em;
+    font-family: Georgia, Times New Roman, serif; }
+  #content .error dd {
+    line-height: 1.4; }
+  #content .error .backtrace {
+    margin: 1em 0;
+    overflow: scroll;
+    height: 30em;
+    border: 1px solid #c0c0c0;
+    line-height: 1.6; }
+  #content #projects {
+    margin: 1em 0 2em;
+    border-top: 1px solid #c0c0c0; }
+    #content #projects li {
+      position: relative;
+      border-bottom: 1px solid #c0c0c0; }
+      #content #projects li.odd {
+        background: #e6e6e6; }
+      #content #projects li.building {
+        background: transparent url(/spinner.gif) no-repeat scroll right; }
+      #content #projects li a {
+        font-size: 2em;
+        padding: .25em;
+        line-height: 1.2;
+        font-weight: bold;
+        display: block; }
+        #content #projects li a.success {
+          color: #337022; }
+        #content #projects li a.failed {
+          color: #ff1100; }
+      #content #projects li .meta {
+        position: absolute;
+        right: .6em;
+        top: 1.5em;
+        font-size: 0.8em;
+        color: #999999;
+        text-align: right; }
+      #content #projects li.building .meta {
+        right: 1.6em; }
+      #content #projects li.success .meta {
+        color: #337022; }
+      #content #projects li.failed .meta {
+        color: #ff1100; }
+  #content #previous_builds li a {
+    display: block;
+    padding: .25em;
+    margin-bottom: .25em;
+    border-width: 1px;
+    border-style: solid; }
+    #content #previous_builds li a strong {
+      font-size: 1.3em; }
+    #content #previous_builds li a .attribution {
+      font-size: .9em; }
+  #content #projects li.success a,   #content #previous_builds li.success a {
+    background-color: #bbf8aa;
+    border-color: #99d688;
+    color: #337022; }
+    #content #projects li.success a .attribution,     #content #previous_builds li.success a .attribution {
+      color: #77b466; }
+    #content #projects li.success a:hover,     #content #previous_builds li.success a:hover {
+      background-color: #ddffcc; }
+  #content #projects li.failed a,   #content #previous_builds li.failed a {
+    background-color: #ffbbaa;
+    border-color: #dd9988;
+    color: #ff1100; }
+    #content #projects li.failed a .attribution,     #content #previous_builds li.failed a .attribution {
+      color: #bb7766; }
+    #content #projects li.failed a:hover,     #content #previous_builds li.failed a:hover {
+      background-color: #ffddcc; }
+  #content #build, #content #last_build {
+    position: relative; }
+    #content #build h1, #content #build blockquote,     #content #last_build h1, #content #last_build blockquote {
+      border-width: 0 1px;
+      border-style: solid; }
+    #content #build h1,     #content #last_build h1 {
+      border-top-width: 1px; }
+    #content #build blockquote,     #content #last_build blockquote {
+      bottom-bottom-width: 1px;
+      line-height: 1.4; }
+    #content #build.success h1, #content #build.success blockquote,     #content #last_build.success h1, #content #last_build.success blockquote {
+      background-color: #bbf8aa;
+      border-color: #99d688 #ccffbb #ccffbb #99d688; }
+    #content #build.success h1,     #content #last_build.success h1 {
+      color: #337022; }
+    #content #build.success .meta,     #content #last_build.success .meta {
+      color: #77b466; }
+    #content #build.failed h1, #content #build.failed blockquote,     #content #last_build.failed h1, #content #last_build.failed blockquote {
+      background-color: #ffbbaa;
+      border-color: #dd9988 #ffccbb #ffccbb #dd9988; }
+    #content #build.failed h1,     #content #last_build.failed h1 {
+      color: #ff1100; }
+    #content #build.failed .meta,     #content #last_build.failed .meta {
+      color: #bb7766; }
+    #content #build h1,     #content #last_build h1 {
+      margin-top: .5em;
+      margin-bottom: 0;
+      padding: .25em;
+      color: #337022; }
+    #content #build blockquote,     #content #last_build blockquote {
+      padding: .75em;
+      margin-bottom: 2em; }
+      #content #build blockquote .meta,       #content #last_build blockquote .meta {
+        margin-top: 1em;
+        display: block;
+        font-size: .9em; }
+    #content #build pre.output,     #content #last_build pre.output {
+      background: #111;
+      color: #fff;
+      padding: .5em;
+      overflow: auto;
+      max-height: 50em;
+      font-size: .825em; }
+      #content #build pre.output .color30,       #content #last_build pre.output .color30 {
+        color: #333; }
+      #content #build pre.output .color31,       #content #last_build pre.output .color31 {
+        color: #e33; }
+      #content #build pre.output .color32,       #content #last_build pre.output .color32 {
+        color: #3e3; }
+      #content #build pre.output .color33,       #content #last_build pre.output .color33 {
+        color: #ee3; }
+      #content #build pre.output .color34,       #content #last_build pre.output .color34 {
+        color: #33e; }
+      #content #build pre.output .color35,       #content #last_build pre.output .color35 {
+        color: #e3e; }
+      #content #build pre.output .color36,       #content #last_build pre.output .color36 {
+        color: #3ee; }
+      #content #build pre.output .color37,       #content #last_build pre.output .color37 {
+        color: #fff; }
+  #content #push_path {
+    display: block;
+    margin-top: 1em;
+    margin-left: 2em; }
+
+a.success {
+  color: #bbf8aa; }
+  a.success:hover {
+    background-color: #bbf8aa;
+    color: white; }
+a.failed {
+  color: #ffbbaa; }
+  a.failed:hover {
+    background-color: #ffbbaa;
+    color: white; }
+
+#footer {
+  padding: 1.5em 2.5em;
+  border-top: 1px solid #ccc;
+  font-size: .8em;
+  color: #666;
+  text-align: right; }
+  #footer strong {
+    font-weight: bold; }
+    
+    table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  border: 1px solid #666;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+table tr.light {
+   background: #fff;
+}
+
+table tr.dark {
+  background: #f9f9f9;
+}
+
+table tr:hover {
+  background: #FFFFC0;
+}
+
+table td, table th {
+  padding: 4px;
+  font-size: 11px;
+}
+table th {
+  text-align: center;
+  color: #337022;
+  background: #DDFFCC;
+  font-weight: bold;
+  border: #99D688 1px solid;
+}
+
+table td {
+  border: #d0d0d0 1px solid;
+}
+
+table td.score {
+  text-align: right;
+}
+
+.warning {
+  background: yellow;
+}
+.rcov_code td {
+  border-bottom: 1px solid #ddd ;
+  padding: 0;
+  margin: 0;
+}
+.rcov_code tr {
+  border: 0px;
+  padding:0px;
+  margin: 0px;
+}
+.rcov_code pre {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+.rcov_run {}
+.rcov_not_run {
+  background-color: #d88;
+}
+.rcov_run a, .rcov_not_run a {
+  text-decoration: none;
+}
+.rcov_run a {
+  color: #333;
+}
+.rcov_not_run a {
+  color: #000;
+}
+.rcov_overflow {
+  overflow: auto;
+  font-size: 50%;
+}
+
+    </style>
+    <link REL="SHORTCUT ICON" HREF="/favicon.ico">
+  </head>
+  <body>
+    <div id='header'>
+      <h1><a href="/">metrics</a> | <a href="index.html">Serwis-Aukcyjny</a></h1>
+      <address class='watermark'>
+        built with
+        <a href='http://metric-fu.rubyforge.org/'>metric-fu</a>
+      </address>
+    </div>
+    <div id='content'>
+      <h3>Saikuro Results</h3>
+<p><a href='http://saikuro.rubyforge.org/'>Saikuro</a> analyzes ruby code for cyclomatic complexity.</p>
+
+<h2>Analyzed Methods</h2>
+  <table>
+    <tr>
+      <th>Method Name</th>
+      <th>Complexity</th>
+      <th># Lines</th>
+    </tr>
+    
+    <tr>
+      <td>Banner#self.prepare_search_scopes</td>
+      <td>25</td>
+      <td>35</td>
+    </tr>
+    
+    <tr>
+      <td>PopUp#self.prepare_search_scopes</td>
+      <td>21</td>
+      <td>30</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticle#self.prepare_search_scopes</td>
+      <td>17</td>
+      <td>27</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLink#self.prepare_search_scopes</td>
+      <td>16</td>
+      <td>32</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#check_before_update</td>
+      <td>12</td>
+      <td>20</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.initialise</td>
+      <td>11</td>
+      <td>33</td>
+    </tr>
+    
+    <tr>
+      <td>Banner#check_before_update</td>
+      <td>11</td>
+      <td>19</td>
+    </tr>
+    
+    <tr>
+      <td>User#self.prepare_search_scopes</td>
+      <td>11</td>
+      <td>22</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticle#check_before_update</td>
+      <td>10</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>PopUp#check_before_update</td>
+      <td>10</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLink#check_before_update</td>
+      <td>7</td>
+      <td>15</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#update</td>
+      <td>7</td>
+      <td>17</td>
+    </tr>
+    
+    <tr>
+      <td>ActiveRecord#self.validates_uri_existence_of</td>
+      <td>7</td>
+      <td>20</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#editing_mine</td>
+      <td>6</td>
+      <td>17</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#activate</td>
+      <td>6</td>
+      <td>29</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#check_before_update</td>
+      <td>6</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>UserSessionsController#create</td>
+      <td>5</td>
+      <td>20</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#deny_user_access</td>
+      <td>5</td>
+      <td>23</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#bid</td>
+      <td>5</td>
+      <td>15</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#deny_user_access</td>
+      <td>4</td>
+      <td>22</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#load_peek_user</td>
+      <td>4</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#calculate_current_price</td>
+      <td>4</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#updateRoles</td>
+      <td>4</td>
+      <td>21</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#page_rank</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#update_auction_time</td>
+      <td>4</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#destroy_check</td>
+      <td>4</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver#update_auction_time</td>
+      <td>4</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#wizard_preview</td>
+      <td>4</td>
+      <td>17</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#buy_now_price_null_or_numerical</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>RubySMTP#send</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#order_by</td>
+      <td>3</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#ask_for_bid_cancellation</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#ask_for_cancell</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#cancell_bid</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#buy_now_can_sell_limited</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#activate</td>
+      <td>3</td>
+      <td>23</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#unban</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#cn</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#cancell_bid</td>
+      <td>3</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#add_role_to_user</td>
+      <td>3</td>
+      <td>17</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#remove_role_from_user</td>
+      <td>3</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#ban</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>PersonalController#bidded</td>
+      <td>3</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#create</td>
+      <td>2</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#index</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#load_user_using_perishable_token</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#update</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#wizard_product_create</td>
+      <td>2</td>
+      <td>23</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#index</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController#create</td>
+      <td>2</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#create</td>
+      <td>2</td>
+      <td>32</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#delete</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#negate_order</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#require_no_user</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#require_user</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#current_user</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#current_user_session</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>UsersHelper#interest</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#load_article</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Category#name_not_trivial</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#update</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>AuctionsHelper#AuctionsHelper.random_string</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#create</td>
+      <td>2</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>HomeController#index</td>
+      <td>2</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#destroy</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#start_must_be_before_end</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#index</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Tableless#save</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#start_must_be_after_today</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#minimal_bid</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>PersonalController#auctions</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#cant_destroy_admins</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#create</td>
+      <td>2</td>
+      <td>21</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#show</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#edit</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#update</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>User#assign_roles</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#index</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#create</td>
+      <td>2</td>
+      <td>11</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController#delete</td>
+      <td>2</td>
+      <td>10</td>
+    </tr>
+    
+    <tr>
+      <td>User#ban</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>User#has_no_role!</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#manage</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>User#has_role!</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>User#activate!</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>User#is_admin?</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RubySMTP#send_email</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#old_cn</td>
+      <td>2</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>RolesUser#cannot_ban_suspend_superuser</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RolesUser#cannot_adminize_banned</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#owner_of_auction_cant_bid</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RolesUser#only_one_superuser</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RolesUser#cannot_destroy_superuser</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#can_bid_now_only_by_buy_now_price</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#can_bid_open_auctions</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#can_bid_activated_auctions</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#ProductsHelper.random_string</td>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#categorized</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#offered_price_meets_minimal</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#self.prepare_search_scopes</td>
+      <td>1</td>
+      <td>42</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#activate_url</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#to_parse</td>
+      <td>1</td>
+      <td>41</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#initialize</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#inform_interesants</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#m</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#m1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#i2c</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#c2i</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Bid#update_auction_price</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#mix</td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticleSearch#categories</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticleSearch#categories=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticleSearch#categories_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>RubySMTP#initialize</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticle#SponsoredArticle.searchObject</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RubySMTP#address_valid?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver#after_save</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper#request_uri</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver#after_delete</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>User#deliver_password_reset_instructions!</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>User#no_admin!</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>User#admin!</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>User#unban</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#new</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver#after_create</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>User#banned?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController#index</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#delete</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>User#self.per_page</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#edit</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#generate_activation_url</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserSessionsController#new</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#index</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#prepare_search</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController#list</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.scheduler=</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#destroy</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.scheduler</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserSessionsController#destroy</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#categories_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#conditions=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController#new</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.auction_to_destroy=</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#order=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#order</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#conditions</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLinkSearch#categories</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLinkSearch#categories=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLinkSearch#categories_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#categories=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLink#SiteLink.searchObject</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch#categories</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>BannerSearch#categories</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>BannerSearch#categories=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>BannerSearch#categories_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.auction_to_destroy</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Banner#Banner.searchObject</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Tableless#self.columns</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver#after_update</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#bid</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Tableless#self.column</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.auction_destroyer=</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#user_attributes=</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler#self.auction_destroyer</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#assign_roles</td>
+      <td>1</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#close</td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#buy_now?</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController#self.per_page</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#notifyAuctionWinner</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#notifyAuctionWinners</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Auction#limited_bid_count_if_buy_now_auction</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#articles</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserSearch#roles_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>UserSearch#interests_attributes=</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#show</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserSearch#interests</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>UserSearch#roles</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#new</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#show</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController#destroy</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#edit</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#ApplicationController.get_static_user</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#store_location</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController#redirect_back_or_default</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#new</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController#edit</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController#new</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#prepare_search</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>Role#de_capitalize_name</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#product_type</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#new</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#wizard_summary</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>AuctionObserver#before_destroy</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#wizard_product_data</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsController#wizart_product_type</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>Notifier#password_reset_instructions</td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+  </table>
+
+
+
+<h2>Analyzed Classes</h2>
+  <table>
+    <tr>
+      <th>Class Name</th>
+      <th>Complexity</th>
+      <th># Lines</th>
+    </tr>
+    
+    <tr>
+      <td>ProductsController</td>
+      <td>61</td>
+      <td>319</td>
+    </tr>
+    
+    <tr>
+      <td>Auction</td>
+      <td>49</td>
+      <td>268</td>
+    </tr>
+    
+    <tr>
+      <td>Banner</td>
+      <td>41</td>
+      <td>95</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLink</td>
+      <td>35</td>
+      <td>133</td>
+    </tr>
+    
+    <tr>
+      <td>PopUp</td>
+      <td>34</td>
+      <td>83</td>
+    </tr>
+    
+    <tr>
+      <td>UsersController</td>
+      <td>33</td>
+      <td>191</td>
+    </tr>
+    
+    <tr>
+      <td>User</td>
+      <td>33</td>
+      <td>136</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticle</td>
+      <td>32</td>
+      <td>87</td>
+    </tr>
+    
+    <tr>
+      <td>Bid</td>
+      <td>31</td>
+      <td>113</td>
+    </tr>
+    
+    <tr>
+      <td>ProductsHelper</td>
+      <td>22</td>
+      <td>135</td>
+    </tr>
+    
+    <tr>
+      <td>RolesController</td>
+      <td>21</td>
+      <td>115</td>
+    </tr>
+    
+    <tr>
+      <td>MyScheduler</td>
+      <td>17</td>
+      <td>58</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesController</td>
+      <td>14</td>
+      <td>66</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationController</td>
+      <td>11</td>
+      <td>51</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsController</td>
+      <td>10</td>
+      <td>53</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesController</td>
+      <td>9</td>
+      <td>47</td>
+    </tr>
+    
+    <tr>
+      <td>BidObserver</td>
+      <td>8</td>
+      <td>34</td>
+    </tr>
+    
+    <tr>
+      <td>RolesUser</td>
+      <td>8</td>
+      <td>36</td>
+    </tr>
+    
+    <tr>
+      <td>ActiveRecord</td>
+      <td>7</td>
+      <td>22</td>
+    </tr>
+    
+    <tr>
+      <td>ProductSearch</td>
+      <td>7</td>
+      <td>60</td>
+    </tr>
+    
+    <tr>
+      <td>RubySMTP</td>
+      <td>7</td>
+      <td>34</td>
+    </tr>
+    
+    <tr>
+      <td>UserSessionsController</td>
+      <td>7</td>
+      <td>36</td>
+    </tr>
+    
+    <tr>
+      <td>PersonalController</td>
+      <td>6</td>
+      <td>25</td>
+    </tr>
+    
+    <tr>
+      <td>UserSearch</td>
+      <td>4</td>
+      <td>23</td>
+    </tr>
+    
+    <tr>
+      <td>Tableless</td>
+      <td>4</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>SponsoredArticleSearch</td>
+      <td>3</td>
+      <td>29</td>
+    </tr>
+    
+    <tr>
+      <td>BannerSearch</td>
+      <td>3</td>
+      <td>33</td>
+    </tr>
+    
+    <tr>
+      <td>SiteLinkSearch</td>
+      <td>3</td>
+      <td>25</td>
+    </tr>
+    
+    <tr>
+      <td>AuctionsHelper</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    
+    <tr>
+      <td>Category</td>
+      <td>2</td>
+      <td>13</td>
+    </tr>
+    
+    <tr>
+      <td>HomeController</td>
+      <td>2</td>
+      <td>18</td>
+    </tr>
+    
+    <tr>
+      <td>UsersHelper</td>
+      <td>2</td>
+      <td>8</td>
+    </tr>
+    
+    <tr>
+      <td>Notifier</td>
+      <td>1</td>
+      <td>12</td>
+    </tr>
+    
+    <tr>
+      <td>Role</td>
+      <td>1</td>
+      <td>14</td>
+    </tr>
+    
+    <tr>
+      <td>AuctionObserver</td>
+      <td>1</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td>Article</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>UserSessionsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>Administrator</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>MailingService</td>
+      <td>0</td>
+      <td>6</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>AccountHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>Interest</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    
+    <tr>
+      <td>ArticlesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>ApplicationHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>UserSession</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    
+    <tr>
+      <td>AuctionsCategories</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>NewSiteLinkHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>PasswordResetsHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>RoleHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>CategoriesHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td></td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+    <tr>
+      <td>HomeHelper</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    
+  </table>
+
+
+<h2>Analyzed Files</h2>
+
+  
+      
+        <h3>products_controller.rb</h3>
+        <h4>Class : ProductsController</h4>
+        <h5>Total complexity : 61</h5>
+        <h5>Total lines : 319</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#update
+              </td>
+              <td>
+                7 
+              </td>
+              <td>
+                17
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#activate
+              </td>
+              <td>
+                6 
+              </td>
+              <td>
+                29
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#editing_mine
+              </td>
+              <td>
+                6 
+              </td>
+              <td>
+                17
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#deny_user_access
+              </td>
+              <td>
+                5 
+              </td>
+              <td>
+                23
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#bid
+              </td>
+              <td>
+                5 
+              </td>
+              <td>
+                15
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#wizard_preview
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                17
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#ask_for_bid_cancellation
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#order_by
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#cancell_bid
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#negate_order
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#delete
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#wizard_product_create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                23
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                32
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#index
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#prepare_search
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#product_type
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#wizard_summary
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#edit
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#wizard_product_data
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#wizart_product_type
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsController#show
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+  
+      
+        <h3>auction.rb</h3>
+        <h4>Class : Auction</h4>
+        <h5>Total complexity : 49</h5>
+        <h5>Total lines : 268</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#check_before_update
+              </td>
+              <td>
+                12 
+              </td>
+              <td>
+                20
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#destroy_check
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                14
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#calculate_current_price
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                14
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#buy_now_price_null_or_numerical
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#minimal_bid
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#start_must_be_after_today
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#start_must_be_before_end
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#destroy
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#buy_now?
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#close
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#notifyAuctionWinner
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#notifyAuctionWinners
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#limited_bid_count_if_buy_now_auction
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#assign_roles
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#user_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#bid
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Auction#self.prepare_search_scopes
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                42
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>banner.rb</h3>
+        <h4>Class : Banner</h4>
+        <h5>Total complexity : 41</h5>
+        <h5>Total lines : 95</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Banner#self.prepare_search_scopes
+              </td>
+              <td>
+                25 
+              </td>
+              <td>
+                35
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Banner#check_before_update
+              </td>
+              <td>
+                11 
+              </td>
+              <td>
+                19
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Banner#Banner.searchObject
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+      
+        <h3>banner.rb</h3>
+        <h4>Class : BannerSearch</h4>
+        <h5>Total complexity : 3</h5>
+        <h5>Total lines : 33</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                BannerSearch#categories
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BannerSearch#categories=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BannerSearch#categories_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>site_link.rb</h3>
+        <h4>Class : SiteLink</h4>
+        <h5>Total complexity : 35</h5>
+        <h5>Total lines : 133</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLink#self.prepare_search_scopes
+              </td>
+              <td>
+                16 
+              </td>
+              <td>
+                32
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLink#check_before_update
+              </td>
+              <td>
+                7 
+              </td>
+              <td>
+                15
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLink#SiteLink.searchObject
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+      
+        <h3>site_link.rb</h3>
+        <h4>Class : SiteLinkSearch</h4>
+        <h5>Total complexity : 3</h5>
+        <h5>Total lines : 25</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLinkSearch#categories
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLinkSearch#categories=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SiteLinkSearch#categories_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>pop_up.rb</h3>
+        <h4>Class : PopUp</h4>
+        <h5>Total complexity : 34</h5>
+        <h5>Total lines : 83</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                PopUp#self.prepare_search_scopes
+              </td>
+              <td>
+                21 
+              </td>
+              <td>
+                30
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PopUp#check_before_update
+              </td>
+              <td>
+                10 
+              </td>
+              <td>
+                18
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>users_controller.rb</h3>
+        <h4>Class : UsersController</h4>
+        <h5>Total complexity : 33</h5>
+        <h5>Total lines : 191</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#load_peek_user
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                18
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#deny_user_access
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                22
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#activate
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                23
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#ban
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#unban
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#update
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#show
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#edit
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                21
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#cant_destroy_admins
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#index
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#generate_activation_url
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#prepare_search
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersController#destroy
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>user.rb</h3>
+        <h4>Class : User</h4>
+        <h5>Total complexity : 33</h5>
+        <h5>Total lines : 136</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                User#self.prepare_search_scopes
+              </td>
+              <td>
+                11 
+              </td>
+              <td>
+                22
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#assign_roles
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#activate!
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#is_admin?
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#ban
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#has_no_role!
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#has_role!
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#unban
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#admin!
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#banned?
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#no_admin!
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#deliver_password_reset_instructions!
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                User#self.per_page
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>sponsored_article.rb</h3>
+        <h4>Class : SponsoredArticle</h4>
+        <h5>Total complexity : 32</h5>
+        <h5>Total lines : 87</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticle#self.prepare_search_scopes
+              </td>
+              <td>
+                17 
+              </td>
+              <td>
+                27
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticle#check_before_update
+              </td>
+              <td>
+                10 
+              </td>
+              <td>
+                18
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticle#SponsoredArticle.searchObject
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+      
+        <h3>sponsored_article.rb</h3>
+        <h4>Class : SponsoredArticleSearch</h4>
+        <h5>Total complexity : 3</h5>
+        <h5>Total lines : 29</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticleSearch#categories
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticleSearch#categories=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                SponsoredArticleSearch#categories_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>bid.rb</h3>
+        <h4>Class : Bid</h4>
+        <h5>Total complexity : 31</h5>
+        <h5>Total lines : 113</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#check_before_update
+              </td>
+              <td>
+                6 
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#update_auction_time
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#ask_for_cancell
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#cancell_bid
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#buy_now_can_sell_limited
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#offered_price_meets_minimal
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#can_bid_now_only_by_buy_now_price
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#can_bid_open_auctions
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#can_bid_activated_auctions
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#owner_of_auction_cant_bid
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#update_auction_price
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Bid#inform_interesants
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+  
+      
+        <h3>products_helper.rb</h3>
+        <h4>Class : ProductsHelper</h4>
+        <h5>Total complexity : 22</h5>
+        <h5>Total lines : 135</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#page_rank
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#cn
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#ProductsHelper.random_string
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#old_cn
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#categorized
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#c2i
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#mix
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#m1
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#m
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#initialize
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#to_parse
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                41
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#activate_url
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#request_uri
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductsHelper#i2c
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>roles_controller.rb</h3>
+        <h4>Class : RolesController</h4>
+        <h5>Total complexity : 21</h5>
+        <h5>Total lines : 115</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#updateRoles
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                21
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#add_role_to_user
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                17
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#remove_role_from_user
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                14
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#index
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#manage
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#list
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                1
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#delete
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                12
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#edit
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                1
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+  
+      
+        <h3>my_scheduler.rb</h3>
+        <h4>Class : MyScheduler</h4>
+        <h5>Total complexity : 17</h5>
+        <h5>Total lines : 58</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.initialise
+              </td>
+              <td>
+                11 
+              </td>
+              <td>
+                33
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.auction_to_destroy
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.auction_destroyer=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.auction_destroyer
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.auction_to_destroy=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.scheduler
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                MyScheduler#self.scheduler=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>articles_controller.rb</h3>
+        <h4>Class : ArticlesController</h4>
+        <h5>Total complexity : 14</h5>
+        <h5>Total lines : 66</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#load_article
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#index
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#update
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#edit
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#show
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#destroy
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ArticlesController#articles
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+  
+      
+        <h3>application_controller.rb</h3>
+        <h4>Class : ApplicationController</h4>
+        <h5>Total complexity : 11</h5>
+        <h5>Total lines : 51</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#require_user
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#current_user_session
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#require_no_user
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#current_user
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#redirect_back_or_default
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#store_location
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ApplicationController#ApplicationController.get_static_user
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>password_resets_controller.rb</h3>
+        <h4>Class : PasswordResetsController</h4>
+        <h5>Total complexity : 10</h5>
+        <h5>Total lines : 53</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#load_user_using_perishable_token
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                8
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#update
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#index
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#edit
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PasswordResetsController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>categories_controller.rb</h3>
+        <h4>Class : CategoriesController</h4>
+        <h5>Total complexity : 9</h5>
+        <h5>Total lines : 47</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                CategoriesController#create
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                CategoriesController#delete
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                10
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                CategoriesController#self.per_page
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                CategoriesController#index
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                CategoriesController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>bid_observer.rb</h3>
+        <h4>Class : BidObserver</h4>
+        <h5>Total complexity : 8</h5>
+        <h5>Total lines : 34</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                BidObserver#update_auction_time
+              </td>
+              <td>
+                4 
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BidObserver#after_save
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                4
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BidObserver#after_update
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BidObserver#after_delete
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                BidObserver#after_create
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>roles_user.rb</h3>
+        <h4>Class : RolesUser</h4>
+        <h5>Total complexity : 8</h5>
+        <h5>Total lines : 36</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesUser#cannot_ban_suspend_superuser
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesUser#cannot_adminize_banned
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesUser#only_one_superuser
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RolesUser#cannot_destroy_superuser
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>rubysmtp.rb</h3>
+        <h4>Class : RubySMTP</h4>
+        <h5>Total complexity : 7</h5>
+        <h5>Total lines : 34</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                RubySMTP#send
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                11
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RubySMTP#send_email
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RubySMTP#address_valid?
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                RubySMTP#initialize
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                1
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>user_sessions_controller.rb</h3>
+        <h4>Class : UserSessionsController</h4>
+        <h5>Total complexity : 7</h5>
+        <h5>Total lines : 36</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSessionsController#create
+              </td>
+              <td>
+                5 
+              </td>
+              <td>
+                20
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSessionsController#destroy
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                5
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSessionsController#new
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>validates_uri_existance.rb</h3>
+        <h4>Class : ActiveRecord</h4>
+        <h5>Total complexity : 7</h5>
+        <h5>Total lines : 22</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ActiveRecord#self.validates_uri_existence_of
+              </td>
+              <td>
+                7 
+              </td>
+              <td>
+                20
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>product_search.rb</h3>
+        <h4>Class : ProductSearch</h4>
+        <h5>Total complexity : 7</h5>
+        <h5>Total lines : 60</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#categories
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#categories=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#conditions
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#order
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#order=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#conditions=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                ProductSearch#categories_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>personal_controller.rb</h3>
+        <h4>Class : PersonalController</h4>
+        <h5>Total complexity : 6</h5>
+        <h5>Total lines : 25</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                PersonalController#bidded
+              </td>
+              <td>
+                3 
+              </td>
+              <td>
+                9
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                PersonalController#auctions
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                7
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>tableless.rb</h3>
+        <h4>Class : Tableless</h4>
+        <h5>Total complexity : 4</h5>
+        <h5>Total lines : 14</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Tableless#save
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Tableless#self.column
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                Tableless#self.columns
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>user_search.rb</h3>
+        <h4>Class : UserSearch</h4>
+        <h5>Total complexity : 4</h5>
+        <h5>Total lines : 23</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSearch#roles
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSearch#interests
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSearch#interests_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+            <tr>
+              <td>
+                UserSearch#roles_attributes=
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                3
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>home_controller.rb</h3>
+        <h4>Class : HomeController</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 18</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                HomeController#index
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                13
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>auctions_helper.rb</h3>
+        <h4>Class : AuctionsHelper</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 9</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                AuctionsHelper#AuctionsHelper.random_string
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>category.rb</h3>
+        <h4>Class : Category</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 13</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Category#name_not_trivial
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>users_helper.rb</h3>
+        <h4>Class : UsersHelper</h4>
+        <h5>Total complexity : 2</h5>
+        <h5>Total lines : 8</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                UsersHelper#interest
+              </td>
+              <td>
+                2 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>role.rb</h3>
+        <h4>Class : Role</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 14</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Role#de_capitalize_name
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>auction_observer.rb</h3>
+        <h4>Class : AuctionObserver</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 6</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                AuctionObserver#before_destroy
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                2
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+        <h3>notifier.rb</h3>
+        <h4>Class : Notifier</h4>
+        <h5>Total complexity : 1</h5>
+        <h5>Total lines : 12</h5>
+        <table>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+              <th># Lines</th>
+            </tr>
+          
+            <tr>
+              <td>
+                Notifier#password_reset_instructions
+              </td>
+              <td>
+                1 
+              </td>
+              <td>
+                6
+              </td>
+            </tr>
+          
+        </table> 
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+  
+      
+  
+
+
+<p>Generated on Wed Dec 16 23:33:26 +0100 2009</p>	
+
+    </div>
+  </body>
+</html>

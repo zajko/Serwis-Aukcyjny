@@ -1,0 +1,14 @@
+<table id="TabProduct">
+  <tr>
+    <td class="boldColl"><%= form.label :url, "Adres strony:" %></td>
+    <td><%= form.text_field :url, :value=>"http://" %></td>
+  </tr>
+   <tr>
+    <td class="boldColl"><%= form.label :words_number, "Liczba słów artykułu:" %></td>
+    <td><%= form.text_field :words_number %></td>
+  </tr>
+   <tr>
+    <td class="boldColl"><%= form.label :number_of_links, "Liczba linków w artykule:" %></td>
+    <td><%= form.text_field :number_of_links %></td>
+  </tr>
+</table>

@@ -1,0 +1,72 @@
+
+<table id="TabProduct">
+  <tr>
+    <td class="boldColl"><%= auction_form.label :początek_aukcji %>:</td>
+    <td><%= auction_form.date_select :start %></td>
+  </tr>
+  <tr>
+     <td class="boldColl"><%= auction_form.label :koniec_aukcji %>:</td>
+    <td><%= auction_form.date_select :auction_end, :default => 3.days.from_now %></td>
+  </tr>
+  <tr>
+    <td class="boldColl">Typ sprzedaży:</td>
+    <td>
+      <table width="500">
+        <tr>
+          <td>
+            <input type="CHECKBOX" name="ch_buyNow" checked="checked" onclick="setBuyNow(this.form)"/><b> Kup teraz</b><br /><br />
+               <%= auction_form.label :buy_now_price, "Cena kup-teraz :" %>
+               <%= auction_form.text_field :buy_now_price,:class=>"inputCena", :disabled => @product.id != nil%> zł
+          </td>
+          <td>
+               <input type="CHECKBOX" name="ch_auction"  onclick="setAuction(this.form)"  /><b> Licytacja</b><br /><br />
+               <%= auction_form.label :cena_minimalna, "Cena minimalna:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" %>
+               <%= auction_form.text_field :minimal_price ,:class=>"inputCena", :disabled =>true%> zł<br /><br />
+			   minimal_bidding_difference
+               Min. podbicie ceny: <input type="text" value="5" id="minimalne_podbicie" disabled="disabled" class="inputCena" /> zł
+
+          </td>
+        </tr>
+      </table>
+
+     
+<td>
+  </tr>
+</table>
+	<b>Uwaga ! kategorie można tylko dodawać !</b>
+	<%= auction_form.hidden_field :activation_token %><br/>
+	<%= auction_form.hidden_field :user_attributes, :value => current_user.id%>
+	<% for category in Category.all -%>
+		<%= check_box_tag "[category_ids][]", category.id, @product.auction.categories.include?(category) -%>
+		<%= category.name -%>
+	<% end %>
+
+
+	<% if !@product.auction.activated %>
+
+        <%#*<b>&nbsp;&nbsp;&nbsp;&nbsp;Przed utworzeniem aukcji wstaw na stronę poniższy tonen:</b><br /><br />%>
+
+        <%#*<div class="token">%>
+
+
+			<%#= @product.auction.activation_token %>
+
+
+        <%#*</div>%>
+        <%#*<br /><b>Uwagi:</b><br />%>
+        <%#*<i>Tonen można umieścić wewnątrz komentarza</i> <br />%>
+	<%#*<i>Po ukończeniu aktywacji token można usunąć</i><br />%>
+
+        <%#*<br /><br />%>
+        <%#*<b>Activation link for this site : </b>%>
+	<%#= link_to activate_url(@product.auction.id) , {:action => "activate", :id => @product.auction.id} %>
+
+
+
+        <%  end %>
+
+<!-- form.hidden_field :auction_token, :value => "#{@auction.auction_token}" <br/> -->
+
+<br/>
+
+<br/>

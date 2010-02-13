@@ -1,0 +1,78 @@
+    76.5: flog total
+     8.5: flog/method average
+
+    13.9: ArticlesController#create        app/controllers/articles_controller.rb:26
+     3.8:   assignment
+     2.6:   current_user
+     1.6:   params
+     1.4:   redirect_to
+     1.4:   flash
+     1.4:   []
+     1.3:   render
+     1.2:   has_role!
+     1.2:   save
+     1.2:   branch
+     1.2:   new
+
+    12.8: ArticlesController#none
+     6.5:   allow
+     1.5:   logged_in
+     1.5:   all
+     1.1:   branch
+     1.1:   access_control
+     1.1:   protected
+     1.1:   before_filter
+
+    12.8: ArticlesController#update        app/controllers/articles_controller.rb:42
+     3.2:   params
+     2.8:   []
+     2.6:   assignment
+     1.4:   flash
+     1.4:   redirect_to
+     1.3:   render
+     1.2:   update_attributes
+     1.2:   branch
+     1.2:   find
+
+     9.5: ArticlesController#destroy       app/controllers/articles_controller.rb:52
+     2.4:   assignment
+     1.6:   params
+     1.4:   []
+     1.4:   articles_url
+     1.2:   find
+     1.2:   flash
+     1.2:   destroy
+     1.2:   redirect_to
+
+     8.9: ArticlesController#load_article  app/controllers/articles_controller.rb:60
+     3.2:   params
+     2.8:   []
+     2.6:   assignment
+     1.2:   ==
+     1.2:   find
+     1.2:   branch
+
+     8.1: ArticlesController#index         app/controllers/articles_controller.rb:11
+     3.9:   branch
+     3.6:   assignment
+     3.1:   params
+     1.5:   []
+     1.2:   paginate
+     0.4:   lit_fixnum
+
+     4.4: ArticlesController#edit          app/controllers/articles_controller.rb:38
+     1.6:   params
+     1.4:   []
+     1.2:   assignment
+     1.2:   find
+
+     4.4: ArticlesController#show          app/controllers/articles_controller.rb:18
+     1.6:   params
+     1.4:   []
+     1.2:   assignment
+     1.2:   find
+
+     1.7: ArticlesController#new           app/controllers/articles_controller.rb:22
+     1.2:   assignment
+     1.2:   new
+

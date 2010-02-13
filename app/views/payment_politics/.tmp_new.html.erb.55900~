@@ -1,0 +1,5 @@
+<% title "New Payment Politic" %>
+
+<%= render :partial => 'form' %>
+
+<p><%= link_to "Back to List", payment_politics_path %></p>

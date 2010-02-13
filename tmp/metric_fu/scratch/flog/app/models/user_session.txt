@@ -1,0 +1,7 @@
+     2.2: flog total
+     2.2: flog/method average
+
+     2.2: UserSession#none
+     1.1:   unloadable
+     1.1:   logout_on_timeout
+

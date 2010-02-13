@@ -1,0 +1,9 @@
+Thread ID: -605531938
+Total: 0.080000
+
+ %self     total     self     wait    child    calls  name
+ 12.50      0.01     0.01     0.00     0.00        6  ActionController::Routing::Route#append_query_string
+ 12.50      0.01     0.01     0.00     0.00       38  Hash#merge
+ 12.50      0.01     0.01     0.00     0.00        2  ActionView::Template#render_template-1
+
+

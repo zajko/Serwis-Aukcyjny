@@ -1,0 +1,20 @@
+    37.5: flog total
+     9.4: flog/method average
+
+    32.4: ProductSearch#none
+    29.7:   column
+     2.6:   lit_fixnum
+     2.2:   assignment
+
+     1.7: ProductSearch#order=             app/models/product_search.rb:43
+     1.2:   merge
+     1.2:   assignment
+
+     1.7: ProductSearch#conditions=        app/models/product_search.rb:39
+     1.2:   merge
+     1.2:   assignment
+
+     1.7: ProductSearch#categories_attributes= app/models/product_search.rb:35
+     1.2:   assignment
+     1.2:   push
+

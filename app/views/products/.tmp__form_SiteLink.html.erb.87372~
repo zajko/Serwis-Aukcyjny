@@ -1,0 +1,6 @@
+<%= form.text_field :url %><br/>
+<%= form.label :pagerank %><br/>
+<%= form.text_field :pagerank %><br/>
+<%= form.label :users_daily %><br/>
+<%= form.text_field :users_daily %><br/>
+      

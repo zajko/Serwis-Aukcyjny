@@ -1,0 +1,15 @@
+<table id="TabProduct">
+  <tr>
+	<td class="boldColl"><b>Kategorie produktu:</b></td>
+   			 
+	<%if @product.auction.categories.count>0 %>
+	<td>
+		<% @product.auction.categories.each do |p|%>
+		<%= p.name %><br />
+		<%end%>
+	</td>
+	<%else%>
+	<td>Nie określono</td>
+  	<%end%>
+</table>
+ 	

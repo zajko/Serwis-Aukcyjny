@@ -1,0 +1,38 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<%= stylesheet_link_tag "users" %>
+<h1>Zarządzanie użytkownikami</h1>
+
+<%= render :partial => "users_searcher"%>
+
+
+<span class="UzytkownicyListaStron"><%= will_paginate @posts, :params => {:search => params[:search]} %></span>
+
+    <table id="TabFullSize">
+            <tr>
+                    <td class="header">Login</td>
+                    <td class="header">E-mail</td>
+                    <td class="header">Role</td>
+                    <td class="header">BAN</td>
+                    <td class="header">Usuń</td>
+					
+            </tr>
+
+    <% @users.each do |user| %>
+    <tr>
+            <td><%= link_to user.login, {:action => "show", :id => user.id }%></td>
+            <td><%= user.email%></td>
+            <td><%= link_to "Role", {:controller => "roles", :action => "manage", :user_id => user.id} %></td>
+            <td class="center">
+                    <% if user.banned? %>
+                            <%= link_to "Zdejmij ban", {:action =>"unban", :passed_id => user.id} %>
+                    <% else %>
+                            <%= link_to "Banuj", {:action => "ban", :passed_id => user.id} %>
+                    <% end %>
+            </td>
+            <td class="center">
+                    <%= link_to "X", {:action => "destroy", :id => user.id} %>
+            </td>
+</tr>
+    <% end %>
+ </table>

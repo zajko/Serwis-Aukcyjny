@@ -1,0 +1,50 @@
+/* 
+    Document   : users
+    Created on : 2009-11-23, 11:11:19
+    Author     : Agnieszka
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.showTab {
+    font-size:12px;
+}
+
+.boldColl{
+    font-weight:bold;
+    width:180px;
+    line-height:15px;
+}
+.center{
+    text-align:center;
+}
+.UzytkownicyListaStron{
+    text-align:center;
+    line-height:0px;
+}
+/*
+#TabUzytkownicy{
+    border: 1px dotted gray;
+    width:785px;
+    border-collapse:collapse;
+}
+    #TabUzytkownicy td{
+        border: 1px dotted gray;
+        padding:5px;
+    }
+
+    #TabUzytkownicy td.TabUzytkownicyNaglowek{
+        font-weight:bold;
+        line-height:30px;
+    }
+*/
+    .searcher{   
+        border: gray dashed 1px;
+        background-color: #F8F6B9;
+        padding:10px;
+    }

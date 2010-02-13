@@ -1,0 +1,43 @@
+<%= render :partial => "users/user_account_options"  %>
+
+<h1>Ustawienia konta</h1>
+
+<table class="showTab">
+  <tr>
+    <td class="boldColl">Aktualnie jesteś zalogowany jako: </td>
+    <td><%=h @user.login %></td>
+  </tr>
+  <tr>
+    <td  class="boldColl">Liczba logowań:</td>
+    <td><%=h @user.login_count %></td>
+  </tr>
+  <tr>
+    <td  class="boldColl">Ostatnie żądanie:</td>
+    <td><%=h @user.last_request_at %></td>
+  </tr>
+    <tr>
+    <td  class="boldColl">Ostatnie logowanie:</td>
+    <td><%=h @user.last_login_at %></td>
+  </tr>
+    <tr>
+    <td  class="boldColl">IP ostatniego logowania:</td>
+    <td><%=h @user.last_login_ip %></td>
+  </tr>
+  <tr>
+    <td  class="boldColl">Aktualne IP:</td>
+    <td><%=h @user.current_login_ip %></td>
+  </tr>
+  <tr>
+    <td  class="boldColl">Interests:</td>
+    <td>
+      <ul>
+      <% @user.interests.each do |inter| %>
+			<li><%=inter.name %></li>
+  	<% end %>
+      </ul>
+    </td>
+  </tr>
+
+  
+</table>
+

@@ -1,0 +1,34 @@
+
+<html>
+	<head>
+	<%= javascript_include_tag "tiny_mce/tiny_mce" %>
+		<script type="text/javascript" >
+			tinyMCE.init({
+				mode:"textareas", 
+				editor_selector : "tiny_mce"
+			});  
+		</script> 
+	</head>
+<body>
+	<span>
+		<%= link_to "new SiteLink", :action => "new", :product_type => "SiteLink" %> 
+		<%= link_to "new Banner", :action => "new", :product_type => "Banner" %> 
+	</span> <br />
+<% form_for @product, :url => {:action => "create"}  do |form| %>
+	<%= form.error_messages %>
+		
+		<%= render :partial => "form_#{@controller.product_type}", :locals => {:form => form} %>
+		
+		<% form.fields_for :auction do |auction_form| %>
+			<%= auction_form.error_messages %>
+			<%= render :partial => "form", :locals => {:auction_form => auction_form}, :object => auction_form%>
+			<%= auction_form.hidden_field :user_attributes, :value => current_user.id%>
+		<% end %>
+		
+		<%= form.submit "Create auction" %>
+
+<% end %>
+
+	
+</body>
+</html>

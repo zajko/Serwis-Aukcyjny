@@ -1,0 +1,19 @@
+<% content_for :search_box do %>
+        <div class="search">
+            <% form_tag ({:controller => 'products', :action => 'simple_search'}) do %>
+            Kategoria:
+            <input type="text" class="second odstep" value="Szukana kategoria" />
+            Typ reklamy:
+            <select>
+                <option> -- Wszystkie typy reklam --</option>
+                <option>Bannery</option>
+                <option>Linki sponsorowane</option>
+                <option>E-spoty</option>
+            </select>
+              <%= submit_tag "Szukaj" %>
+
+         <!--   <a href="#" class="button odstep">Szukaj</a>-->
+            <a href="#" class="odstep"><%= link_to "Zaawansowane wyszukiwanie", "/products/index" %></a>
+        </div>
+        <% end %>
+<% end %>

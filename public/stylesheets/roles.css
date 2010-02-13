@@ -1,0 +1,27 @@
+/* 
+    Document   : roles
+    Created on : 2009-12-26, 15:59:12
+    Author     : agnieszka
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#TabRoles{
+    border: 1px dotted gray;
+    width:785px;
+    border-collapse:collapse;
+}
+    #TabRoles td{
+        border: 1px dotted gray;
+        padding:5px;
+    }
+
+    #TabRoles td.RolesTabHeader{
+        font-weight:bold;
+        line-height:30px;
+    }

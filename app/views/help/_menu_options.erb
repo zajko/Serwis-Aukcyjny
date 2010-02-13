@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag "help" %>
+
+<% content_for :optional_menus do %>
+                        <div id="leftMenu">
+                           <p class="naglowek">Spis treści</p>
+                           <ul>
+
+                                <li><%= link_to "Rejestracja", "/help/register_help"  %> </li>
+                                <li><%= link_to "Tworzenie nowej aukcji", "/help/create_auction_help"  %> </li>
+                                <li><%= link_to "Licytacja", "/help/billing_help"  %> </li>
+                                <li><%= link_to "Wycofanie kupna", "/help/cancel_your_billing_help"  %> </li>
+                                <li><%= link_to "Wycofanie sprzedaży", "/help/cancel_your_offer_help"  %> </li>
+
+                           </ul>
+                        </div>
+<% end %>

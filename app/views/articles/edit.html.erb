@@ -1,0 +1,8 @@
+<%= render :partial => "articles_options" %>
+<h1> Edytuj artykuł</h1>
+<%= render :partial => 'form' %>
+
+<p>
+ Inne opcje: <%= link_to "Podgląd", @article %> |
+  <%= link_to "Zobacz wszystkie", articles_path %>
+</p>

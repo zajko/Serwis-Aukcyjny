@@ -1,0 +1,10 @@
+<% unless @product.new_record? %>
+	<%= form.hidden_field :id%>
+<% end %>
+
+<table id="TabProduct">
+  <tr>
+    <td class="boldColl">Adres strony:</td>
+    <td><%= form.text_field :url, :disabled => !@product.new_record?%></td>
+  </tr>
+</table>

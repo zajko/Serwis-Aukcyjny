@@ -1,0 +1,16 @@
+    10.6: flog total
+     5.3: flog/method average
+
+     7.7: Role#none
+     2.2:   has_many
+     1.1:   acts_as_authorization_role
+     1.1:   acts_as_authorization_object
+     1.1:   before_save
+     1.1:   before_update
+     1.1:   named_scope
+
+     2.9: Role#de_capitalize_name          app/models/role.rb:10
+     1.4:   name
+     1.2:   assignment
+     1.2:   downcase
+

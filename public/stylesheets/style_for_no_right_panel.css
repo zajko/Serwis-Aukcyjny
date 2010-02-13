@@ -1,0 +1,17 @@
+/* 
+    Document   : style_for_no_right_panel
+    Created on : 2010-01-14, 21:53:22
+    Author     : agnieszka
+    Description:
+        Arkusz ukrywa lewy panel strony (miejsce dla menu) dla podstron, które
+        nie posiadają takiego menu
+*/
+
+
+
+  #rightPanel{
+      width: 978px;
+  }
+  #leftPanel{
+      width:0px;
+  }

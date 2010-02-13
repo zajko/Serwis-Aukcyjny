@@ -1,0 +1,14 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= stylesheet_link_tag "protucts" %>
+<%= render :partial => "home/home_options" %> 
+<h1> Wyszukiwarka  zaawansowana -
+
+<% if @controller.product_type == "site_link" %>Linki
+<% elsif @controller.product_type == "banner" %>Bannery
+<% elsif @controller.product_type == "sponsored_article" %>Artykuły sponsorowane
+<% elsif @controller.product_type == "pop_up" %>Pop up
+<% end %>
+
+</h1>
+
+<%= render :partial => "index_#{@controller.product_type.classify}", :product_type => @controller.product_type%>

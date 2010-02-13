@@ -1,0 +1,69 @@
+<% form_for :search, {:url => "/products/index?[product_type]=#{@controller.product_type}"} do |f|%>
+<br /><br />
+	<%= f.label :auction_end_between%>:
+	<%= f.text_field :minimum_days_until_end_of_auction, :size => 8 %> - <%= f.text_field :maximum_days_until_end_of_auction, :size =>8%><br /><br />
+	<%= f.label :Pagerank_between%>: &nbsp;&nbsp;&nbsp;
+	<%= f.text_field :pagerank_gte, :size => 8  %> - <%= f.text_field :pagerank_lte, :size => 8 %><br /><br />
+	<%= f.label :Users_daily_between%>:&nbsp;
+	<%= f.text_field :users_daily_gte, :size => 8  %> - <%= f.text_field :users_daily_lte, :size => 8 %><br /><br />
+	<% for category in Category.all %>
+ 		<%= check_box_tag("search[categories_attributes][]",category.id,  params[:search] && params[:search][:categories_attributes] && params[:search][:categories_attributes].include?(category.id.to_s)) %>
+ 		<%= category.name %>
+ 		<br/>
+	<% end %>
+  	<%=f.submit "Szukaj"%>
+<% end %>
+<table>
+<tr>
+	<td bgcolor="red">
+		
+	</td>
+	<td>
+		Start
+	</td>
+	<td>
+		End
+	</td>
+	<td>
+		Pagerank
+	</td>
+	<td>
+		Users daily
+	</td>
+	<td>
+		Current price
+	</td>
+
+	<td>
+		Number of products
+	</td>
+</tr>
+
+<% @products.each do |product| %>
+<tr>
+	<td>
+		<%= link_to "Show", {:action => "show", :id => product.id, :product_type => "site_link"} %>
+	</td>
+	<td>
+		<%=product.auction.start%>
+	</td>
+	<td>
+		<%=product.auction.auction_end%>
+	</td>
+	<td>
+		<%=product.pagerank%>
+	</td>
+	<td>
+		<%=product.users_daily%>
+	</td>
+	
+	<td>
+		<%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+	</td>
+	<td>
+		<%= product.auction.number_of_products%>
+	</td>
+</tr>
+<% end %>
+
+</table>

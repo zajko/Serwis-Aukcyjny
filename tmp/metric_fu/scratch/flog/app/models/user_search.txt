@@ -1,0 +1,14 @@
+    10.0: flog total
+     3.3: flog/method average
+
+     6.6: UserSearch#none
+     6.6:   column
+
+     1.7: UserSearch#interests_attributes= app/models/user_search.rb:14
+     1.2:   assignment
+     1.2:   push
+
+     1.7: UserSearch#roles_attributes=     app/models/user_search.rb:10
+     1.2:   assignment
+     1.2:   push
+

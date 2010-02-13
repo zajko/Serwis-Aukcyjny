@@ -1,0 +1,32 @@
+<% form_for @archival_bid do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :archival_auction_id %><br />
+    <%= f.text_field :archival_auction_id %>
+  </p>
+  <p>
+    <%= f.label :archival_bid_owner_id %><br />
+    <%= f.text_field :archival_bid_owner_id %>
+  </p>
+  <p>
+    <%= f.label :archival_bid_owner_type %><br />
+    <%= f.text_field :archival_bid_owner_type %>
+  </p>
+  <p>
+    <%= f.label :offered_price %><br />
+    <%= f.text_field :offered_price %>
+  </p>
+  <p>
+    <%= f.label :cancelled %><br />
+    <%= f.check_box :cancelled %>
+  </p>
+  <p>
+    <%= f.label :asking_for_cancellation %><br />
+    <%= f.check_box :asking_for_cancellation %>
+  </p>
+  <p>
+    <%= f.label :bid_created_time %><br />
+    <%= f.datetime_select :bid_created_time %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

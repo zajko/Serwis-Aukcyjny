@@ -1,0 +1,36 @@
+<% title "Archival Bid" %>
+
+<p>
+  <strong>Archival Auction:</strong>
+  <%=h @archival_bid.archival_auction_id %>
+</p>
+<p>
+  <strong>Archival Bid Owner:</strong>
+  <%=h @archival_bid.archival_bid_owner_id %>
+</p>
+<p>
+  <strong>Archival Bid Owner Type:</strong>
+  <%=h @archival_bid.archival_bid_owner_type %>
+</p>
+<p>
+  <strong>Offered Price:</strong>
+  <%=h @archival_bid.offered_price %>
+</p>
+<p>
+  <strong>Cancelled:</strong>
+  <%=h @archival_bid.cancelled %>
+</p>
+<p>
+  <strong>Asking For Cancellation:</strong>
+  <%=h @archival_bid.asking_for_cancellation %>
+</p>
+<p>
+  <strong>Bid Created Time:</strong>
+  <%=h @archival_bid.bid_created_time %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_archival_bid_path(@archival_bid) %> |
+  <%= link_to "Destroy", @archival_bid, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", archival_bids_path %>
+</p>

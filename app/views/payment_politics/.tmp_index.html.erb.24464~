@@ -1,0 +1,25 @@
+<% title "Payment Politics" %>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Base Payment</th>
+    <th>Upper Boundary</th>
+    <th>Percentage</th>
+  </tr>
+  <% for payment_politic in @payment_politics %>
+    <tr>
+      <td><%=h payment_politic.from %></td>
+      <td><%=h payment_politic.to %></td>
+      <td><%=h payment_politic.base_payment %></td>
+      <td><%=h payment_politic.upper_boundary %></td>
+      <td><%=h payment_politic.percentage %></td>
+      <td><%= link_to "Show", payment_politic %></td>
+      <td><%= link_to "Edit", edit_payment_politic_path(payment_politic) %></td>
+      <td><%= link_to "Destroy", payment_politic, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Payment Politic", new_payment_politic_path %></p>

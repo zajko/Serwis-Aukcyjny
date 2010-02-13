@@ -1,0 +1,74 @@
+   266.4: flog total
+    66.6: flog/method average
+
+   171.0: PopUp::prepare_search_scopes     app/models/pop_up.rb:55
+    63.5:   []
+    31.8:   branch
+    31.0:   assignment
+    26.0:   to_i
+    19.8:   >
+     5.7:   ==
+     4.0:   all
+     3.6:   first
+     3.6:   split
+     3.2:   attributes
+     3.0:   to_f
+     2.8:   has_key?
+     1.8:   size
+     1.6:   by_categories_id
+     1.5:   map
+     1.4:   order_scope
+     1.4:   order_auction_scope
+     1.4:   auction_current_price_gte
+     1.4:   auction_maximum_days_until_end_of_auction
+     1.4:   auction_minimum_days_until_end_of_auction
+     1.4:   auction_current_price_lte
+     1.4:   frequency_gte
+     1.4:   pagerank_lte
+     1.4:   height_gte
+     1.4:   pagerank_gte
+     1.4:   width_lte
+     1.4:   height_lte
+     1.4:   users_daily_lte
+     1.4:   width_gte
+     1.4:   users_daily_gte
+     1.4:   frequency_lte
+     1.3:   activated
+     1.3:   search
+
+    72.9: PopUp#check_before_update        app/models/pop_up.rb:15
+    13.6:   branch
+    13.4:   errors
+    11.2:   ==
+    10.3:   add
+     5.1:   auction
+     3.6:   height
+     3.6:   width
+     3.4:   frequency
+     3.0:   pagerank
+     3.0:   count
+     3.0:   url
+     3.0:   users_daily
+     1.9:   bids
+     1.7:   not_cancelled
+     1.5:   id
+     1.3:   find
+     1.3:   >
+     1.3:   new_record?
+     1.3:   assignment
+
+    20.3: PopUp#none
+     6.0:   assignment
+     4.8:   named_scope
+     4.2:   branch
+     4.2:   lambda
+     3.6:   validates_numericality_of
+     2.4:   accepts_nested_attributes_for
+     1.2:   validate
+     1.2:   has_one
+     1.2:   validates_uri_existence_of
+     0.4:   lit_fixnum
+
+     2.2: main#none
+     2.2:   require
+

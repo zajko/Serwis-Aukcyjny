@@ -1,0 +1,8 @@
+     3.3: flog total
+     3.3: flog/method average
+
+     3.3: Article#none
+     1.1:   attr_accessible
+     1.1:   belongs_to
+     1.1:   acts_as_authorization_object
+

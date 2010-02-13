@@ -1,0 +1,28 @@
+<% title "Payment Politic" %>
+
+<p>
+  <strong>From:</strong>
+  <%=h @payment_politic.from %>
+</p>
+<p>
+  <strong>To:</strong>
+  <%=h @payment_politic.to %>
+</p>
+<p>
+  <strong>Base Payment:</strong>
+  <%=h @payment_politic.base_payment %>
+</p>
+<p>
+  <strong>Upper Boundary:</strong>
+  <%=h @payment_politic.upper_boundary %>
+</p>
+<p>
+  <strong>Percentage:</strong>
+  <%=h @payment_politic.percentage %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_payment_politic_path(@payment_politic) %> |
+  <%= link_to "Destroy", @payment_politic, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", payment_politics_path %>
+</p>

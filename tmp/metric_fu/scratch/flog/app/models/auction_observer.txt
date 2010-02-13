@@ -1,0 +1,6 @@
+     1.1: flog total
+     1.1: flog/method average
+
+     1.1: AuctionObserver#none
+     1.1:   observe
+

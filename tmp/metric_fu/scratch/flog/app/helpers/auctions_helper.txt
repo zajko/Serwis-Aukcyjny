@@ -1,0 +1,16 @@
+    17.0: flog total
+    17.0: flog/method average
+
+    17.0: AuctionsHelper::random_string    app/helpers/auctions_helper.rb:2
+     4.3:   to_a
+     3.4:   assignment
+     2.4:   +
+     2.0:   size
+     1.8:   -
+     1.6:   rand
+     1.4:   []
+     1.2:   <<
+     1.1:   upto
+     1.1:   branch
+     0.8:   lit_fixnum
+

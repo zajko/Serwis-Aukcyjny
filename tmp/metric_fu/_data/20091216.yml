@@ -1,0 +1,3460 @@
+--- 
+:roodi: 
+  :total: 
+  - Found 38 errors.
+  :problems: 
+  - :file: app/models/auction.rb
+    :line: "45"
+    :problem: Method name "destroy_check" cyclomatic complexity is 9.  It should be 8 or less.
+  - :file: app/models/auction.rb
+    :line: "62"
+    :problem: Method name "check_before_update" cyclomatic complexity is 13.  It should be 8 or less.
+  - :file: app/models/banner.rb
+    :line: "17"
+    :problem: Method name "check_before_update" cyclomatic complexity is 13.  It should be 8 or less.
+  - :file: app/models/sponsored_article.rb
+    :line: "16"
+    :problem: Method name "check_before_update" cyclomatic complexity is 10.  It should be 8 or less.
+  - :file: app/models/pop_up.rb
+    :line: "15"
+    :problem: Method name "check_before_update" cyclomatic complexity is 11.  It should be 8 or less.
+  - :file: app/controllers/products_controller.rb
+    :line: "21"
+    :problem: Method name "editing_mine" cyclomatic complexity is 9.  It should be 8 or less.
+  - :file: app/controllers/user_sessions_controller.rb
+    :line: "11"
+    :problem: Found = in conditional.  It should probably be an ==
+  - :file: app/models/bid.rb
+    :line: "94"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: app/models/bid.rb
+    :line: "95"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: app/models/bid_observer.rb
+    :line: "24"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: app/models/bid_observer.rb
+    :line: "25"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: app/controllers/application_controller.rb
+    :line: "13"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "13"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "19"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "25"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "29"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "32"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "36"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "37"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "45"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "49"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "54"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "55"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "56"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "59"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/my_scheduler.rb
+    :line: "58"
+    :problem: Don't use class variables. You might want to try a different design.
+  - :file: lib/validates_uri_existance.rb
+    :line: "8"
+    :problem: Block cyclomatic complexity is 8.  It should be 4 or less.
+  - :file: app/models/auction.rb
+    :line: "93"
+    :problem: Method name "notifyAuctionWinners" should match pattern /^[_a-z<>=\[|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/
+  - :file: app/models/auction.rb
+    :line: "97"
+    :problem: Method name "notifyAuctionWinner" should match pattern /^[_a-z<>=\[|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/
+  - :file: app/controllers/roles_controller.rb
+    :line: "56"
+    :problem: Method name "updateRoles" should match pattern /^[_a-z<>=\[|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/
+  - :file: app/controllers/products_controller.rb
+    :line: "3"
+    :problem: Class "ProductsController" has 318 lines.  It should have 300 or less.
+  - :file: app/helpers/products_helper.rb
+    :line: "27"
+    :problem: Method "to_parse" has 40 lines.  It should have 20 or less.
+  - :file: app/controllers/users_controller.rb
+    :line: "54"
+    :problem: Method "deny_user_access" has 21 lines.  It should have 20 or less.
+  - :file: app/controllers/users_controller.rb
+    :line: "153"
+    :problem: Method "activate" has 22 lines.  It should have 20 or less.
+  - :file: app/controllers/products_controller.rb
+    :line: "89"
+    :problem: Method "activate" has 28 lines.  It should have 20 or less.
+  - :file: app/controllers/products_controller.rb
+    :line: "137"
+    :problem: Method "wizard_product_create" has 22 lines.  It should have 20 or less.
+  - :file: app/controllers/products_controller.rb
+    :line: "162"
+    :problem: Method "create" has 31 lines.  It should have 20 or less.
+  - :file: app/controllers/products_controller.rb
+    :line: "298"
+    :problem: Method "deny_user_access" has 22 lines.  It should have 20 or less.
+:saikuro: 
+  :methods: 
+  - :lines: 35
+    :complexity: 25
+    :name: Banner#self.prepare_search_scopes
+  - :lines: 30
+    :complexity: 21
+    :name: PopUp#self.prepare_search_scopes
+  - :lines: 27
+    :complexity: 17
+    :name: SponsoredArticle#self.prepare_search_scopes
+  - :lines: 32
+    :complexity: 16
+    :name: SiteLink#self.prepare_search_scopes
+  - :lines: 20
+    :complexity: 12
+    :name: Auction#check_before_update
+  - :lines: 33
+    :complexity: 11
+    :name: MyScheduler#self.initialise
+  - :lines: 19
+    :complexity: 11
+    :name: Banner#check_before_update
+  - :lines: 22
+    :complexity: 11
+    :name: User#self.prepare_search_scopes
+  - :lines: 18
+    :complexity: 10
+    :name: SponsoredArticle#check_before_update
+  - :lines: 18
+    :complexity: 10
+    :name: PopUp#check_before_update
+  - :lines: 15
+    :complexity: 7
+    :name: SiteLink#check_before_update
+  - :lines: 17
+    :complexity: 7
+    :name: ProductsController#update
+  - :lines: 20
+    :complexity: 7
+    :name: ActiveRecord#self.validates_uri_existence_of
+  - :lines: 17
+    :complexity: 6
+    :name: ProductsController#editing_mine
+  - :lines: 29
+    :complexity: 6
+    :name: ProductsController#activate
+  - :lines: 12
+    :complexity: 6
+    :name: Bid#check_before_update
+  - :lines: 20
+    :complexity: 5
+    :name: UserSessionsController#create
+  - :lines: 23
+    :complexity: 5
+    :name: ProductsController#deny_user_access
+  - :lines: 15
+    :complexity: 5
+    :name: ProductsController#bid
+  - :lines: 22
+    :complexity: 4
+    :name: UsersController#deny_user_access
+  - :lines: 18
+    :complexity: 4
+    :name: UsersController#load_peek_user
+  - :lines: 14
+    :complexity: 4
+    :name: Auction#calculate_current_price
+  - :lines: 21
+    :complexity: 4
+    :name: RolesController#updateRoles
+  - :lines: 4
+    :complexity: 4
+    :name: ProductsHelper#page_rank
+  - :lines: 13
+    :complexity: 4
+    :name: Bid#update_auction_time
+  - :lines: 14
+    :complexity: 4
+    :name: Auction#destroy_check
+  - :lines: 13
+    :complexity: 4
+    :name: BidObserver#update_auction_time
+  - :lines: 17
+    :complexity: 4
+    :name: ProductsController#wizard_preview
+  - :lines: 6
+    :complexity: 3
+    :name: Auction#buy_now_price_null_or_numerical
+  - :lines: 11
+    :complexity: 3
+    :name: RubySMTP#send
+  - :lines: 12
+    :complexity: 3
+    :name: ProductsController#order_by
+  - :lines: 8
+    :complexity: 3
+    :name: ProductsController#ask_for_bid_cancellation
+  - :lines: 11
+    :complexity: 3
+    :name: Bid#ask_for_cancell
+  - :lines: 11
+    :complexity: 3
+    :name: Bid#cancell_bid
+  - :lines: 6
+    :complexity: 3
+    :name: Bid#buy_now_can_sell_limited
+  - :lines: 23
+    :complexity: 3
+    :name: UsersController#activate
+  - :lines: 5
+    :complexity: 3
+    :name: UsersController#unban
+  - :lines: 6
+    :complexity: 3
+    :name: ProductsHelper#cn
+  - :lines: 8
+    :complexity: 3
+    :name: ProductsController#cancell_bid
+  - :lines: 17
+    :complexity: 3
+    :name: RolesController#add_role_to_user
+  - :lines: 14
+    :complexity: 3
+    :name: RolesController#remove_role_from_user
+  - :lines: 6
+    :complexity: 3
+    :name: UsersController#ban
+  - :lines: 9
+    :complexity: 3
+    :name: PersonalController#bidded
+  - :lines: 11
+    :complexity: 2
+    :name: PasswordResetsController#create
+  - :lines: 7
+    :complexity: 2
+    :name: ProductsController#index
+  - :lines: 8
+    :complexity: 2
+    :name: PasswordResetsController#load_user_using_perishable_token
+  - :lines: 9
+    :complexity: 2
+    :name: PasswordResetsController#update
+  - :lines: 23
+    :complexity: 2
+    :name: ProductsController#wizard_product_create
+  - :lines: 5
+    :complexity: 2
+    :name: PasswordResetsController#index
+  - :lines: 10
+    :complexity: 2
+    :name: CategoriesController#create
+  - :lines: 32
+    :complexity: 2
+    :name: ProductsController#create
+  - :lines: 9
+    :complexity: 2
+    :name: ProductsController#delete
+  - :lines: 6
+    :complexity: 2
+    :name: ProductsController#negate_order
+  - :lines: 7
+    :complexity: 2
+    :name: ApplicationController#require_no_user
+  - :lines: 7
+    :complexity: 2
+    :name: ApplicationController#require_user
+  - :lines: 4
+    :complexity: 2
+    :name: ApplicationController#current_user
+  - :lines: 3
+    :complexity: 2
+    :name: ApplicationController#current_user_session
+  - :lines: 6
+    :complexity: 2
+    :name: UsersHelper#interest
+  - :lines: 6
+    :complexity: 2
+    :name: ArticlesController#load_article
+  - :lines: 6
+    :complexity: 2
+    :name: Category#name_not_trivial
+  - :lines: 8
+    :complexity: 2
+    :name: ArticlesController#update
+  - :lines: 6
+    :complexity: 2
+    :name: AuctionsHelper#AuctionsHelper.random_string
+  - :lines: 10
+    :complexity: 2
+    :name: ArticlesController#create
+  - :lines: 13
+    :complexity: 2
+    :name: HomeController#index
+  - :lines: 6
+    :complexity: 2
+    :name: Auction#destroy
+  - :lines: 4
+    :complexity: 2
+    :name: Auction#start_must_be_before_end
+  - :lines: 3
+    :complexity: 2
+    :name: ArticlesController#index
+  - :lines: 2
+    :complexity: 2
+    :name: Tableless#save
+  - :lines: 3
+    :complexity: 2
+    :name: Auction#start_must_be_after_today
+  - :lines: 6
+    :complexity: 2
+    :name: Auction#minimal_bid
+  - :lines: 7
+    :complexity: 2
+    :name: PersonalController#auctions
+  - :lines: 7
+    :complexity: 2
+    :name: UsersController#cant_destroy_admins
+  - :lines: 21
+    :complexity: 2
+    :name: UsersController#create
+  - :lines: 3
+    :complexity: 2
+    :name: UsersController#show
+  - :lines: 8
+    :complexity: 2
+    :name: UsersController#edit
+  - :lines: 9
+    :complexity: 2
+    :name: UsersController#update
+  - :lines: 6
+    :complexity: 2
+    :name: User#assign_roles
+  - :lines: 5
+    :complexity: 2
+    :name: RolesController#index
+  - :lines: 11
+    :complexity: 2
+    :name: RolesController#create
+  - :lines: 10
+    :complexity: 2
+    :name: CategoriesController#delete
+  - :lines: 3
+    :complexity: 2
+    :name: User#ban
+  - :lines: 7
+    :complexity: 2
+    :name: User#has_no_role!
+  - :lines: 7
+    :complexity: 2
+    :name: RolesController#manage
+  - :lines: 7
+    :complexity: 2
+    :name: User#has_role!
+  - :lines: 8
+    :complexity: 2
+    :name: User#activate!
+  - :lines: 2
+    :complexity: 2
+    :name: User#is_admin?
+  - :lines: 6
+    :complexity: 2
+    :name: RubySMTP#send_email
+  - :lines: 12
+    :complexity: 2
+    :name: ProductsHelper#old_cn
+  - :lines: 2
+    :complexity: 2
+    :name: RolesUser#cannot_ban_suspend_superuser
+  - :lines: 2
+    :complexity: 2
+    :name: RolesUser#cannot_adminize_banned
+  - :lines: 2
+    :complexity: 2
+    :name: Bid#owner_of_auction_cant_bid
+  - :lines: 2
+    :complexity: 2
+    :name: RolesUser#only_one_superuser
+  - :lines: 2
+    :complexity: 2
+    :name: RolesUser#cannot_destroy_superuser
+  - :lines: 2
+    :complexity: 2
+    :name: Bid#can_bid_now_only_by_buy_now_price
+  - :lines: 2
+    :complexity: 2
+    :name: Bid#can_bid_open_auctions
+  - :lines: 2
+    :complexity: 2
+    :name: Bid#can_bid_activated_auctions
+  - :lines: 5
+    :complexity: 2
+    :name: ProductsHelper#ProductsHelper.random_string
+  - :lines: 6
+    :complexity: 2
+    :name: ProductsHelper#categorized
+  - :lines: 8
+    :complexity: 2
+    :name: Bid#offered_price_meets_minimal
+  - :lines: 42
+    :complexity: 1
+    :name: Auction#self.prepare_search_scopes
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#activate_url
+  - :lines: 41
+    :complexity: 1
+    :name: ProductsHelper#to_parse
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#initialize
+  - :lines: 3
+    :complexity: 1
+    :name: Bid#inform_interesants
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#m
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#m1
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#i2c
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsHelper#c2i
+  - :lines: 2
+    :complexity: 1
+    :name: Bid#update_auction_price
+  - :lines: 6
+    :complexity: 1
+    :name: ProductsHelper#mix
+  - :lines: 2
+    :complexity: 1
+    :name: SponsoredArticleSearch#categories
+  - :lines: 3
+    :complexity: 1
+    :name: SponsoredArticleSearch#categories=
+  - :lines: 3
+    :complexity: 1
+    :name: SponsoredArticleSearch#categories_attributes=
+  - :lines: 1
+    :complexity: 1
+    :name: RubySMTP#initialize
+  - :lines: 2
+    :complexity: 1
+    :name: SponsoredArticle#SponsoredArticle.searchObject
+  - :lines: 2
+    :complexity: 1
+    :name: RubySMTP#address_valid?
+  - :lines: 4
+    :complexity: 1
+    :name: BidObserver#after_save
+  - :lines: 3
+    :complexity: 1
+    :name: ProductsHelper#request_uri
+  - :lines: 3
+    :complexity: 1
+    :name: BidObserver#after_delete
+  - :lines: 3
+    :complexity: 1
+    :name: User#deliver_password_reset_instructions!
+  - :lines: 2
+    :complexity: 1
+    :name: User#no_admin!
+  - :lines: 2
+    :complexity: 1
+    :name: User#admin!
+  - :lines: 3
+    :complexity: 1
+    :name: User#unban
+  - :lines: 5
+    :complexity: 1
+    :name: RolesController#new
+  - :lines: 2
+    :complexity: 1
+    :name: BidObserver#after_create
+  - :lines: 2
+    :complexity: 1
+    :name: User#banned?
+  - :lines: 3
+    :complexity: 1
+    :name: CategoriesController#index
+  - :lines: 12
+    :complexity: 1
+    :name: RolesController#delete
+  - :lines: 2
+    :complexity: 1
+    :name: User#self.per_page
+  - :lines: 1
+    :complexity: 1
+    :name: RolesController#edit
+  - :lines: 2
+    :complexity: 1
+    :name: UsersController#generate_activation_url
+  - :lines: 2
+    :complexity: 1
+    :name: UserSessionsController#new
+  - :lines: 7
+    :complexity: 1
+    :name: UsersController#index
+  - :lines: 4
+    :complexity: 1
+    :name: UsersController#prepare_search
+  - :lines: 1
+    :complexity: 1
+    :name: RolesController#list
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.scheduler=
+  - :lines: 4
+    :complexity: 1
+    :name: UsersController#destroy
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.scheduler
+  - :lines: 5
+    :complexity: 1
+    :name: UserSessionsController#destroy
+  - :lines: 3
+    :complexity: 1
+    :name: ProductSearch#categories_attributes=
+  - :lines: 3
+    :complexity: 1
+    :name: ProductSearch#conditions=
+  - :lines: 3
+    :complexity: 1
+    :name: UsersController#new
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.auction_to_destroy=
+  - :lines: 3
+    :complexity: 1
+    :name: ProductSearch#order=
+  - :lines: 2
+    :complexity: 1
+    :name: ProductSearch#order
+  - :lines: 2
+    :complexity: 1
+    :name: ProductSearch#conditions
+  - :lines: 2
+    :complexity: 1
+    :name: SiteLinkSearch#categories
+  - :lines: 3
+    :complexity: 1
+    :name: SiteLinkSearch#categories=
+  - :lines: 3
+    :complexity: 1
+    :name: SiteLinkSearch#categories_attributes=
+  - :lines: 3
+    :complexity: 1
+    :name: ProductSearch#categories=
+  - :lines: 2
+    :complexity: 1
+    :name: SiteLink#SiteLink.searchObject
+  - :lines: 2
+    :complexity: 1
+    :name: ProductSearch#categories
+  - :lines: 2
+    :complexity: 1
+    :name: BannerSearch#categories
+  - :lines: 3
+    :complexity: 1
+    :name: BannerSearch#categories=
+  - :lines: 3
+    :complexity: 1
+    :name: BannerSearch#categories_attributes=
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.auction_to_destroy
+  - :lines: 2
+    :complexity: 1
+    :name: Banner#Banner.searchObject
+  - :lines: 2
+    :complexity: 1
+    :name: Tableless#self.columns
+  - :lines: 3
+    :complexity: 1
+    :name: BidObserver#after_update
+  - :lines: 2
+    :complexity: 1
+    :name: Auction#bid
+  - :lines: 3
+    :complexity: 1
+    :name: Tableless#self.column
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.auction_destroyer=
+  - :lines: 4
+    :complexity: 1
+    :name: Auction#user_attributes=
+  - :lines: 2
+    :complexity: 1
+    :name: MyScheduler#self.auction_destroyer
+  - :lines: 9
+    :complexity: 1
+    :name: Auction#assign_roles
+  - :lines: 6
+    :complexity: 1
+    :name: Auction#close
+  - :lines: 2
+    :complexity: 1
+    :name: Auction#buy_now?
+  - :lines: 2
+    :complexity: 1
+    :name: CategoriesController#self.per_page
+  - :lines: 2
+    :complexity: 1
+    :name: Auction#notifyAuctionWinner
+  - :lines: 2
+    :complexity: 1
+    :name: Auction#notifyAuctionWinners
+  - :lines: 2
+    :complexity: 1
+    :name: Auction#limited_bid_count_if_buy_now_auction
+  - :lines: 2
+    :complexity: 1
+    :name: ArticlesController#articles
+  - :lines: 3
+    :complexity: 1
+    :name: UserSearch#roles_attributes=
+  - :lines: 3
+    :complexity: 1
+    :name: UserSearch#interests_attributes=
+  - :lines: 2
+    :complexity: 1
+    :name: ArticlesController#show
+  - :lines: 2
+    :complexity: 1
+    :name: UserSearch#interests
+  - :lines: 2
+    :complexity: 1
+    :name: UserSearch#roles
+  - :lines: 2
+    :complexity: 1
+    :name: ArticlesController#new
+  - :lines: 2
+    :complexity: 1
+    :name: ArticlesController#edit
+  - :lines: 4
+    :complexity: 1
+    :name: ProductsController#show
+  - :lines: 5
+    :complexity: 1
+    :name: ArticlesController#destroy
+  - :lines: 4
+    :complexity: 1
+    :name: ProductsController#edit
+  - :lines: 2
+    :complexity: 1
+    :name: ApplicationController#ApplicationController.get_static_user
+  - :lines: 2
+    :complexity: 1
+    :name: ApplicationController#store_location
+  - :lines: 3
+    :complexity: 1
+    :name: ApplicationController#redirect_back_or_default
+  - :lines: 2
+    :complexity: 1
+    :name: PasswordResetsController#new
+  - :lines: 2
+    :complexity: 1
+    :name: PasswordResetsController#edit
+  - :lines: 2
+    :complexity: 1
+    :name: CategoriesController#new
+  - :lines: 7
+    :complexity: 1
+    :name: ProductsController#prepare_search
+  - :lines: 2
+    :complexity: 1
+    :name: Role#de_capitalize_name
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsController#product_type
+  - :lines: 7
+    :complexity: 1
+    :name: ProductsController#new
+  - :lines: 3
+    :complexity: 1
+    :name: ProductsController#wizard_summary
+  - :lines: 2
+    :complexity: 1
+    :name: AuctionObserver#before_destroy
+  - :lines: 5
+    :complexity: 1
+    :name: ProductsController#wizard_product_data
+  - :lines: 2
+    :complexity: 1
+    :name: ProductsController#wizart_product_type
+  - :lines: 6
+    :complexity: 1
+    :name: Notifier#password_reset_instructions
+  :files: 
+  - :filename: products_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 17
+        :complexity: 7
+        :name: ProductsController#update
+      - :lines: 29
+        :complexity: 6
+        :name: ProductsController#activate
+      - :lines: 17
+        :complexity: 6
+        :name: ProductsController#editing_mine
+      - :lines: 23
+        :complexity: 5
+        :name: ProductsController#deny_user_access
+      - :lines: 15
+        :complexity: 5
+        :name: ProductsController#bid
+      - :lines: 17
+        :complexity: 4
+        :name: ProductsController#wizard_preview
+      - :lines: 8
+        :complexity: 3
+        :name: ProductsController#ask_for_bid_cancellation
+      - :lines: 12
+        :complexity: 3
+        :name: ProductsController#order_by
+      - :lines: 8
+        :complexity: 3
+        :name: ProductsController#cancell_bid
+      - :lines: 6
+        :complexity: 2
+        :name: ProductsController#negate_order
+      - :lines: 9
+        :complexity: 2
+        :name: ProductsController#delete
+      - :lines: 23
+        :complexity: 2
+        :name: ProductsController#wizard_product_create
+      - :lines: 32
+        :complexity: 2
+        :name: ProductsController#create
+      - :lines: 7
+        :complexity: 2
+        :name: ProductsController#index
+      - :lines: 7
+        :complexity: 1
+        :name: ProductsController#prepare_search
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsController#product_type
+      - :lines: 7
+        :complexity: 1
+        :name: ProductsController#new
+      - :lines: 3
+        :complexity: 1
+        :name: ProductsController#wizard_summary
+      - :lines: 4
+        :complexity: 1
+        :name: ProductsController#edit
+      - :lines: 5
+        :complexity: 1
+        :name: ProductsController#wizard_product_data
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsController#wizart_product_type
+      - :lines: 4
+        :complexity: 1
+        :name: ProductsController#show
+      :lines: 319
+      :class_name: ProductsController
+      :complexity: 61
+  - :filename: auction.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ""
+      :complexity: 0
+    - :methods: 
+      - :lines: 20
+        :complexity: 12
+        :name: Auction#check_before_update
+      - :lines: 14
+        :complexity: 4
+        :name: Auction#destroy_check
+      - :lines: 14
+        :complexity: 4
+        :name: Auction#calculate_current_price
+      - :lines: 6
+        :complexity: 3
+        :name: Auction#buy_now_price_null_or_numerical
+      - :lines: 6
+        :complexity: 2
+        :name: Auction#minimal_bid
+      - :lines: 3
+        :complexity: 2
+        :name: Auction#start_must_be_after_today
+      - :lines: 4
+        :complexity: 2
+        :name: Auction#start_must_be_before_end
+      - :lines: 6
+        :complexity: 2
+        :name: Auction#destroy
+      - :lines: 2
+        :complexity: 1
+        :name: Auction#buy_now?
+      - :lines: 6
+        :complexity: 1
+        :name: Auction#close
+      - :lines: 2
+        :complexity: 1
+        :name: Auction#notifyAuctionWinner
+      - :lines: 2
+        :complexity: 1
+        :name: Auction#notifyAuctionWinners
+      - :lines: 2
+        :complexity: 1
+        :name: Auction#limited_bid_count_if_buy_now_auction
+      - :lines: 9
+        :complexity: 1
+        :name: Auction#assign_roles
+      - :lines: 4
+        :complexity: 1
+        :name: Auction#user_attributes=
+      - :lines: 2
+        :complexity: 1
+        :name: Auction#bid
+      - :lines: 42
+        :complexity: 1
+        :name: Auction#self.prepare_search_scopes
+      :lines: 268
+      :class_name: Auction
+      :complexity: 49
+  - :filename: banner.rb
+    :classes: 
+    - :methods: 
+      - :lines: 35
+        :complexity: 25
+        :name: Banner#self.prepare_search_scopes
+      - :lines: 19
+        :complexity: 11
+        :name: Banner#check_before_update
+      - :lines: 2
+        :complexity: 1
+        :name: Banner#Banner.searchObject
+      :lines: 95
+      :class_name: Banner
+      :complexity: 41
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: BannerSearch#categories
+      - :lines: 3
+        :complexity: 1
+        :name: BannerSearch#categories=
+      - :lines: 3
+        :complexity: 1
+        :name: BannerSearch#categories_attributes=
+      :lines: 33
+      :class_name: BannerSearch
+      :complexity: 3
+  - :filename: site_link.rb
+    :classes: 
+    - :methods: 
+      - :lines: 32
+        :complexity: 16
+        :name: SiteLink#self.prepare_search_scopes
+      - :lines: 15
+        :complexity: 7
+        :name: SiteLink#check_before_update
+      - :lines: 2
+        :complexity: 1
+        :name: SiteLink#SiteLink.searchObject
+      :lines: 133
+      :class_name: SiteLink
+      :complexity: 35
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: SiteLinkSearch#categories
+      - :lines: 3
+        :complexity: 1
+        :name: SiteLinkSearch#categories=
+      - :lines: 3
+        :complexity: 1
+        :name: SiteLinkSearch#categories_attributes=
+      :lines: 25
+      :class_name: SiteLinkSearch
+      :complexity: 3
+  - :filename: pop_up.rb
+    :classes: 
+    - :methods: 
+      - :lines: 30
+        :complexity: 21
+        :name: PopUp#self.prepare_search_scopes
+      - :lines: 18
+        :complexity: 10
+        :name: PopUp#check_before_update
+      :lines: 83
+      :class_name: PopUp
+      :complexity: 34
+  - :filename: users_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 18
+        :complexity: 4
+        :name: UsersController#load_peek_user
+      - :lines: 22
+        :complexity: 4
+        :name: UsersController#deny_user_access
+      - :lines: 23
+        :complexity: 3
+        :name: UsersController#activate
+      - :lines: 6
+        :complexity: 3
+        :name: UsersController#ban
+      - :lines: 5
+        :complexity: 3
+        :name: UsersController#unban
+      - :lines: 9
+        :complexity: 2
+        :name: UsersController#update
+      - :lines: 3
+        :complexity: 2
+        :name: UsersController#show
+      - :lines: 8
+        :complexity: 2
+        :name: UsersController#edit
+      - :lines: 21
+        :complexity: 2
+        :name: UsersController#create
+      - :lines: 7
+        :complexity: 2
+        :name: UsersController#cant_destroy_admins
+      - :lines: 7
+        :complexity: 1
+        :name: UsersController#index
+      - :lines: 2
+        :complexity: 1
+        :name: UsersController#generate_activation_url
+      - :lines: 3
+        :complexity: 1
+        :name: UsersController#new
+      - :lines: 4
+        :complexity: 1
+        :name: UsersController#prepare_search
+      - :lines: 4
+        :complexity: 1
+        :name: UsersController#destroy
+      :lines: 191
+      :class_name: UsersController
+      :complexity: 33
+  - :filename: user.rb
+    :classes: 
+    - :methods: 
+      - :lines: 22
+        :complexity: 11
+        :name: User#self.prepare_search_scopes
+      - :lines: 6
+        :complexity: 2
+        :name: User#assign_roles
+      - :lines: 8
+        :complexity: 2
+        :name: User#activate!
+      - :lines: 2
+        :complexity: 2
+        :name: User#is_admin?
+      - :lines: 3
+        :complexity: 2
+        :name: User#ban
+      - :lines: 7
+        :complexity: 2
+        :name: User#has_no_role!
+      - :lines: 7
+        :complexity: 2
+        :name: User#has_role!
+      - :lines: 3
+        :complexity: 1
+        :name: User#unban
+      - :lines: 2
+        :complexity: 1
+        :name: User#admin!
+      - :lines: 2
+        :complexity: 1
+        :name: User#banned?
+      - :lines: 2
+        :complexity: 1
+        :name: User#no_admin!
+      - :lines: 3
+        :complexity: 1
+        :name: User#deliver_password_reset_instructions!
+      - :lines: 2
+        :complexity: 1
+        :name: User#self.per_page
+      :lines: 136
+      :class_name: User
+      :complexity: 33
+  - :filename: sponsored_article.rb
+    :classes: 
+    - :methods: 
+      - :lines: 27
+        :complexity: 17
+        :name: SponsoredArticle#self.prepare_search_scopes
+      - :lines: 18
+        :complexity: 10
+        :name: SponsoredArticle#check_before_update
+      - :lines: 2
+        :complexity: 1
+        :name: SponsoredArticle#SponsoredArticle.searchObject
+      :lines: 87
+      :class_name: SponsoredArticle
+      :complexity: 32
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: SponsoredArticleSearch#categories
+      - :lines: 3
+        :complexity: 1
+        :name: SponsoredArticleSearch#categories=
+      - :lines: 3
+        :complexity: 1
+        :name: SponsoredArticleSearch#categories_attributes=
+      :lines: 29
+      :class_name: SponsoredArticleSearch
+      :complexity: 3
+  - :filename: bid.rb
+    :classes: 
+    - :methods: 
+      - :lines: 12
+        :complexity: 6
+        :name: Bid#check_before_update
+      - :lines: 13
+        :complexity: 4
+        :name: Bid#update_auction_time
+      - :lines: 11
+        :complexity: 3
+        :name: Bid#ask_for_cancell
+      - :lines: 11
+        :complexity: 3
+        :name: Bid#cancell_bid
+      - :lines: 6
+        :complexity: 3
+        :name: Bid#buy_now_can_sell_limited
+      - :lines: 8
+        :complexity: 2
+        :name: Bid#offered_price_meets_minimal
+      - :lines: 2
+        :complexity: 2
+        :name: Bid#can_bid_now_only_by_buy_now_price
+      - :lines: 2
+        :complexity: 2
+        :name: Bid#can_bid_open_auctions
+      - :lines: 2
+        :complexity: 2
+        :name: Bid#can_bid_activated_auctions
+      - :lines: 2
+        :complexity: 2
+        :name: Bid#owner_of_auction_cant_bid
+      - :lines: 2
+        :complexity: 1
+        :name: Bid#update_auction_price
+      - :lines: 3
+        :complexity: 1
+        :name: Bid#inform_interesants
+      :lines: 113
+      :class_name: Bid
+      :complexity: 31
+  - :filename: products_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ""
+      :complexity: 0
+    - :methods: 
+      - :lines: 4
+        :complexity: 4
+        :name: ProductsHelper#page_rank
+      - :lines: 6
+        :complexity: 3
+        :name: ProductsHelper#cn
+      - :lines: 5
+        :complexity: 2
+        :name: ProductsHelper#ProductsHelper.random_string
+      - :lines: 12
+        :complexity: 2
+        :name: ProductsHelper#old_cn
+      - :lines: 6
+        :complexity: 2
+        :name: ProductsHelper#categorized
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#c2i
+      - :lines: 6
+        :complexity: 1
+        :name: ProductsHelper#mix
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#m1
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#m
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#initialize
+      - :lines: 41
+        :complexity: 1
+        :name: ProductsHelper#to_parse
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#activate_url
+      - :lines: 3
+        :complexity: 1
+        :name: ProductsHelper#request_uri
+      - :lines: 2
+        :complexity: 1
+        :name: ProductsHelper#i2c
+      :lines: 135
+      :class_name: ProductsHelper
+      :complexity: 22
+  - :filename: roles_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 21
+        :complexity: 4
+        :name: RolesController#updateRoles
+      - :lines: 17
+        :complexity: 3
+        :name: RolesController#add_role_to_user
+      - :lines: 14
+        :complexity: 3
+        :name: RolesController#remove_role_from_user
+      - :lines: 5
+        :complexity: 2
+        :name: RolesController#index
+      - :lines: 7
+        :complexity: 2
+        :name: RolesController#manage
+      - :lines: 11
+        :complexity: 2
+        :name: RolesController#create
+      - :lines: 1
+        :complexity: 1
+        :name: RolesController#list
+      - :lines: 12
+        :complexity: 1
+        :name: RolesController#delete
+      - :lines: 1
+        :complexity: 1
+        :name: RolesController#edit
+      - :lines: 5
+        :complexity: 1
+        :name: RolesController#new
+      :lines: 115
+      :class_name: RolesController
+      :complexity: 21
+  - :filename: my_scheduler.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ""
+      :complexity: 0
+    - :methods: 
+      - :lines: 33
+        :complexity: 11
+        :name: MyScheduler#self.initialise
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.auction_to_destroy
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.auction_destroyer=
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.auction_destroyer
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.auction_to_destroy=
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.scheduler
+      - :lines: 2
+        :complexity: 1
+        :name: MyScheduler#self.scheduler=
+      :lines: 58
+      :class_name: MyScheduler
+      :complexity: 17
+  - :filename: articles_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 6
+        :complexity: 2
+        :name: ArticlesController#load_article
+      - :lines: 3
+        :complexity: 2
+        :name: ArticlesController#index
+      - :lines: 8
+        :complexity: 2
+        :name: ArticlesController#update
+      - :lines: 10
+        :complexity: 2
+        :name: ArticlesController#create
+      - :lines: 2
+        :complexity: 1
+        :name: ArticlesController#edit
+      - :lines: 2
+        :complexity: 1
+        :name: ArticlesController#new
+      - :lines: 2
+        :complexity: 1
+        :name: ArticlesController#show
+      - :lines: 5
+        :complexity: 1
+        :name: ArticlesController#destroy
+      - :lines: 2
+        :complexity: 1
+        :name: ArticlesController#articles
+      :lines: 66
+      :class_name: ArticlesController
+      :complexity: 14
+  - :filename: application_controller.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ""
+      :complexity: 0
+    - :methods: 
+      - :lines: 7
+        :complexity: 2
+        :name: ApplicationController#require_user
+      - :lines: 3
+        :complexity: 2
+        :name: ApplicationController#current_user_session
+      - :lines: 7
+        :complexity: 2
+        :name: ApplicationController#require_no_user
+      - :lines: 4
+        :complexity: 2
+        :name: ApplicationController#current_user
+      - :lines: 3
+        :complexity: 1
+        :name: ApplicationController#redirect_back_or_default
+      - :lines: 2
+        :complexity: 1
+        :name: ApplicationController#store_location
+      - :lines: 2
+        :complexity: 1
+        :name: ApplicationController#ApplicationController.get_static_user
+      :lines: 51
+      :class_name: ApplicationController
+      :complexity: 11
+  - :filename: password_resets_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 8
+        :complexity: 2
+        :name: PasswordResetsController#load_user_using_perishable_token
+      - :lines: 9
+        :complexity: 2
+        :name: PasswordResetsController#update
+      - :lines: 11
+        :complexity: 2
+        :name: PasswordResetsController#create
+      - :lines: 5
+        :complexity: 2
+        :name: PasswordResetsController#index
+      - :lines: 2
+        :complexity: 1
+        :name: PasswordResetsController#edit
+      - :lines: 2
+        :complexity: 1
+        :name: PasswordResetsController#new
+      :lines: 53
+      :class_name: PasswordResetsController
+      :complexity: 10
+  - :filename: categories_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 10
+        :complexity: 2
+        :name: CategoriesController#create
+      - :lines: 10
+        :complexity: 2
+        :name: CategoriesController#delete
+      - :lines: 2
+        :complexity: 1
+        :name: CategoriesController#self.per_page
+      - :lines: 3
+        :complexity: 1
+        :name: CategoriesController#index
+      - :lines: 2
+        :complexity: 1
+        :name: CategoriesController#new
+      :lines: 47
+      :class_name: CategoriesController
+      :complexity: 9
+  - :filename: bid_observer.rb
+    :classes: 
+    - :methods: 
+      - :lines: 13
+        :complexity: 4
+        :name: BidObserver#update_auction_time
+      - :lines: 4
+        :complexity: 1
+        :name: BidObserver#after_save
+      - :lines: 3
+        :complexity: 1
+        :name: BidObserver#after_update
+      - :lines: 3
+        :complexity: 1
+        :name: BidObserver#after_delete
+      - :lines: 2
+        :complexity: 1
+        :name: BidObserver#after_create
+      :lines: 34
+      :class_name: BidObserver
+      :complexity: 8
+  - :filename: roles_user.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 2
+        :name: RolesUser#cannot_ban_suspend_superuser
+      - :lines: 2
+        :complexity: 2
+        :name: RolesUser#cannot_adminize_banned
+      - :lines: 2
+        :complexity: 2
+        :name: RolesUser#only_one_superuser
+      - :lines: 2
+        :complexity: 2
+        :name: RolesUser#cannot_destroy_superuser
+      :lines: 36
+      :class_name: RolesUser
+      :complexity: 8
+  - :filename: rubysmtp.rb
+    :classes: 
+    - :methods: 
+      - :lines: 11
+        :complexity: 3
+        :name: RubySMTP#send
+      - :lines: 6
+        :complexity: 2
+        :name: RubySMTP#send_email
+      - :lines: 2
+        :complexity: 1
+        :name: RubySMTP#address_valid?
+      - :lines: 1
+        :complexity: 1
+        :name: RubySMTP#initialize
+      :lines: 34
+      :class_name: RubySMTP
+      :complexity: 7
+  - :filename: user_sessions_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 20
+        :complexity: 5
+        :name: UserSessionsController#create
+      - :lines: 5
+        :complexity: 1
+        :name: UserSessionsController#destroy
+      - :lines: 2
+        :complexity: 1
+        :name: UserSessionsController#new
+      :lines: 36
+      :class_name: UserSessionsController
+      :complexity: 7
+  - :filename: validates_uri_existance.rb
+    :classes: 
+    - :methods: 
+      - :lines: 20
+        :complexity: 7
+        :name: ActiveRecord#self.validates_uri_existence_of
+      :lines: 22
+      :class_name: ActiveRecord
+      :complexity: 7
+  - :filename: product_search.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: ProductSearch#categories
+      - :lines: 3
+        :complexity: 1
+        :name: ProductSearch#categories=
+      - :lines: 2
+        :complexity: 1
+        :name: ProductSearch#conditions
+      - :lines: 2
+        :complexity: 1
+        :name: ProductSearch#order
+      - :lines: 3
+        :complexity: 1
+        :name: ProductSearch#order=
+      - :lines: 3
+        :complexity: 1
+        :name: ProductSearch#conditions=
+      - :lines: 3
+        :complexity: 1
+        :name: ProductSearch#categories_attributes=
+      :lines: 60
+      :class_name: ProductSearch
+      :complexity: 7
+  - :filename: personal_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 9
+        :complexity: 3
+        :name: PersonalController#bidded
+      - :lines: 7
+        :complexity: 2
+        :name: PersonalController#auctions
+      :lines: 25
+      :class_name: PersonalController
+      :complexity: 6
+  - :filename: tableless.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 2
+        :name: Tableless#save
+      - :lines: 3
+        :complexity: 1
+        :name: Tableless#self.column
+      - :lines: 2
+        :complexity: 1
+        :name: Tableless#self.columns
+      :lines: 14
+      :class_name: Tableless
+      :complexity: 4
+  - :filename: user_search.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: UserSearch#roles
+      - :lines: 2
+        :complexity: 1
+        :name: UserSearch#interests
+      - :lines: 3
+        :complexity: 1
+        :name: UserSearch#interests_attributes=
+      - :lines: 3
+        :complexity: 1
+        :name: UserSearch#roles_attributes=
+      :lines: 23
+      :class_name: UserSearch
+      :complexity: 4
+  - :filename: home_controller.rb
+    :classes: 
+    - :methods: 
+      - :lines: 13
+        :complexity: 2
+        :name: HomeController#index
+      :lines: 18
+      :class_name: HomeController
+      :complexity: 2
+  - :filename: auctions_helper.rb
+    :classes: 
+    - :methods: 
+      - :lines: 6
+        :complexity: 2
+        :name: AuctionsHelper#AuctionsHelper.random_string
+      :lines: 9
+      :class_name: AuctionsHelper
+      :complexity: 2
+  - :filename: category.rb
+    :classes: 
+    - :methods: 
+      - :lines: 6
+        :complexity: 2
+        :name: Category#name_not_trivial
+      :lines: 13
+      :class_name: Category
+      :complexity: 2
+  - :filename: users_helper.rb
+    :classes: 
+    - :methods: 
+      - :lines: 6
+        :complexity: 2
+        :name: UsersHelper#interest
+      :lines: 8
+      :class_name: UsersHelper
+      :complexity: 2
+  - :filename: role.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: Role#de_capitalize_name
+      :lines: 14
+      :class_name: Role
+      :complexity: 1
+  - :filename: auction_observer.rb
+    :classes: 
+    - :methods: 
+      - :lines: 2
+        :complexity: 1
+        :name: AuctionObserver#before_destroy
+      :lines: 6
+      :class_name: AuctionObserver
+      :complexity: 1
+  - :filename: notifier.rb
+    :classes: 
+    - :methods: 
+      - :lines: 6
+        :complexity: 1
+        :name: Notifier#password_reset_instructions
+      :lines: 12
+      :class_name: Notifier
+      :complexity: 1
+  - :filename: password_resets_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: PasswordResetsHelper
+      :complexity: 0
+  - :filename: auctions_categories.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: AuctionsCategories
+      :complexity: 0
+  - :filename: interest.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 2
+      :class_name: Interest
+      :complexity: 0
+  - :filename: article.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 4
+      :class_name: Article
+      :complexity: 0
+  - :filename: user_sessions_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: UserSessionsHelper
+      :complexity: 0
+  - :filename: administrator.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 2
+      :class_name: Administrator
+      :complexity: 0
+  - :filename: mailing_service.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 6
+      :class_name: MailingService
+      :complexity: 0
+  - :filename: account_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: AccountHelper
+      :complexity: 0
+  - :filename: articles_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ArticlesHelper
+      :complexity: 0
+  - :filename: application_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: ""
+      :complexity: 0
+    - :methods: []
+
+      :lines: 1
+      :class_name: ApplicationHelper
+      :complexity: 0
+  - :filename: user_session.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 3
+      :class_name: UserSession
+      :complexity: 0
+  - :filename: new_site_link_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: NewSiteLinkHelper
+      :complexity: 0
+  - :filename: role_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: RoleHelper
+      :complexity: 0
+  - :filename: categories_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: CategoriesHelper
+      :complexity: 0
+  - :filename: home_helper.rb
+    :classes: 
+    - :methods: []
+
+      :lines: 1
+      :class_name: HomeHelper
+      :complexity: 0
+  :classes: 
+  - :defs: 
+    - :lines: 17
+      :complexity: 6
+      :name: ProductsController#editing_mine
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsController#wizart_product_type
+    - :lines: 5
+      :complexity: 1
+      :name: ProductsController#wizard_product_data
+    - :lines: 17
+      :complexity: 4
+      :name: ProductsController#wizard_preview
+    - :lines: 3
+      :complexity: 1
+      :name: ProductsController#wizard_summary
+    - :lines: 7
+      :complexity: 1
+      :name: ProductsController#new
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsController#product_type
+    - :lines: 29
+      :complexity: 6
+      :name: ProductsController#activate
+    - :lines: 7
+      :complexity: 1
+      :name: ProductsController#prepare_search
+    - :lines: 7
+      :complexity: 2
+      :name: ProductsController#index
+    - :lines: 23
+      :complexity: 2
+      :name: ProductsController#wizard_product_create
+    - :lines: 32
+      :complexity: 2
+      :name: ProductsController#create
+    - :lines: 9
+      :complexity: 2
+      :name: ProductsController#delete
+    - :lines: 6
+      :complexity: 2
+      :name: ProductsController#negate_order
+    - :lines: 12
+      :complexity: 3
+      :name: ProductsController#order_by
+    - :lines: 4
+      :complexity: 1
+      :name: ProductsController#edit
+    - :lines: 17
+      :complexity: 7
+      :name: ProductsController#update
+    - :lines: 4
+      :complexity: 1
+      :name: ProductsController#show
+    - :lines: 15
+      :complexity: 5
+      :name: ProductsController#bid
+    - :lines: 8
+      :complexity: 3
+      :name: ProductsController#ask_for_bid_cancellation
+    - :lines: 8
+      :complexity: 3
+      :name: ProductsController#cancell_bid
+    - :lines: 23
+      :complexity: 5
+      :name: ProductsController#deny_user_access
+    :lines: 319
+    :complexity: 61
+    :name: ProductsController
+  - :defs: 
+    - :lines: 6
+      :complexity: 2
+      :name: Auction#destroy
+    - :lines: 14
+      :complexity: 4
+      :name: Auction#destroy_check
+    - :lines: 20
+      :complexity: 12
+      :name: Auction#check_before_update
+    - :lines: 4
+      :complexity: 2
+      :name: Auction#start_must_be_before_end
+    - :lines: 2
+      :complexity: 1
+      :name: Auction#limited_bid_count_if_buy_now_auction
+    - :lines: 2
+      :complexity: 1
+      :name: Auction#notifyAuctionWinners
+    - :lines: 2
+      :complexity: 1
+      :name: Auction#notifyAuctionWinner
+    - :lines: 6
+      :complexity: 3
+      :name: Auction#buy_now_price_null_or_numerical
+    - :lines: 2
+      :complexity: 1
+      :name: Auction#buy_now?
+    - :lines: 6
+      :complexity: 1
+      :name: Auction#close
+    - :lines: 9
+      :complexity: 1
+      :name: Auction#assign_roles
+    - :lines: 3
+      :complexity: 2
+      :name: Auction#start_must_be_after_today
+    - :lines: 4
+      :complexity: 1
+      :name: Auction#user_attributes=
+    - :lines: 6
+      :complexity: 2
+      :name: Auction#minimal_bid
+    - :lines: 14
+      :complexity: 4
+      :name: Auction#calculate_current_price
+    - :lines: 2
+      :complexity: 1
+      :name: Auction#bid
+    - :lines: 42
+      :complexity: 1
+      :name: Auction#self.prepare_search_scopes
+    :lines: 268
+    :complexity: 49
+    :name: Auction
+  - :defs: 
+    - :lines: 19
+      :complexity: 11
+      :name: Banner#check_before_update
+    - :lines: 2
+      :complexity: 1
+      :name: Banner#Banner.searchObject
+    - :lines: 35
+      :complexity: 25
+      :name: Banner#self.prepare_search_scopes
+    :lines: 95
+    :complexity: 41
+    :name: Banner
+  - :defs: 
+    - :lines: 15
+      :complexity: 7
+      :name: SiteLink#check_before_update
+    - :lines: 2
+      :complexity: 1
+      :name: SiteLink#SiteLink.searchObject
+    - :lines: 32
+      :complexity: 16
+      :name: SiteLink#self.prepare_search_scopes
+    :lines: 133
+    :complexity: 35
+    :name: SiteLink
+  - :defs: 
+    - :lines: 18
+      :complexity: 10
+      :name: PopUp#check_before_update
+    - :lines: 30
+      :complexity: 21
+      :name: PopUp#self.prepare_search_scopes
+    :lines: 83
+    :complexity: 34
+    :name: PopUp
+  - :defs: 
+    - :lines: 18
+      :complexity: 4
+      :name: UsersController#load_peek_user
+    - :lines: 7
+      :complexity: 2
+      :name: UsersController#cant_destroy_admins
+    - :lines: 3
+      :complexity: 1
+      :name: UsersController#new
+    - :lines: 22
+      :complexity: 4
+      :name: UsersController#deny_user_access
+    - :lines: 6
+      :complexity: 3
+      :name: UsersController#ban
+    - :lines: 5
+      :complexity: 3
+      :name: UsersController#unban
+    - :lines: 21
+      :complexity: 2
+      :name: UsersController#create
+    - :lines: 4
+      :complexity: 1
+      :name: UsersController#destroy
+    - :lines: 3
+      :complexity: 2
+      :name: UsersController#show
+    - :lines: 8
+      :complexity: 2
+      :name: UsersController#edit
+    - :lines: 4
+      :complexity: 1
+      :name: UsersController#prepare_search
+    - :lines: 7
+      :complexity: 1
+      :name: UsersController#index
+    - :lines: 23
+      :complexity: 3
+      :name: UsersController#activate
+    - :lines: 2
+      :complexity: 1
+      :name: UsersController#generate_activation_url
+    - :lines: 9
+      :complexity: 2
+      :name: UsersController#update
+    :lines: 191
+    :complexity: 33
+    :name: UsersController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: User#self.per_page
+    - :lines: 6
+      :complexity: 2
+      :name: User#assign_roles
+    - :lines: 3
+      :complexity: 2
+      :name: User#ban
+    - :lines: 2
+      :complexity: 1
+      :name: User#banned?
+    - :lines: 7
+      :complexity: 2
+      :name: User#has_no_role!
+    - :lines: 7
+      :complexity: 2
+      :name: User#has_role!
+    - :lines: 3
+      :complexity: 1
+      :name: User#unban
+    - :lines: 2
+      :complexity: 1
+      :name: User#admin!
+    - :lines: 2
+      :complexity: 1
+      :name: User#no_admin!
+    - :lines: 3
+      :complexity: 1
+      :name: User#deliver_password_reset_instructions!
+    - :lines: 8
+      :complexity: 2
+      :name: User#activate!
+    - :lines: 2
+      :complexity: 2
+      :name: User#is_admin?
+    - :lines: 22
+      :complexity: 11
+      :name: User#self.prepare_search_scopes
+    :lines: 136
+    :complexity: 33
+    :name: User
+  - :defs: 
+    - :lines: 18
+      :complexity: 10
+      :name: SponsoredArticle#check_before_update
+    - :lines: 2
+      :complexity: 1
+      :name: SponsoredArticle#SponsoredArticle.searchObject
+    - :lines: 27
+      :complexity: 17
+      :name: SponsoredArticle#self.prepare_search_scopes
+    :lines: 87
+    :complexity: 32
+    :name: SponsoredArticle
+  - :defs: 
+    - :lines: 12
+      :complexity: 6
+      :name: Bid#check_before_update
+    - :lines: 2
+      :complexity: 1
+      :name: Bid#update_auction_price
+    - :lines: 11
+      :complexity: 3
+      :name: Bid#ask_for_cancell
+    - :lines: 2
+      :complexity: 2
+      :name: Bid#owner_of_auction_cant_bid
+    - :lines: 11
+      :complexity: 3
+      :name: Bid#cancell_bid
+    - :lines: 6
+      :complexity: 3
+      :name: Bid#buy_now_can_sell_limited
+    - :lines: 3
+      :complexity: 1
+      :name: Bid#inform_interesants
+    - :lines: 2
+      :complexity: 2
+      :name: Bid#can_bid_now_only_by_buy_now_price
+    - :lines: 2
+      :complexity: 2
+      :name: Bid#can_bid_open_auctions
+    - :lines: 2
+      :complexity: 2
+      :name: Bid#can_bid_activated_auctions
+    - :lines: 13
+      :complexity: 4
+      :name: Bid#update_auction_time
+    - :lines: 8
+      :complexity: 2
+      :name: Bid#offered_price_meets_minimal
+    :lines: 113
+    :complexity: 31
+    :name: Bid
+  - :defs: 
+    - :lines: 6
+      :complexity: 2
+      :name: ProductsHelper#categorized
+    - :lines: 5
+      :complexity: 2
+      :name: ProductsHelper#ProductsHelper.random_string
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#activate_url
+    - :lines: 41
+      :complexity: 1
+      :name: ProductsHelper#to_parse
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#initialize
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#m
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#m1
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#i2c
+    - :lines: 2
+      :complexity: 1
+      :name: ProductsHelper#c2i
+    - :lines: 6
+      :complexity: 1
+      :name: ProductsHelper#mix
+    - :lines: 12
+      :complexity: 2
+      :name: ProductsHelper#old_cn
+    - :lines: 6
+      :complexity: 3
+      :name: ProductsHelper#cn
+    - :lines: 3
+      :complexity: 1
+      :name: ProductsHelper#request_uri
+    - :lines: 4
+      :complexity: 4
+      :name: ProductsHelper#page_rank
+    :lines: 135
+    :complexity: 22
+    :name: ProductsHelper
+  - :defs: 
+    - :lines: 5
+      :complexity: 1
+      :name: RolesController#new
+    - :lines: 7
+      :complexity: 2
+      :name: RolesController#manage
+    - :lines: 17
+      :complexity: 3
+      :name: RolesController#add_role_to_user
+    - :lines: 14
+      :complexity: 3
+      :name: RolesController#remove_role_from_user
+    - :lines: 21
+      :complexity: 4
+      :name: RolesController#updateRoles
+    - :lines: 11
+      :complexity: 2
+      :name: RolesController#create
+    - :lines: 5
+      :complexity: 2
+      :name: RolesController#index
+    - :lines: 12
+      :complexity: 1
+      :name: RolesController#delete
+    - :lines: 1
+      :complexity: 1
+      :name: RolesController#edit
+    - :lines: 1
+      :complexity: 1
+      :name: RolesController#list
+    :lines: 115
+    :complexity: 21
+    :name: RolesController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.scheduler=
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.scheduler
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.auction_to_destroy=
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.auction_to_destroy
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.auction_destroyer=
+    - :lines: 2
+      :complexity: 1
+      :name: MyScheduler#self.auction_destroyer
+    - :lines: 33
+      :complexity: 11
+      :name: MyScheduler#self.initialise
+    :lines: 58
+    :complexity: 17
+    :name: MyScheduler
+  - :defs: 
+    - :lines: 3
+      :complexity: 2
+      :name: ArticlesController#index
+    - :lines: 2
+      :complexity: 1
+      :name: ArticlesController#articles
+    - :lines: 2
+      :complexity: 1
+      :name: ArticlesController#show
+    - :lines: 2
+      :complexity: 1
+      :name: ArticlesController#new
+    - :lines: 10
+      :complexity: 2
+      :name: ArticlesController#create
+    - :lines: 2
+      :complexity: 1
+      :name: ArticlesController#edit
+    - :lines: 8
+      :complexity: 2
+      :name: ArticlesController#update
+    - :lines: 5
+      :complexity: 1
+      :name: ArticlesController#destroy
+    - :lines: 6
+      :complexity: 2
+      :name: ArticlesController#load_article
+    :lines: 66
+    :complexity: 14
+    :name: ArticlesController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: ApplicationController#ApplicationController.get_static_user
+    - :lines: 3
+      :complexity: 2
+      :name: ApplicationController#current_user_session
+    - :lines: 4
+      :complexity: 2
+      :name: ApplicationController#current_user
+    - :lines: 7
+      :complexity: 2
+      :name: ApplicationController#require_user
+    - :lines: 7
+      :complexity: 2
+      :name: ApplicationController#require_no_user
+    - :lines: 2
+      :complexity: 1
+      :name: ApplicationController#store_location
+    - :lines: 3
+      :complexity: 1
+      :name: ApplicationController#redirect_back_or_default
+    :lines: 51
+    :complexity: 11
+    :name: ApplicationController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: PasswordResetsController#new
+    - :lines: 11
+      :complexity: 2
+      :name: PasswordResetsController#create
+    - :lines: 5
+      :complexity: 2
+      :name: PasswordResetsController#index
+    - :lines: 2
+      :complexity: 1
+      :name: PasswordResetsController#edit
+    - :lines: 9
+      :complexity: 2
+      :name: PasswordResetsController#update
+    - :lines: 8
+      :complexity: 2
+      :name: PasswordResetsController#load_user_using_perishable_token
+    :lines: 53
+    :complexity: 10
+    :name: PasswordResetsController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: CategoriesController#new
+    - :lines: 10
+      :complexity: 2
+      :name: CategoriesController#create
+    - :lines: 2
+      :complexity: 1
+      :name: CategoriesController#self.per_page
+    - :lines: 10
+      :complexity: 2
+      :name: CategoriesController#delete
+    - :lines: 3
+      :complexity: 1
+      :name: CategoriesController#index
+    :lines: 47
+    :complexity: 9
+    :name: CategoriesController
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: BidObserver#after_create
+    - :lines: 3
+      :complexity: 1
+      :name: BidObserver#after_delete
+    - :lines: 4
+      :complexity: 1
+      :name: BidObserver#after_save
+    - :lines: 3
+      :complexity: 1
+      :name: BidObserver#after_update
+    - :lines: 13
+      :complexity: 4
+      :name: BidObserver#update_auction_time
+    :lines: 34
+    :complexity: 8
+    :name: BidObserver
+  - :defs: 
+    - :lines: 2
+      :complexity: 2
+      :name: RolesUser#cannot_destroy_superuser
+    - :lines: 2
+      :complexity: 2
+      :name: RolesUser#only_one_superuser
+    - :lines: 2
+      :complexity: 2
+      :name: RolesUser#cannot_adminize_banned
+    - :lines: 2
+      :complexity: 2
+      :name: RolesUser#cannot_ban_suspend_superuser
+    :lines: 36
+    :complexity: 8
+    :name: RolesUser
+  - :defs: 
+    - :lines: 20
+      :complexity: 7
+      :name: ActiveRecord#self.validates_uri_existence_of
+    :lines: 22
+    :complexity: 7
+    :name: ActiveRecord
+  - :defs: 
+    - :lines: 3
+      :complexity: 1
+      :name: ProductSearch#categories_attributes=
+    - :lines: 3
+      :complexity: 1
+      :name: ProductSearch#conditions=
+    - :lines: 3
+      :complexity: 1
+      :name: ProductSearch#order=
+    - :lines: 2
+      :complexity: 1
+      :name: ProductSearch#order
+    - :lines: 2
+      :complexity: 1
+      :name: ProductSearch#conditions
+    - :lines: 3
+      :complexity: 1
+      :name: ProductSearch#categories=
+    - :lines: 2
+      :complexity: 1
+      :name: ProductSearch#categories
+    :lines: 60
+    :complexity: 7
+    :name: ProductSearch
+  - :defs: 
+    - :lines: 1
+      :complexity: 1
+      :name: RubySMTP#initialize
+    - :lines: 11
+      :complexity: 3
+      :name: RubySMTP#send
+    - :lines: 2
+      :complexity: 1
+      :name: RubySMTP#address_valid?
+    - :lines: 6
+      :complexity: 2
+      :name: RubySMTP#send_email
+    :lines: 34
+    :complexity: 7
+    :name: RubySMTP
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: UserSessionsController#new
+    - :lines: 20
+      :complexity: 5
+      :name: UserSessionsController#create
+    - :lines: 5
+      :complexity: 1
+      :name: UserSessionsController#destroy
+    :lines: 36
+    :complexity: 7
+    :name: UserSessionsController
+  - :defs: 
+    - :lines: 7
+      :complexity: 2
+      :name: PersonalController#auctions
+    - :lines: 9
+      :complexity: 3
+      :name: PersonalController#bidded
+    :lines: 25
+    :complexity: 6
+    :name: PersonalController
+  - :defs: 
+    - :lines: 3
+      :complexity: 1
+      :name: UserSearch#roles_attributes=
+    - :lines: 3
+      :complexity: 1
+      :name: UserSearch#interests_attributes=
+    - :lines: 2
+      :complexity: 1
+      :name: UserSearch#interests
+    - :lines: 2
+      :complexity: 1
+      :name: UserSearch#roles
+    :lines: 23
+    :complexity: 4
+    :name: UserSearch
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: Tableless#self.columns
+    - :lines: 3
+      :complexity: 1
+      :name: Tableless#self.column
+    - :lines: 2
+      :complexity: 2
+      :name: Tableless#save
+    :lines: 14
+    :complexity: 4
+    :name: Tableless
+  - :defs: 
+    - :lines: 3
+      :complexity: 1
+      :name: SponsoredArticleSearch#categories_attributes=
+    - :lines: 3
+      :complexity: 1
+      :name: SponsoredArticleSearch#categories=
+    - :lines: 2
+      :complexity: 1
+      :name: SponsoredArticleSearch#categories
+    :lines: 29
+    :complexity: 3
+    :name: SponsoredArticleSearch
+  - :defs: 
+    - :lines: 3
+      :complexity: 1
+      :name: BannerSearch#categories_attributes=
+    - :lines: 3
+      :complexity: 1
+      :name: BannerSearch#categories=
+    - :lines: 2
+      :complexity: 1
+      :name: BannerSearch#categories
+    :lines: 33
+    :complexity: 3
+    :name: BannerSearch
+  - :defs: 
+    - :lines: 3
+      :complexity: 1
+      :name: SiteLinkSearch#categories_attributes=
+    - :lines: 3
+      :complexity: 1
+      :name: SiteLinkSearch#categories=
+    - :lines: 2
+      :complexity: 1
+      :name: SiteLinkSearch#categories
+    :lines: 25
+    :complexity: 3
+    :name: SiteLinkSearch
+  - :defs: 
+    - :lines: 6
+      :complexity: 2
+      :name: AuctionsHelper#AuctionsHelper.random_string
+    :lines: 9
+    :complexity: 2
+    :name: AuctionsHelper
+  - :defs: 
+    - :lines: 6
+      :complexity: 2
+      :name: Category#name_not_trivial
+    :lines: 13
+    :complexity: 2
+    :name: Category
+  - :defs: 
+    - :lines: 13
+      :complexity: 2
+      :name: HomeController#index
+    :lines: 18
+    :complexity: 2
+    :name: HomeController
+  - :defs: 
+    - :lines: 6
+      :complexity: 2
+      :name: UsersHelper#interest
+    :lines: 8
+    :complexity: 2
+    :name: UsersHelper
+  - :defs: 
+    - :lines: 6
+      :complexity: 1
+      :name: Notifier#password_reset_instructions
+    :lines: 12
+    :complexity: 1
+    :name: Notifier
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: Role#de_capitalize_name
+    :lines: 14
+    :complexity: 1
+    :name: Role
+  - :defs: 
+    - :lines: 2
+      :complexity: 1
+      :name: AuctionObserver#before_destroy
+    :lines: 6
+    :complexity: 1
+    :name: AuctionObserver
+  - :lines: 4
+    :complexity: 0
+    :name: Article
+  - :lines: 1
+    :complexity: 0
+    :name: ""
+  - :lines: 1
+    :complexity: 0
+    :name: UserSessionsHelper
+  - :lines: 1
+    :complexity: 0
+    :name: ""
+  - :lines: 2
+    :complexity: 0
+    :name: Administrator
+  - :lines: 6
+    :complexity: 0
+    :name: MailingService
+  - :lines: 1
+    :complexity: 0
+    :name: ""
+  - :lines: 1
+    :complexity: 0
+    :name: AccountHelper
+  - :lines: 2
+    :complexity: 0
+    :name: Interest
+  - :lines: 1
+    :complexity: 0
+    :name: ArticlesHelper
+  - :lines: 1
+    :complexity: 0
+    :name: ""
+  - :lines: 1
+    :complexity: 0
+    :name: ApplicationHelper
+  - :lines: 3
+    :complexity: 0
+    :name: UserSession
+  - :lines: 1
+    :complexity: 0
+    :name: AuctionsCategories
+  - :lines: 1
+    :complexity: 0
+    :name: NewSiteLinkHelper
+  - :lines: 1
+    :complexity: 0
+    :name: PasswordResetsHelper
+  - :lines: 1
+    :complexity: 0
+    :name: RoleHelper
+  - :lines: 1
+    :complexity: 0
+    :name: CategoriesHelper
+  - :lines: 1
+    :complexity: 0
+    :name: ""
+  - :lines: 1
+    :complexity: 0
+    :name: HomeHelper
+:stats: 
+  :testLOC: 671
+  :code_to_test_ratio: 0.3
+  :lines: 
+  - :methods: 79
+    :lines: 940
+    :loc: 739
+    :methods_per_class: 7
+    :classes: 10
+    :name: Controllers
+    :loc_per_method: 7
+  - :methods: 18
+    :lines: 224
+    :loc: 154
+    :methods_per_class: 18
+    :classes: 1
+    :name: Helpers
+    :loc_per_method: 6
+  - :methods: 86
+    :lines: 1270
+    :loc: 1047
+    :methods_per_class: 3
+    :classes: 25
+    :name: Models
+    :loc_per_method: 10
+  - :methods: 8
+    :lines: 85
+    :loc: 79
+    :methods_per_class: 4
+    :classes: 2
+    :name: Libraries
+    :loc_per_method: 7
+  - :methods: 5
+    :lines: 53
+    :loc: 37
+    :methods_per_class: 5
+    :classes: 1
+    :name: Integration tests
+    :loc_per_method: 5
+  - :methods: 28
+    :lines: 367
+    :loc: 218
+    :methods_per_class: 2
+    :classes: 11
+    :name: Functional tests
+    :loc_per_method: 5
+  - :methods: 51
+    :lines: 774
+    :loc: 416
+    :methods_per_class: 1
+    :classes: 29
+    :name: Unit tests
+    :loc_per_method: 6
+  - :methods: 275
+    :lines: 3713
+    :loc: 2690
+    :methods_per_class: 3
+    :classes: 79
+    :name: Total
+    :loc_per_method: 7
+  :codeLOC: 2019
+:flog: 
+  :average: 84.7
+  :total: 2370.9
+  :pages: 
+  - :score: 709.2
+    :highest_score: 94.2
+    :average_score: 29.5
+    :path: /app/controllers/products_controller.rb
+    :scanned_methods: 
+    - :score: 94.2
+      :operators: 
+      - :score: 30.6
+        :operator: "  []"
+      - :score: 17.8
+        :operator: "  params"
+      - :score: 11.5
+        :operator: "  branch"
+      - :score: 9.0
+        :operator: "  assignment"
+      - :score: 7.4
+        :operator: "  auction"
+      - :score: 4.6
+        :operator: "  find"
+      - :score: 3.7
+        :operator: "  categories"
+      - :score: 3.3
+        :operator: "  class"
+      - :score: 3.3
+        :operator: "  id"
+      - :score: 2.8
+        :operator: "  update_attributes"
+      - :score: 1.9
+        :operator: "  to_i"
+      - :score: 1.9
+        :operator: "  to_s"
+      - :score: 1.8
+        :operator: "  count"
+      - :score: 1.7
+        :operator: "  <<"
+      - :score: 1.7
+        :operator: "  classify"
+      - :score: 1.6
+        :operator: "  >"
+      - :score: 1.6
+        :operator: "  map"
+      - :score: 1.6
+        :operator: "  include?"
+      - :score: 1.5
+        :operator: "  redirect_to"
+      - :score: 1.5
+        :operator: "  const_get"
+      - :score: 1.4
+        :operator: "  render"
+      - :score: 1.4
+        :operator: "  each"
+      :name: ProductsController#update        app/controllers/products_controller.rb:235
+  - :score: 312.7
+    :highest_score: 81.4
+    :average_score: 20.8
+    :path: /app/models/auction.rb
+    :scanned_methods: 
+    - :score: 81.4
+      :operators: 
+      - :score: 16.0
+        :operator: "  errors"
+      - :score: 15.2
+        :operator: "  branch"
+      - :score: 12.6
+        :operator: "  add"
+      - :score: 10.4
+        :operator: "  =="
+      - :score: 6.4
+        :operator: "  minimal_price"
+      - :score: 3.2
+        :operator: "  number_of_products"
+      - :score: 3.2
+        :operator: "  buy_now_price"
+      - :score: 3.0
+        :operator: "  auctionable_type"
+      - :score: 3.0
+        :operator: "  auctionable_id"
+      - :score: 2.8
+        :operator: "  count"
+      - :score: 2.8
+        :operator: "  activation_token"
+      - :score: 2.8
+        :operator: "  user_id"
+      - :score: 2.6
+        :operator: "  >"
+      - :score: 1.8
+        :operator: "  bids"
+      - :score: 1.6
+        :operator: "  not_cancelled"
+      - :score: 1.4
+        :operator: "  today"
+      - :score: 1.4
+        :operator: "  auction_end"
+      - :score: 1.4
+        :operator: "  id"
+      - :score: 1.2
+        :operator: "  new_record?"
+      - :score: 1.2
+        :operator: "  <"
+      - :score: 1.2
+        :operator: "  assignment"
+      - :score: 1.2
+        :operator: "  find"
+      :name: Auction#check_before_update      app/models/auction.rb:62
+  - :score: 265.7
+    :highest_score: 48.8
+    :average_score: 17.7
+    :path: /app/helpers/products_helper.rb
+    :scanned_methods: 
+    - :score: 48.8
+      :operators: 
+      - :score: 26.8
+        :operator: "  assignment"
+      - :score: 20.5
+        :operator: "  +"
+      - :score: 9.4
+        :operator: "  c2i"
+      - :score: 4.2
+        :operator: "  lit_fixnum"
+      - :score: 2.6
+        :operator: "  mix"
+      - :score: 1.6
+        :operator: "  <<"
+      - :score: 1.3
+        :operator: "  >="
+      - :score: 1.2
+        :operator: "  size"
+      - :score: 1.2
+        :operator: "  branch"
+      :name: ProductsHelper#old_cn            app/helpers/products_helper.rb:100
+  - :score: 134.6
+    :highest_score: 32.6
+    :average_score: 16.8
+    :path: /app/controllers/roles_controller.rb
+    :scanned_methods: 
+    - :score: 32.6
+      :operators: 
+      - :score: 6.8
+        :operator: "  params"
+      - :score: 6.0
+        :operator: "  []"
+      - :score: 5.3
+        :operator: "  assignment"
+      - :score: 4.5
+        :operator: "  name"
+      - :score: 2.6
+        :operator: "  branch"
+      - :score: 2.4
+        :operator: "  find"
+      - :score: 1.6
+        :operator: "  render"
+      - :score: 1.6
+        :operator: "  all"
+      - :score: 1.4
+        :operator: "  has_no_role!"
+      - :score: 1.4
+        :operator: "  has_role?"
+      - :score: 1.4
+        :operator: "  roles"
+      - :score: 1.3
+        :operator: "  login"
+      - :score: 1.3
+        :operator: "  flash"
+      - :score: 1.2
+        :operator: "  redirect_to"
+      - :score: 1.2
+        :operator: "  include?"
+      :name: RolesController#remove_role_from_user app/controllers/roles_controller.rb:39
+  - :score: 37.5
+    :highest_score: 32.4
+    :average_score: 9.4
+    :path: /app/models/product_search.rb
+    :scanned_methods: 
+    - :score: 32.4
+      :operators: 
+      - :score: 29.7
+        :operator: "  column"
+      - :score: 2.6
+        :operator: "  lit_fixnum"
+      - :score: 2.2
+        :operator: "  assignment"
+      :name: ProductSearch#none
+  - :score: 235.0
+    :highest_score: 31.4
+    :average_score: 13.8
+    :path: /app/controllers/users_controller.rb
+    :scanned_methods: 
+    - :score: 31.4
+      :operators: 
+      - :score: 11.4
+        :operator: "  assignment"
+      - :score: 4.7
+        :operator: "  +"
+      - :score: 4.5
+        :operator: "  send"
+      - :score: 2.8
+        :operator: "  new"
+      - :score: 1.9
+        :operator: "  generate_activation_url"
+      - :score: 1.7
+        :operator: "  account_url"
+      - :score: 1.7
+        :operator: "  email"
+      - :score: 1.7
+        :operator: "  params"
+      - :score: 1.5
+        :operator: "  redirect_back_or_default"
+      - :score: 1.5
+        :operator: "  has_role!"
+      - :score: 1.5
+        :operator: "  []"
+      - :score: 1.4
+        :operator: "  render"
+      - :score: 1.3
+        :operator: "  branch"
+      - :score: 1.3
+        :operator: "  random_string"
+      - :score: 1.3
+        :operator: "  find"
+      - :score: 1.3
+        :operator: "  save"
+      - :score: 0.4
+        :operator: "  lit_fixnum"
+      :name: UsersController#create           app/controllers/users_controller.rb:93
+  - :score: 177.2
+    :highest_score: 27.9
+    :average_score: 14.8
+    :path: /app/models/bid.rb
+    :scanned_methods: 
+    - :score: 27.9
+      :operators: 
+      - :score: 6.1
+        :operator: "  errors"
+      - :score: 6.0
+        :operator: "  branch"
+      - :score: 5.3
+        :operator: "  add"
+      - :score: 3.6
+        :operator: "  =="
+      - :score: 2.8
+        :operator: "  user"
+      - :score: 2.8
+        :operator: "  offered_price"
+      - :score: 2.8
+        :operator: "  auction"
+      - :score: 1.4
+        :operator: "  id"
+      - :score: 1.2
+        :operator: "  find"
+      - :score: 1.2
+        :operator: "  new_record?"
+      - :score: 1.2
+        :operator: "  assignment"
+      :name: Bid#check_before_update          app/models/bid.rb:21
+  - :score: 36.6
+    :highest_score: 26.2
+    :average_score: 9.2
+    :path: /app/controllers/user_sessions_controller.rb
+    :scanned_methods: 
+    - :score: 26.2
+      :operators: 
+      - :score: 7.0
+        :operator: "  assignment"
+      - :score: 5.2
+        :operator: "  branch"
+      - :score: 4.6
+        :operator: "  redirect_back_or_default"
+      - :score: 4.6
+        :operator: "  flash"
+      - :score: 4.4
+        :operator: "  []"
+      - :score: 3.4
+        :operator: "  params"
+      - :score: 2.8
+        :operator: "  has_role?"
+      - :score: 1.3
+        :operator: "  render"
+      - :score: 1.2
+        :operator: "  save"
+      - :score: 1.2
+        :operator: "  find_by_login"
+      - :score: 1.2
+        :operator: "  new"
+      :name: UserSessionsController#create    app/controllers/user_sessions_controller.rb:9
+  - :score: 40.0
+    :highest_score: 17.9
+    :average_score: 8.0
+    :path: /app/models/bid_observer.rb
+    :scanned_methods: 
+    - :score: 17.9
+      :operators: 
+      - :score: 4.0
+        :operator: "  branch"
+      - :score: 3.6
+        :operator: "  auction"
+      - :score: 3.4
+        :operator: "  now"
+      - :score: 1.7
+        :operator: "  errors_to_base"
+      - :score: 1.7
+        :operator: "  auction_end"
+      - :score: 1.5
+        :operator: "  assignment"
+      - :score: 1.5
+        :operator: "  update_attribute"
+      - :score: 1.5
+        :operator: "  advance"
+      - :score: 1.5
+        :operator: "  -"
+      - :score: 1.3
+        :operator: "  <="
+      - :score: 1.2
+        :operator: "  transaction"
+      :name: BidObserver#update_auction_time  app/models/bid_observer.rb:21
+  - :score: 33.0
+    :highest_score: 17.2
+    :average_score: 11.0
+    :path: /app/controllers/personal_controller.rb
+    :scanned_methods: 
+    - :score: 17.2
+      :operators: 
+      - :score: 5.1
+        :operator: "  assignment"
+      - :score: 3.2
+        :operator: "  current_user"
+      - :score: 2.4
+        :operator: "  branch"
+      - :score: 1.8
+        :operator: "  not_cancelled"
+      - :score: 1.8
+        :operator: "  id"
+      - :score: 1.6
+        :operator: "  user_id_equals"
+      - :score: 1.4
+        :operator: "  flash"
+      - :score: 1.4
+        :operator: "  redirect_to"
+      - :score: 1.4
+        :operator: "  all"
+      - :score: 1.3
+        :operator: "  auction_id"
+      - :score: 1.2
+        :operator: "  map"
+      - :score: 1.2
+        :operator: "  id_in"
+      :name: PersonalController#bidded        app/controllers/personal_controller.rb:16
+  - :score: 64.3
+    :highest_score: 16.0
+    :average_score: 12.9
+    :path: /app/models/roles_user.rb
+    :scanned_methods: 
+    - :score: 16.0
+      :operators: 
+      - :score: 3.8
+        :operator: "  role"
+      - :score: 2.4
+        :operator: "  branch"
+      - :score: 1.9
+        :operator: "  id"
+      - :score: 1.7
+        :operator: "  find_by_role_id"
+      - :score: 1.5
+        :operator: "  count"
+      - :score: 1.5
+        :operator: "  errors"
+      - :score: 1.5
+        :operator: "  name"
+      - :score: 1.3
+        :operator: "  >"
+      - :score: 1.3
+        :operator: "  =="
+      - :score: 1.3
+        :operator: "  add"
+      :name: RolesUser#only_one_superuser     app/models/roles_user.rb:14
+  - :score: 53.5
+    :highest_score: 15.8
+    :average_score: 7.6
+    :path: /app/controllers/password_resets_controller.rb
+    :scanned_methods: 
+    - :score: 15.8
+      :operators: 
+      - :score: 5.2
+        :operator: "  []"
+      - :score: 3.8
+        :operator: "  assignment"
+      - :score: 3.2
+        :operator: "  params"
+      - :score: 1.6
+        :operator: "  account_url"
+      - :score: 1.4
+        :operator: "  flash"
+      - :score: 1.4
+        :operator: "  redirect_to"
+      - :score: 1.3
+        :operator: "  render"
+      - :score: 1.2
+        :operator: "  branch"
+      - :score: 1.2
+        :operator: "  save"
+      :name: PasswordResetsController#update  app/controllers/password_resets_controller.rb:32
+  - :score: 43.1
+    :highest_score: 14.4
+    :average_score: 6.2
+    :path: /app/controllers/categories_controller.rb
+    :scanned_methods: 
+    - :score: 14.4
+      :operators: 
+      - :score: 4.0
+        :operator: "  assignment"
+      - :score: 2.8
+        :operator: "  name"
+      - :score: 2.8
+        :operator: "  flash"
+      - :score: 1.6
+        :operator: "  params"
+      - :score: 1.4
+        :operator: "  redirect_to"
+      - :score: 1.4
+        :operator: "  render"
+      - :score: 1.4
+        :operator: "  []"
+      - :score: 1.2
+        :operator: "  branch"
+      - :score: 1.2
+        :operator: "  save"
+      - :score: 1.2
+        :operator: "  new"
+      :name: CategoriesController#create      app/controllers/categories_controller.rb:15
+  - :score: 76.5
+    :highest_score: 13.9
+    :average_score: 8.5
+    :path: /app/controllers/articles_controller.rb
+    :scanned_methods: 
+    - :score: 13.9
+      :operators: 
+      - :score: 3.8
+        :operator: "  assignment"
+      - :score: 2.6
+        :operator: "  current_user"
+      - :score: 1.6
+        :operator: "  params"
+      - :score: 1.4
+        :operator: "  redirect_to"
+      - :score: 1.4
+        :operator: "  flash"
+      - :score: 1.4
+        :operator: "  []"
+      - :score: 1.3
+        :operator: "  render"
+      - :score: 1.2
+        :operator: "  has_role!"
+      - :score: 1.2
+        :operator: "  save"
+      - :score: 1.2
+        :operator: "  branch"
+      - :score: 1.2
+        :operator: "  new"
+      :name: ArticlesController#create        app/controllers/articles_controller.rb:26
+  - :score: 30.6
+    :highest_score: 13.2
+    :average_score: 6.1
+    :path: /app/helpers/rubysmtp.rb
+    :scanned_methods: 
+    - :score: 13.2
+      :operators: 
+      - :score: 9.6
+        :operator: "  +"
+      - :score: 3.9
+        :operator: "  branch"
+      - :score: 2.7
+        :operator: "  assignment"
+      - :score: 1.4
+        :operator: "  send_message"
+      - :score: 1.3
+        :operator: "  start"
+      :name: RubySMTP#send_email              app/helpers/rubysmtp.rb:28
+  - :score: 17.9
+    :highest_score: 12.4
+    :average_score: 9.0
+    :path: /app/models/category.rb
+    :scanned_methods: 
+    - :score: 12.4
+      :operators: 
+      - :score: 3.4
+        :operator: "  name"
+      - :score: 2.6
+        :operator: "  =="
+      - :score: 2.4
+        :operator: "  branch"
+      - :score: 1.7
+        :operator: "  gsub"
+      - :score: 1.6
+        :operator: "  errors"
+      - :score: 1.5
+        :operator: "  length"
+      - :score: 1.4
+        :operator: "  add"
+      :name: Category#name_not_trivial        app/models/category.rb:7
+  - :score: 14.3
+    :highest_score: 11.8
+    :average_score: 7.1
+    :path: /app/models/notifier.rb
+    :scanned_methods: 
+    - :score: 11.8
+      :operators: 
+      - :score: 1.6
+        :operator: "  perishable_token"
+      - :score: 1.4
+        :operator: "  edit_password_reset_url"
+      - :score: 1.4
+        :operator: "  now"
+      - :score: 1.4
+        :operator: "  email"
+      - :score: 1.2
+        :operator: "  from"
+      - :score: 1.2
+        :operator: "  sent_on"
+      - :score: 1.2
+        :operator: "  recipients"
+      - :score: 1.2
+        :operator: "  subject"
+      - :score: 1.2
+        :operator: "  body"
+      :name: Notifier#password_reset_instructions app/models/notifier.rb:5
+  - :score: 12.1
+    :highest_score: 11.0
+    :average_score: 6.1
+    :path: /app/controllers/home_controller.rb
+    :scanned_methods: 
+    - :score: 11.0
+      :operators: 
+      - :score: 3.7
+        :operator: "  assignment"
+      - :score: 2.5
+        :operator: "  new"
+      - :score: 1.6
+        :operator: "  params"
+      - :score: 1.4
+        :operator: "  []"
+      - :score: 1.2
+        :operator: "  index"
+      - :score: 1.2
+        :operator: "  render"
+      - :score: 1.2
+        :operator: "  current_user"
+      - :score: 1.2
+        :operator: "  articles"
+      - :score: 1.2
+        :operator: "  branch"
+      :name: HomeController#index             app/controllers/home_controller.rb:5
+  - :score: 39.6
+    :highest_score: 7.8
+    :average_score: 4.9
+    :path: /app/controllers/application_controller.rb
+    :scanned_methods: 
+    - :score: 7.8
+      :operators: 
+      - :score: 1.7
+        :operator: "  new_user_session_url"
+      - :score: 1.5
+        :operator: "  redirect_to"
+      - :score: 1.5
+        :operator: "  assignment"
+      - :score: 1.5
+        :operator: "  flash"
+      - :score: 1.5
+        :operator: "  store_location"
+      - :score: 1.3
+        :operator: "  branch"
+      - :score: 1.3
+        :operator: "  current_user"
+      :name: ApplicationController#require_user app/controllers/application_controller.rb:26
+  - :score: 10.6
+    :highest_score: 7.7
+    :average_score: 5.3
+    :path: /app/models/role.rb
+    :scanned_methods: 
+    - :score: 7.7
+      :operators: 
+      - :score: 2.2
+        :operator: "  has_many"
+      - :score: 1.1
+        :operator: "  acts_as_authorization_role"
+      - :score: 1.1
+        :operator: "  acts_as_authorization_object"
+      - :score: 1.1
+        :operator: "  before_save"
+      - :score: 1.1
+        :operator: "  before_update"
+      - :score: 1.1
+        :operator: "  named_scope"
+      :name: Role#none
+  - :score: 10.0
+    :highest_score: 6.6
+    :average_score: 3.3
+    :path: /app/models/user_search.rb
+    :scanned_methods: 
+    - :score: 6.6
+      :operators: 
+      - :score: 6.6
+        :operator: "  column"
+      :name: UserSearch#none
+  - :score: 5.5
+    :highest_score: 5.5
+    :average_score: 5.5
+    :path: /app/models/mailing_service.rb
+    :scanned_methods: 
+    - :score: 5.5
+      :operators: 
+      - :score: 2.2
+        :operator: "  validates_numericality_of"
+      - :score: 1.1
+        :operator: "  accepts_nested_attributes_for"
+      - :score: 1.1
+        :operator: "  has_one"
+      - :score: 1.1
+        :operator: "  has_many"
+      :name: MailingService#none
+  - :score: 3.3
+    :highest_score: 3.3
+    :average_score: 3.3
+    :path: /app/models/article.rb
+    :scanned_methods: 
+    - :score: 3.3
+      :operators: 
+      - :score: 1.1
+        :operator: "  attr_accessible"
+      - :score: 1.1
+        :operator: "  belongs_to"
+      - :score: 1.1
+        :operator: "  acts_as_authorization_object"
+      :name: Article#none
+  - :score: 2.8
+    :highest_score: 2.8
+    :average_score: 2.8
+    :path: /app/helpers/users_helper.rb
+    :scanned_methods: 
+    - :score: 2.8
+      :operators: 
+      - :score: 1.4
+        :operator: "  interests"
+      - :score: 1.2
+        :operator: "  include?"
+      - :score: 1.1
+        :operator: "  branch"
+      :name: UsersHelper#interest             app/helpers/users_helper.rb:2
+  - :score: 2.2
+    :highest_score: 2.2
+    :average_score: 2.2
+    :path: /app/models/user_session.rb
+    :scanned_methods: 
+    - :score: 2.2
+      :operators: 
+      - :score: 1.1
+        :operator: "  unloadable"
+      - :score: 1.1
+        :operator: "  logout_on_timeout"
+      :name: UserSession#none
+  - :score: 1.1
+    :highest_score: 1.1
+    :average_score: 1.1
+    :path: /app/models/auction_observer.rb
+    :scanned_methods: 
+    - :score: 1.1
+      :operators: 
+      - :score: 1.1
+        :operator: "  observe"
+      :name: AuctionObserver#none
+  - :score: 1.0
+    :highest_score: 1.0
+    :average_score: 1.0
+    :path: /app/models/administrator.rb
+    :scanned_methods: 
+    - :score: 1.0
+      :operators: 
+      - :score: 1.0
+        :operator: "  has_one"
+      :name: Administrator#none
+  - :score: 1.0
+    :highest_score: 1.0
+    :average_score: 1.0
+    :path: /app/models/interest.rb
+    :scanned_methods: 
+    - :score: 1.0
+      :operators: 
+      - :score: 1.0
+        :operator: "  has_and_belongs_to_many"
+      :name: Interest#none
+:flay: 
+  :total_score: "2657"
+  :matches: 
+  - :matches: 
+    - :line: "69"
+      :name: app/models/banner.rb
+    - :line: "70"
+      :name: app/models/banner.rb
+    - :line: "71"
+      :name: app/models/banner.rb
+    - :line: "72"
+      :name: app/models/banner.rb
+    - :line: "73"
+      :name: app/models/banner.rb
+    - :line: "74"
+      :name: app/models/banner.rb
+    - :line: "75"
+      :name: app/models/banner.rb
+    - :line: "76"
+      :name: app/models/banner.rb
+    - :line: "77"
+      :name: app/models/banner.rb
+    - :line: "78"
+      :name: app/models/banner.rb
+    - :line: "79"
+      :name: app/models/banner.rb
+    - :line: "80"
+      :name: app/models/banner.rb
+    - :line: "81"
+      :name: app/models/banner.rb
+    - :line: "82"
+      :name: app/models/banner.rb
+    - :line: "66"
+      :name: app/models/sponsored_article.rb
+    - :line: "67"
+      :name: app/models/sponsored_article.rb
+    - :line: "68"
+      :name: app/models/sponsored_article.rb
+    - :line: "69"
+      :name: app/models/sponsored_article.rb
+    - :line: "70"
+      :name: app/models/sponsored_article.rb
+    - :line: "71"
+      :name: app/models/sponsored_article.rb
+    - :line: "61"
+      :name: app/models/pop_up.rb
+    - :line: "62"
+      :name: app/models/pop_up.rb
+    - :line: "63"
+      :name: app/models/pop_up.rb
+    - :line: "64"
+      :name: app/models/pop_up.rb
+    - :line: "65"
+      :name: app/models/pop_up.rb
+    - :line: "66"
+      :name: app/models/pop_up.rb
+    - :line: "67"
+      :name: app/models/pop_up.rb
+    - :line: "68"
+      :name: app/models/pop_up.rb
+    - :line: "69"
+      :name: app/models/pop_up.rb
+    - :line: "70"
+      :name: app/models/pop_up.rb
+    :reason: 1) Similar code found in :if (mass = 540)
+  - :matches: 
+    - :line: "84"
+      :name: app/models/banner.rb
+    - :line: "85"
+      :name: app/models/banner.rb
+    - :line: "86"
+      :name: app/models/banner.rb
+    - :line: "87"
+      :name: app/models/banner.rb
+    - :line: "120"
+      :name: app/models/site_link.rb
+    - :line: "121"
+      :name: app/models/site_link.rb
+    - :line: "122"
+      :name: app/models/site_link.rb
+    - :line: "123"
+      :name: app/models/site_link.rb
+    - :line: "73"
+      :name: app/models/sponsored_article.rb
+    - :line: "74"
+      :name: app/models/sponsored_article.rb
+    - :line: "75"
+      :name: app/models/sponsored_article.rb
+    - :line: "76"
+      :name: app/models/sponsored_article.rb
+    - :line: "72"
+      :name: app/models/pop_up.rb
+    - :line: "73"
+      :name: app/models/pop_up.rb
+    - :line: "74"
+      :name: app/models/pop_up.rb
+    - :line: "75"
+      :name: app/models/pop_up.rb
+    :reason: 2) Similar code found in :if (mass = 320)
+  - :matches: 
+    - :line: "94"
+      :name: app/models/banner.rb
+    - :line: "95"
+      :name: app/models/banner.rb
+    - :line: "118"
+      :name: app/models/site_link.rb
+    - :line: "130"
+      :name: app/models/site_link.rb
+    - :line: "131"
+      :name: app/models/site_link.rb
+    - :line: "83"
+      :name: app/models/sponsored_article.rb
+    - :line: "84"
+      :name: app/models/sponsored_article.rb
+    - :line: "82"
+      :name: app/models/pop_up.rb
+    - :line: "83"
+      :name: app/models/pop_up.rb
+    :reason: 3) Similar code found in :if (mass = 297)
+  - :matches: 
+    - :line: "88"
+      :name: app/models/banner.rb
+    - :line: "122"
+      :name: app/models/user.rb
+    - :line: "128"
+      :name: app/models/user.rb
+    - :line: "124"
+      :name: app/models/site_link.rb
+    - :line: "77"
+      :name: app/models/sponsored_article.rb
+    - :line: "76"
+      :name: app/models/pop_up.rb
+    :reason: 4) Similar code found in :if (mass = 282)
+  - :matches: 
+    - :line: "117"
+      :name: app/models/user.rb
+    - :line: "118"
+      :name: app/models/user.rb
+    - :line: "119"
+      :name: app/models/user.rb
+    - :line: "120"
+      :name: app/models/user.rb
+    - :line: "114"
+      :name: app/models/site_link.rb
+    - :line: "115"
+      :name: app/models/site_link.rb
+    - :line: "116"
+      :name: app/models/site_link.rb
+    - :line: "117"
+      :name: app/models/site_link.rb
+    :reason: 5) Similar code found in :if (mass = 184)
+  - :matches: 
+    - :line: "52"
+      :name: app/controllers/products_controller.rb
+    - :line: "139"
+      :name: app/controllers/products_controller.rb
+    - :line: "164"
+      :name: app/controllers/products_controller.rb
+    :reason: 6) IDENTICAL code found in :iasgn (mass*3 = 162)
+  - :matches: 
+    - :line: "2"
+      :name: app/helpers/auctions_helper.rb
+    - :line: "12"
+      :name: app/helpers/products_helper.rb
+    :reason: 7) Similar code found in :defs (mass = 98)
+  - :matches: 
+    - :line: "74"
+      :name: app/models/auction.rb
+    - :line: "31"
+      :name: app/models/banner.rb
+    - :line: "32"
+      :name: app/models/banner.rb
+    - :line: "29"
+      :name: app/models/pop_up.rb
+    :reason: 8) Similar code found in :if (mass = 96)
+  - :matches: 
+    - :line: "134"
+      :name: app/models/auction.rb
+    - :line: "141"
+      :name: app/models/auction.rb
+    - :line: "33"
+      :name: app/models/user.rb
+    - :line: "40"
+      :name: app/models/user.rb
+    - :line: "94"
+      :name: app/models/site_link.rb
+    :reason: 9) Similar code found in :call (mass = 85)
+  - :matches: 
+    - :line: "57"
+      :name: app/models/banner.rb
+    - :line: "71"
+      :name: app/models/site_link.rb
+    - :line: "59"
+      :name: app/models/sponsored_article.rb
+    - :line: "53"
+      :name: app/models/pop_up.rb
+    :reason: 10) Similar code found in :call (mass = 76)
+  - :matches: 
+    - :line: "108"
+      :name: app/controllers/products_controller.rb
+    - :line: "114"
+      :name: app/controllers/products_controller.rb
+    :reason: 11) IDENTICAL code found in :call (mass*2 = 68)
+  - :matches: 
+    - :line: "17"
+      :name: app/models/roles_user.rb
+    - :line: "20"
+      :name: app/models/roles_user.rb
+    :reason: 12) Similar code found in :defn (mass = 64)
+  - :matches: 
+    - :line: "227"
+      :name: app/controllers/products_controller.rb
+    - :line: "285"
+      :name: app/controllers/products_controller.rb
+    - :line: "295"
+      :name: app/controllers/products_controller.rb
+    :reason: 13) Similar code found in :call (mass = 51)
+  - :matches: 
+    - :line: "78"
+      :name: app/controllers/users_controller.rb
+    - :line: "86"
+      :name: app/controllers/users_controller.rb
+    :reason: 14) Similar code found in :defn (mass = 50)
+  - :matches: 
+    - :line: "26"
+      :name: app/controllers/roles_controller.rb
+    - :line: "46"
+      :name: app/controllers/roles_controller.rb
+    :reason: 15) Similar code found in :if (mass = 48)
+  - :matches: 
+    - :line: "61"
+      :name: app/controllers/users_controller.rb
+    - :line: "306"
+      :name: app/controllers/products_controller.rb
+    - :line: "311"
+      :name: app/controllers/products_controller.rb
+    :reason: 16) Similar code found in :if (mass = 48)
+  - :matches: 
+    - :line: "56"
+      :name: app/controllers/users_controller.rb
+    - :line: "92"
+      :name: app/controllers/products_controller.rb
+    - :line: "300"
+      :name: app/controllers/products_controller.rb
+    :reason: 17) Similar code found in :if (mass = 48)
+  - :matches: 
+    - :line: "7"
+      :name: app/models/bid_observer.rb
+    - :line: "16"
+      :name: app/models/bid_observer.rb
+    :reason: 18) Similar code found in :defn (mass = 38)
+  - :matches: 
+    - :line: "153"
+      :name: app/models/auction.rb
+    - :line: "159"
+      :name: app/models/auction.rb
+    :reason: 19) Similar code found in :call (mass = 36)
+  - :matches: 
+    - :line: "19"
+      :name: app/controllers/categories_controller.rb
+    - :line: "22"
+      :name: app/controllers/categories_controller.rb
+    :reason: 20) Similar code found in :block (mass = 34)
+  - :matches: 
+    - :line: "12"
+      :name: app/controllers/user_sessions_controller.rb
+    - :line: "17"
+      :name: app/controllers/user_sessions_controller.rb
+    :reason: 21) Similar code found in :if (mass = 32)
+:reek: 
+  :matches: 
+  - :file_path: app/controllers/application_controller.rb
+    :code_smells: []
+
+:churn: 
+  :changes: []
+

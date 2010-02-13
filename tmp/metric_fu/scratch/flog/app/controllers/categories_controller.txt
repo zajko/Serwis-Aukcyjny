@@ -1,0 +1,52 @@
+    43.1: flog total
+     6.2: flog/method average
+
+    14.4: CategoriesController#create      app/controllers/categories_controller.rb:15
+     4.0:   assignment
+     2.8:   name
+     2.8:   flash
+     1.6:   params
+     1.4:   redirect_to
+     1.4:   render
+     1.4:   []
+     1.2:   branch
+     1.2:   save
+     1.2:   new
+
+    13.3: CategoriesController#delete      app/controllers/categories_controller.rb:31
+     5.2:   assignment
+     2.8:   flash
+     1.6:   params
+     1.4:   redirect_to
+     1.4:   render
+     1.4:   []
+     1.2:   branch
+     1.2:   name
+     1.2:   destroy
+     1.2:   new
+
+     5.6: allow#index                      app/controllers/categories_controller.rb:5
+     2.6:   allow
+     1.5:   anonymous
+     1.5:   logged_in
+
+     5.1: CategoriesController#index       app/controllers/categories_controller.rb:43
+     2.4:   assignment
+     1.5:   params
+     1.3:   []
+     1.2:   paginate
+     1.2:   branch
+     0.3:   lit_fixnum
+
+     2.6: CategoriesController#none
+     1.3:   allow
+     1.1:   branch
+     1.1:   access_control
+
+     1.7: CategoriesController#new         app/controllers/categories_controller.rb:11
+     1.2:   assignment
+     1.2:   new
+
+     0.3: CategoriesController::per_page   app/controllers/categories_controller.rb:27
+     0.3:   lit_fixnum
+

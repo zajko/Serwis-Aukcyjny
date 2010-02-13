@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag "products" %>
+<table id="TabProduct">
+  <% if @product.auction and (current_user == @product.auction.user or current_user.is_admin?) %>
+      <tr>
+        <td class="boldColl">Adres strony:</td>
+        <td><%= @product.url %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td class="boldColl">Pagerank:</td>
+    <td><%= @product.pagerank %><%@product.auction.user %>  </td>
+  </tr>
+  <tr>
+    <td class="boldColl">Użytkownicy dziennie:</td>
+    <td><%= @product.users_daily %></td>
+  </tr>
+    <tr>
+    <td class="boldColl">Pozycja bannera (x, y) :</td>
+    <td>(<%= @product.x_pos.to_s + " , " + @product.y_pos.to_s %>)</td>
+  </tr>
+    <tr>
+    <td class="boldColl"> Rozmiary bannera (wysokość,szerokość) :</td>
+    <td>(<%= @product.height.to_s + " , " + @product.width.to_s %>)</td>
+  </tr>
+    <tr>
+    <td class="boldColl">Częstotliwość wyświetlania</td>
+    <td><%= 1 / @product.frequency %> wyświetlań</td>
+  </tr>
+</table>
+
+

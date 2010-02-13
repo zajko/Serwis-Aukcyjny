@@ -1,0 +1,23 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%#= render :partial => "home/home_options" %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<h1>Logowanie</h1>
+ 
+<% form_for @user_session, :url => user_session_path do |f| %>
+  <%= f.error_messages %>
+<table border="0" id="TabFormContainer">
+  <tr>
+    <td class="label"><%= f.label :login,"Login: " %></td>
+    <td><%= f.text_field :login %></td>
+  </tr>
+  <tr>
+    <td class="label"><%= f.label :password, "Hasło: " %></td>
+    <td><%= f.password_field :password %></td>
+  </tr>
+</table>
+<br />
+  <%= f.check_box :remember_me %> <%= f.label :remember_me, "Zapamiętaj mnie" %><br />
+  <br /><br />
+  <%= f.submit "Loguj" %>
+<% end %>
+

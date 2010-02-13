@@ -1,0 +1,15 @@
+<% form_for @article do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label "Tytuł:" %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <br /><br />
+    <p><%= f.label :text, "Treść:" %>
+	
+  </p><%= f.text_area :text, :cols => 100, :class => 'tiny_mce' %>
+    
+   <br /><br />
+  <p><%= f.submit "Submit" %></p>
+<% end %>

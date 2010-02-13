@@ -1,0 +1,31 @@
+/* 
+    Document   : auctions
+    Created on : 2009-11-23, 13:45:58
+    Author     : Agnieszka
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#TabCreateAuction, #TabShowAuction{
+    vertical-align:middle;
+}
+    .boldColl{
+        font-weight:bold;
+        width:200px;
+        line-height:30px;
+        
+    }
+    .inputCena{
+        background-color:#DFF0BC;
+        width:60px;
+    }
+
+
+
+
+

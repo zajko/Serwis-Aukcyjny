@@ -1,0 +1,16 @@
+
+
+#TabArticles{
+    border: 1px dotted gray;
+    width:785px;
+    border-collapse:collapse;
+}
+    #TabArticles td{
+        border: 1px dotted gray;
+        padding:5px;
+    }
+
+    #TabArticles td.ArticlesTabHeader{
+        font-weight:bold;
+        line-height:30px;
+    }

@@ -1,0 +1,24 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "roles_options" %> 
+<%= stylesheet_link_tag "roles" %>
+<h1> Zarządzanie rolami</h1>
+<table id="TabRoles">
+    <tr>
+      <td class="RolesTabHeader">Nazwa roli</td>
+      <td class="RolesTabHeader">Czy można usunać (??)</td>
+      <td class="RolesTabHeader">Usuń</td>
+    </tr>
+	<% @roles.each do |role| %>
+		<tr>
+			<td><%=role.name%></td>
+			<td>
+                   <% if (role.destructible==true) %>
+                   tak
+                   <%  else %>
+                   nie
+                   <%  end %>
+            </td>
+			<td><%=link_to "X", {:action=> "delete", :id => role.id}%></td>
+		</tr>
+	<% end  %>
+</table>

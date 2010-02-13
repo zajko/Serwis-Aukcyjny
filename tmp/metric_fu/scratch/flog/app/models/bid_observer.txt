@@ -1,0 +1,39 @@
+    40.0: flog total
+     8.0: flog/method average
+
+    17.9: BidObserver#update_auction_time  app/models/bid_observer.rb:21
+     4.0:   branch
+     3.6:   auction
+     3.4:   now
+     1.7:   errors_to_base
+     1.7:   auction_end
+     1.5:   assignment
+     1.5:   update_attribute
+     1.5:   advance
+     1.5:   -
+     1.3:   <=
+     1.2:   transaction
+
+     7.7: BidObserver#after_save           app/models/bid_observer.rb:11
+     4.0:   auction
+     1.2:   assignment
+     1.2:   update_auction_time
+     1.2:   calculate_current_price
+     1.2:   save
+
+     6.5: BidObserver#after_update         app/models/bid_observer.rb:16
+     4.0:   auction
+     1.2:   calculate_current_price
+     1.2:   assignment
+     1.2:   save
+
+     6.5: BidObserver#after_delete         app/models/bid_observer.rb:7
+     4.0:   auction
+     1.2:   calculate_current_price
+     1.2:   assignment
+     1.2:   save
+
+     1.4: BidObserver#none
+     1.1:   observe
+     0.3:   lit_fixnum
+

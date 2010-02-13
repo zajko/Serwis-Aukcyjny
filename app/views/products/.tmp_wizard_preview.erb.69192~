@@ -1,0 +1,32 @@
+
+<%= render :partial => "product_options" %>
+<% content_for :stylesheets do %> #step3 {background-color:orange} <% end -%>
+<h1>Tworzenie aukcji</h1>
+<%= render :partial => "progres_bar" %>
+<% if params[:product_type]!=nil%>
+  <% form_for @product,:url => {:action => "wizard_product_create", @controller.product_type => params[@controller.product_type]}  do |form| %>
+          <%= form.error_messages %>
+<h2> Dane produktu:</h2>
+                  <%= render :partial => "show_#{@controller.product_type.classify}" %>
+<h2> Dane aukcji:</h2>
+cena minimalna<br/>
+<%= @product.auction.minimal_price%> <br/>
+minimalna różnica cenowa<br/>
+<%= @product.auction.minimal_bidding_difference%> <br/>
+
+cena kup teraz<br/>
+<%= @product.auction.buy_now_price%> <br/>
+				
+				<%= render :partial => "show" %>
+<h>Wybrane kategorie</h>
+
+<% @product.auction.categories.each do |p|%>
+	<b><%= p.name %></b><br/>
+	
+<%end%>
+
+                  <%= form.submit "Dalej  " %>
+  <% end %>
+<% end %>
+
+

@@ -1,0 +1,12 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "categories/categories_options" %>
+<h1>Lista kategorii</h1>
+
+<ul>
+	<% if @categories
+		@categories.each do |c| %>
+		<li><%=  c.name %>&nbsp;&nbsp;[Tu jest przycisk usuwania kat]</li>
+
+	<%end%>
+	<%end%>
+</ul>

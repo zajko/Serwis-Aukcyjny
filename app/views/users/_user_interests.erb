@@ -1,0 +1,9 @@
+
+<% if Interest.count>0%>
+  <% for  intr in Interest.all-%>
+           <%= check_box_tag "user[interest_ids][]", "#{intr.id}", @user.interests.include?(intr) -%>
+           <%= "#{intr.name}" -%>
+  <% end -%>
+<% else %>
+  Nie posiadasz zainteresowań
+<% end %>

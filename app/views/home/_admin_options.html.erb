@@ -1,0 +1,19 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+    <% if  current_user%>
+            <% if  current_user.is_admin? %>
+
+<div id="menuAdministratora">
+     <ul>
+       <li><b>Administruj:</b></li>
+        <li><%= link_to "Użytkownicy", "/users"  %> </li>
+        <li><%= link_to "Aukcje", "/products/index_admin"  %></li>
+        <li><%= link_to "Role", "/roles"  %></li>
+        <li><%= link_to "Kategorie", "/categories"  %></li>
+     </ul>
+</div>
+            <% end %>
+    <% end %>

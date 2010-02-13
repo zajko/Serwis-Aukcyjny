@@ -1,0 +1,9 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "categories/categories_options" %>
+<h1>Dodaj kategorię</h1>
+<%form_for @category, :url => {:action => "create"} do |category_form|%>
+	<%=category_form.error_messages%>
+	<%=category_form.label :name, "Nazwa:" %>
+	<%=category_form.text_field :name %>
+	<%= category_form.submit "Dodaj"%>
+<%end%>

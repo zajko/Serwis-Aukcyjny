@@ -1,0 +1,126 @@
+   177.2: flog total
+    14.8: flog/method average
+
+    27.9: Bid#check_before_update          app/models/bid.rb:21
+     6.1:   errors
+     6.0:   branch
+     5.3:   add
+     3.6:   ==
+     2.8:   user
+     2.8:   offered_price
+     2.8:   auction
+     1.4:   id
+     1.2:   find
+     1.2:   new_record?
+     1.2:   assignment
+
+    20.9: Bid#none
+     7.7:   validate
+     6.6:   named_scope
+     2.2:   belongs_to
+     2.2:   validates_presence_of
+     1.1:   acts_as_authorization_object
+     1.1:   validates_numericality_of
+
+    19.6: Bid#offered_price_meets_minimal  app/models/bid.rb:105
+     4.8:   minimal_bid
+     2.8:   to_f
+     2.4:   assignment
+     1.8:   to_s
+     1.6:   +
+     1.6:   errors
+     1.6:   offered_price
+     1.4:   add_to_base
+     1.4:   auction_id
+     1.2:   branch
+     1.2:   <
+     1.2:   find
+
+    19.1: Bid#buy_now_can_sell_limited     app/models/bid.rb:70
+     5.4:   auction
+     2.5:   branch
+     1.9:   bids
+     1.7:   not_cancelled
+     1.6:   errors
+     1.5:   number_of_products
+     1.5:   count
+     1.4:   add_to_base
+     1.4:   buy_now_price
+     1.3:   <
+     1.2:   >
+
+    17.8: Bid#update_auction_time          app/models/bid.rb:91
+     4.0:   branch
+     3.6:   auction
+     1.7:   now
+     1.7:   auction_end
+     1.7:   created_at
+     1.6:   raise
+     1.5:   assignment
+     1.5:   update_attribute
+     1.5:   advance
+     1.5:   -
+     1.3:   <=
+     1.2:   transaction
+
+    17.2: Bid#cancell_bid                  app/models/bid.rb:57
+     4.9:   branch
+     3.0:   id
+     2.8:   has_role?
+     2.8:   update_attribute
+     2.5:   assignment
+     1.9:   auction
+     1.7:   user
+     1.5:   errors
+     1.3:   ==
+     1.3:   add_to_base
+
+    14.6: Bid#ask_for_cancell              app/models/bid.rb:40
+     3.1:   errors
+     3.0:   id
+     2.7:   add_to_base
+     2.5:   ==
+     2.5:   branch
+     1.7:   user
+     1.4:   update_attribute
+
+    10.3: Bid#owner_of_auction_cant_bid    app/models/bid.rb:53
+     1.8:   auction
+     1.6:   user
+     1.5:   errors
+     1.4:   id
+     1.4:   user_id
+     1.3:   add_to_base
+     1.2:   ==
+     1.2:   branch
+
+    10.3: Bid#can_bid_now_only_by_buy_now_price app/models/bid.rb:81
+     3.3:   auction
+     2.9:   buy_now_price
+     1.5:   offered_price
+     1.3:   ==
+     1.2:   branch
+     1.2:   >
+
+     8.5: Bid#can_bid_open_auctions        app/models/bid.rb:85
+     1.6:   auction
+     1.5:   errors
+     1.4:   now
+     1.4:   auction_end
+     1.3:   add_to_base
+     1.2:   branch
+     1.2:   <=
+
+     5.5: Bid#update_auction_price         app/models/bid.rb:35
+     2.8:   auction
+     1.4:   calculate
+     1.2:   assignment
+     1.2:   current_price
+
+     5.5: Bid#can_bid_activated_auctions   app/models/bid.rb:88
+     1.5:   errors
+     1.4:   auction
+     1.3:   add_to_base
+     1.2:   branch
+     1.2:   activated
+

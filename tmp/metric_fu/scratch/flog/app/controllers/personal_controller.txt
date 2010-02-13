@@ -1,0 +1,34 @@
+    33.0: flog total
+    11.0: flog/method average
+
+    17.2: PersonalController#bidded        app/controllers/personal_controller.rb:16
+     5.1:   assignment
+     3.2:   current_user
+     2.4:   branch
+     1.8:   not_cancelled
+     1.8:   id
+     1.6:   user_id_equals
+     1.4:   flash
+     1.4:   redirect_to
+     1.4:   all
+     1.3:   auction_id
+     1.2:   map
+     1.2:   id_in
+
+    10.4: PersonalController#auctions      app/controllers/personal_controller.rb:7
+     3.0:   current_user
+     2.6:   assignment
+     1.6:   id
+     1.4:   flash
+     1.4:   redirect_to
+     1.4:   user_id_equals
+     1.2:   all
+     1.2:   branch
+
+     5.3: PersonalController#none
+     1.5:   logged_in
+     1.3:   allow
+     1.3:   deny
+     1.1:   branch
+     1.1:   access_control
+

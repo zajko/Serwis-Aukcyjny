@@ -1,0 +1,9 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "products/product_options" %> 
+<h1> Moje aukcje</h1>
+
+<% if @auctions.count.to_int>0 %>
+  <%= render :partial => "index_more_than_zero_auctions" %>
+<% else %>
+  <%= render :partial => "index_no_auctions" %>
+<% end %>

@@ -1,0 +1,37 @@
+<table>
+	<tr>
+		<td>
+			Show
+		</td>
+		<td>
+			End
+		</td>
+		<td>
+			Current price
+		</td>
+	</tr>
+	<% @auctions.each do |auction|%>
+	<tr>
+		
+		<td>
+			<%=link_to "Show", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%>
+		</td>
+		<td>
+			<%if !auction.auctionable%>
+			<%= auction.auctionable_type%>   <%= auction.auctionable_id%>
+			<%end%>
+			<% if auction.auctionable and auction.auctionable.attributes.has_key?("url") %>
+				<%= auction.auctionable.url %>
+			<%else%>
+				---
+			<%end%>
+		</td>
+		<td>
+			<%=auction.auction_end%>
+		</td>
+		<td>
+			<%=auction.current_price%>
+		</td>
+	</tr>
+	<% end %>
+</table>

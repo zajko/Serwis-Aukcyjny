@@ -1,0 +1,17 @@
+<table id="TabProduct">
+  <tr>
+    <td class="boldColl"><%= form.label :url, "Adres strony:" %></td>
+    <td><%= form.text_field :url, :value=>"http://" %></td>
+  </tr>
+   <tr>
+    <td class="boldColl">Rozmiar bannera:</td>
+    <td>
+    		<i>wysokość: </i>&nbsp;<%= form.text_field :width, :class=>"inputCena" %><br />
+			<i>szerokość:</i>&nbsp;<%= form.text_field :height,:class=>"inputCena" %>
+	</td>
+  </tr>
+  <tr>
+    <td class="boldColl"><%= form.label :frequency, "Częstość wyświetlania:" %></td>
+    <td><%= form.text_field :frequency %></td>
+  </tr>
+</table>

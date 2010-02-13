@@ -1,0 +1,8 @@
+     2.8: flog total
+     2.8: flog/method average
+
+     2.8: UsersHelper#interest             app/helpers/users_helper.rb:2
+     1.4:   interests
+     1.2:   include?
+     1.1:   branch
+

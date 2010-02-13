@@ -1,0 +1,317 @@
+   709.2: flog total
+    29.5: flog/method average
+
+    94.2: ProductsController#update        app/controllers/products_controller.rb:235
+    30.6:   []
+    17.8:   params
+    11.5:   branch
+     9.0:   assignment
+     7.4:   auction
+     4.6:   find
+     3.7:   categories
+     3.3:   class
+     3.3:   id
+     2.8:   update_attributes
+     1.9:   to_i
+     1.9:   to_s
+     1.8:   count
+     1.7:   <<
+     1.7:   classify
+     1.6:   >
+     1.6:   map
+     1.6:   include?
+     1.5:   redirect_to
+     1.5:   const_get
+     1.4:   render
+     1.4:   each
+
+    84.2: ProductsController#wizard_preview app/controllers/products_controller.rb:51
+    24.0:   []
+    17.1:   product_type
+    15.0:   params
+     9.6:   assignment
+     4.6:   auction
+     4.0:   branch
+     2.9:   find
+     1.8:   to_i
+     1.8:   categories
+     1.7:   current_user
+     1.7:   classify
+     1.7:   to_s
+     1.6:   <<
+     1.5:   id
+     1.5:   const_get
+     1.4:   render
+     1.4:   each
+     1.3:   valid?
+     1.3:   new
+     1.3:   build_auction
+
+    59.3: ProductsController#wizard_product_create app/controllers/products_controller.rb:137
+    10.8:   assignment
+     7.6:   product_type
+     7.5:   []
+     6.2:   auction
+     5.3:   params
+     3.6:   to_s
+     3.2:   id
+     3.0:   flash
+     1.7:   user
+     1.7:   class
+     1.7:   current_user
+     1.7:   classify
+     1.5:   redirect_to
+     1.5:   render
+     1.5:   has_role!
+     1.5:   const_get
+     1.3:   page_rank
+     1.3:   save
+     1.3:   find
+     1.3:   url
+     1.3:   to_parse
+     1.3:   new
+     1.3:   delete
+     1.3:   branch
+
+    58.0: ProductsController#activate      app/controllers/products_controller.rb:89
+    11.5:   assignment
+     8.7:   branch
+     8.1:   auctionable
+     6.5:   redirect_to
+     6.1:   params
+     5.5:   []
+     5.1:   flash
+     4.0:   class
+     3.3:   url
+     1.9:   save
+     1.9:   activation_token
+     1.9:   string
+     1.7:   contains
+     1.6:   open
+     1.6:   now
+     1.6:   end
+     1.4:   <
+     1.4:   activated
+     1.3:   ==
+     1.3:   find
+
+    55.9: ProductsController#editing_mine  app/controllers/products_controller.rb:21
+    15.9:   params
+    12.9:   []
+    10.8:   branch
+     5.6:   assignment
+     5.0:   current_user
+     4.4:   has_role?
+     4.1:   ==
+     1.7:   classify
+     1.7:   tableize
+     1.6:   auction
+     1.5:   flash
+     1.5:   const_get
+     1.5:   singularize
+     1.5:   merge
+     1.3:   find
+
+    55.7: ProductsController#bid           app/controllers/products_controller.rb:260
+    12.7:   []
+    10.2:   params
+     5.9:   branch
+     5.7:   id
+     4.9:   assignment
+     4.2:   class
+     3.8:   to_s
+     2.7:   transaction
+     2.2:   product_type
+     2.0:   classify
+     1.8:   const_get
+     1.7:   render
+     1.7:   redirect_to
+     1.7:   gsub
+     1.6:   new
+     1.6:   find
+     1.6:   save
+
+    51.8: ProductsController#order_by      app/controllers/products_controller.rb:215
+    20.9:   params
+    18.8:   []
+     6.0:   +
+     5.6:   assignment
+     2.6:   branch
+     1.6:   negate_order
+     1.5:   merge
+     1.3:   ==
+     1.3:   redirect_to
+
+    44.4: ProductsController#create        app/controllers/products_controller.rb:162
+     7.8:   assignment
+     5.5:   product_type
+     4.3:   []
+     4.2:   auction
+     3.4:   params
+     3.1:   id
+     2.8:   url
+     2.8:   save
+     2.6:   branch
+     1.7:   to_s
+     1.7:   current_user
+     1.7:   classify
+     1.6:   class
+     1.5:   const_get
+     1.4:   render
+     1.4:   redirect_to
+     1.3:   find
+     1.3:   to_parse
+     1.3:   new
+     1.3:   build_auction
+     1.3:   page_rank
+
+    25.0: ProductsController#cancell_bid   app/controllers/products_controller.rb:287
+     6.6:   params
+     5.8:   []
+     3.0:   current_user
+     2.8:   raise
+     2.6:   branch
+     2.6:   assignment
+     2.6:   ==
+     1.3:   redirect_to
+     1.3:   cancell_bid
+     1.3:   find
+
+    24.3: ProductsController#deny_user_access app/controllers/products_controller.rb:298
+     8.9:   flash
+     7.1:   assignment
+     5.8:   redirect_to
+     5.2:   branch
+     2.7:   []
+     2.6:   has_role?
+     1.3:   current_user
+     1.3:   ==
+
+    24.0: ProductsController#delete        app/controllers/products_controller.rb:196
+     3.2:   params
+     2.8:   []
+     2.6:   assignment
+     2.2:   class
+     2.0:   to_s
+     1.8:   tableize
+     1.7:   classify
+     1.6:   id
+     1.6:   singularize
+     1.5:   const_get
+     1.4:   render
+     1.4:   redirect_to
+     1.3:   find
+     1.3:   branch
+     1.3:   destroy
+
+    21.8: ProductsController#ask_for_bid_cancellation app/controllers/products_controller.rb:277
+     4.9:   params
+     4.3:   []
+     3.0:   current_user
+     2.8:   raise
+     2.6:   assignment
+     2.6:   ==
+     2.6:   branch
+     1.3:   redirect_to
+     1.3:   find
+     1.3:   ask_for_cancell
+
+    15.7: ProductsController#prepare_search app/controllers/products_controller.rb:120
+     3.4:   product_type
+     3.3:   params
+     2.9:   []
+     2.6:   assignment
+     1.7:   classify
+     1.5:   const_get
+     1.3:   prepare_search_scopes
+     1.3:   merge!
+     1.3:   branch
+
+    14.1: ProductsController#none
+     4.2:   allow
+     3.2:   logged_in
+     1.6:   all
+     1.4:   deny
+     1.2:   protected
+     1.2:   rescue_from
+     1.2:   branch
+     1.2:   access_control
+
+    13.1: ProductsController#new           app/controllers/products_controller.rb:76
+     5.2:   assignment
+     1.9:   product_type
+     1.7:   classify
+     1.5:   const_get
+     1.3:   build_auction
+     1.3:   find
+     1.3:   auction
+     1.3:   new
+     1.3:   random_string
+     0.4:   lit_fixnum
+
+    12.8: ProductsController#edit          app/controllers/products_controller.rb:229
+     3.5:   params
+     3.1:   []
+     2.6:   assignment
+     1.7:   classify
+     1.5:   const_get
+     1.4:   tableize
+     1.3:   find
+     1.3:   branch
+
+    12.7: ProductsController#show          app/controllers/products_controller.rb:254
+     3.9:   assignment
+     3.3:   params
+     2.9:   []
+     1.7:   classify
+     1.5:   const_get
+     1.3:   branch
+     1.3:   find
+     1.3:   new
+
+    11.1: ProductsController#wizard_summary app/controllers/products_controller.rb:70
+     3.3:   params
+     2.9:   []
+     2.6:   assignment
+     1.7:   classify
+     1.5:   const_get
+     1.3:   find
+     1.3:   branch
+
+     9.8: ProductsController#wizard_product_data app/controllers/products_controller.rb:44
+     3.9:   assignment
+     1.9:   product_type
+     1.7:   classify
+     1.5:   const_get
+     1.3:   new
+     1.3:   find
+     1.3:   build_auction
+
+     9.4: ProductsController#index         app/controllers/products_controller.rb:129
+     3.9:   assignment
+     1.7:   params
+     1.5:   []
+     1.4:   all
+     1.3:   branch
+     1.3:   flash
+     1.3:   prepare_search
+     1.3:   new
+
+     4.9: ProductsController#product_type  app/controllers/products_controller.rb:85
+     1.8:   params
+     1.6:   []
+     1.5:   branch
+     1.3:   underscore
+
+     3.3: main#none
+     2.2:   include
+     1.1:   require
+
+     1.8: ProductsController#negate_order  app/controllers/products_controller.rb:207
+     1.3:   include?
+     1.3:   branch
+
+     1.8: ProductsController#wizart_product_type app/controllers/products_controller.rb:40
+     1.3:   flash
+     1.3:   assignment
+
