@@ -17,7 +17,6 @@ config.action_controller.perform_caching             = false
 #config.action_mailer.raise_delivery_errors = false
 # ActiveRecord::Base.allow_concurrency = true
 
-MyScheduler.initialise
 #  Rails.scheduler = Rufus::Scheduler.start_new
 #  
 #  Rails.auction_to_destroy_queue = Queue.new

@@ -315,7 +315,8 @@ class ProductsController < ApplicationController
     raise "No auction with id = #{bid_id}" if @bid == nil
     raise "Must be logged in" if current_user == nil
     #TODO obsluz te wyjatki jakos
-    @bid.cancell_bid(current_user, params[:decision]);
+    @bid.auction.actualize_current_price if @bid.cancell_bid(current_user, params[:decision]);
+
     redirect_to :action => "show", :id => params[:id], :product_type => params[:product_type]
   end
 

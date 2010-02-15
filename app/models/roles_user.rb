@@ -2,8 +2,8 @@ class RolesUser < ActiveRecord::Base
   set_primary_key :role_id
   set_primary_key :user_id
   validates_presence_of :user_id, :role_id
-  belongs_to :user
-  belongs_to :role
+  belongs_to :user, :dependent => :destroy
+  belongs_to :role, :dependent => :destroy
   validate :cannot_adminize_banned
   validate :cannot_ban_suspend_superuser
   validate :cannot_destroy_superuser, :on => :destroy

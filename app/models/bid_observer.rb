@@ -4,7 +4,11 @@ class BidObserver < ActiveRecord::Observer
   def after_create(model)
     #model.auction.current_price = model.auction.calculate_current_price
   end
-  def after_delete(model)
+  def before_destroy(model)
+    archival_bid = ArchivalBid.from_bid(model)
+    archival_bid.save
+  end
+  def after_destroy(model)
     model.auction.current_price = model.auction.calculate_current_price
     model.auction.save
   end

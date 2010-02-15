@@ -9,14 +9,14 @@ class CreateBids < ActiveRecord::Migration
       t.datetime :bid_created_time, :null=>false
       t.timestamps
     end
-    execute "ALTER TABLE bids ADD CONSTRAINT fk_bids_to_user FOREIGN KEY (user_id) REFERENCES users;"
-    execute "ALTER TABLE bids ADD CONSTRAINT fk_bids_to_auction FOREIGN KEY (auction_id) REFERENCES auctions;"
+    #execute "ALTER TABLE bids ADD CONSTRAINT fk_bids_to_user FOREIGN KEY (user_id) REFERENCES users;"
+    #execute "ALTER TABLE bids ADD CONSTRAINT fk_bids_to_auction FOREIGN KEY (auction_id) REFERENCES auctions;"
   end
   
 
   def self.down
-    execute "ALTER TABLE bids DROP CONSTRAINT fk_bids_to_user;"
-    execute "ALTER TABLE bids DROP CONSTRAINT fk_bids_to_auction;"
+    #execute "ALTER TABLE bids DROP CONSTRAINT fk_bids_to_user;"
+    #execute "ALTER TABLE bids DROP CONSTRAINT fk_bids_to_auction;"
     drop_table :bids
   end
 end

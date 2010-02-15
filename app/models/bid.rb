@@ -9,8 +9,8 @@ class Bid < ActiveRecord::Base
   validate :owner_of_auction_cant_bid
   validate :can_bid_now_only_by_buy_now_price, :message => "Aukcja, w której próbujesz wziąć udział ma charakter kup-teraz. Możesz złożyć ofertę tylko na ustaloną przez sprzedawcę cenę."
   validate :check_before_update
-  belongs_to :user
-  belongs_to :auction
+  belongs_to :user#, :dependent => :destroy
+  belongs_to :auction#, :dependent => :destroy
   named_scope :by_date, :order => "created_at DESC"
   named_scope :not_cancelled, :conditions => { :cancelled => false}
   named_scope :cancelled, :conditions => { :cancelled => true}
@@ -60,11 +60,13 @@ class Bid < ActiveRecord::Base
         decision = false
       end
       if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
-        update_attribute :cancelled, decision
-        update_attribute :asking_for_cancellation, false
+        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+          return true
+        end
         #TODO Może by tak przenieść do innej tabeli ?
       else
         errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
+        return false
       end
   end
   

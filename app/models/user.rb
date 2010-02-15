@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
     c.merge_validates_length_of_password_field_options :message => "Hasło jest za krótkie."
     c.merge_validates_length_of_login_field_options :message => "Login jest za krótki."
   end
-  has_and_belongs_to_many :roles#_users
+  #has_and_belongs_to_many :roles#_users
  # validate_associated :roles
-  has_many :roles_users
-  has_many :bids
-  has_many :articles
+  #has_many :roles_users
+  has_many :bids, :dependent => :destroy
+  has_many :articles , :dependent => :destroy
+  has_many :charges, :as => :chargeable
+  has_many :payments, :as => :payable
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :observed, :class_name => "Auction", :autosave => true#, :readonly => true
   has_many :auctions
@@ -26,7 +28,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :message => "Istnieje użytkownik o takim e-mailu"
   before_save :assign_roles
   accepts_nested_attributes_for :roles
-  accepts_nested_attributes_for :roles_users
+ # accepts_nested_attributes_for :roles_users
 
   def self.per_page
     10 #TODO zrób tak, żeby to było w pliku konfiguracyjnym
@@ -55,7 +57,28 @@ class User < ActiveRecord::Base
     has_role!(:banned) if !has_role?(:superuser)
     #TODO dodaj wyslanie e-maila
   end
-  
+
+  def destroy
+    if(destroy_check)
+      #auctions.destroy_all
+      super
+    else
+      false
+    end
+
+  end
+
+  def destroy_check
+    if bids and bids.not_cancelled.count > 0
+      errors.add("Nie można usunąć użytkownika, który ma aktualne oferty !")
+      return false
+    end
+    #if auctions and auctions.activated.count > 0
+    #  errors.add("Nie można usunąć użytkownika, który ma czynne aukcje")
+    #  return false
+    #end
+    return true
+  end
   
   def banned?
     has_role?(:banned)

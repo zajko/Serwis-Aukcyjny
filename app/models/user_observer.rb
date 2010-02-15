@@ -1,48 +1,52 @@
 class UserObserver < ActiveRecord::Observer
   def before_destroy(model)
-    a = ArchivalUser.from_auction(model)
-      a.save  
+    a = ArchivalUser.from_user(model)
+    a.save
       if a.errors
+        x = ""
         a.errors.each do |e|
-          puts e.to_s +"\n"
+          x = x + e.to_s + "\n"
         end
+        puts x
       end
   end
   def after_destroy(model)
-      #raise "IN observer2"
-      
-      if(User.find_by_id(model.id))
-        if (a = ArchivalUser.find_by_if(model.id))
-          a.destroy
-        end
-      else
-        auctions = ArchivalAuction.find_by_user_id(model.id)
+    if model == nil or model.id.blank?
+      raise "Został usunięty użytkownik bez id ?"
+    end
+      #if(User.find(model.id))  # Tten if to jest jakis powazny edufail, nie wiem czemu to napisalem :P
+      #  if (archival = ArchivalUser.id_equals(model.id))
+      #    archival.destroy
+      #  end
+      #else
+      if( (archival = ArchivalUser.id_equals(model.id).first) == nil)
+        raise "Błąd przy wykonywaniu before_destroy, użytkownik archiwalny nie został utworzony."
+      end
+        auctions = ArchivalAuction.archival_auction_owner_id_equals(model.id).archival_auction_owner_type_equals("User")
         auctions.each do |a|
           #a.archival_user_id = a.user_id
           #a.user_id = nil
-          a.owner = a
+          a.archival_auction_owner = archival
           a.save
         end
-        bids = ArchivalBid.find_by_user_id(model.id)
+        bids = ArchivalBid.archival_bid_owner_id_equals(model.id).archival_bid_owner_type_equals("User")#find_by_user_id(model.id)
         bids.each do |b|
           #b.archival_user_id = b.user_id
           #b.user_id = nil
-          b.owner = a
+          b.archival_bid_owner = archival
           b.save
         end
-        charges = Charge.find_by_user_id(model.id)
+        charges = Charge.charges_owner_id_equals(model.id).charges_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
         charges.each do |charge|
-          charge.archival_user_id = charge.user_id
+          charge.charges_owner = archival#archival_user_id = charge.user_id
           charge.user_id = nil
           charge.save
         end
-        payments = Payment.find_by_user_id(model.id)
+        payments = Payment.payment_owner_id_equals(model.id).payment_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
         payments.each do |payment|
-          payment.archival_user_id = payment.user_id
+          payment.payment_owner = archival#archival_user_id = payment.user_id
           payment.user_id = nil
           payment.save
-        end
-        
-      end
+        end      
   end
 end

@@ -117,13 +117,6 @@ class Auction < ActiveRecord::Base
     }
    }
    
-#   named_scope :by_categories, lambda{ |*categories|
-#    {
-#      :include => :categories,
-#      :conditions => ["categories.id IN (?)", categories.map(&:id)]
-#    }
-#   }
-   
    named_scope :by_auctionable_type, lambda{ |type|
     {
       :conditions => ["activated = (?) AND auctionable_type =(?)", true, type]
@@ -186,6 +179,34 @@ class Auction < ActiveRecord::Base
 #        end
 #      end
    end
+   
+  def winningBids
+    ret = []
+    bids_not_cancelled = bids.not_cancelled.count
+    number = number_of_products > bids_not_cancelled ? bids_not_cancelled : number_of_products
+    bidsArr = bids.not_cancelled.by_date.all
+    number.times do |i|
+        ret << bidsArr[i]
+    end
+    return ret
+  end
+
+  def winningPrices
+    ret = winningBids()
+    ret.map{|x| x.offered_price}
+    if buy_now_price == 0
+      if ret.length > 1
+        ret[0] = ret[1] + minimal_bidding_difference
+      else
+        if ret.length > 0
+          ret[0] = current_price#minimal_price #+ minimal_bidding_difference
+        else
+          ret[0] = 0
+        end
+      end
+    end
+    return ret
+  end
   
   def start_must_be_after_today
     a = Time.now
@@ -221,7 +242,11 @@ class Auction < ActiveRecord::Base
         minimal_price  
       end
   end
-  
+
+  def actualize_current_price()
+    actualize_attribute :current_price, calculate_current_price
+  end
+
   def bid()
     
   end
