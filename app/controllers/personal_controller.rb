@@ -25,6 +25,40 @@ class PersonalController < ApplicationController
     @auctions = Auction.id_in(bids)
   end
 
+  def observed
+    if !current_user
+      flash[:notice] = "Musisz się zalogować, jak tu wszedłeś ?"
+      redirect_to :root
+      return
+    end
+    @auctions = current_user.observed
+  end
+
+  def saldo
+    id = params[:id]
+    if id == nil and current_user
+      id = current_user.id
+      #params[:id] = current_user.id
+    end
+    user = User.find(id)
+    if(user == nil)
+      user = ArchivalUser.find(id)
+      if(user == nil)
+        raise "nie ma takiego użyszkodnika"
+      end
+    end
+    @user_login = user.login
+    @payments = Payment.payment_owner_id_equals(id).all
+    @charges = Charge.charges_owner_id_equals(id).all
+    @saldo = []
+    @saldo << @payments
+    @saldo << @charges
+    @saldo.flatten!
+    if @saldo.length > 0
+      @saldo.sort_by{|x| x.created_at}
+    end
+ end
+ 
  protected
   def deny_user_access
     @user =current_user

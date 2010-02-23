@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20091221202231) do
 
   create_table "archival_bids", :force => true do |t|
     t.integer  "archival_auction_id"
+    t.integer  "archival_biddable_id"
+    t.string   "archival_biddable_type"
     t.integer  "archival_bid_owner_id"
     t.string   "archival_bid_owner_type"
     t.decimal  "offered_price",           :precision => 14, :scale => 4
@@ -57,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20091221202231) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.text     "text"
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

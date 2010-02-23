@@ -48,7 +48,7 @@ class ArchivalUser < ActiveRecord::Base
       #if( (archival = ArchivalUser.id_equals(model.id)) == nil)
       #  raise "Błąd przy wykonywaniu before_destroy, użytkownik archiwalny nie został utworzony."
       #end
-      auctions = model.auctions#ArchivalAuction.archival_auction_owner_id_equals(model.id).archival_auction_owner_type_equals("User")
+      auctions = ArchivalAuction.archival_auction_owner_id_equals(model.id).archival_auction_owner_type_equals("User")
       auctions.each do |a|
         #a.archival_user_id = a.user_id
         #a.user_id = nil
@@ -56,25 +56,26 @@ class ArchivalUser < ActiveRecord::Base
         archival_auction.archival_auction_owner = archival
        # a.save
       end
-      bids = model.bids#ArchivalBid.archival_bid_owner_id_equals(model.id).archival_bid_owner_type_equals("User")#find_by_user_id(model.id)
+      bids = ArchivalBid.archival_bid_owner_id_equals(model.id).archival_bid_owner_type_equals("User")#find_by_user_id(model.id)
       bids.each do |b|
           #b.archival_user_id = b.user_id
           #b.user_id = nil
-        archival_bid = ArchivalBid.from_bid(b)
+        #archival_bid = ArchivalBid.from_bid(b)
         archival_bid.archival_bid_owner = archival
+        archival_bid.save
         #b.save
       end
       charges = model.charges#Charge.charges_owner_id_equals(model.id).charges_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
       charges.each do |charge|
         charge.charges_owner = archival#archival_user_id = charge.user_id
         charge.user_id = nil
-        #charge.save
+        charge.save
       end
       payments = model.payments#Payment.payment_owner_id_equals(model.id).payment_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
       payments.each do |payment|
         payment.payment_owner = archival#archival_user_id = payment.user_id
         payment.user_id = nil
-        #payment.save
+        payment.save
       end
     return archival
   end

@@ -6,6 +6,7 @@ class BidObserver < ActiveRecord::Observer
   end
   def before_destroy(model)
     archival_bid = ArchivalBid.from_bid(model)
+    archival_bid.archival_biddable = model.auction
     archival_bid.save
   end
   def after_destroy(model)

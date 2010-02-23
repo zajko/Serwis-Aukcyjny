@@ -3,7 +3,8 @@ class CreateArchivalBids < ActiveRecord::Migration
     create_table :archival_bids do |t|
       #t.references :archival_user #Jeżeli uzytkownik, który złożył ofertę został już zarchiwizowany
       #t.references :user #Jeżeli uzytkownik, który złożył ofertę został jest w systemie. archival_user i user powinny być rozłączne (jeden z nich powinien być nullem)
-      t.references :archival_auction
+      #t.references :archival_auction
+      t.references :archival_biddable, :polymorphic => true
       t.references :archival_bid_owner, :polymorphic => true
       t.decimal :offered_price, :precision => 14, :scale => 4
       t.boolean :cancelled, :default => false

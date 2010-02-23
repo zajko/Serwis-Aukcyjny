@@ -1,5 +1,5 @@
 class ArchivalBid < ActiveRecord::Base
-  belongs_to :archival_auction
+  belongs_to :archival_biddable, :polymorphic => true
   belongs_to :archival_bid_owner, :polymorphic => true#, :dependent => :destroy
   #has_one :owner, :as => :acrhival_bid_owner
   def self.copy_attributes_between_models(from_model, to_model, options = {})
@@ -18,6 +18,7 @@ class ArchivalBid < ActiveRecord::Base
     ArchivalBid.copy_attributes_between_models(u, ret)
     ret.archival_bid_owner = u.user
     ret.bid_created_time = u.created_at
+    ret.archival_biddable = u.auction
     return ret
   end
 end

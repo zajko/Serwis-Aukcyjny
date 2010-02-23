@@ -1,12 +1,15 @@
 class AuctionObserver < ActiveRecord::Observer
   observe :auction
   def before_destroy(model)
+    a = ArchivalAuction.from_auction(model)
+    a.save
   end
   def after_destroy(model)
     #raise model.bids.count.to_s
-    a = ArchivalAuction.from_auction(model)
+    if((a = ArchivalAuction.id_equals(model.id).first) == nil)
+      raise "Błąd przy wykonywaniu before_destroy, aukcja archiwalna nie została utworzona."
+    end
     #a.charge = model.charge
-    a.save
     #a.charge.save
     if a.errors
         a.errors.each do |e|
@@ -20,9 +23,10 @@ class AuctionObserver < ActiveRecord::Observer
     charge.sum = chargeSum
     charge.charges_owner = model.user
     charge.save
-   # model.bids.destroy
-    model.bids.each do |b|
-      b.destroy
+    bids = ArchivalBid.archival_biddable_id_equals(model.id).archival_biddable_type_equals("Auction")#find_by_user_id(model.id)
+    bids.each do |b|
+      b.archival_biddable = a
+      b.save
     end
      #model.bids.destroy_all
 #    if(Auction.find_by_id(model.id))

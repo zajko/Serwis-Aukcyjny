@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :payments, :as => :payable
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :observed, :class_name => "Auction", :autosave => true#, :readonly => true
-  has_many :auctions
+  has_many :auctions, :dependent => :destroy
   has_and_belongs_to_many :interests
   validates_presence_of :login, :email
   validates_uniqueness_of :login, :message => "Istnieje użytkownik o takiej nazwie"
