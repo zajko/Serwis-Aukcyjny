@@ -14,7 +14,6 @@ class BidObserver < ActiveRecord::Observer
     model.auction.save
   end
   def after_save(model)
-    
     model.auction.current_price = model.auction.calculate_current_price
     update_auction_time model
     if(!model.auction.save)

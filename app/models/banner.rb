@@ -12,7 +12,6 @@ class Banner < ActiveRecord::Base
   validates_numericality_of :y_pos, :greater_than => 0
   named_scope :activated, { :joins => :auction, :conditions => { "auctions.activated" => true }}
   validate :check_before_update, :on => :update
- # validate :destroy_check, :on => :destroy
  
  
   def check_before_update
@@ -20,11 +19,6 @@ class Banner < ActiveRecord::Base
       return true
     end
     @prev_stat = Banner.find(id)
-#    kod Kuby!!!!!!!!!!!
-#    if !@prev_stat
-#      errors.add(:s, "Taki rekord nie istnieje w bazie")
-#      return false
-#    end
     errors.add(:s, "Nie można zmienić pageranku") if @prev_stat.pagerank != pagerank
     errors.add(:s, "Nie można zmienić adresu strony") if @prev_stat.url != url
     errors.add(:s, "Nie można zmienić liczby dziennych użytkowników") if @prev_stat.users_daily != users_daily
@@ -56,10 +50,6 @@ class Banner < ActiveRecord::Base
       :conditions => ["categories.id IN (?)", categories]
     }
   }
-
-  def Banner.searchObject(params)
-    BannerSearch.new(params)
-  end
 
   def polish_name
     "Banner"

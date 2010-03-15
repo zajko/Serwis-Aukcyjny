@@ -23,11 +23,6 @@ class Bid < ActiveRecord::Base
       return true
     end
     @prev_stat = Bid.find(id)
-  #    kod Kuby !!!!!!!!!
-#    if !@prev_stat
-#      errors.add(:s, "Taki rekord nie istnieje w bazie")
-#      return false
-#    end
     errors.add(:s, "Nie można zmienić aukcji oferty") if @prev_stat.auction != auction
     errors.add(:s, "Nie można zmienić użytkownika oferty") if @prev_stat.user != user
     errors.add(:s, "Nie można zmienić kwoty, na którą została wystawiona oferta") if @prev_stat.offered_price != offered_price

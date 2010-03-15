@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def articles
-    @articles
+    @articles 
   end
 
   def show
@@ -24,12 +24,17 @@ class ArticlesController < ApplicationController
   
   def new
     @article = Article.new
+    3.times {
+      @article.attachments.build
+    }
   end
   
   def create
     @article = Article.new(params[:article])
     @article.user = current_user
     current_user.has_role!(:owner, @article)
+    
+    process_file_uploads(@article)
     if @article.save
       flash[:notice] = "Artykuł został dodany"
       #redirect_to @article
@@ -65,6 +70,17 @@ class ArticlesController < ApplicationController
  
   
   protected
+
+  def process_file_uploads(task)
+    
+      i = 0
+      while params[:article][:attachments_attributes][i.to_s] != "" && !params[:article][:attachments_attributes][i.to_s].nil?
+          t = task.attachments.build(:data => params[:article][:attachments_attributes][i.to_s][:data])
+          i += 1
+          
+      end
+  end
+
   def load_article
     if(params[:id] == nil)
       @article = nil
@@ -72,8 +88,5 @@ class ArticlesController < ApplicationController
     end
     @article = Article.find(params[:id])
   end
+
 end
-
-
-
-

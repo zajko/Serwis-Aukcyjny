@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 #  config.gem 'ruby-prof'
   config.gem "rufus-scheduler"
+  config.gem "paperclip"
   config.gem "searchlogic"
   config.gem "authlogic"
   config.gem "authlogic-oid", :lib => "authlogic_openid"

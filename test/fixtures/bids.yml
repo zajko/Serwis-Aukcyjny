@@ -5,3 +5,14 @@
 #
 # two:
 #   column: value
+
+<% for i in 1..1000%>
+  <%=if i%50 == 0 then %>
+    <% for j in 1..5%>
+bid_<%= j %>_auction_<%= i%>:
+  user: user_3
+  auction: auction_<%=i%>
+  price: 100
+    <%end%>
+  <%end%>
+<%end%>

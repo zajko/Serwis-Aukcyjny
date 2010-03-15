@@ -1,4 +1,5 @@
-<% form_for @article do |f| %>
+<% form_for @article, :html => {:multipart => true} do |f| %>
+
   <%= f.error_messages %>
   <p>
     <%= f.label "Tytuł:" %>
@@ -6,10 +7,24 @@
   </p>
   <p>
     <br /><br />
-    <p><%= f.label :text, "Treść:" %>
-	
+  <p><%= f.label :text, "Treść:" %>
+
   </p><%= f.text_area :text, :cols => 100, :class => 'tiny_mce' %>
-    
-   <br /><br />
+
+  <p>Pending Attachments: (Max of <%= Article::Max_Attachments %> each under <%= Article::Max_Attachment_Size/1.megabyte%>MB)
+
+    <% f.fields_for :attachments do |builder| %>
+    <p>
+    <%#= render 'attachment_fields', :f => builder %>
+      <%= builder.file_field :data %>
+    <%#= link_to_remove_fields "remove", builder %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= link_to_add_fields "Add File", f, :attachments %>
+  </p>
+
+  <br /><br />
   <p><%= f.submit "Submit" %></p>
 <% end %>

@@ -23,8 +23,6 @@ class PaymentPolitic < ActiveRecord::Base
   def upper_boundary_validation
     if(upper_boundary == nil || upper_boundary.blank?)
       errors.add(:s, "Może być tylko jedna otwarta polityka") if PaymentPolitic.upper_boundary_null.count > 0
-    #else
-    #  errors.add(:s, "Ograniczenie musi być liczbą lub nullem") if !upper_boundary.isnumeric
     end
     
   end
@@ -37,6 +35,7 @@ class PaymentPolitic < ActiveRecord::Base
   }
   
   named_scope :by_boundary, :order => "upper_boundary ASC"
+  
   def self.charge(auction)
     prices = auction.winningPrices
     politics = PaymentPolitic.actual.by_boundary.all

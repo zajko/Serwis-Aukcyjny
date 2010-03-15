@@ -4,7 +4,6 @@ class Auction < ActiveRecord::Base
   has_and_belongs_to_many :observees, :class_name =>"User", :autosave => true#, :readonly => true
   has_one :charge, :as => :chargeable
   acts_as_authorization_object
-  #has_many :auctions_categories
   has_many :bids, :dependent => :destroy
   belongs_to :user, :class_name => 'User', :foreign_key => "user_id" 
   belongs_to :auctionable, :polymorphic => true, :dependent => :destroy
@@ -12,7 +11,7 @@ class Auction < ActiveRecord::Base
   named_scope :categorised, :joins => :categories, :select => 'Distinct post.*'
   named_scope :expired, :conditions => 'now() - auction_end > INTERVAL \'10 minutes\' '
   accepts_nested_attributes_for :user
-  before_save :assign_roles
+  #before_save :assign_roles
   
   validate :check_before_update, :on => :update
   accepts_nested_attributes_for :categories
@@ -103,12 +102,7 @@ class Auction < ActiveRecord::Base
   end
   
    def buy_now_price_null_or_numerical
-    #     kod Kuby!!!!!!!!!!
-#     if !buy_now_price
-#       return true
-#     else
        return  buy_now_price.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true unless buy_now_price.class == Fixnum
-#     end
    end
    named_scope :activated, :conditions => { :activated => true }
    named_scope :by_type, lambda{ |type|
@@ -137,7 +131,7 @@ class Auction < ActiveRecord::Base
     }
    }
    
-   named_scope :by_auctionable_id, lambda{ |ids|    
+   named_scope :by_auctionable_id, lambda{ |*ids|
     {
       :conditions => ["auctions.auctionable_id IN (?)", ids]#.map(&:name)]
     }
@@ -170,14 +164,7 @@ class Auction < ActiveRecord::Base
    end
    
    def assign_roles
-    # puts "BLA"     
-#     if(new_record?)
-#        if(auctionable)
-#          auctionable.save
-#          self.auctionable_type = auctionable.class
-#          self.auctionable_id = auctionable.id
-#        end
-#      end
+     raise "Ta metoda jest przestarzała, w przyszłych wersjach zostanie usunięta"
    end
    
   def winningBids
@@ -215,8 +202,6 @@ class Auction < ActiveRecord::Base
   
   def user_attributes=(attributes)
     self.user = User.find(attributes)
-    #auction.auctionable = self
-    #raise auction.auctionable.pagerank.to_s
   end
 
   def minimal_bid
@@ -246,57 +231,9 @@ class Auction < ActiveRecord::Base
   def actualize_current_price()
     actualize_attribute :current_price, calculate_current_price
   end
-
-  def bid()
-    
-  end
   
   def self.prepare_search_scopes(params = {})
-    raise "Nie powinieneś korzystać z tej metody NO MORE !"
-   # product_scope = Kernel.const_get(product_type.classify).prepare_search_scopes(params)
-    #products_all = product_scope.all
-    
-    #scope.search.find(:include => product_scope, :conditions => {})
-    #Auction.auctionable_pagerank_gte(0)
-    
-    
-    #raise scope.size.to_s
-    #scope = scope.by_auctionable_type(params[:product_type].classify)
-    
-    #TODO ACHTUNG ! powyższe dwie linijki, jeżeli nie będą mogły sparsować pól minimum_days_until... i maximum_days_until... to po prostu je zignorują bez feedbacku do użyszkodnika
-    
-#    scope = Auction.search(:auctionable_type => params[:product_type].classify, :activated => true)
-#    scope = scope.minimum_days_until_end_of_auction(params[:minimum_days_until_end_of_auction].to_i) if params[:minimum_days_until_end_of_auction].to_i > 0
-#    scope = scope.maximum_days_until_end_of_auction(params[:maximum_days_until_end_of_auction].to_i) if params[:maximum_days_until_end_of_auction].to_i > 0
-#    if(params != nil and params[:categories_attributes] != nil)
-#      temp = params[:categories_attributes].map {|t| t.to_i}#.reject {|k, v| v.to_i == 0}.to_a.map{|k, v| k}
-#      if(temp != nil && temp.size > 0)
-#        scope = scope.by_categories_id(*temp)
-#      end
-#    end
-#    if params[:order_by] && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
-#      scope = scope.order_scope( params[:order_by] ) 
-#      elems = Kernel.const_get(params[:product_type].classify).prepare_search_scopes(params).all.map{|t| t.id}
-#      scope = scope.by_auctionable_id(elems)
-#      elems = scope.all.map {|t| t.auctionable }
-#    else
-#      elems = Kernel.const_get(params[:product_type].classify).prepare_search_scopes(params)
-#      elems.by_auctions_id(scope.all.map{|t| t.id})
-#      elems = elems.all
-#    end
-    
-    
-    
-    
-    #TODO to jest horrendalnie niewydajne... o ile w ogole bedzie dzialac
-   #scope.order_by = :created_at
-   #scope.order_as = "DESC"
-    
-    return elems
-
-
-
-
+    raise "Nie powinieneś korzystać z tej metody NO MORE ! Ma ona zostać usunięta"
   end
   
   
