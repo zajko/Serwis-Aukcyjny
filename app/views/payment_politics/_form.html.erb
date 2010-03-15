@@ -1,24 +1,23 @@
-<% form_for @payment_politic do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :obowiązuje_od %><br />
     <%= f.datetime_select :from %>
-  </p>
+  </p><br />
   <p>
     <%= f.label :obowiązuje_do %><br />
     <%= f.datetime_select :to %>
-  </p>
+  </p><br />
   <p>
     <%= f.label :podstawa_zapłaty %><br />
     <%= f.text_field :base_payment %>
-  </p>
+  </p><br />
   <p>
     <%= f.label :górna_granica %><br />
     <%= f.text_field :upper_boundary %>
-  </p>
+  </p><br />
   <p>
     <%= f.label :procent %><br />
     <%= f.text_field :percentage %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+  </p><br />
+  <p><%= f.submit "Dodaj" %></p>
+
