@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+				
+<html>
+    <head>
+    <title>E-reklamy - aukcje reklamowe</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <%= javascript_include_tag 'jquery', 'nested_form' %>
+
+    <%= stylesheet_link_tag "style" %>
+    <style type="text/css"><%= yield :stylesheets %></style>
+	<%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "tiny_mce/tiny_mce" %>
+            <script type="text/javascript" >
+                    tinyMCE.init({
+                            mode:"textareas",
+                            editor_selector : "tiny_mce"
+                    });
+                    function setAuction(frm) /* wyœô âœô ¥cz pola kup-teraz */
+                    {
+						 frm.ch_buyNow.checked=false;  /* wyœô âœô ¥cz checkbox*/
+                         frm.minimal_price.disabled=false;                         
+                         frm.minimal_bidding_difference.disabled=false;
+                         frm.buy_now_price.disabled=true;
+                    }
+
+                    function setBuyNow(frm)  /*wyœô âœô ¥cz pola licytacji*/
+                    {
+                          frm.ch_auction.checked=false; /* wyœô âœô ¥cz checkbox*/
+						  frm.site_link_auction_attributes_buy_now_price.disabled=false; 
+                          frm.minimal_price.disabled=true;
+                          frm.minimal_price.value=0.0;
+                          frm.minimal_bidding_difference.disabled=true;
+                    }
+
+
+
+            </script>
+
+    </head>
+
+    <body>
+            <div class="meta">
+                    <div class="metalinks">
+                            <a href="#"><img src="/images/meta1.gif" alt="" width="15" height="14" /></a>
+                            <a href="#"><img src="/images/meta2.gif" alt="" width="17" height="14" /></a>
+                            <a href="#"><img src="/images/meta3.gif" alt="" width="17" height="14" /></a>
+                            <a href="#"><img src="/images/meta4.gif" alt="" width="15" height="14" /></a>
+                    </div>
+                    <p><%= render :partial => "home/userForm" %></p>																																															<div style="position:absolute;top:1px;left:1px;height:0px;width:0px;overflow:hidden"><h1><a href="http://www.greatdirectories.org/free.html">best free directories</a></h1><h1><a href="http://www.bestfreetemplates.org">best free templates</a></h1></div>
+            </div>
+
+            <div id="header">
+                    <a href="index.html" class="logo"><img src="/images/logo.jpg" alt="setalpm" width="149" height="28" /></a>
+                    <span class="slogan">Twoje aukcje reklamowe</span>
+                    <ul id="menu">
+                            <li><li><%= link_to "Strona gœô âówna", "/home"  %> </li>                            
+                            <li><%= link_to "Moje aukcje", "/personal/index" %> </li>
+                            <li><%= link_to "Ustawienia konta", account_path  %> </li>
+                            <li><%= link_to "Pomoc", "/help"  %></li>
+                            <li class="last"><%= link_to "Rejestracja", new_account_path  %></li>
+                    </ul>
+            </div>
+            <div id="content">
+              <p class="notice"><%= flash[:notice] %></p>
+              
+              <%= yield :search_box %>
+              <%= render :partial => "home/admin_options" %>
+
+                <%#*<div id="panels">%>
+                    <div id="leftPanel">
+                       <%= yield :optional_menus %>
+
+                    </div>
+
+                    <div id="rightPanel">
+                         <%= yield %>
+                    </div>
+
+                </div>
+
+
+
+                    <div id="info">
+                            <div>
+                                    <img src="/images/title5.gif" alt="" width="160" height="26" />
+                                    <ul>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Massa ac laoreet iaculipede</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                    </ul>
+                            </div>
+                            <div>
+                                    <img src="/images/title6.gif" alt="" width="160" height="26" />
+                                    <ul>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Massa ac laoreet iaculipede</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                    </ul>
+                            </div>
+                            <div>
+                                    <img src="/images/title7.gif" alt="" width="160" height="26" />
+                                    <ul>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Massa ac laoreet iaculipede</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                    </ul>
+                            </div>
+                            <div>
+                                    <img src="/images/title8.gif" alt="" width="160" height="26" />
+                                    <ul>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Massa ac laoreet iaculipede</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                            <li><a href="#">Maecenas hendrerit</a></li>
+                                            <li><a href="#">Convallis nonummy tellus</a></li>
+                                            <li><a href="#">In tincidunt mauris</a></li>
+                                    </ul>
+                            </div>
+                    </div>
+            </div>
+            <div id="footer">
+                    Korzystajœô ¥c z serwisu akceptujesz  <%= link_to "Regulamin", "/regulamin/index" %>.
+            </div>
+    </body>
+</html>
+
