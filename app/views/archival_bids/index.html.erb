@@ -16,8 +16,8 @@
       <td><%=h archival_bid.offered_price %> zł</td>
       <td><%=h archival_bid.cancelled %></td>
       <td><%=h archival_bid.bid_created_time.strftime("%d-%m-%Y godz.%H:%m")  %></td>
-      <td><%= link_to "Show", archival_bid %> | 
-      <%= link_to "Destroy", archival_bid, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Pokaż", archival_bid %> |
+      <%= link_to "Usuń", archival_bid, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

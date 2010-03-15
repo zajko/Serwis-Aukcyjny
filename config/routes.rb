@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :articles
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -44,10 +44,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resource :product
   #map.root :controller => "user_sessions", :action => "new"
-  map.root :controller => :home, :action => "index"
+ map.root :controller => :home, :action => "index"
+ #map.root :controller => :articles
   map.resource :account, :controller => "users"
-  map.resource :category, :controller => "categories"
   
+  map.resource :category, :controller => "categories"
+ map.resources :articles
   map.resources :users
   map.resources :role
   map.resources :products
@@ -55,8 +57,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :help
   map.resources :auctions
   map.resources :regulamin
+  map.resources :payment_politics
+  map.resources :archival_bids
+  map.resources :archival_auctions
+  map.resources :new_archival_auctions
+  
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.connect ':controller/:action/:id.:format'
+  
 end
 
