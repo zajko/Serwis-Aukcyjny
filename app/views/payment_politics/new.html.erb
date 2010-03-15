@@ -1,5 +1,8 @@
-< title "New Payment Politic" %>
+<%= render :partial => "payment_politics/payment_politics_options" %>
+<%= render :partial=> "products/search_box_simple" %>
 
-<%= render :partial => 'form' %>
+<h1> Nowa polityka płatności </h1>
+<% form_for @payment_politic ,:url => {:action => "create"} do |f| %>
+<%= render :partial => 'form', :locals=>{:f=>f} %>
+<% end %>
 
-<p><%= link_to "Back to List", payment_politics_path %></p>

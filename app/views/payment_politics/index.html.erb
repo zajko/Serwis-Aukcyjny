@@ -1,12 +1,14 @@
-< title "Payment Politics" %>
+<%= render :partial => "payment_politics/payment_politics_options" %>
+<%= render :partial=> "products/search_box_simple" %>
+<h1>Zarządzanie politykami</h1>
 
-<table>
+<table id="TabFullSize">
   <tr>
-    <th>From</th>
-    <th>To</th>
-    <th>Base Payment</th>
-    <th>Upper Boundary</th>
-    <th>Percentage</th>
+    <td class="header">From</td>
+    <td class="header">To</td>
+    <td class="header">Base Payment</td>
+    <td class="header">Upper Boundary</td>
+    <td class="header">Percentage</td>
   </tr>
   <% for payment_politic in @payment_politics %>
     <tr>
@@ -21,5 +23,3 @@
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Payment Politic", new_payment_politic_path %></p>

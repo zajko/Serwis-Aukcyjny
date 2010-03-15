@@ -1,29 +1,23 @@
-<% title "Archival Bids" %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<h1> Zarządzaj archiwalnymi ofertami kupna</h1>
 
-<table>
+<table id="TabFullSize">
   <tr>
-    <th>Archival Auction</th>
-    <th>Archival Bid Owner</th>
-    <th>Archival Bid Owner Type</th>
-    <th>Offered Price</th>
-    <th>Cancelled</th>
-    <th>Asking For Cancellation</th>
-    <th>Bid Created Time</th>
+    <td class="header">Użytkownik</td>
+    <td class="header">Oferowana cena</td>
+    <td class="header">Anulowane</td>
+    <td class="header">Data złożenia oferty</td>
+    <td class="header">Opcje</td>
+    
   </tr>
   <% for archival_bid in @archival_bids %>
     <tr>
-      <td><%=h archival_bid.archival_auction_id %></td>
-      <td><%=h archival_bid.archival_bid_owner_id %></td>
-      <td><%=h archival_bid.archival_bid_owner_type %></td>
-      <td><%=h archival_bid.offered_price %></td>
+      <td><%=h archival_bid.archival_bid_owner_id %> (<%=h archival_bid.archival_bid_owner_type %>)</td>
+      <td><%=h archival_bid.offered_price %> zł</td>
       <td><%=h archival_bid.cancelled %></td>
-      <td><%=h archival_bid.asking_for_cancellation %></td>
-      <td><%=h archival_bid.bid_created_time %></td>
-      <td><%= link_to "Show", archival_bid %></td>
-      <td><%= link_to "Edit", edit_archival_bid_path(archival_bid) %></td>
-      <td><%= link_to "Destroy", archival_bid, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=h archival_bid.bid_created_time.strftime("%d-%m-%Y godz.%H:%m")  %></td>
+      <td><%= link_to "Show", archival_bid %> | 
+      <%= link_to "Destroy", archival_bid, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Archival Bid", new_archival_bid_path %></p>
