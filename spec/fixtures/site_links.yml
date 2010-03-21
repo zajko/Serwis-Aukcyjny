@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+#
+#one:
+#  url: MyString
+#  pagerank: 1
+#  users_daily: 1
+#
+#two:
+#  url: MyString
+#  pagerank: 1
+#  users_daily: 1
+
+<% for i in 1..25 %>
+site_link_<%=i%>:
+ url: <%= "http://www.o#{i}.pl" %>
+ pagerank: <%=(( 6* (i/25.0) + 2)).to_i.to_s %>
+ users_daily: <%= ( 500* (i/25.0)).to_i %>
+<%end%>
+
+not_activated_site_link:
+ url: <%= "http://www.o2.pl" %>
+ pagerank: <%=(( 6* + 2)).to_i.to_s %>
+ users_daily: <%= ( 500).to_i %>
+
+closed_site_link:
+ url: <%= "http://www.o2.pl" %>
+ pagerank: <%=(( 6* + 2)).to_i.to_s %>
+ users_daily: <%= ( 500).to_i %>
+
+buy_now_site_link:
+ url: <%= "http://www.o2.pl" %>
+ pagerank: <%=(( 6* + 2)).to_i.to_s %>
+ users_daily: <%= ( 500).to_i %>

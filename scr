@@ -1,0 +1,7 @@
+a=("bid")
+
+for x in "${a[@]}"
+do
+	touch "spec/models/${x}_spec.rb"
+	cp "test/fixtures/${x}s.yml" "spec/fixtures/${x}s.yml"
+done

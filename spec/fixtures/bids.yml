@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+<% for i in 1..100%>
+    <% for j in 1..5%>
+bid_<%= j %>_auction_<%= i%>:
+  user: user_3
+  auction: auction_<%=i%>
+  offered_price:  <%= 100.0 + i / 100.0%>
+  bid_created_time: <%= Time.now()  %>
+    <%end%>
+<%end%>

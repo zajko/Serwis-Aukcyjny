@@ -175,18 +175,19 @@ class Auction < ActiveRecord::Base
     number.times do |i|
         ret << bidsArr[i]
     end
-    return ret
+    return bidsArr
   end
 
   def winningPrices
+    @current_price = calculate_current_price
     ret = winningBids()
-    ret.map{|x| x.offered_price}
+    ret = ret.map{|x| x.offered_price}
     if buy_now_price == 0
       if ret.length > 1
         ret[0] = ret[1] + minimal_bidding_difference
       else
         if ret.length > 0
-          ret[0] = current_price#minimal_price #+ minimal_bidding_difference
+          ret[0] = @current_price#minimal_price #+ minimal_bidding_difference
         else
           ret[0] = 0
         end
@@ -229,7 +230,7 @@ class Auction < ActiveRecord::Base
   end
 
   def actualize_current_price()
-    actualize_attribute :current_price, calculate_current_price
+    @current_price = calculate_current_price
   end
   
   def self.prepare_search_scopes(params = {})
