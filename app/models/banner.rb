@@ -10,6 +10,7 @@ class Banner < ActiveRecord::Base
   validates_numericality_of :height, :greater_than => 0
   validates_numericality_of :x_pos, :greater_than => 0
   validates_numericality_of :y_pos, :greater_than => 0
+  
   named_scope :activated, { :joins => :auction, :conditions => { "auctions.activated" => true }}
   validate :check_before_update, :on => :update
  
@@ -51,6 +52,14 @@ class Banner < ActiveRecord::Base
     }
   }
 
+  def save()
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
+  end
+  
   def polish_name
     "Banner"
   end

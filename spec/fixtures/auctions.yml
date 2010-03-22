@@ -1,0 +1,80 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+<% for i in 1..100%>
+auction_<%= i%>:
+ user: user_1
+ start: <%= Time.now()+(15 - i/2).days %>
+ auction_end: <%= Time.now() + (i/3).days %>
+ minimal_price: <%= 10.0 + 20.0*((i%5)/5.0)%>
+ minimal_bidding_difference: <%= 5 + 1.2* Math.log(i)%>
+ time_of_service: <%= Math.log(i * 5) %>
+ activated: true
+ created_at: <%=Time.now%>
+ auctionable: <%= case i
+                    when 1..25
+                      "site_link_#{i%26} (SiteLink)" #
+                    when 26..50
+                      "pop_up_#{(i-26)%25 + 1} (PopUp)" #
+                    when 51..75
+                      "sponsored_article_#{(i-51)%25 + 1} (SponsoredArticle)" #5
+                    when 76..100
+                      "banner_#{(i-76)%25 + 1} (Banner)" #"
+                  end
+ %>
+<%end%>
+
+
+buy_now_auction:
+ user: user_1
+ start: <%= Time.now()-(1).days %>
+ auction_end: <%= Time.now() + 10.days %>
+ buy_now_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now%>
+ auctionable: <%="buy_now_site_link (SiteLink)"%>
+
+buy_now_auction_with_bid:
+ user: user_1
+ start: <%= Time.now()-(1).days %>
+ auction_end: <%= Time.now() + 10.days %>
+ buy_now_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now%>
+ auctionable: <%="buy_now_with_bid_site_link (SiteLink)"%>
+
+not_activated_auction:
+ user: user_1
+ start: <%= Time.now()+(15).days %>
+ auction_end: <%= Time.now() + 40.days %>
+ minimal_price: <%= 30%>
+ time_of_service: 50
+ activated: false
+ created_at: <%=Time.now%>
+ auctionable: <%="not_activated_site_link (SiteLink)"%>
+
+closed_auction:
+ user: user_1
+ start: <%= Time.now()-(15).days %>
+ auction_end: <%= Time.now() - 5.days %>
+ minimal_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now - 20.days%>
+ auctionable: <%="closed_site_link (SiteLink)"%>
+
+closed_auction_with_bid:
+ user: user_1
+ start: <%= Time.now()-(15).days %>
+ auction_end: <%= Time.now() - 5.days %>
+ minimal_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now - 20.days%>
+ auctionable: <%="closed_site_link_with_bid (SiteLink)"%>

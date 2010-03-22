@@ -63,7 +63,15 @@ class SponsoredArticle < ActiveRecord::Base
     "Artykuł sponsorowany"
   end
 end
+def save
+    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
 
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
+  end
 
 class SponsoredArticleSearch < Tableless
 

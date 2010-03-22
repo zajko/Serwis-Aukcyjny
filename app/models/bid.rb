@@ -7,7 +7,6 @@ class Bid < ActiveRecord::Base
   validate :can_bid_open_auctions #, :message => "Niestety, ta aukcja już się zakończyła"
   validate :can_bid_activated_auctions
   validate :owner_of_auction_cant_bid
-  validate :can_bid_now_only_by_buy_now_price, :message => "Aukcja, w której próbujesz wziąć udział ma charakter kup-teraz. Możesz złożyć ofertę tylko na ustaloną przez sprzedawcę cenę."
   validate :check_before_update
   belongs_to :user#, :dependent => :destroy
   belongs_to :auction#, :dependent => :destroy
@@ -17,7 +16,17 @@ class Bid < ActiveRecord::Base
   named_scope :by_offered_price, :order => "offered_price DESC, created_at ASC"
   named_scope :by_created_at_asc, :order => "created_at ASC"
   named_scope :by_created_at_desc, :order => "created_at DESC"
-  
+  def save
+    errors.add(:s, "Musi być zdefiniowany właściciel oferty") if user == nil
+    errors.add(:s, "Musi być zdefiniowana aukcja na którą wystawiono oferŧę") if auction == nil
+    errors.add(:s, "Aukcja, w której próbujesz wziąć udział ma charakter kup-teraz. Możesz złożyć ofertę tylko na ustaloną przez sprzedawcę cenę.") if auction and auction.buy_now_price > 0 and  auction.buy_now_price != offered_price
+
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
+  end
   def check_before_update
     if new_record?
       return true
@@ -49,21 +58,29 @@ class Bid < ActiveRecord::Base
   def owner_of_auction_cant_bid
       errors.add_to_base("Właściciel aukcji nie może licytować swojej aukcji") if user_id == auction.user.id
   end
-  
-  def cancell_bid(cancelling_user, decision = false)
-      if ! decision
-        decision = false
-      end
-      if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
-        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+
+  def cancell_bid (decision = false)
+    return false if auction.auction_end < Time.now()
+    if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
           return true
-        end
-        #TODO Może by tak przenieść do innej tabeli ?
-      else
-        errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
-        return false
-      end
+    end
   end
+
+#  def cancell_bid(cancelling_user, decision = false) # tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera
+#      raise "tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera"
+#      if ! decision
+#        decision = false
+#      end
+#      if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
+#        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+#          return true
+#        end
+#        #TODO Może by tak przenieść do innej tabeli ?
+#      else
+#        errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
+#        return false
+#      end
+#  end
   
   def buy_now_can_sell_limited
     if auction.buy_now_price > 0
@@ -75,9 +92,6 @@ class Bid < ActiveRecord::Base
   def inform_interesants
     #TODO Powiadom właściciela o złożonej ofercie
     #TODO Jeżeli jest kupt_teraz, powiadom kupującego o danych sprzedającego 
-  end
-  def can_bid_now_only_by_buy_now_price
-    auction.buy_now_price == offered_price if auction.buy_now_price > 0
   end
   
   def can_bid_open_auctions

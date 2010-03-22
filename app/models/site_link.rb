@@ -19,12 +19,6 @@ class SiteLink < ActiveRecord::Base
       return true
     end
     @prev_stat = SiteLink.find(id)
-#    kod Kuby!!!!!!!!!!
-#    if !@prev_stat
-#
-#      errors.add(:s, "Taki rekord nie istnieje w bazie")
-#      return false
-#    end
     errors.add(:s, "Nie można zmienić pageranku") if @prev_stat.pagerank != pagerank
     errors.add(:s, "Nie można zmienić adresu strony") if @prev_stat.url != url
     errors.add(:s, "Nie można zmienić liczby dziennych użytkowników") if @prev_stat.users_daily != users_daily
@@ -44,10 +38,16 @@ class SiteLink < ActiveRecord::Base
     :order=> "auction."+scope
   }
   }
-  
-  def SiteLink.searchObject(params)
-    #SiteLinkSearch.new(params)
+  def save
+    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
+
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
   end
+  
   named_scope :pagerank_gte, lambda{ |pagerank|
     {
       :conditions => ["site_links.pagerank >= (?)", pagerank]

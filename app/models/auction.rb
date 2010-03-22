@@ -26,13 +26,14 @@ class Auction < ActiveRecord::Base
   attr_accessible :user_attributes
   attr_accessible :user
   
-  validates_presence_of :user_id, :message => "BŁĄD ! nie da się stworzyć aukcji bez właściciela" 
+  validates_presence_of :user_id, :message => "Nie da się utworzyć aukcji bez właściciela."
   validates_presence_of :start, :auction_end
+  validates_presence_of :auctionable, :message => "Nie da się zapisać aukcji bez produktu."
   validate :start_must_be_after_today, :message => "Aukcja musi zacząć się najwcześniej od jutra"
   validate :start_must_be_before_end, :message => "Początek aukcji musi być przed jej końcem"
   validates_numericality_of :buy_now_price, :greater_than_or_equal_to => 0
   validates_numericality_of :minimal_price, :greater_than_or_equal_to => 0
-  validate :limited_bid_count_if_buy_now_auction, :message => "Nie można już złożyc oferty na tą aukcję"
+  
  # before_destroy :destroy_check
   
   def destroy
@@ -74,6 +75,7 @@ class Auction < ActiveRecord::Base
     errors.add(:s, "Nie można zmienić właściciela aukcji") if @prev_stat.user_id != user_id
     errors.add(:s, "Nie można zmienić tokenu aukcji") if @prev_stat.activation_token != activation_token
     errors.add(:s, "Nie można zmienić produktu aukcji") if @prev_stat.auctionable_type != auctionable_type or @prev_stat.auctionable_id != auctionable_id
+    errors.add(:s, "Nie można zmienić daty końca aukcji zakończonej aukcji") if @prev_stat.auction_end < Time.now and @prev_stat.auction_end != auction_end
     if bids.not_cancelled.count > 0
       errors.add(:s, "Nie można zmniejszyć liczby wystawionych przedmiotów gdy są nieanulowane aukcje") if @prev_stat.number_of_products > number_of_products
       errors.add(:s, "Nie można zmienić ceny kup teraz gdy są nieanulowane aukcje") if @prev_stat.buy_now_price != buy_now_price
@@ -175,18 +177,19 @@ class Auction < ActiveRecord::Base
     number.times do |i|
         ret << bidsArr[i]
     end
-    return ret
+    return bidsArr
   end
 
   def winningPrices
+    @current_price = calculate_current_price
     ret = winningBids()
-    ret.map{|x| x.offered_price}
+    ret = ret.map{|x| x.offered_price}
     if buy_now_price == 0
       if ret.length > 1
         ret[0] = ret[1] + minimal_bidding_difference
       else
         if ret.length > 0
-          ret[0] = current_price#minimal_price #+ minimal_bidding_difference
+          ret[0] = @current_price#minimal_price #+ minimal_bidding_difference
         else
           ret[0] = 0
         end
@@ -229,13 +232,40 @@ class Auction < ActiveRecord::Base
   end
 
   def actualize_current_price()
-    actualize_attribute :current_price, calculate_current_price
+    @current_price = calculate_current_price
   end
   
   def self.prepare_search_scopes(params = {})
     raise "Nie powinieneś korzystać z tej metody NO MORE ! Ma ona zostać usunięta"
   end
-  
-  
+
+  def activate
+    if auction_end < Time.now
+      errors.add(:s, "Aukcja już się zakończyła.")
+      return false
+    end
+    if activated
+      return true
+    end
+    if !activated 
+        s ||= auctionable.url
+        begin
+          open(auctionable.url) {
+            |f|
+            if f.string.contains(activation_token)
+              activated = true
+              save
+              #TODO Dodanie aukcji do kolejki w demonie zamykającym aukcje
+              return true
+            end
+          }
+        rescue
+          errors.add(:s, "Podany w aukcji url jest niepoprawny lub nie odpowiada.")
+          return false
+        end
+    else
+      return true
+    end
+  end
 
 end
