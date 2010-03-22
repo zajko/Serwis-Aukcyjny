@@ -12,7 +12,7 @@
 
 <% for i in 1..25 %>
 site_link_<%=i%>:
- url: <%= "http://www.o#{i}.pl" %>
+ url: <%= "http://www.o2.pl" %>
  pagerank: <%=(( 6* (i/25.0) + 2)).to_i.to_s %>
  users_daily: <%= ( 500* (i/25.0)).to_i %>
 <%end%>
@@ -27,7 +27,17 @@ closed_site_link:
  pagerank: <%=(( 6* + 2)).to_i.to_s %>
  users_daily: <%= ( 500).to_i %>
 
+closed_site_link_with_bid:
+ url: <%= "http://www.o2.pl" %>
+ pagerank: <%=(( 6* + 2)).to_i.to_s %>
+ users_daily: <%= ( 500).to_i %>
+
 buy_now_site_link:
+ url: <%= "http://www.o2.pl" %>
+ pagerank: <%=(( 6* + 2)).to_i.to_s %>
+ users_daily: <%= ( 500).to_i %>
+
+buy_now_with_bid_site_link:
  url: <%= "http://www.o2.pl" %>
  pagerank: <%=(( 6* + 2)).to_i.to_s %>
  users_daily: <%= ( 500).to_i %>

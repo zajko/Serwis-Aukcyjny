@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+owner:
+    name: owner
+
+not_activated:
+    name: not_activated
+
+admin:
+    name: admin
+    id: 99
+
+banned:
+    name: banned
+    id: 10
+
+superuser:
+    name: superuser
+
+testowa:
+    name: testowa

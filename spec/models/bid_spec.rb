@@ -12,6 +12,15 @@ describe Bid do
     b.save.should == false
   end
 
+  it "should save with user" do
+    b = Bid.new
+    b.offered_price = 10000
+    b.auction = auctions(:auction_1)
+    b.user = users(:user_2)
+    b.bid_created_time=Time.now()
+    b.save.should == true
+  end
+
   it "shouldn`t save without auction" do
     b = Bid.new
     b.offered_price = 10000
@@ -19,6 +28,15 @@ describe Bid do
     b.user = users(:user_1)
     b.bid_created_time=Time.now()
     b.save.should == false
+  end
+
+  it "should save with auction" do
+    b = Bid.new
+    b.offered_price = 10000
+    b.auction = auctions(:auction_1)
+    b.user = users(:user_2)
+    b.bid_created_time=Time.now()
+    b.save.should == true
   end
 
   it "shouldn`t save when user is owner of auction" do
@@ -68,6 +86,15 @@ describe Bid do
     b.save.should == false
   end
 
+  it "should allow to bid on opened auctions" do
+    b=Bid.new
+    b.auction=auctions(:auction_50)
+    b.offered_price =10000
+    b.user=users(:user_2)
+    b.bid_created_time=Time.now()
+    b.save.should == true
+  end
+
   it "shouldn`t add to buy now auction when with wrong offered price" do
     a = auctions(:buy_now_auction)
     b=Bid.new
@@ -77,8 +104,8 @@ describe Bid do
     b.bid_created_time=Time.now()
     b.save.should == false
   end
-
-  it "should add to buy now auction when with correct offered price" do
+  
+  it "should add to buy now auction when with correct offered price and not sold out products present" do
     a = auctions(:buy_now_auction)
     b=Bid.new
     b.auction=a
@@ -88,6 +115,17 @@ describe Bid do
     b.save.should == true
   end
 
+  it "shouldn't add to buy now auction when all products sold out" do
+    a = auctions(:buy_now_auction_with_bid)
+    b=Bid.new
+    b.auction=a
+    b.offered_price = a.buy_now_price
+    b.user = users(:user_2)
+    b.bid_created_time=Time.now()
+    b.save.should == false
+  end
+
+
   it "shouldn't be addable when not meeting minimal bidding price" do
     a = auctions(:auction_1)
     b=Bid.new
@@ -96,6 +134,11 @@ describe Bid do
     b.user = users(:user_2)
     b.bid_created_time=Time.now()
     b.save.should == false
+  end
+
+  it "shouldn`t cancell when added to a closed auction" do
+    b = bids(:bid_for_closed_auction_with_bid)
+    b.cancell_bid().should == false
   end
 
   it "should be addable when meeting minimal bidding price" do

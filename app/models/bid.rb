@@ -58,21 +58,29 @@ class Bid < ActiveRecord::Base
   def owner_of_auction_cant_bid
       errors.add_to_base("Właściciel aukcji nie może licytować swojej aukcji") if user_id == auction.user.id
   end
-  
-  def cancell_bid(cancelling_user, decision = false)
-      if ! decision
-        decision = false
-      end
-      if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
-        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+
+  def cancell_bid (decision = false)
+    return false if auction.auction_end < Time.now()
+    if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
           return true
-        end
-        #TODO Może by tak przenieść do innej tabeli ?
-      else
-        errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
-        return false
-      end
+    end
   end
+
+#  def cancell_bid(cancelling_user, decision = false) # tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera
+#      raise "tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera"
+#      if ! decision
+#        decision = false
+#      end
+#      if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
+#        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+#          return true
+#        end
+#        #TODO Może by tak przenieść do innej tabeli ?
+#      else
+#        errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
+#        return false
+#      end
+#  end
   
   def buy_now_can_sell_limited
     if auction.buy_now_price > 0

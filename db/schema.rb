@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100223175922) do
+ActiveRecord::Schema.define(:version => 20100322170300) do
 
   create_table "archival_auctions", :force => true do |t|
     t.integer  "archival_auction_owner_id"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20100223175922) do
     t.integer  "height",                                                     :null => false
     t.integer  "x_pos",                                                      :null => false
     t.integer  "y_pos",                                                      :null => false
-    t.integer  "auction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "frequency",   :precision => 5, :scale => 4, :default => 1.0
@@ -244,7 +243,6 @@ ActiveRecord::Schema.define(:version => 20100223175922) do
     t.string   "url",         :null => false
     t.integer  "pagerank",    :null => false
     t.integer  "users_daily"
-    t.integer  "auction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -255,7 +253,6 @@ ActiveRecord::Schema.define(:version => 20100223175922) do
     t.integer  "users_daily"
     t.integer  "words_number",    :default => 0, :null => false
     t.integer  "number_of_links"
-    t.integer  "auction_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

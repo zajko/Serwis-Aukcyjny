@@ -2,7 +2,7 @@
 
 <% for i in 1..25 %>
 banner_<%=i%>:
- url: <%= "http://www.o#{i}.pl" %>
+ url: <%= "http://www.o2.pl" %>
  pagerank: <%=(( 6* (i/25.0) + 2)).to_i.to_s %>
  users_daily: <%= ( 500* (i/25.0)).to_i %>
  width: <%= 30 + (10 + (100 *i/25.0).to_i) %>

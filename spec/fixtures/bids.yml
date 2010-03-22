@@ -15,3 +15,16 @@ bid_<%= j %>_auction_<%= i%>:
   bid_created_time: <%= Time.now()  %>
     <%end%>
 <%end%>
+
+bid_for_buy_now_auction_with_bid:
+  user: user_3
+  auction: buy_now_auction_with_bid
+  offered_price: 30
+  bid_created_time: <%= Time.now()  %>
+
+bid_for_closed_auction_with_bid:
+  user: user_3
+  auction: closed_auction_with_bid
+  offered_price: 50
+  created_at: <%= Time.now() - 6.days %>
+  bid_created_time: <%= Time.now() - 6.days %>

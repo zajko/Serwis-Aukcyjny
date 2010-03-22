@@ -18,15 +18,22 @@ module Searchable
       end
       #end
     end
- 
-    if(params != nil and params[:categories_attributes] != nil)
-      temp = params[:categories_attributes].map {|t| t.to_i}
-      if(temp != nil && temp.size > 0)
-        scope = scope.by_categories_id(*temp)
+
+
+    begin
+      if(params != nil and params[:categories_attributes] != nil)
+        temp = params[:categories_attributes].map {|t| t.to_i}
+        if(temp != nil && temp.size > 0)
+          scope = scope.by_categories_id(*temp)
+        end
       end
+    rescue NoMethodError => e
     end
+
     scope = scope.order_scope( params[:order_by] ) if params[:order_by] && self.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
-    scope = scope.order_auction_scope ( params[:order_by] ) if params[:order_by] && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
+    if scope.respond_to?(:order_auction_scope) then
+      scope = scope.order_auction_scope ( params[:order_by] ) if params[:order_by] && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
+    end
     return scope
   end
 end

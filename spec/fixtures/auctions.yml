@@ -10,7 +10,7 @@ auction_<%= i%>:
  user: user_1
  start: <%= Time.now()+(15 - i/2).days %>
  auction_end: <%= Time.now() + (i/3).days %>
- minimal_price: <%= 10 + 20* Math.log(i)%>
+ minimal_price: <%= 10.0 + 20.0*((i%5)/5.0)%>
  minimal_bidding_difference: <%= 5 + 1.2* Math.log(i)%>
  time_of_service: <%= Math.log(i * 5) %>
  activated: true
@@ -39,6 +39,16 @@ buy_now_auction:
  created_at: <%=Time.now%>
  auctionable: <%="buy_now_site_link (SiteLink)"%>
 
+buy_now_auction_with_bid:
+ user: user_1
+ start: <%= Time.now()-(1).days %>
+ auction_end: <%= Time.now() + 10.days %>
+ buy_now_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now%>
+ auctionable: <%="buy_now_with_bid_site_link (SiteLink)"%>
+
 not_activated_auction:
  user: user_1
  start: <%= Time.now()+(15).days %>
@@ -58,3 +68,13 @@ closed_auction:
  activated: true
  created_at: <%=Time.now - 20.days%>
  auctionable: <%="closed_site_link (SiteLink)"%>
+
+closed_auction_with_bid:
+ user: user_1
+ start: <%= Time.now()-(15).days %>
+ auction_end: <%= Time.now() - 5.days %>
+ minimal_price: <%= 30%>
+ time_of_service: 50
+ activated: true
+ created_at: <%=Time.now - 20.days%>
+ auctionable: <%="closed_site_link_with_bid (SiteLink)"%>

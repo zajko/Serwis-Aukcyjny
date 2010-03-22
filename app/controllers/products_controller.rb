@@ -11,16 +11,13 @@ class ProductsController < ApplicationController
     allow all, :to => [:show, :index, :order_by, :advanced_search,:simple_search]
     allow :owner, :of => :auction, :to => [:delete, :edit, :update,:cancell_bid]
     deny :owner, :of => :auction, :to => [:observe]
-    allow :admin, :to => [:delete, :edit, :update, :administer]
+    allow :admin, :to => [:delete, :edit, :update, :administer, :cancell_bid]
+    allow :superuser, :to => [:delete, :edit, :update, :administer, :cancell_bid]
     deny :banned, :not_activated, :to=> [:new, :create, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,                         :wizard_summary,
                              :show,:new, :create,:bid, :ask_for_bid_cancellation]
     allow logged_in, :to => [:observe,:delete, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,
                              :wizard_summary, :show,:new, :create,:bid, :ask_for_bid_cancellation,:index_admin]
                            #TODO: index_admin ma być dostępny tylko dla superusera!!!
-#    allow logged_in, :to => [:edit, :update, :cancell_bid], :if => :editing_mine
-
-
-    #allow :owner, :of => :auction, :to => [:show, :edit, :update]
   end
 
   def wizard_product_type
@@ -109,33 +106,18 @@ class ProductsController < ApplicationController
   end
 
   def activate
-    #TODO przenieś logikę z kontrolera do modelu
       @auction = Auction.find(params[:id])
       if @auction == nil
         flash[:notice] = "Aukcja o podanym numerze nie istnieje."
         redirect_to :root
         return
-      end
-      if !@auction.activated and @auction.end < Time.now
-        s ||= @auction.auctionable.url
-        begin
-          open(@auction.auctionable.url) {
-            |f|
-            if f.string.contains(@auction.activation_token)
-              @auction.activated = true
-              @auction.save
-              #TODO Dodanie aukcji do kolejki w demonie zamykającym aukcje
-              flash[:notice] = "Auckcja aktywowana pomyślnie"
-              redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
-              return
-            end
-          }
-        rescue
-          flash[:notice] = "Podany w aukcji url jest niepoprawny lub nie odpowiada"
-          redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
-        end
       else
-        redirect_to :index
+        if @auction.activate then
+          flash[:notice] = "Auckcja jest aktywowna"
+          redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+        else
+          render :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+        end
       end
   end
 
@@ -316,7 +298,7 @@ class ProductsController < ApplicationController
     raise "No auction with id = #{bid_id}" if @bid == nil
     raise "Must be logged in" if current_user == nil
     #TODO obsłużyć to z redirectem jak należy
-    @bid.auction.actualize_current_price if @bid.cancell_bid(current_user, params[:decision]);
+    @bid.auction.actualize_current_price if @bid.cancell_bid(params[:decision]);
 
     redirect_to :action => "show", :id => params[:id], :product_type => params[:product_type]
   end

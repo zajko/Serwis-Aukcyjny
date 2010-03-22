@@ -73,10 +73,7 @@ class User < ActiveRecord::Base
       errors.add("Nie można usunąć użytkownika, który ma aktualne oferty !")
       return false
     end
-    #if auctions and auctions.activated.count > 0
-    #  errors.add("Nie można usunąć użytkownika, który ma czynne aukcje")
-    #  return false
-    #end
+    
     return true
   end
   
@@ -121,10 +118,7 @@ class User < ActiveRecord::Base
   end
   
   acts_as_authentic do |c|
-   #c.my_config_option = my_value
    c.logged_in_timeout = 10.minutes
-   #TODO sprawdz czy ten timeout dziala
-   #c.openid_required_fields = [:login, :email]
  end
   
   

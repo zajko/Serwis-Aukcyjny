@@ -48,6 +48,16 @@ class PopUp < ActiveRecord::Base
     }
   }
 
+  def save
+    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
+
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
+  end
+  
   def polish_name
     "Pop up"
   end

@@ -5,12 +5,23 @@ describe Auction do
   before(:each) do
   end
 
+  it "shouldn't allow save without product" do
+    a = auctions(:auction_1)
+    a.auctionable = nil
+    a.save.should == false
+  end
+
   it "shouldn`t allow user change" do
     a = auctions(:auction_1)
     u = users(:user_3)
     a.user=u
     a.save
     a.errors.count.should > 0
+  end
+
+  it "should save when properly loaded" do
+    a = auctions(:auction_3)
+    a.save.should == true
   end
 
   it "shouldn`t allow product change" do
@@ -24,11 +35,22 @@ describe Auction do
     a.errors.count.should > 0
   end
 
-  it "should change end date only to the future" do
+  it "shouldn`t allow change of end date to the past" do
     a = auctions(:auction_1)
     a.auction_end = Time.now - 10.days
-    a.save
-    a.errors.count.should > 0
+    a.save.should == false
+  end
+
+  it "shouldn`t allow change of end date when closed" do
+    a = auctions(:closed_auction)
+    a.auction_end = Time.now + 10.days
+    a.save.should == false
+  end
+
+  it "should allow change of end date when no bids" do
+    a = auctions(:buy_now_auction)
+    a.auction_end = Time.now + 10.days
+    a.save.should == true
   end
 
   it "shouldn't allow end date change when having bids " do

@@ -38,10 +38,16 @@ class SiteLink < ActiveRecord::Base
     :order=> "auction."+scope
   }
   }
-  
-  def SiteLink.searchObject(params)
-    #SiteLinkSearch.new(params)
+  def save
+    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
+
+    if(errors.count == 0)
+      return super
+    else
+      return false
+    end
   end
+  
   named_scope :pagerank_gte, lambda{ |pagerank|
     {
       :conditions => ["site_links.pagerank >= (?)", pagerank]
