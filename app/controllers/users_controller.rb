@@ -179,9 +179,6 @@ class UsersController < ApplicationController
       
   end
   
-
-
-  
   def generate_activation_url user
     if request.env['HTTP_HOST'] == nil # skasować później!
         request.env['HTTP_HOST']=""

@@ -4,24 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
 require 'spec/rails'
-
-def current_user(stubs = {})
-  @current_user ||= mock_model(User, stubs)
-end
-
-def user_session(stubs = {}, user_stubs = {})
-  @current_user_session ||= mock_model(UserSession, {:user => current_user(user_stubs)}.merge(stubs))
-end
-
-def login(session_stubs = {}, user_stubs = {})
-  UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs))
-end
-
-def logout
-  @user_session = nil
-end
-
-
+require 'shoulda'
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
@@ -69,4 +52,62 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+  def current_user(stubs = {})
+    return @current_user if @current_user
+
+    roles = (stubs.delete(:roles) || {}).symbolize_keys
+
+    @current_user = stub_model(User, stubs.merge(:roles => roles))
+
+    def @current_user.has_role?(role, object=nil)
+      result = !! if object.nil?
+        roles.has_key?(role.to_sym)
+      else
+        roles[role.to_sym] == object
+      end
+
+      result
+    end
+
+    def @current_user.has_no_roles!
+      roles = {}
+    end
+
+    def @current_user.has_role!(role, object=nil)
+      roles[role] = object
+    end
+
+    @current_user
+  end
+
+  def user_session(stubs = {}, user_stubs = {})
+    @current_user_session ||= mock_model(UserSession, {:user => current_user(user_stubs)}.merge(stubs))
+  end
+
+  def login(session_stubs = {}, user_stubs = {})
+    UserSession.stub!(:find).and_return(user_session(session_stubs, user_stubs))
+  end
+
+  def logout
+    @current_user = nil
+    @user_session = nil
+  end
+
+  # super_user admin
+  def current_super_user(stubs = {})
+    @current_super_user ||= stub_model(SuperUser, stubs)
+  end
+
+  def super_user_session(stubs = {}, user_stubs = {})
+    @current_super_user_session ||= mock_model(SuperUserSession, {:super_user => current_super_user(user_stubs)}.merge(stubs))
+  end
+
+  def admin_login(session_stubs = {}, user_stubs = {})
+    SuperUserSession.stub!(:find).and_return(super_user_session(session_stubs, user_stubs))
+  end
+
+  def admin_logout
+    @super_user_session = nil
+  end
+
 end

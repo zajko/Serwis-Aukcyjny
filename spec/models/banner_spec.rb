@@ -3,11 +3,13 @@ require 'spec_helper'
 describe Banner do
   fixtures :auctions, :banners, :users, :bids
 
+  it { should allow_value("http://www.o2.pl").for(:url) }
+  it { should_not allow_value("mielonka mielonka mielonka").for(:url) }
+  
   it "shouldn`t allow pagerank change" do
     b = banners(:banner_1)
     b.pagerank = b.pagerank+1
-    b.save
-    b.errors.count.should > 0
+    b.save.should == false
   end
 
   it "shouldn`t allow users_daily change" do

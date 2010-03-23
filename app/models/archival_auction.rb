@@ -23,7 +23,8 @@ class ArchivalAuction < ActiveRecord::Base
     #ret.user_id = u.user_id
     u.bids.each do |b|
       archBid = ArchivalBid.from_bid(b)
-      archBid.archival_auction_id = ret.id
+      #archBid.archival_auction_id = ret.id
+      #archBid.archival_biddable = ret
       #archBid.user_id = b.user_id
       ret.archival_bids << archBid
     end
