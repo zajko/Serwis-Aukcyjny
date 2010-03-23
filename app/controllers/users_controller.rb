@@ -123,17 +123,19 @@ class UsersController < ApplicationController
   end
          
   def show
-    id = params[:id] || current_user.id
-    @user = User.find(id) if :id 
+    raise "A"
+    @id = params[:id] || current_user.id
+    @user = User.find(@id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "Użytkownik o takim numerze nie istnieje"
+    redirect_to :root
   end
  
   def edit
-   # allow :admin
-   # allow :owner, :of => :user
    if(params[:id])
     @user = User.find(params[:id])
    else
-      @user = current_user
+    @user = current_user
    end
  end
  
@@ -160,7 +162,6 @@ class UsersController < ApplicationController
       if(!params[:id])
         flash[:notice] = "Podany url aktywacyjny jest nieprawidłowy" 
         redirect_to :root
-        
       else
         @user = User.find(params[:id])
           

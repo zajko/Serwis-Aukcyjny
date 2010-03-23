@@ -5,14 +5,13 @@
 #
 # two:
 #   column: value
-
 <% for i in 1..100%>
     <% for j in 1..5%>
 bid_<%= j %>_auction_<%= i%>:
   user: user_3
   auction: auction_<%=i%>
-  offered_price:  <%= 100.0 + i / 100.0%>
-  bid_created_time: <%= Time.now()  %>
+  offered_price: <%= 100.0 + i / 100.0%>
+  bid_created_time: <%= Time.now() %>
     <%end%>
 <%end%>
 
@@ -20,7 +19,7 @@ bid_for_buy_now_auction_with_bid:
   user: user_3
   auction: buy_now_auction_with_bid
   offered_price: 30
-  bid_created_time: <%= Time.now()  %>
+  bid_created_time: <%= Time.now() %>
 
 bid_for_closed_auction_with_bid:
   user: user_3

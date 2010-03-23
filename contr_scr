@@ -3,5 +3,4 @@ a=("users")
 for x in "${a[@]}"
 do
 	touch "spec/controllers/${x}_spec.rb"
-
 done
