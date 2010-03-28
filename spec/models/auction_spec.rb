@@ -5,11 +5,6 @@ describe Auction do
   before(:each) do
   end
 
-  it "shouldn't allow save without product" do
-    a = auctions(:auction_1)
-    a.auctionable = nil
-    a.save.should == false
-  end
 
   it "shouldn`t allow user change" do
     a = auctions(:auction_1)

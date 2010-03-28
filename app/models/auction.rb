@@ -28,7 +28,7 @@ class Auction < ActiveRecord::Base
   
   validates_presence_of :user_id, :message => "Nie da się utworzyć aukcji bez właściciela."
   validates_presence_of :start, :auction_end
-  validates_presence_of :auctionable, :message => "Nie da się zapisać aukcji bez produktu."
+ # validates_presence_of :auctionable, :message => "Nie da się zapisać aukcji bez produktu."
   validate :start_must_be_after_today, :message => "Aukcja musi zacząć się najwcześniej od jutra"
   validate :start_must_be_before_end, :message => "Początek aukcji musi być przed jej końcem"
   validates_numericality_of :buy_now_price, :greater_than_or_equal_to => 0
