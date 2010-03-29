@@ -22,7 +22,6 @@
                <input type="CHECKBOX" name="ch_auction"  onclick="setAuction(this.form)"  /><b> Licytacja</b><br /><br />
                <%= auction_form.label :cena_minimalna, "Cena minimalna:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" %>
                <%= auction_form.text_field :minimal_price ,:class=>"inputCena", :disabled =>true%> zł<br /><br />
-			   minimal_bidding_difference
                Min. podbicie ceny: <input type="text" value="5" id="minimalne_podbicie" disabled="disabled" class="inputCena" /> zł
 			   <%= auction_form.hidden_field :activation_token %>
           </td>

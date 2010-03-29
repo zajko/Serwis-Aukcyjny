@@ -1,6 +1,6 @@
 
 class HomeController < ApplicationController
-  uses_tiny_mce
+  #uses_tiny_mce
     rescue_from Acl9::AccessDenied, :with => :deny_user_access
   def index
    # redirect_to :action => "new", :controller => "user_sessions"

@@ -23,8 +23,8 @@
 			<%= auction_form.hidden_field :id,  :value => @product.auction.id%>
 		<% end %>
 		<%= form.hidden_field :id,  :value => @product.id%>
-		<font color = "red" size="30"> <%= link_to "Usuń aukcję", {:controller => "products", :action=> "delete", :id => @product.id, :product_type => @product.class.to_s}, :confirm => "Czy jesteś pewien ?" %> </font>
-		<%= form.submit "update auction" %>
+		
+		<%= form.submit "Zapisz zmiany" %>
 
 <% end %>
 

@@ -36,8 +36,7 @@
                             <%=link_to "Edytuj", :controller => "products", :action => "edit",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%>
                     </td>
                       <td>
-                         
-                            <%=link_to "X", :controller => "products", :action => "delete",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%>
+                            <%=link_to "X", :controller => "products", :action => "delete",:id => auction.auctionable_id,  :product_type => auction.auctionable_type, :confirm => "Czy jesteś pewien ?"%>
                     </td>
             </tr>
             <% end %>

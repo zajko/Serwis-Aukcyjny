@@ -123,7 +123,7 @@ class UsersController < ApplicationController
   end
          
   def show
-    raise "A"
+
     @id = params[:id] || current_user.id
     @user = User.find(@id)
   rescue ActiveRecord::RecordNotFound

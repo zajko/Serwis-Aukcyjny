@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :load_article, :only => [:edit, :update, :destroy]
   access_control do
     allow logged_in, :to => [:index, :show, :articles]
-    allow all, :to => [:show]
+    allow all, :to => [:show,:index]
     allow :superuser, :admin, :to => [:new, :create]
     allow :superuser, :to => [:edit, :update, :destroy]
     allow :owner, :of => :article, :to => [:edit, :update, :destroy]

@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   map.resource :product
   #map.root :controller => "user_sessions", :action => "new"
-  map.root :controller => :home, :action => "index"
+  map.root :controller => :articles, :action => "index"
  #map.root :controller => :articles
   map.resource :account, :controller => "users"
   
