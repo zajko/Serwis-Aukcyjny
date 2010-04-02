@@ -13,6 +13,7 @@ class PersonalController < ApplicationController
       return
     end
     @auctions = Auction.user_id_equals(current_user.id).all
+#Bid.find_all_by_user_id(current_user.id)
   end
 
   def bidded

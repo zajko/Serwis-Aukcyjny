@@ -283,12 +283,13 @@ class ProductsController < ApplicationController
   end
 
   def ask_for_bid_cancellation
-    bid_id = params[:bid_id]
-    @bid = Bid.find(bid_id)
-    raise "No auction with id = #{bid_id}" if @bid == nil
-    raise "Must be logged in" if current_user == nil
-    #TODO obsluz te wyjatki jakos
-    @bid.ask_for_cancell(current_user)
+
+     bid_id = params[:bid_id]
+     @bid = Bid.find(bid_id)
+     raise "No auction with id = #{bid_id}" if @bid == nil
+     raise "Must be logged in" if current_user == nil
+     #TODO obsluz te wyjatki jakos
+     @bid.ask_for_cancell(current_user)
     redirect_to :action => "show", :id => params[:id], :product_type => params[:product_type]
   end
 

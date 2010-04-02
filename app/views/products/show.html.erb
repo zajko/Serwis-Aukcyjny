@@ -8,12 +8,7 @@
       <!-- Okna licytacji, ofert i ofert owołanch  -->
 <% if current_user%>
       <div class="box" style=" width:280px; float:right;">
-            <% if @product.auction.buy_now_price == 0 %>
-              <div style=" width:280px; float:right;padding:10px; border: 1px solid gray; background:#f7e0e0;  -moz-border-radius: 5px;border-radius: 5px;">
-              <center style="font-size:20px"> Aktualna cena:<b style="color:red"> <%=@product.auction.current_price.to_s%> zł</b></center>
-              </div>
-             
-            <%end%>
+
             <% if @product.auction and current_user != @product.auction.user%>
                 <div style="margin-top:20px; width:280px; float:right;padding:10px; border: 1px solid gray; background:#FFF286;  -moz-border-radius: 5px;border-radius: 5px;">
                         <center><b>LICYTUJ</b></center><br />
@@ -23,6 +18,13 @@
                             <%=bid_form.hidden_field :user_id, :value => current_user.id %>
 
                             <table border="0" style="width:230px">
+                           <% if @product.auction.buy_now_price == 0 %>
+                            <tr>
+                              <td>Aktualna cena:</td>
+                              <td>&nbsp;&nbsp;<b style="color:red"> <%=@product.auction.current_price.to_s%> zł</b></td>
+                            </tr>
+                            <tr><td><br /></td><td></td></tr>
+                            <%end%>
                             <tr>
                              <td><%=bid_form.label "Oferowana cena:"%> </td>
                              <td>
@@ -68,7 +70,7 @@
                                       <% if current_user and current_user.id == bid.user.id%>
                                           <%if !bid.asking_for_cancellation and !bid.cancelled %>
                                               <br />
-                                              <%=link_to "poproś o unieważnienie", :action => :ask_for_bid_cancellation, :id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s%>
+                                              <%=link_to "poproś o unieważnienie", :action => :ask_for_bid_cancellation, :bid_id => bid.id, :product_type => @product.class.to_s, :id=>@product.id%>
                                           <%end%>
                                       <%end%>
                                       <%if bid.asking_for_cancellation and current_user and (current_user.has_role?(:admin) or (bid.auction.user.id == current_user.id)) %>

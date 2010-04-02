@@ -1,58 +1,34 @@
-<table>
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "products/product_options" %>
+<h1>Saldo</h1>
+<table id="TabFullSize">
 	<tr>
-		<td>
-			Data
-		</td>
-		<td>
-			Tytułem
-		</td>
-		<td>
-			Opłata
-		</td>
-		<td>
-			Wpłata
-		</td>
+          <td class="header">Data</td>
+          <td class="header">Tytułem</td>
+          <td class="header">Opłata</td>
+          <td class="header">Wpłata</td>
 	</tr>
 	<%@saldo.each do |position| %>
 	<tr>
+		<td><%=position.created_at%></td>
 		<td>
-			<%=position.created_at%>
+                    <%if position.class.to_s == "Charge" %>
+                            Aukcja nr <%= position.chargeable_id %>
+                    <%end%>
 		</td>
-		<td>
-			<%if position.class.to_s == "Charge" %>
-				Aukcja nr <%= position.chargeable_id %>
-			<%end%>
-		</td>
-		
-			<%if position.class.to_s == "Charge" %>
-				<td>
-					<%= position.sum %> zł
-				</td>
-				<td>
-				</td>
-			<%else%>
-				<td></td>
-				<td>
-					<%= position.sum %> zł
-				</td>
-			<%end%>
+                    <%if position.class.to_s == "Charge" %>
+                        <td><%= position.sum %> zł</td>
+                        <td></td>
+                    <%else%>
+                        <td></td>
+                        <td><%= position.sum %> zł</td>
+                    <%end%>
 	</tr>
 	<%end if @saldo and @saldo.length > 0%>
 	<tr>
-		<td>
-		</td>
-		<td>
-			Razem
-		</td>
-		<td>
-			<b>
-				<%= @charges.inject(0.0){|b,i| b+i.sum} %>
-			</b>
-		</td>
-		<td>
-			<b>
-				<%= @payments.inject(0.0){|b,i| b+i.sum} %>
-			</b>
-		</td>
+		<td></td>
+		<td>Razem</td>
+		<td><b><%= @charges.inject(0.0){|b,i| b+i.sum} %></b></td>
+		<td><b><%= @payments.inject(0.0){|b,i| b+i.sum} %></b></td>
 	</tr>
 </table>

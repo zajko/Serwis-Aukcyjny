@@ -47,7 +47,9 @@ class Bid < ActiveRecord::Base
        errors.add_to_base("Musisz być zalogowany żeby anulować swoje aukcje") 
     else
       if user.id == self.user.id
-        self.update_attribute :asking_for_cancellation, true
+        self.asking_for_cancellation=true
+        self.save!
+        #self.update_attribute :asking_for_cancellation, true
         #TODO Zrob powiadomienie wlasciciela aukcji
       else
         errors.add_to_base("Tylko użytkownik, który złożył ofertę może poprosić o jej anulowanie")
@@ -61,7 +63,10 @@ class Bid < ActiveRecord::Base
 
   def cancell_bid (decision = false)
     return false if auction.auction_end < Time.now()
-    if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
+    self.cancelled = decision
+    self.asking_for_cancellation=false
+    if self.save!
+#    if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
           return true
     end
   end

@@ -39,7 +39,7 @@ class SiteLink < ActiveRecord::Base
   }
   }
   def save
-    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
+    errors.add(:s, "Nie można utworzyć site linku bez aukcji.") if auction == nil
 
     if(errors.count == 0)
       return super
