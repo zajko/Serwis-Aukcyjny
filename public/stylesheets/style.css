@@ -3,6 +3,7 @@
         padding:0px;
     }
     img{border:0px}
+    img.ui-datepicker-trigger{margin-left:5px;}
     html{
         width:100%;
         background-image:url(/images/bg.gif);

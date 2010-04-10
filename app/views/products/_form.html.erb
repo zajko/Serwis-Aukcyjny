@@ -1,12 +1,13 @@
 
 <table id="TabProduct">
+
   <tr>
     <td class="boldColl"><%= auction_form.label :początek_aukcji %>: </td>
-    <td><%= auction_form.date_select :start %></td>
+    <td><%= auction_form.text_field :start, :id=>"datepicker_from", :size=>7 %></td>
   </tr>
   <tr>
      <td class="boldColl"><%= auction_form.label :koniec_aukcji %>:</td>
-    <td><%= auction_form.date_select :auction_end%></td>
+    <td><%= auction_form.text_field :auction_end, :id=>"datepicker_to", :size=>7 %></td>
   </tr>
   <tr>
     <td class="boldColl">Typ sprzedaży:</td>
