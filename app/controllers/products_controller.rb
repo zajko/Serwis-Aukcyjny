@@ -132,10 +132,10 @@ class ProductsController < ApplicationController
 
   def index
     prepare_search
+    @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
 
     @products = @scope ? @scope.all : []
-    #raise "s"
   end
   def wizard_product_create
     

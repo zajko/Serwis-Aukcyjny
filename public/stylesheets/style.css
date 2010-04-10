@@ -119,15 +119,43 @@
     }
         .search{
             font-size:13px;
-            padding-top: 15px;
-            padding-bottom:15px;
-            padding-left: 20px;
+            padding-top: 10px;
+            padding-bottom:5px;
+            padding-left: 18px;
             margin-bottom:12px;
             background-color:#A1D636;
             text-align:left;
             -moz-border-radius: 5px;
             border-radius: 5px;
         }
+
+            .search table{
+
+            }
+                    .search table td.auction_type{
+                        color: #333333;
+                        font-weight:bold;
+                        width:350px;
+                    }
+                    .search table td.search_param_name{
+                        font-weight:bold;
+                        width:200px;
+                    }
+                    .search table td.search_param_value{
+                        width:200px;
+                    }
+                    .search table td.bottom{
+                        margin-top:8px;
+                        float:right;
+                        font-size:11px;
+                        
+                    }
+                    .search td.bottom input{
+                        width:136px;
+                    }
+                    .search td.bottom_simple_box input{
+                        width:136px;
+                    }
         .input{
             height:17px;
             border:2px inset #CECECE;

@@ -1,39 +1,4 @@
 <%= stylesheet_link_tag "protucts" %>
-
-
-<% form_for :search, {:url => "/products/index?[product_type]=#{@controller.product_type}"} do |f|%>
-
-<table id="TabAdvancedSearchForm" class="YellowBox">
-<tr>
-  <td class="label"><%= f.label :auction_end_between, "Data zakończenia aukcji: "%></td>
-  <td>od: <%= f.text_field :minimum_days_until_end_of_auction, :size => 8 %></td>
-  <td>do: <%= f.text_field :maximum_days_until_end_of_auction, :size =>8, :default => 2.days.from_now  %></td>
-<tr>
-  <td class="label"><%= f.label :Pagerank_between, "Pagerank:"%></td>
-  <td>od: <%= f.text_field :pagerank_gte, :size => 8, :value=>"1"  %></td>
-  <td>do: <%= f.text_field :pagerank_lte, :size => 8, :value=>"10" %></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Users_daily_between, "Użytkownicy dziennie pomiędzy:"%></td>
-  <td>od: <%= f.text_field :users_daily_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :users_daily_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td class="label"><br />Kategorie:</td>
-  <td colspan="2"><br />
-    <%= render :partial=>"categories/show_available_categories" %>
-  </td>
-</tr>
-<tr>
-  
-  <td colspan="3"><br /><%=f.submit "Szukaj"%></td>
-
-</tr>
-
-</table>
-<% end %>
-
-
 <% if @products.count == 0 %>
 Brak aukcji tego typu
 <% else %>

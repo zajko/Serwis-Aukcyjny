@@ -4,14 +4,16 @@
 <h1>Tworzenie aukcji</h1>
 <%= render :partial => "progres_bar" %>
 
-			Aukcja została utworzona
-		
-            <h2>Dane produktu:</h2>
-            <%= render :partial => "show_#{@product.class}"%>
-            <h2>Dane aukcji:</h2>
-            <%= render :partial => "show"%>
+  <h2>Dane produktu:</h2>
+  <%= render :partial => "show_#{@product.class}"%>
+  <h2>Dane aukcji:</h2>
+  <%= render :partial => "show"%>
 
-            <h2>Kategorie produktu:</h2>
-            <p>
-            <%= render :partial => "/categories/show_assigned_categories" %>
-            </p>
+  <h2>Kategorie produktu:</h2>
+  <p>
+  <%= render :partial => "/categories/show_assigned_categories" %>
+  </p>
+  <br /><br />
+  <center>
+  [<%= link_to "Wróć do listy swoich aukcji", "/personal/index" %>]
+  </center>
