@@ -1,0 +1,26 @@
+   <table id="TabFullSize">
+       <tr>
+            <td class="header">Id</td>
+            <td class="header">Typ reklamy</td>
+            <td class="header">Pagerank</td>
+            <td class="header">Użytkownicy dziennie</td>
+            <td class="header">Aktualna cena</td>
+            <td class="header">Twoja oferta</td>
+            <td class="header">Pokaż</td>
+      </tr>
+      <% @auctions.each do |auction|%>
+      <tr>
+            <td><%=  auction.auction_id %></td>
+            <td><%=  auction.auctionable_type %></td>
+            <td></td>
+            <td></td>
+            <td><%=  auction.current_price %></td>
+            <% if auction.offered_price.to_f > auction.current_price.to_f  %>
+                <td><b style="color:green"><%= auction.offered_price %></b></td>
+            <% else %>
+                <td><b style="color:red"><%= auction.offered_price %></b> </td>
+            <% end %>
+            <td><%=link_to "Pokaż aukcję", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
+      </tr>
+      <% end %>
+   </table>

@@ -1,0 +1,16 @@
+<% content_for :search_box do %>
+      <div class="search">
+         <span>
+		<%= link_to "SiteLink", {:action => "index", :product_type => "site_link", :search => params[:search]} %>
+		<%= link_to "Banner", {:action => "index", :product_type => "banner", :search => params[:search]} %>
+		<%= link_to "SponsoredAricle", {:action => "index", :product_type => "sponsored_article", :search => params[:search]} %>
+		<%= link_to "PopUp", {:action => "index", :product_type => "pop_up", :search => params[:search]} %>
+
+		<%= link_to "New Search", {:action => "index", :product_type => params[:product_type]} %>
+</span> <br />
+
+<%= render :partial => "index_#{@controller.product_type.classify}", :product_type => @controller.product_type%>
+
+      </div>
+
+<% end %>

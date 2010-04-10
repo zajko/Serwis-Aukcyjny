@@ -1,0 +1,39 @@
+Feature: Manage Products
+  In order to make an offer
+  As an user
+  I want to create an auction
+
+  Scenario: Send empty link site form
+    Given I have active user agnieszka with password 1234
+    When I go to "zaloguj sie"
+    And I fill in "login" with "agnieszka"
+    And I fill in "hasło" with "1234"
+    And I press "loguj"
+    When I follow "Moje aukcje"
+    When I follow "Dodaj aukcję"
+    When I follow "Link"
+    When I press "Dalej"
+    Then I should see "początek aukcji musi być wypełnione datą conajmniej o jeden dzień wcześniejszą niż koniec aukcji"
+
+
+    Scenario: Create buy now auction
+     Given I have active user agnieszka with password 1234
+    When I go to "zaloguj sie"
+    And I fill in "login" with "agnieszka"
+    And I fill in "hasło" with "1234"
+    And I press "loguj"
+    When I follow "Moje aukcje"
+    When I follow "Dodaj aukcję"
+    When I follow "Link"
+    When I fill in "site_link_url" with "http://www.o2.pl"
+    And I select "2010" from "site_link_auction_attributes_start_1i"
+    And I select "April" from "site_link_auction_attributes_start_2i"
+    And I select "1" from "site_link_auction_attributes_start_3i"
+    And I select "2010" from "site_link_auction_attributes_auction_end_1i"
+    And I select "April" from "site_link_auction_attributes_auction_end_2i"
+    And I select "15" from "site_link_auction_attributes_auction_end_3i"
+    And I check "ch_auction"
+    And I fill in "Cena kup-teraz" with "200"
+    And I press "Dalej"
+
+
