@@ -1,6 +1,7 @@
     <table id="TabListaAukcji">
             <tr>
-                    <td class="Header">Strona</td>
+                    <td class="Header">Nr aukcji</td>
+                    <td class="Header">Adres</td>
                     <td class="Header">Typ reklamy</td>
                     <td class="Header">Zakończenie</td>
                     <td class="Header">Aktualna cena</td>
@@ -10,6 +11,7 @@
             </tr>
             <% @auctions.each do |auction|%>
             <tr>
+                    <td><%= auction.id %></td>
                     <td>
                             <%if !auction.auctionable%>
                             <%= auction.auctionable_type%>   <%= auction.auctionable_id%>

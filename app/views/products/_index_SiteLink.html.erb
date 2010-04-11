@@ -4,7 +4,7 @@ Brak aukcji tego typu
 <% else %>
 
         <table id="TabFullSize">
-        <tr>
+        <tr>    <td>Nr aukcji</td>
                 <td>Szczegóły</td>
                 <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search => params[:search]%></td>
                 <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "site_link", :search => params[:search]%></td>
@@ -15,6 +15,7 @@ Brak aukcji tego typu
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
+                <td><%= product.auction.id %></td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "site_link"} %></td>
                 <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>

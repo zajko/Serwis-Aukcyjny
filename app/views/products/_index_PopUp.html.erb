@@ -3,6 +3,7 @@
 <% else %>
         <table  id="TabFullSize">
         <tr>
+          <td>Nr aukcji</td>
            <td>Szczegóły</td>
           <td>Początek aukcji</td>
           <td>Koniec aukcji</td>
@@ -14,6 +15,7 @@
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
+                <td><%= product.auction.id %></td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "pop_up"} %></td>
                 <td><%=product.auction.start%></td>
                 <td><%=product.auction.auction_end%></td>

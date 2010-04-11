@@ -4,6 +4,7 @@
 
         <table  id="TabFullSize">
         <tr>
+          <td>Nr aukcji</td>
           <td>Szczegóły</td>
           <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "banner", :search => params[:search]%></td>
           <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "banner", :search => params[:search]%></td>
@@ -18,6 +19,7 @@
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
+                <td><%= product.auction.id %></td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "banner"} %></td>
                 <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
