@@ -30,19 +30,13 @@
 			   
           </td>
         </tr>
-      </table>
-
-     
+      </table>    
 <td>
   </tr>
 </table>
 
 	<%= auction_form.hidden_field :activation_token %><br/>
 	<!--<% auction_form.hidden_field :user_attributes, :value => current_user.id%>-->
-	<% for category in Category.all -%>
-		<%= check_box_tag "#{@controller.product_type}[auction_attributes][category_ids][]", category.id, @product.auction.categories.include?(category) -%>
-		<%= category.name -%>
-	<% end %>
 
 
 	<% if !@product.auction.activated %>
@@ -69,7 +63,3 @@
         <%  end %>
 
 <!-- form.hidden_field :auction_token, :value => "#{@auction.auction_token}" <br/> -->
-
-<br/>
-
-<br/>

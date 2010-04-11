@@ -1,6 +1,14 @@
  <tr>
     <td  class="search_param_name"><br />Kategorie:</td>
     <td colspan="2"><br />
-      <%= render :partial=>"categories/show_available_categories" %>
+      <% for category in Category.all %>
+      <div class="product_category">
+      <%= check_box_tag("search[categories_attributes][]",
+                        category.id,
+                       params[:search] && params[:search][:categories_attributes] &&
+                       params[:search][:categories_attributes].include?(category.id.to_s)) %>
+      <%= category.name %>
+      </div>
+     <% end %>
     </td>
   </tr>

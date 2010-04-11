@@ -1,0 +1,13 @@
+<table id="TabProduct">
+  <tr>
+    <td class="boldColl">Dostępne kategorie:</td>
+    <td>
+      <% for category in Category.all -%>
+      <div class="product_category">
+		<%= check_box_tag "#{@controller.product_type}[auction_attributes][category_ids][]", category.id, @product.auction.categories.include?(category) -%>
+		<%= category.name -%>
+        </div>
+	<% end %>
+    </td>
+  </tr>
+</table>

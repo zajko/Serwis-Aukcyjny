@@ -17,9 +17,11 @@
                           <%= render :partial => "form", :locals => {:auction_form => auction_form}%>
 
                   <% end %>
+<h2 class="last"> Kateogrie:</h2>
+                  <%= render :partial => "form_categories"%>
 
-
-                  <%= form.submit "Dalej" %>
+<br /><br />
+    <%= form.submit "Dalej" %>
   <% end %>
 <% end %>
 
