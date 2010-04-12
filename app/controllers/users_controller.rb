@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     deny :not_activated
     allow :superuser
     allow :admin, :to => [:destroy], :if => :cant_destroy_admins
-    allow :admin, :to => [:show]
+    allow :admin, :to => [:show, :ban, :unban]
     allow :admin
-    allow anonymous, :to => [:activate, :new, :create]
+    allow anonymous, :to => [:activate, :new, :create, :show]
     allow :owner, :of => :peeked_user, :to => [:show, :edit, :update, :delete]
   end
   def load_peek_user
@@ -80,6 +80,7 @@ class UsersController < ApplicationController
     
     @u = User.find(u_id) if u_id
     @u.ban if @u
+    
     redirect_to "/users/index"
   end
   
@@ -123,7 +124,6 @@ class UsersController < ApplicationController
   end
          
   def show
-
     @id = params[:id] || current_user.id
     @user = User.find(@id)
   rescue ActiveRecord::RecordNotFound
@@ -155,7 +155,7 @@ class UsersController < ApplicationController
     #User.find(:all, :order => "id")  
   end
   
-  def activate  
+  def activate
     #postac urla wysyłanego użyszkodnikowi powinna być postaci 
     #www.adres.com/users/activate?[id]=<id_użyszkodnika>&[token]=<single_use_token_użytkownika>
     #UWAGA ! nawiasy kwadratowe wokół id i token są KONIECZNE !

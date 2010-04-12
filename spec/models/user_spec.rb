@@ -4,7 +4,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do
-  fixtures :auctions, :site_links, :banners, :users, :pop_ups, :sponsored_articles, :bids
+  fixtures :auctions, :site_links, :banners, :users, :pop_ups, :sponsored_articles, :bids, :roles
   def create_user(params)
     user = User.new
     user.email = params[:email]
@@ -14,7 +14,12 @@ describe User do
     user.save
     user
   end
-
+context "#czy_ma_role" do
+  it "user admin should have role admin" do
+    u = users(:user_1)
+    u.has_role?(:admin).should == true
+  end
+end
 context "#scope" do
   it {should have_named_scope('by_interests_id(1,2)').finding(:include => :interests,
       :conditions => ["interests.id IN (?)", [1,2]])}

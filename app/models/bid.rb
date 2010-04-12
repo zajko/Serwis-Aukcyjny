@@ -105,20 +105,7 @@ class Bid < ActiveRecord::Base
   def can_bid_activated_auctions
     errors.add_to_base("Niestety, ta aukcja nie została jeszcze aktywowana") unless auction.activated
   end
-#  def update_auction_time
-#    Auction.transaction do
-#      #a = Auction.find(self.auction_id)
-#      if (auction.auction_end - created_at <= @@minimal_end_of_auction_interval)
-#        t = Time.now.advance(:seconds => @@minimal_end_of_auction_interval)
-#        #TODO zastanowic sie nad localtimem - trzeba poprawic tak zeby wszedzie sie wyswietlal i dodawal localtime !
-#        if auction.update_attribute :auction_end, t
-#
-#        else
-#          raise "Serious error !" #Tu sa nie przelewki, nie powinno nigdy tu wejsc...
-#        end
-#      end
-#    end
-#  end
+
   def offered_price_meets_minimal
     a = Auction.find(self.auction_id)
     minimal = a.minimal_bid

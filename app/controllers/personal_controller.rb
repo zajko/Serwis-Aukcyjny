@@ -1,7 +1,7 @@
 class PersonalController < ApplicationController
   access_control do
     allow logged_in
-    deny :banned, :not_activated
+      deny :banned, :not_activated
     end
     rescue_from Acl9::AccessDenied, :with => :deny_user_access
   

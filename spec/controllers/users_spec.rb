@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+require "authlogic/test_case"
 
 describe UsersController, "new user with valid values" do
   before(:each) do
@@ -74,57 +75,110 @@ describe UsersController, "new user with invalid values" do
   end
 end
 
-#
-#describe UsersController, "existing user" do
-#  before(:each) do
-#    login({}, {:roles => {'admin' => nil} })
-#    User.stub!(:find).and_return(@user = mock_model(User, :save => :true))
-#  end
-#
-#  def do_show
-#    post :show, {:id => 1500}
-#  end
-#
-#  it "should be found" do
-#    User.should_receive(:find).with(1500).and_return(@user)
-#    do_show
-#  end
-#
-#  it "should be assigned to variable" do
-#    do_show
-#    assigns(:user) == @user
-#  end
-#
-#  it "should be rendered" do
-#    #TODO jak to sprawdzic ?
-#  end
-#
-#end
-#
-#
-#describe UsersController, "not existing user" do
-#  before(:each) do
-#    login({}, {:roles => {'admin' => nil} })
-#    User.stub!(:find).and_raise(ActiveRecord::RecordNotFound)
-#  end
-#
-#  def do_show
-#    post :show, :id => 1500
-#  end
-#
-#  it "should not be found" do
-#    User.should_receive(:find).with(:id => 1500).and_raise(ActiveRecord::RecordNotFound)
-#    UserSession.should_receive(:record)
-#    do_show
-#  end
-#
-#  it "should cause redirect" do
-#    do_show
-#    response.should be_redirect
-#  end
-#
-#  it "should cause redirect to root" do
-#    do_show
-#    response.should redirect_to("/")
-#  end
-#end
+describe UsersController, "administrator" do
+  fixtures :users, :roles
+  before(:each) do
+    activate_authlogic
+    #User.stub!(:find).and_return(@user = mock_model(User, :save => :true))
+    @current = users(:user_1)
+    UserSession.create(@current)
+  end
+
+  def do_ban(id)
+    post :ban, :passed_id => id
+  end
+
+  def do_destroy
+    u = users(:user_2)
+    post :destroy, :id => u.id
+  end
+  
+  it "should be able to ban existing user" do
+    @user = users(:user_2)
+    User.should_receive(:find).at_least(1).times.and_return(@user)
+    do_ban(@user.id)
+  end
+
+  it "should be able to delete existing user" do
+    @user = users(:user_2)
+    User.should_receive(:find).at_least(1).times.and_return(@user)
+    do_destroy
+    
+  end
+end
+
+describe UsersController, "Existing user" do
+  fixtures :users, :roles
+  before(:each) do
+    activate_authlogic
+    #User.stub!(:find).and_return(@user = mock_model(User, :save => :true))
+    @current = users(:user_1)
+    UserSession.create(@current)
+  end
+
+  def do_update
+    post :update, :user => {:login => "kaczor donald"}
+  end
+
+  it "should be able to edit attributes" do
+    do_update
+  end
+
+end
+
+describe UsersController, "existing user" do
+  fixtures :users, :roles
+  before(:each) do
+    activate_authlogic
+    #User.stub!(:find).and_return(@user = mock_model(User, :save => :true))
+    @current = users(:user_1)
+    UserSession.create(@current)
+  end
+
+  def do_show
+    @current = users(:user_1)
+    post :show, {:id => @current.id}
+  end
+
+  it "should be found" do
+    #:first, {:conditions => {:id=>@current.id}}
+    User.should_receive(:find).at_least(1).times.and_return(@current)
+    do_show
+  end
+
+
+  it "should be rendered" do
+    #TODO jak to sprawdzic ?
+  end
+
+end
+
+
+describe UsersController, "not existing user" do
+  fixtures :users, :roles
+  before(:each) do
+    activate_authlogic
+    #User.stub!(:find).and_return(@user = mock_model(User, :save => :true))
+    @current = users(:user_1)
+    UserSession.create(@current)
+  end
+
+  def do_show
+    post :show, :id => -1500
+  end
+
+  it "should not be found" do
+    User.should_receive(:find).at_least(1).times.and_raise(ActiveRecord::RecordNotFound)
+    begin
+      do_show
+    rescue ActiveRecord::RecordNotFound 
+      
+    end
+  end
+
+  it "should cause redirect" do
+    do_show
+    response.should be_redirect
+  end
+
+end

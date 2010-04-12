@@ -3,16 +3,18 @@
 owner:
     name: owner
 
+owner_of_user_1:
+    name: owner
+    authorizable: user_1 (User)
+
 not_activated:
     name: not_activated
 
-admin:
+admin_role:
     name: admin
-    id: 99
 
 banned:
     name: banned
-    id: 10
 
 superuser:
     name: superuser

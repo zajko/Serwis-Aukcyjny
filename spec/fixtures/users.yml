@@ -29,6 +29,30 @@ user_1:
   single_access_token:       <%= Authlogic::Random.friendly_token %>
   perishable_token:          <%= Authlogic::Random.friendly_token %>
   created_at:                <%= 1.days.ago.to_s :db %>
+  roles: [admin_role]
+
+banned_user:
+  login:                     banan
+  email:                     banan@example.com
+  password_salt:             <%= salt = Authlogic::Random.hex_token %>
+  crypted_password:          <%= Authlogic::CryptoProviders::Sha512.encrypt("admin" + salt) %>
+  persistence_token:         <%= Authlogic::Random.hex_token %>
+  single_access_token:       <%= Authlogic::Random.friendly_token %>
+  perishable_token:          <%= Authlogic::Random.friendly_token %>
+  created_at:                <%= 1.days.ago.to_s :db %>
+  roles: [banned]
+
+
+not_activated_user:
+  login:                     not_active
+  email:                     n_actif@example.com
+  password_salt:             <%= salt = Authlogic::Random.hex_token %>
+  crypted_password:          <%= Authlogic::CryptoProviders::Sha512.encrypt("admin" + salt) %>
+  persistence_token:         <%= Authlogic::Random.hex_token %>
+  single_access_token:       <%= Authlogic::Random.friendly_token %>
+  perishable_token:          <%= Authlogic::Random.friendly_token %>
+  created_at:                <%= 1.days.ago.to_s :db %>
+  roles: [not_activated]
 
 user_2:
   login:                     admin2
