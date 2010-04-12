@@ -1,12 +1,12 @@
 # Be sure to restart your server when you modify this file
  
 # Specifies gem version of Rails to use when vendor/rails is not present
- RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
  
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
  
- 
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -56,3 +56,25 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+#config.action_mailer.raise_delivery_errors = true
+#  ActionMailer::Base.delivery_method = :smtp
+#  ActionMailer::Base.raise_delivery_errors = true
+#  ActionMailer::Base.default_charset = "utf-8"
+#  ActionMailer::Base.default_content_type = "text/html"
+#ActionMailer::Base.smtp_settings = {
+#    :tls => true,
+#    :address => "smtp.gmail.com",
+#    :port => "587",
+#    :domain => "kramreklam.com",
+#    :authentication => :plain,
+#    :user_name => "ja.zajko",
+#    :password => "!iro1488"
+#  }
+
+#ActionMailer::Base.sendmail_settings = {
+#    :location       => '/usr/sbin/sendmail',
+#    :arguments      => '-i -t'
+#    #:arguments      => '-i -t -f hasla@kram-reklam.com'
+#}
+

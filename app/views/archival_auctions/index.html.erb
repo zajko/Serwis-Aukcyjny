@@ -1,24 +1,17 @@
 
 
 <h1> Zarządzaj aukcjami archiwalnymi</h1>
-
-<% if @archival_auctions.count >0 || @archiwal_auctions!=nil %>
-
 <table>
   <tr>
     <th>Name</th>
   </tr>
   <% for archival_auctions in @archival_auctions %>
     <tr>
-      <td><%=h archival_auctions.name %></td>
-      <td><%= link_to "Pokaż", archival_auctions %></td>
-      <td><%= link_to "Edytuj", edit_archival_auctions_path(archival_auctions) %></td>
-      <td><%= link_to "Usuń", archival_auctions, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=h archival_auctions.id %></td>
+      <td><%= link_to "Show", archival_auctions %></td>
+      
+      <td><%= link_to "Destroy", archival_auctions, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-
-<% else %>
-Brak aukcji archiwalnych
-<% end %>

@@ -33,6 +33,9 @@ class ArchivalAuction < ActiveRecord::Base
   
   def self.prepare_search_scopes(params = {})
     scope = ArchivalAuction.scoped({})
+    if(scope == nil || params == nil)
+      return scope
+    end
     begin
       scope = scope.auction_end_gte(params[:auction_end_gte]) if params[:auction_end_gte] and Date.parse(params[:auction_end_gte])
     rescue 
@@ -43,11 +46,15 @@ class ArchivalAuction < ActiveRecord::Base
     rescue 
       scope = scope
     end
-    
-    scope = scope.auction_current_price_gte(params[:current_price_gte].to_i) if params[:current_price_gte].to_i > 0
-    scope = scope.auction_current_price_lte(params[:current_price_lte].to_i) if params[:current_price_lte].to_i > 0
-    scope = scope.auction_current_price_gte(params[:minimal_price_gte].to_i) if params[:minimal_price_gte].to_i > 0
-    scope = scope.auction_current_price_lte(params[:minimal_price_lte].to_i) if params[:minimal_price_lte].to_i > 0
+    raise params[:current_price_gte].to_i.to_s
+    begin
+      scope = scope.current_price_gte(params[:current_price_gte].to_i) if params[:current_price_gte] && params[:current_price_gte].to_i > 0
+      scope = scope.current_price_lte(params[:current_price_lte].to_i) if params[:current_price_lte].to_i > 0
+      scope = scope.current_price_gte(params[:minimal_price_gte].to_i) if params[:minimal_price_gte].to_i > 0
+      scope = scope.current_price_lte(params[:minimal_price_lte].to_i) if params[:minimal_price_lte].to_i > 0
+    rescue
+      scope = scope
+    end
     return scope
   end
   
