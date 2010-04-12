@@ -1,7 +1,7 @@
 <tr>
 <td class="search_param_name"><%= f.label :auction_end_between, "Typ aukcji: "%></td>
 <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
-<select style="width:286px;" onchange="window.location.href='/products?product_type='+this.options[this.selectedIndex].value+'&search_type=advanced';">
+<select style="width:305px;" onchange="window.location.href='/products?product_type='+this.options[this.selectedIndex].value+'&search_type=advanced';">
   <option value="site_link" <%if @controller.product_type=="site_link" %>selected<%end%>>Link</option>
   <option value="banner" <%if @controller.product_type=="banner" %>selected<%end%>>Banner</option>
 <option value="pop_up"<%if @controller.product_type=="pop_up" %>selected<%end%>>Pop up</option>
