@@ -7,9 +7,9 @@
   </tr>
   <% for archival_auctions in @archival_auctions %>
     <tr>
-      <td><%=h archival_auctions.name %></td>
+      <td><%=h archival_auctions.id %></td>
       <td><%= link_to "Show", archival_auctions %></td>
-      <td><%= link_to "Edit", edit_archival_auctions_path(archival_auctions) %></td>
+      
       <td><%= link_to "Destroy", archival_auctions, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
