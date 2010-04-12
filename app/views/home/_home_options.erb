@@ -3,10 +3,10 @@
   <div id="leftMenu">
                            <p class="naglowek">Typy reklam</p>
                            <ul>
-                               <li><%= link_to "Link", {:action => "index",:controller=>"products", :product_type => "site_link", :search => params[:search]} %> </li>
-                               <li><%= link_to "Banner", {:action => "index",:controller=>"products", :product_type => "banner", :search => params[:search]} %></li>
-                               <li><%= link_to "Artykuł sponsorowany", {:action => "index",:controller=>"products", :product_type => "sponsored_article", :search => params[:search]} %></li>
-                               <li><%= link_to "Pop up", {:action => "index",:controller=>"products", :product_type => "pop_up", :search => params[:search]} %></li>
+                               <li><%= link_to "Link", {:search_type=>"advanced", :action => "index",:controller=>"products", :product_type => "site_link", :search => params[:search]} %> </li>
+                               <li><%= link_to "Banner", {:search_type=>"advanced", :action => "index",:controller=>"products", :product_type => "banner", :search => params[:search]} %></li>
+                               <li><%= link_to "Artykuł sponsorowany", {:search_type=>"advanced", :action => "index",:controller=>"products", :product_type => "sponsored_article", :search => params[:search]} %></li>
+                               <li><%= link_to "Pop up", {:search_type=>"advanced", :action => "index",:controller=>"products", :product_type => "pop_up", :search => params[:search]} %></li>
                            </ul>
                         </div>
 <% end %>

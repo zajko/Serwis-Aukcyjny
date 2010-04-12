@@ -37,6 +37,7 @@ class ProductsController < ApplicationController
   end
   
   def wizard_preview
+    
     if params[:minimal_price]
       params[product_type][:auction_attributes][:minimal_price] = params[:minimal_price]
       params.delete(:minimal_price)
@@ -132,13 +133,12 @@ class ProductsController < ApplicationController
 
   def index
     prepare_search
+    @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
 
     @products = @scope ? @scope.all : []
-    #raise "s"
   end
   def wizard_product_create
-    
     params[product_type.to_s][:auction_attributes].delete("user_attributes")
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
 

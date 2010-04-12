@@ -3,6 +3,7 @@
         padding:0px;
     }
     img{border:0px}
+    img.ui-datepicker-trigger{margin-left:5px;}
     html{
         width:100%;
         background-image:url(/images/bg.gif);
@@ -53,6 +54,7 @@
     .metalinks a{
         margin:0 10px 0 7px
     }
+
     #header{
         position:relative;
         padding:0 0 0 0px;
@@ -119,22 +121,60 @@
     }
         .search{
             font-size:13px;
-            padding-top: 15px;
-            padding-bottom:15px;
-            padding-left: 20px;
+            padding-top: 10px;
+            padding-bottom:5px;
+            padding-left: 18px;
             margin-bottom:12px;
             background-color:#A1D636;
             text-align:left;
             -moz-border-radius: 5px;
             border-radius: 5px;
         }
+           .search div.product_category{
+                display:inline-block;
+                margin-right: 20px;
+                margin-bottom:5px;
+                
+
+            }
+            .search table{
+
+            }
+                    .search table td.auction_type{
+                        color: #333333;
+                        font-weight:bold;
+                        width:350px;
+                    }
+                    .search table td.search_param_name{
+                        font-weight:bold;
+                        width:200px;
+                    }
+                    .search table td.search_param_value{
+                        width:200px;
+                    }
+                    .search table td.bottom{
+                        margin-top:8px;
+                        float:right;
+                        font-size:11px;
+                        
+                    }
+                    .search td.bottom input{
+                        width:136px;
+                    }
+                    .search td.bottom_simple_box input{
+                        width:136px;
+                    }
         .input{
             height:17px;
             border:2px inset #CECECE;
             margin:8px 0 0 7px;
             padding:0 0 0 5px;
             font-size:12px;
-            color:#454545
+            color:#454545;
+            -moz-border-radius: 7px;
+            border-radius: 7px;
+           
+
         }
         .first{width:170px}
         .second{width:255px;}
@@ -265,6 +305,7 @@
         }
         .box input{
             float:right;
+
         }
 
         .checkboxes{

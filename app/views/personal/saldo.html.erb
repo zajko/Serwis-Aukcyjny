@@ -10,10 +10,10 @@
 	</tr>
 	<%@saldo.each do |position| %>
 	<tr>
-		<td><%=position.created_at%></td>
+		<td><%=position.created_at.strftime("%d-%m-%Y")%></td>
 		<td>
                     <%if position.class.to_s == "Charge" %>
-                            Aukcja nr <%= position.chargeable_id %>
+                            Wpłata za aukcję nr <%= position.chargeable_id %>
                     <%end%>
 		</td>
                     <%if position.class.to_s == "Charge" %>

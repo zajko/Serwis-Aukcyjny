@@ -1,5 +1,7 @@
 <% content_for :search_box do %>
-
-    <%= render :partial => "products/search_box_simple" %>
-  
+    <% if @search_type.to_s=="advanced" %>
+        <%= render :partial => "advanced_search_#{@controller.product_type.classify}", :product_type => @controller.product_type%>
+    <%  else %>
+        <%= render :partial => "products/search_box_simple" %>
+    <% end %>
 <% end %>

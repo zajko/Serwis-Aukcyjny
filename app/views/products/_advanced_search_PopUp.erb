@@ -1,0 +1,51 @@
+<% content_for :search_box do %>
+      <% form_for :search, { :url => "/products/index?[product_type]=#{@controller.product_type}&search_type=advanced"} do |f|%>
+        <div class="search">
+          <table>
+            <tr>
+                    <td class="auction_type">
+                        <b>Zaawansowane wyszukiwanie Pop-up'ów</b>
+                    </td>
+                    <td>
+                            <!-- wewnetrzna tab -->
+                            <table>
+                              <%= render :partial => "advanced_search_form_common_params", :locals => {:f => f}%>
+                              <tr>
+                                <td colspan="3"><br /></td>
+                              </tr>
+                              <tr>
+                                <td class="search_param_name"><%= f.label :Width_between,"Szerokość:"%></td>
+                                <td class="search_param_value">od: <%= f.text_field :width_gte, :size => 7  %></td>
+                                <td class="search_param_value">do: <%= f.text_field :width_lte, :size => 7 %></td>
+                              </tr>
+                              <tr>
+                                <td class="search_param_name"><%= f.label :Height_between,"Wysokość:"%></td>
+                                <td class="search_param_value">od: <%= f.text_field :height_gte, :size => 7  %></td>
+                                <td class="search_param_value">do: <%= f.text_field :height_lte, :size => 7 %></td>
+                              </tr>
+
+                              <tr>
+                                <td colspan="3"><br /></td>
+                              </tr>
+                              <tr>
+                                <td class="search_param_name"><%= f.label :Frequency_between,"Częstość wyświetlania:"%></td>
+                                <td class="search_param_value">od: <%= f.text_field :frequency_gte, :size => 7  %></td>
+                                <td class="search_param_value">do: <%= f.text_field :frequency_lte, :size => 7 %></td>
+                              </tr>
+
+                              <% if Category.all.count > 0 %>
+                              <%= render :partial => "advanced_search_form_categories", :locals => {:f => f}%>
+                              <% end %>
+                            </table>
+                            <!-- / wewnetrzna tab -->
+                    </td>
+            </tr>
+            <tr>
+                    <%= render :partial => "advanced_search_form_submit", :locals => {:f => f}%>
+            </tr>
+          </table>
+
+          </div>
+    <% end %>
+<% end %>
+

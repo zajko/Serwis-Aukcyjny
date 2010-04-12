@@ -1,71 +1,10 @@
-<% form_for :search, {:url => "/products/index?[product_type]=#{@controller.product_type}"} do |f|%>
-<table id="TabAdvancedSearchForm" class="YellowBox">
-<tr>
-  <td class="label"><%= f.label :auction_end_between, "Data zakończenia aukcji: "%></td>
-  <td>od: <%= f.text_field :minimum_days_until_end_of_auction, :size => 8 %></td>
-  <td>do: <%= f.text_field :maximum_days_until_end_of_auction, :size =>8, :default => 2.days.from_now  %></td>
-<tr>
-  <td class="label"><%= f.label :Pagerank_between, "Pagerank:"%></td>
-  <td>od: <%= f.text_field :pagerank_gte, :size => 8, :value=>"1"  %></td>
-  <td>do: <%= f.text_field :pagerank_lte, :size => 8, :value=>"10" %></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Users_daily_between, "Użytkownicy dziennie pomiędzy:"%></td>
-  <td>od: <%= f.text_field :users_daily_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :users_daily_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Frequency_between,"Częstość wyświetlania:"%></td>
-  <td>od: <%= f.text_field :frequency_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :frequency_lte, :size => 8 %></td>
-</tr>
-
-<tr>
-  <td colspan="3"><br /></td>
-</tr>
-<tr> 
-  <td class="label"><%= f.label :X_position_between, "Współrzędna X:"%> </td>
-  <td>od: <%= f.text_field :x_pos_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :x_pos_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Y_position_between,"Współrzędna Y:"%> </td>
-  <td>od: <%= f.text_field :y_pos_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :y_pos_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td colspan="3"><br /></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Width_between,"Szerokość:"%></td>
-  <td>od: <%= f.text_field :width_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :width_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td class="label"><%= f.label :Height_between,"Wysokość:"%></td>
-  <td>od: <%= f.text_field :height_gte, :size => 8  %></td>
-  <td>do: <%= f.text_field :height_lte, :size => 8 %></td>
-</tr>
-<tr>
-  <td class="label"><br />Kategorie:</td>
-  <td colspan="2"><br />
-    <%= render :partial=>"categories/show_available_categories" %>
-  </td>
-</tr>
-<tr>
-
-  <td colspan="3"><br /><%=f.submit "Szukaj"%></td>
-
-</tr>
-</table>
-<% end %>
-	
-<% if @products.count == 0 %>
+	<% if @products.count == 0 %>
          Brak aukcji tego typu
 <% else %>
 
         <table  id="TabFullSize">
         <tr>
+          <td>Nr aukcji</td>
           <td>Szczegóły</td>
           <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "banner", :search => params[:search]%></td>
           <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "banner", :search => params[:search]%></td>
@@ -80,6 +19,7 @@
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
+                <td><%= product.auction.id %></td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "banner"} %></td>
                 <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>

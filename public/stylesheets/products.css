@@ -1,8 +1,15 @@
-
+div.product_category{
+    display:inline;
+    margin-right: 20px;
+}
 
 h2{
     padding-bottom: 10px;
     padding-top:10px;
+}
+h2.last{
+    padding-bottom: 10px;
+    padding-top:0px;
 }
 
 li {
@@ -26,7 +33,6 @@ li {
 #TabProduct{
     margin-left:10px;
     font-weight:normal;
-    
 }
 
 #TabProduct .boldColl{
@@ -66,13 +72,13 @@ li {
     #Progresbar td{
         -moz-border-radius: 5px;
         border-radius: 5px;
-        font-size:16px;
+        font-size:14px;
         text-align:center;
         font-weight:bold;
         color:#ffffff;
         padding:8px;
         width:100px;
-        text-shadow: 2px 2px 1px #2f6a34;
+        text-shadow: 2px 2px 1px #999966;
     }
  
 #TabListaAukcji{

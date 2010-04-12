@@ -1,0 +1,24 @@
+<tr>
+<td class="search_param_name"><%= f.label :auction_end_between, "Typ aukcji: "%></td>
+<td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<select style="width:286px;" onchange="window.location.href='/products?product_type='+this.options[this.selectedIndex].value+'&search_type=advanced';">
+  <option value="site_link" <%if @controller.product_type=="site_link" %>selected<%end%>>Link</option>
+  <option value="banner" <%if @controller.product_type=="banner" %>selected<%end%>>Banner</option>
+<option value="pop_up"<%if @controller.product_type=="pop_up" %>selected<%end%>>Pop up</option>
+<option value="sponsored_article"<%if @controller.product_type=="sponsored_article" %>selected<%end%> >Artykuł sponsorowany</option>
+</select>
+
+</td>
+</tr><tr>
+<td class="search_param_name"><%= f.label :auction_end_between, "Zakończenie: "%></td>
+<td class="search_param_value">od: <%= f.text_field :minimum_days_until_end_of_auction, :id=>"datepicker_from", :size=>7 %></td>
+<td class="search_param_value">do: <%= f.text_field :minimum_days_until_end_of_auction, :id=>"datepicker_to", :size=>7 %></td>
+</tr><tr>
+<td class="search_param_name"><%= f.label :Pagerank_between, "Pagerank:"%></td>
+<td class="search_param_value">od: <%= f.text_field :pagerank_gte, :size => 7, :value=>"1"  %></td>
+<td class="search_param_value">do: <%= f.text_field :pagerank_lte, :size => 7, :value=>"10" %></td>
+</tr><tr>
+<td class="search_param_name"><%= f.label :Users_daily_between, "Użytkownicy dziennie:"%></td>
+<td class="search_param_value">od: <%= f.text_field :users_daily_gte, :size => 7  %></td>
+<td class="search_param_value"> do: <%= f.text_field :users_daily_lte, :size => 7 %></td>
+</tr>
