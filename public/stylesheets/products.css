@@ -1,7 +1,8 @@
 div.product_category{
-    display:inline;
-    margin-right: 20px;
-}
+    display:inline-block;
+    margin-right: 10px;
+    width:150px;
+    }
 
 h2{
     padding-bottom: 10px;
@@ -33,6 +34,8 @@ li {
 #TabProduct{
     margin-left:10px;
     font-weight:normal;
+    border: 1px solid black;
+    
 }
 
 #TabProduct .boldColl{

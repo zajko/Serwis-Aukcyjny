@@ -18,6 +18,34 @@ describe ArchivalUser do
     user
   end
 
+  def create_archival_auction(user)
+    siteLink = SiteLink.new
+    siteLink.url = 'http://www.o2.pl'
+    siteLink.pagerank = 5
+    siteLink.users_daily = 500
+    siteLink.save.should be_true
+    archival_auction = ArchivalAuction.new
+    archival_auction.activated = true
+    archival_auction.archival_auction_owner_id = user.id
+    archival_auction.archival_auction_owner_type = 'User'
+    archival_auction.archival_auctionable_id = siteLink.id
+    archival_auction.archival_auctionable_type = 'SiteLink'
+    archival_auction.auction_created_time = Time.now()
+    archival_auction.auction_end = Time.now()+10.days
+    archival_auction.number_of_products = 1
+    archival_auction.minimal_price = 0.0
+    archival_auction.time_of_service = 0
+    archival_auction.current_price = 0.0
+    archival_auction.start = Time.now()
+    archival_auction.activated = true
+    archival_auction.buy_now_price = 100
+    archival_auction.minimal_bidding_difference = 1
+    archival_auction.buy_now_price = 100
+    archival_auction.save
+    archival_auction
+  end
+
+
   it "should allow save user with all fill in filds" do
     pom = users(:user_3)
     user = ArchivalUser.new
@@ -57,6 +85,7 @@ describe ArchivalUser do
     archival_user = ArchivalUser.new
     archival_user = ArchivalUser.copy_attributes_between_models(user, archival_user)
     archival_user.user_creation_time = user.created_at
+    
     archival_user.save.should be_true
   end
   it "should save new archival user with auction" do
@@ -78,11 +107,31 @@ describe ArchivalUser do
     auction.auctionable_type = 'SiteLink'
     auction.save.should be_true
 
-
+    user.auctions.count.should == 1
     archival_user = ArchivalUser.from_user(user)
     archival_user.user_creation_time = user.created_at
     archival_user.save.should be_true
+  end
 
+  it "should raise an error when we try move user to archival_user with no id attribute" do
+       lambda {
+          user = users(:user_3)
+          user.id = nil
+          archival_user = ArchivalUser.from_user(user)
+        }.should raise_error(RuntimeError,
+        "Został usunięty użytkownik bez id ?")
+  end
+  it "should connect archival_auction with created new archival_user" do
+    user = users(:user_3)
+    create_archival_auction(user)
+#    user nie ma aukcji
+    user.auctions.count.should == 0
+#    przenoszenie usera do archiwum
+    archival_user = ArchivalUser.from_user(user)
+    archival_user.save.should be_true
+    archival_user.save
+    archival_user.should_not nil
+    archival_user.archival_auctions.count.should == 1
   end
 #  context "#email" do
 #  before(:each) do
