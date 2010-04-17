@@ -10,8 +10,8 @@ ActionMailer::Base.smtp_settings = {
     :port => "587",
     :domain => "kram-reklam.pl",
     :authentication => :plain,
-    :user_name => "",
-    :password => ""
+    :user_name => "kram.reklam",
+    :password => "jarekagnieszkapawel"
   }
 
   def auction_activation_instructions(auction)    
