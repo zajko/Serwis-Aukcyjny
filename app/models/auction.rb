@@ -239,6 +239,10 @@ class Auction < ActiveRecord::Base
     raise "Nie powinieneś korzystać z tej metody NO MORE ! Ma ona zostać usunięta"
   end
 
+  def deliver_auction_activation_instructions!
+    Notifier.deliver_auction_activation_instructions(self)
+  end
+
   def activate
     if auction_end < Time.now
       errors.add(:s, "Aukcja już się zakończyła.")
@@ -247,13 +251,14 @@ class Auction < ActiveRecord::Base
     if activated
       return true
     end
-    if !activated 
+    if !activated
         s ||= auctionable.url
         begin
-          open(auctionable.url) {
+          
+          open(s) {
             |f|
-            if f.string.contains(activation_token)
-              activated = true
+            if f.string.contains(@activation_token)
+              @activated = true
               save
               #TODO Dodanie aukcji do kolejki w demonie zamykającym aukcje
               return true

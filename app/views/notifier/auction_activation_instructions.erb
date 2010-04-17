@@ -1,0 +1,7 @@
+Założyłeś aukcję o adresie <%= @auction_url %> .
+Aby ją aktywować musisz umieścić token : <%= @auction_activation_token %> na podanej przez Ciebie stronie, której dotyczy aukcja ( <%= @auctionable_url %> )
+Kiedy już to uczynisz, wejdź na poniższy link : 
+<%= @auction_activate_url %>
+Jeżeli kliknięcie w link nie dało skutku, wklej adres URL do przeglądarki.
+
+Uwaga ! Pamiętaj, że link aktywacyjny znajduje się w szczegółach aukcji ( <%= @auction_url %> ). Będzie się tam znajdował, dopóki jej nie aktywujesz.

@@ -10,14 +10,24 @@ ActionMailer::Base.smtp_settings = {
     :port => "587",
     :domain => "kram-reklam.pl",
     :authentication => :plain,
-    :user_name => "",
-    :password => ""
+    :user_name => "ja.zajko",
+    :password => "!iro1488"
   }
 
+  def auction_activation_instructions(auction)    
+    subject     "Instrukcje do aktywacji konta"
+    from       "Kram-Reklam"
+    recipients auction.user.email
+    sent_on    Time.now
+    body        :auctionable_url => auction.auctionable.url, 
+      :auction_url => ("http://" + default_url_options[:host] + "/products/"+auction.id.to_s+"?product_type="+auction.auctionable.class.to_s.underscore ),
+      :auction_activate_url => ("http://" + default_url_options[:host] + "/products/activate?[id]=" + auction.id.to_s),
+      :auction_activation_token => auction.activation_token
+  end
   
   def password_reset_instructions(user)
-    subject       "Password Reset Instructions"  
-    from          "Binary Logic Notifier "  
+    subject       "Instrukcje do zmiany hasła"
+    from          "Kram-Reklam "
     recipients    user.email  
     sent_on       Time.now  
     body          :edit_password_reset_url => ("http://" + default_url_options[:host] + "/password_resets/edit/" + user.perishable_token)

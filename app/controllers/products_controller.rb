@@ -1,4 +1,5 @@
 require 'product_search.rb'
+require 'products_helper.rb'
 include ProductsHelper
 class ProductsController < ApplicationController
   #observer :bid_observer
@@ -8,7 +9,7 @@ class ProductsController < ApplicationController
    access_control do
     #deny :logged_in
     #allow logged_in
-    allow all, :to => [:show, :index, :order_by, :advanced_search,:simple_search]
+    allow all, :to => [:activate, :show, :index, :order_by, :advanced_search,:simple_search]
     allow :owner, :of => :auction, :to => [:delete, :edit, :update,:cancell_bid]
     deny :owner, :of => :auction, :to => [:observe]
     allow :admin, :to => [:delete, :edit, :update, :administer, :cancell_bid]
@@ -75,12 +76,14 @@ class ProductsController < ApplicationController
         @product.users_daily=@product.to_parse(url)
         @product.pagerank= @product.page_rank(@product.url)
         if @product.pagerank == nil
-          @product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
-          render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
+         # @product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
+         # render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
+         @product.pagerank = 0
         end
       rescue
-        @product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
-        render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
+        @product.pagerank = 0
+        #@product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
+        #render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
       end
       params[product_type][:pagerank] = @product.pagerank
       params[product_type][:users_daily] = @product.users_daily
@@ -114,7 +117,7 @@ class ProductsController < ApplicationController
         return
       else
         if @auction.activate then
-          flash[:notice] = "Auckcja jest aktywowna"
+          flash[:notice] = "Auckcja zostałą zaktywowna"
           redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
         else
           render :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
@@ -153,11 +156,16 @@ class ProductsController < ApplicationController
       @product.auction.current_price = @product.auction.buy_now_price
     end
     @product.auction.user = User.find(current_user.id)
-    @product.auction.activated = true
+    @product.auction.activated = @product.class.to_s != "MailingService"
+    @product.auction.activation_token = ProductsHelper.random_string(20)
+    
     if(@product.save )
       @product.auction.user.has_role!(:owner, @product.auction)
+      
+      @product.auction.deliver_auction_activation_instructions!
       redirect_to :action => "wizard_summary", :id => @product.id, :product_type => product_type.to_s#@product.class
-      flash[:notice] = "Aukcja została utworzona"
+      flash[:notice] = "Aukcja została utworzona."
+      flash[:notice] = flash[:notice] + " Na Twoją skrzynkę pocztową wysłano instrukcje do aktywacji aukcji." if ! @product.auction.activated
     else
      # render :action => "new"
       flash[:notice] = "Nie udało się utworzyć aukcji"
@@ -315,6 +323,10 @@ class ProductsController < ApplicationController
     @product = Kernel.const_get(product_type.classify).find(params[:id])
     @auction = @product.auction
     @user = current_user
+    if !@user
+      raise "Brak aktualnego użytkownika"
+      #TODO obsłużyć to z redirectem jak należy
+    end
     @user.observed << @auction
     redirect_to :action => "show", :id => @product.id, :product_type => @product.class.to_s
   end

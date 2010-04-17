@@ -2,6 +2,7 @@ class Bid < ActiveRecord::Base
   validates_numericality_of :offered_price, :greater_than => 0
   validates_presence_of :user
   validates_presence_of :auction, :counter_cache => false
+  validate :no_two_bids_from_same_user_in_row
   validate :buy_now_can_sell_limited, :message => "Niestety, na tej aukcji nie ma już więcej produktów do kupienia"
   validate :offered_price_meets_minimal, :message => "Musisz zalicytować najmniej minimalną cenę licytacji" 
   validate :can_bid_open_auctions #, :message => "Niestety, ta aukcja już się zakończyła"
@@ -36,7 +37,16 @@ class Bid < ActiveRecord::Base
     errors.add(:s, "Nie można zmienić użytkownika oferty") if @prev_stat.user != user
     errors.add(:s, "Nie można zmienić kwoty, na którą została wystawiona oferta") if @prev_stat.offered_price != offered_price
   end
-  
+  def no_two_bids_from_same_user_in_row
+    bids = auction.bids.not_cancelled.by_date
+    if bids.count > 0
+      x = (bids.first.id == id or bids.first.user.id != user.id)
+      errors.add(:s, "Jesteś osobą, która akutalnie wygrywa. Nie możesz w tej chwili licytować") if !x
+      return x
+    else
+      return true
+    end
+  end
   def update_auction_price
     auction.current_price = auction.calculate_current_price
   end

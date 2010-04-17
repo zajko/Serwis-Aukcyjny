@@ -1,12 +1,13 @@
 <%= render :partial=> "products/search_box_simple" %>
 <%= stylesheet_link_tag "products" %>
 <% render :partial => "product_options" %>
-<h1>Szczegóły aukcji</h1>
+<h1>Szczegóły aukcji </h1>
 
 <div class="boxcondainer">
 
       <!-- Okna licytacji, ofert i ofert owołanch  -->
 <% if current_user%>
+      <p style="font-size: 50px"><%= link_to "śledź tą aukcję", :action => :observe, :id => @product.id, :product_type => @product.class.to_s if current_user != nil and !current_user.observed.member?(@product.auction) %></p>
       <div class="box" style=" width:280px; float:right;">
 
             <% if @product.auction and current_user != @product.auction.user%>
