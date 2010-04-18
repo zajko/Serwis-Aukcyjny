@@ -5,7 +5,7 @@
             <tr>
               <td style="width:265px;">
                   Typ reklamy:
-<% @options = {:SiteLink => 'Link' , :Banner => 'Banner', :PopUp => 'Pop up', :SponsoredArticle =>'Artykuł sponsorowany'} %>
+<% @options = {:Link => 'SiteLink' , :Banner => 'Banner', :PopUp => 'PopUp', :Artykuł =>'SponsoredArticle'} %>
 <%= select_tag(:product_type, options_for_select(@options)) %>
               </td>
               <td style="width:60px; height:20px;">Kategoria: </td><td style="width:315px;">
