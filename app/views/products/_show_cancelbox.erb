@@ -1,0 +1,17 @@
+               <div class="box" style="margin-top:20px;  width:280px; float:right;padding:10px; border: 1px solid gray; background:#cccccc;  -moz-border-radius: 5px;border-radius: 5px;">
+                    <center><b>ODWOŁANE</b></center><br />
+                    <% if @product.auction.bids.cancelled.by_offered_price.count>0 %>
+                          <% @product.auction.bids.cancelled.by_offered_price.each do |bid| %>
+                                  <b style='color:red'><%= bid.offered_price %> zł</b>
+                                      <%  if current_user.is_admin? or current_user.id == bid.user.id %>
+                                          od <%= bid.user.login %>
+                                      <% else %>
+                                          od X
+                                      <% end %>
+                                  (<i><%= bid.user.created_at.strftime("%d-%m-%Y godz. %H:%m")%></i>)
+                                  <br />
+                          <% end %>
+                     <% else %>
+                                  <center><i>Brak</i></center>
+                     <%end%>
+               </div>

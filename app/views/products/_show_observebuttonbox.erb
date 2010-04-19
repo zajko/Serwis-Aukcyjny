@@ -1,0 +1,16 @@
+<div class="box" style=" margin-top:10px;  width:280px; float:right;padding:10px; border: 1px solid gray; background:#cccccc;  -moz-border-radius: 5px;border-radius: 5px;">
+  <center>
+    <table border="0">
+      <tr>
+        <td width="170">
+          <% if current_user != nil and !current_user.observed.member?(@product.auction) %>
+          <%= link_to "Rozpocznij śledzenie aukcji", :action => :observe, :id => @product.id, :product_type => @product.class.to_s %>
+          <% else %>
+          Aukcja jest śledzona
+          <% end %>
+        </td>
+        <td><img src="/images/fish.jpg"/></td></tr>
+    </table>
+  <center>
+
+</div>
