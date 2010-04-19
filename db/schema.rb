@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100419080901) do
+ActiveRecord::Schema.define(:version => 20100419181713) do
 
   create_table "archival_auctions", :force => true do |t|
     t.integer  "archival_auction_owner_id"
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(:version => 20100419080901) do
 
   create_table "banners", :force => true do |t|
     t.string   "url"
-    t.integer  "pagerank"
-    t.integer  "users_daily"
+    t.integer  "pagerank",                                  :default => 0
+    t.integer  "users_daily",                               :default => 0
     t.integer  "width",                                                      :null => false
     t.integer  "height",                                                     :null => false
     t.integer  "x_pos",                                                      :null => false
@@ -203,8 +203,8 @@ ActiveRecord::Schema.define(:version => 20100419080901) do
 
   create_table "pop_ups", :force => true do |t|
     t.string   "url"
-    t.integer  "pagerank"
-    t.integer  "users_daily"
+    t.integer  "pagerank",                                  :default => 0
+    t.integer  "users_daily",                               :default => 0
     t.integer  "width",                                                      :null => false
     t.integer  "height",                                                     :null => false
     t.decimal  "frequency",   :precision => 5, :scale => 4, :default => 1.0
@@ -240,17 +240,17 @@ ActiveRecord::Schema.define(:version => 20100419080901) do
   end
 
   create_table "site_links", :force => true do |t|
-    t.string   "url",         :null => false
-    t.integer  "pagerank",    :null => false
-    t.integer  "users_daily"
+    t.string   "url",                        :null => false
+    t.integer  "pagerank",    :default => 0, :null => false
+    t.integer  "users_daily", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sponsored_articles", :force => true do |t|
     t.string   "url"
-    t.integer  "pagerank"
-    t.integer  "users_daily"
+    t.integer  "pagerank",        :default => 0
+    t.integer  "users_daily",     :default => 0
     t.integer  "words_number",    :default => 0, :null => false
     t.integer  "number_of_links"
     t.datetime "created_at"

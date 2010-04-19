@@ -30,6 +30,7 @@ class ProductSearch < Tableless
   column :current_price_lte, :string, :precision => 14, :scale =>4
   column :order_by, :string
   column :user_login_like, :string
+  column :auction_activated, :boolean
   @cats
   @conditions = {}
   @order = {}
