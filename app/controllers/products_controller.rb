@@ -7,8 +7,6 @@ class ProductsController < ApplicationController
   before_filter :load_auction, :only => [:observe,:edit, :update, :destroy, :cancell_bid]
   rescue_from Acl9::AccessDenied, :with => :deny_user_access
    access_control do
-    #deny :logged_in
-    #allow logged_in
     allow all, :to => [:activate, :show, :index, :order_by, :advanced_search,:simple_search]
     allow :owner, :of => :auction, :to => [:delete, :edit, :update,:cancell_bid]
     deny :owner, :of => :auction, :to => [:observe]
@@ -153,7 +151,7 @@ class ProductsController < ApplicationController
       @product.auction.current_price = @product.auction.buy_now_price
     end
     @product.auction.user = User.find(current_user.id)
-    @product.auction.activated = @product.class.to_s != "MailingService"
+    @product.auction.activated = @product.class.to_s == "MailingService"
     @product.auction.activation_token = ProductsHelper.random_string(20)
     
     if(@product.save )
