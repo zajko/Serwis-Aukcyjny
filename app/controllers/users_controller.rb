@@ -97,20 +97,8 @@ class UsersController < ApplicationController
     @user.activation_token = ProductsHelper.random_string(20)
     if @user.save
       @user.has_role!(:owner, @user)
-      
-      #TODO Wysłanie maila !!!!!
-      #TODO do pawla - to nie dziala, poza tym wez to zenkapsuluj do klasy
-#      email = RubySMTP.new()
-#      email.from = 'admin@e-reklamy.pl'
-#      email.to = ''+@user.email
-#      email.subject = 'E-reklamy aktywacja konta'
-#      email.message = 'Kliknij na poniższy link aby aktywować konto  '+generate_activation_url(@user)+' w przypadki gdy nie zakladales konta zignoruj wiadomosc'
-#      email.send
-      #current_user_session.destroy
-      
+      @user.deliver_activation_instructions!(generate_activation_url(@user))
       redirect_back_or_default account_url
-
-      
     else
       render :action => :new
     end

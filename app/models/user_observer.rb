@@ -1,7 +1,9 @@
 class UserObserver < ActiveRecord::Observer
   def before_destroy(model)
     a = ArchivalUser.from_user(model)
+   
     a.save
+   
       if a.errors
         x = ""
         a.errors.each do |e|
@@ -9,6 +11,7 @@ class UserObserver < ActiveRecord::Observer
         end
         puts x
       end
+      
   end
   def after_destroy(model)
     if model == nil or model.id.blank?
@@ -39,13 +42,13 @@ class UserObserver < ActiveRecord::Observer
         charges = Charge.charges_owner_id_equals(model.id).charges_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
         charges.each do |charge|
           charge.charges_owner = archival#archival_user_id = charge.user_id
-          charge.user_id = nil
+          #charge.user_id = nil
           charge.save
         end
         payments = Payment.payment_owner_id_equals(model.id).payment_owner_type_equals("User")#user_id_equals(model.id)#find_by_user_id(model.id)
         payments.each do |payment|
           payment.payment_owner = archival#archival_user_id = payment.user_id
-          payment.user_id = nil
+         # payment.user_id = nil
           payment.save
         end      
   end

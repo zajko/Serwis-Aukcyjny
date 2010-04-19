@@ -39,6 +39,7 @@ class Auction < ActiveRecord::Base
   def destroy
     if(destroy_check)
      super
+
    else
      false
     end
@@ -48,11 +49,12 @@ class Auction < ActiveRecord::Base
     if ApplicationController.get_static_user and (ApplicationController.get_static_user.has_role?(:admin) || ApplicationController.get_static_user.has_role?(:superuser))
       return true
     end
-    if ApplicationController.get_static_user and user.id != ApplicationController.get_static_user.id
-      errors.add("Nie możesz usunąć aukcję, która nie należy do ciebie !")
-      return false
-    end
-    if ApplicationController.get_static_user and bids and bids.not_cancelled.count > 0
+#    if ApplicationController.get_static_user and user.id != ApplicationController.get_static_user.id
+#      errors.add("Nie możesz usunąć aukcję, która nie należy do ciebie !")
+#      return false
+#    end
+#ApplicationController.get_static_user and
+    if auction_end > Time.now() and bids and bids.not_cancelled.count > 0
       errors.add("Nie możesz usunąć aukcję, która ma złożone oferty !")
       return false
     end
@@ -65,7 +67,6 @@ class Auction < ActiveRecord::Base
     if new_record? || id == nil
       return true
     end
-#    kod Kuby!!!!!!!!!
     @prev_stat = Auction.find(id)
     if !@prev_stat
       errors.add(:s, "Taki rekord nie istnieje w bazie")

@@ -12,7 +12,9 @@ class ArchivalBid < ActiveRecord::Base
     to_model.save if options[:save]
     to_model
   end
-  
+  def save
+    super
+  end
   def self.from_bid(u)
     ret = ArchivalBid.new
     ArchivalBid.copy_attributes_between_models(u, ret)

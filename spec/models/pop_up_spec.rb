@@ -2,16 +2,36 @@ require 'spec_helper'
 
 describe PopUp do
   fixtures :auctions, :pop_ups, :users, :bids
+
+  it { should allow_value("http://www.o2.pl").for(:url) }
+  it { should_not allow_value("mielonka mielonka mielonka").for(:url) }
+  it { should allow_value(5).for(:pagerank)}
+  it { should allow_value(0).for(:pagerank)}
+  it { should_not allow_value(-1).for(:pagerank)}
+  it { should_not allow_value(11).for(:pagerank)}
+  it { should_not allow_value("a").for(:pagerank)}
+
+  it { should allow_value(0).for(:users_daily)}
+  it { should allow_value(1000).for(:users_daily)}
+  it { should_not allow_value(-40).for(:users_daily)}
+  it { should_not allow_value("SS").for(:users_daily)}
   
+  it { should allow_value(100).for(:width)}
+  it { should allow_value(100).for(:height)}
+
+  it { should_not allow_value(0).for(:width)}
+  it { should_not allow_value(0).for(:height)}
+  it { should_not allow_value("a").for(:width)}
+  it { should_not allow_value("a").for(:height)}
+
+  context "#ssociations" do
+    it { should have_one(:auction) }
+    
+  end
+
   it "should nigga pliz" do
     b = pop_ups(:pop_up_1)
     PopUp.find(b.id)
-  end
-
-  it "should have an auction" do
-    b = pop_ups(:pop_up_1)
-    b.auction = nil
-    b.save.should == false
   end
 
   it "shouldn`t allow pagerank change" do
@@ -41,42 +61,6 @@ describe PopUp do
       b.save
       b.errors.count.should > 0
     end
-  end
-
-  it "shouldn`t allow auction change" do
-#    b = pop_ups(:pop_up_10)
-#    c = pop_ups(:pop_up_11)
-#    x = ""
-#    if !b.save then
-#      b.errors.each do |e|
-#        x = x + e.to_s + "\n"
-#      end
-#    end
-#      x = x + "-----------\n"
-#    if !c.save then
-#
-#      c.errors.each do |e|
-#        x = x + e.to_s + "\n"
-#      end
-#    end
-#
-#    b.auction = c.auction
-#    x = x + "-----------\n"
-#    if !b.save then
-#
-#      b.errors.each do |e|
-#        x = x + e.to_s + "\n"
-#      end
-#    end
-#    x = x + "-----------\n"
-#    if !c.save then
-#      c.errors.each do |e|
-#        x = x + e.to_s + "\n"
-#      end
-#    end
-#    raise x
-#    b.save.should == false
-   #TODO czemu to nie dziala ?
   end
 
   it "shouldn`t allow page url change" do

@@ -3,6 +3,12 @@ require 'spec_helper'
 describe SponsoredArticle do
   fixtures :auctions, :sponsored_articles, :users, :bids
 
+
+  context "#ssociations" do
+    it { should have_one(:auction) }
+    
+  end
+  
   it "should have an auction" do
     b = sponsored_articles(:sponsored_article_1)
     b.auction.should_not be_nil

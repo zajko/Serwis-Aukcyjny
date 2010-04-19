@@ -12,8 +12,9 @@ class RolesUser < ActiveRecord::Base
     errors.add(:s, "Nie można odebrać prawa superużtkownika") if role.name == "superuser"
   end
   def only_one_superuser
+    
 #    Zmina z RolesUser.find_by_role_id(role.id).count > 0  na RolesUser.find_by_role_id(role.id)!= nil
-    errors.add(:s, "Może być tylko jeden superuser") if role.name == "superuser" and RolesUser.find_by_role_id(role.id)!= nil
+    errors.add(:s, "Może być tylko jeden superuser") if role.name.capitalize == "Superuser" and RolesUser.find_by_role_id(role.id)!= nil
   end
   def cannot_adminize_banned
    #    korekta z baned na banned

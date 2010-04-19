@@ -10,11 +10,13 @@ class Banner < ActiveRecord::Base
   validates_numericality_of :height, :greater_than => 0
   validates_numericality_of :x_pos, :greater_than => 0
   validates_numericality_of :y_pos, :greater_than => 0
-  
+  validates_numericality_of :pagerank, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 10
+  validates_numericality_of :users_daily, :greater_than_or_equal_to => 0
   named_scope :activated, { :joins => :auction, :conditions => { "auctions.activated" => true }}
   validate :check_before_update, :on => :update
  
- 
+  
+
   def check_before_update
     if new_record?
       return true

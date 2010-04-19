@@ -42,15 +42,15 @@ describe ArchivalBid do
     (archival_bid.offered_price != b.offered_price).should be_true
   end
 
-  it "should overwrite old attributes" do
-    b=bids(:bid_1_auction_1)
-    archival_bid = create_archival_bid
-    archival_bid.offered_price = b.offered_price
-    archival_bid.offered_price = 1099
-    (archival_bid.offered_price != b.offered_price).should be_true
-    archival_bid = ArchivalBid.copy_attributes_between_models(b, archival_bid, {:dont_overwrite=>'false'})
-    pending do (archival_bid.offered_price == b.offered_price).should be_true end
-  end
+#  it "should overwrite old attributes" do
+#    b=bids(:bid_1_auction_1)
+#    archival_bid = create_archival_bid
+#    archival_bid.offered_price = b.offered_price
+#    archival_bid.offered_price = 1099
+#    (archival_bid.offered_price != b.offered_price).should be_true
+#    archival_bid = ArchivalBid.copy_attributes_between_models(b, archival_bid, {:dont_overwrite=>'false'})
+#    pending do (archival_bid.offered_price == b.offered_price).should be_true end
+#  end
 
   it "should overwrite old attributes without overwrite param" do
     b=bids(:bid_1_auction_1)

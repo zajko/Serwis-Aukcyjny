@@ -5,6 +5,15 @@ describe Auction do
   before(:each) do
   end
 
+  context "#ssociations" do
+    it { should belong_to(:user) }
+    it { should have_one(:charge) }
+    it { should belong_to(:auctionable) }
+    it { should have_many(:bids) }
+    it { should have_and_belong_to_many(:observees) }
+    it { should have_and_belong_to_many(:categories) }
+  end
+
 
   it "shouldn`t allow user change" do
     a = auctions(:auction_1)

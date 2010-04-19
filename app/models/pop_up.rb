@@ -5,10 +5,12 @@ class PopUp < ActiveRecord::Base
   has_one :auction, :as => :auctionable, :autosave => true, :dependent => :destroy
   accepts_nested_attributes_for :auction, :allow_destroy => true
   validates_uri_existence_of :url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "Format adresu jest niepoprawny lub taka strona nie istnieje (nie odpowiada)."
-  
+  validates_presence_of :auction
   validates_numericality_of :frequency, :greater_than => 0, :less_than_or_equal => 1, :message => "Częstość pojawiania się okna pop-up musi być liczbą z przedziału (0, 1>"
   validates_numericality_of :width, :greater_than => 0
   validates_numericality_of :height, :greater_than => 0
+  validates_numericality_of :pagerank, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 10
+  validates_numericality_of :users_daily, :greater_than_or_equal_to => 0
   accepts_nested_attributes_for :auction, :allow_destroy => true
   named_scope :activated, { :joins => :auction, :conditions => { "auctions.activated" => true }}
   
