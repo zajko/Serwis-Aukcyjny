@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20100419181713) do
   end
 
   create_table "archival_bids", :force => true do |t|
-    t.integer  "archival_auction_id"
     t.integer  "archival_biddable_id"
     t.string   "archival_biddable_type"
     t.integer  "archival_bid_owner_id"
