@@ -34,7 +34,9 @@
 
         $(document).ready(function()
         {
-          $("#cat").fcbkcomplete({firstselected: false,cache: true,
+          $("#search_categories").fcbkcomplete({
+            firstselected: true,
+            cache: true,
             filter_case: true,
             filter_hide: true});
           

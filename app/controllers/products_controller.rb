@@ -314,6 +314,7 @@ class ProductsController < ApplicationController
 
   def simple_search
 
+
   end
   def observe
     if(params[:id] == nil)

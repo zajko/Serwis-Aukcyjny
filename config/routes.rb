@@ -62,7 +62,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :archival_auctions
   map.resources :new_archival_auctions
   map.resources :personal_bids
-  map.search "search", :controller=>"products", :action =>"simple_search"
+  map.search "search", :controller=>"products", :action =>"index"
   
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
