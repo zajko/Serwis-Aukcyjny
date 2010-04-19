@@ -99,10 +99,8 @@ class ProductsController < ApplicationController
   def new
     @product = Kernel.const_get(product_type.classify).new
     @product.auction = @product.build_auction
-    #@product.auction = Auction.new
     @cats = Category.find(:all)
-    @product.auction.activation_token = ProductsHelper.random_string(20)
-   # @product.auction.categories = @cats
+    #@product.auction.activation_token = ProductsHelper.random_string(20)
   end
 
   def product_type
@@ -111,13 +109,14 @@ class ProductsController < ApplicationController
 
   def activate
       @auction = Auction.find(params[:id])
+      
       if @auction == nil
         flash[:notice] = "Aukcja o podanym numerze nie istnieje."
         redirect_to :root
         return
       else
         if @auction.activate then
-          flash[:notice] = "Auckcja zostałą zaktywowna"
+          flash[:notice] = "Auckcja została zaktywowna"
           redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
         else
           render :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
@@ -127,11 +126,9 @@ class ProductsController < ApplicationController
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type})
-
-    @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(params[:search])#Auction.prepare_search_scopes(search)
-    #@scope = Auction.by_categories_name(product_type, *["sport", "turystyka"]).all()#Auction.active.prepare_search_scopes(params[:search])#Kernel.const_get(product_type.classify).prepare_search_scope(params[:search])
-
+    search.merge!({:product_type => product_type, :auction_activated => true})
+    
+    @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
 
   def index
@@ -179,11 +176,6 @@ class ProductsController < ApplicationController
     #raise params[product_type][:url]
     @product.auction.attributes = params[product_type][:auction_attributes]
 
-  #  @product.auction = Auction.new(params[product_type][:auction_attributes])
-
-    #@product.build_auction(params[:product][:auction])
-    #@product.auction = params[:product][:auction]
-   # @product.attributes = params[product_type]
 
     url = @product.url
     @product.users_daily=@product.to_parse(url)

@@ -3,7 +3,7 @@ require "authlogic/test_case"
 
 describe UsersController, "new user with valid values" do
   before(:each) do
-    User.stub!(:new).and_return(@proper_user = mock_model(User, :save => true, :has_role! => true, :activation_token= => true))
+    User.stub!(:new).and_return(@proper_user = mock_model(User, :deliver_activation_instructions! => true,:save => true, :has_role! => true, :activation_token => "aktywacja1", :activation_token= => true))
   end
   def do_create
     post :create, :user => {:login => "nowy"}
@@ -11,6 +11,10 @@ describe UsersController, "new user with valid values" do
 
   it "should create the user" do
    User.should_receive(:new).with("login" => "nowy").and_return(@proper_user)
+   @proper_user.should_receive(:save).and_return(true)
+   @proper_user.should_receive(:has_role!).and_return(true)
+   @proper_user.should_receive(:activation_token=)
+   @proper_user.should_receive(:activation_token)
    do_create
   end
 
@@ -18,6 +22,7 @@ describe UsersController, "new user with valid values" do
     @proper_user.should_receive(:save).and_return(true)
     @proper_user.should_receive(:has_role!).and_return(true)
     @proper_user.should_receive(:activation_token=)
+    @proper_user.should_receive(:activation_token)
     do_create
   end
 
@@ -41,7 +46,7 @@ end
 
 describe UsersController, "new user with invalid values" do
   before(:each) do
-    User.stub!(:new).and_return(@inproper_user = mock_model(User, :save => false, :has_role! => true, :activation_token= => true))
+    User.stub!(:new).and_return(@inproper_user = mock_model(User, :save => false,:deliver_activation_instructions! => true, :has_role! => true, :activation_token= => true))
   end
   def do_create
     post :create, :user => {:login => "nowy"}

@@ -14,6 +14,14 @@ ActionMailer::Base.smtp_settings = {
     :password => "jarekagnieszkapawel"
   }
 
+  def user_activation_instructions(user, activation_url)    
+    subject    "Instrukcje do aktywacji użytkownika"
+    from       "Kram-Reklam"
+    recipients  user.email
+    sent_on     Time.now
+    body        :login => user.login, :user_activation_url => activation_url
+  end
+
   def auction_activation_instructions(auction)    
     subject     "Instrukcje do aktywacji konta"
     from       "Kram-Reklam"

@@ -3,8 +3,28 @@ require 'spec_helper'
 describe SiteLink do
   before(:each) do
   end
-
   fixtures :auctions, :site_links, :users, :bids
+
+    it { should allow_value("http://www.o2.pl").for(:url) }
+  it { should_not allow_value("mielonka mielonka mielonka").for(:url) }
+  it { should allow_value(5).for(:pagerank)}
+  it { should allow_value(0).for(:pagerank)}
+  it { should_not allow_value(-1).for(:pagerank)}
+  it { should_not allow_value(11).for(:pagerank)}
+  it { should_not allow_value("a").for(:pagerank)}
+
+  it { should allow_value(0).for(:users_daily)}
+  it { should allow_value(1000).for(:users_daily)}
+  it { should_not allow_value(-40).for(:users_daily)}
+  it { should_not allow_value("SS").for(:users_daily)}
+
+
+
+
+  context "#ssociations" do
+    it { should have_one(:auction) }
+    
+  end
 
   it "should have an auction" do
     b = site_links(:site_link_1)

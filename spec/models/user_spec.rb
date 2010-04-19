@@ -5,6 +5,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do
   fixtures :auctions, :site_links, :banners, :users, :pop_ups, :sponsored_articles, :bids, :roles
+
+  it { should allow_value("example@mail.com").for(:email) }
+  it { should_not allow_value("mielonka mielonka mielonka").for(:email) }
+
+  
   def create_user(params)
     user = User.new
     user.email = params[:email]
@@ -75,67 +80,85 @@ context "#user roles" do
       @user.has_no_role!(:not_activated)
       @user.should have(0).roles
     end
-    it "new user add role superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.superuser!
-      pending ("do poprawki") do
-        @user.has_role?(:not_activated).should be_false
+    it "there can be maximally one superuser" do
+      @user1 = users(:user_superuser)
+      if @user1.has_role?(:superuser) == false
+        raise "Źle przygotowane dane testowe - ten użytkownik powinien być superuserem"
       end
-      @user.has_role?(:superuser).should be_true
+      @user2 = users(:user_2)
+      @user2.has_role!("superuser").should==false
     end
     it "cannot delete role superuser from superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.has_no_role!(:not_activated)
-      @user.superuser!
+      @user = users(:user_superuser)
+      if @user.has_role?(:superuser) == false
+        raise "Źle przygotowane dane testowe - ten użytkownik powinien być superuserem"
+      end
       @user.has_no_role!(:superuser)
-      @user.errors.count.should > 0
+      @user.has_role?(:superuser).should==true
     end
+
     it "cannot ban superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.has_no_role!(:not_activated)
-      @user.superuser!
-      pending ("do poprawki") do
+      @user = users(:user_superuser)
+      if @user.has_role?(:superuser) == false
+        raise "Źle przygotowane dane testowe - ten użytkownik powinien być superuserem"
+      end
+      @user.has_no_role!(:superuser)
       @user.ban
 #      przy ban powinien też byc error, ze superusera nie mozna zbanowac
       @user.errors.count.should > 0
-      end
     end
+
+
     it "cannot not-activated superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.has_no_role!(:not_activated)
-      @user.superuser!
+      @user = users(:user_superuser)
+      if @user.has_role?(:superuser) == false
+        raise "Źle przygotowane dane testowe - ten użytkownik powinien być superuserem"
+      end
       @user.has_role!(:not_activated)
-      @user.errors.count.should > 0
+      @user.has_role?(:not_activated).should==false
     end
-    it "user with no roles becomes superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.has_no_role!(:not_activated)
-      @user.should have(0).roles
-      @user.superuser!
-      @user.has_role?(:superuser).should be_true
-    end
-    it "cannot remove role admin from superuser" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
-      @user.admin!
-      @user.has_role?(:admin).should be_true
-      @user.superuser!
-      @user.has_role?(:superuser).should be_true
-      @user.no_admin!
-      @user.has_role?(:admin).should be_false
-    end
+
+
+    #A skad ty to wziales ?
+#    it "user with no roles becomes superuser" do
+#      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+#      @user.has_no_role!(:not_activated)
+#      @user.should have(0).roles
+#      @user.superuser!
+#      @user.has_role?(:superuser).should be_true
+#    end
+
+ #Skad ty to wziales ?
+#    it "cannot remove role admin from superuser" do
+#      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+#      @user.admin!
+#      @user.has_role?(:admin).should be_true
+#      @user.superuser!
+#      @user.has_role?(:superuser).should be_true
+#      @user.no_admin!
+#      @user.has_role?(:admin).should be_false
+#    end
+
     it "ban new user" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+      @user = users(:aga)#create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+      if(@user.has_role?(:superuser) or @user.has_role?(:admin))
+        raise "Źle przygotowane dane testowe - ten użytkownik nie powinien być ani administratorem ani superużytkownikiem"
+      end
       @user.ban
       @user.banned?.should be_true
     end
+    
     it "unban user with role banned" do
-      @user = create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+      @user = users(:aga)#create_user(:login=>'jarek',:email=>'jarek@onet.pl', :password=>'1234', :password_confirmation=>'1234')
+      if(@user.has_role?(:superuser) or @user.has_role?(:admin))
+        raise "Źle przygotowane dane testowe - ten użytkownik nie powinien być ani administratorem ani superużytkownikiem"
+      end
       @user.ban
-      @user.banned?.should be_true
       @user.unban
       @user.banned?.should be_false
     end
 end
+
 
   context "inne metody" do
     it "new user activate correct with single_access_token" do
@@ -158,7 +181,11 @@ end
       @user.destroy
       @user.errors.count.should > 0
     end
-    it "cannot remove user with open auction" 
+    it "cannot remove user with open auction" do
+      @user = users(:user_1)
+     
+      @user.destroy.should == false
+    end
   end
 end
 

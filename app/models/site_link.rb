@@ -7,6 +7,9 @@ class SiteLink < ActiveRecord::Base
   has_one :auction, :as => :auctionable, :autosave => true, :dependent => :destroy
   has_many :categories, :through => :auction
   accepts_nested_attributes_for :auction, :allow_destroy => true
+  validates_uri_existence_of :url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "Format adresu jest niepoprawny lub taka strona nie istnieje (nie odpowiada)."
+  validates_numericality_of :pagerank, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 10
+  validates_numericality_of :users_daily, :greater_than_or_equal_to => 0
   attr_accessible :auction_attributes
   attr_accessible :url
   attr_accessible :pagerank

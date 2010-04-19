@@ -13,7 +13,7 @@ class ArchivalAuction < ActiveRecord::Base
     to_model.save if options[:save]
     to_model
   end
-  
+
   def self.from_auction(u)
     ret = ArchivalAuction.new
     ArchivalAuction.copy_attributes_between_models(u, ret)
@@ -21,13 +21,10 @@ class ArchivalAuction < ActiveRecord::Base
     ret.id = u.id
     ret.archival_auction_owner = u.user
     #ret.user_id = u.user_id
-    u.bids.each do |b|
-      archBid = ArchivalBid.from_bid(b)
-      #archBid.archival_auction_id = ret.id
-      #archBid.archival_biddable = ret
-      #archBid.user_id = b.user_id
-      ret.archival_bids << archBid
-    end
+#    u.bids.each do |b|
+#      archBid = ArchivalBid.from_bid(b)
+#      ret.archival_bids << archBid
+#    end
     return ret
   end
   
@@ -46,7 +43,7 @@ class ArchivalAuction < ActiveRecord::Base
     rescue 
       scope = scope
     end
-    raise params[:current_price_gte].to_i.to_s
+    
     begin
       scope = scope.current_price_gte(params[:current_price_gte].to_i) if params[:current_price_gte] && params[:current_price_gte].to_i > 0
       scope = scope.current_price_lte(params[:current_price_lte].to_i) if params[:current_price_lte].to_i > 0

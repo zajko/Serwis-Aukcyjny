@@ -59,8 +59,8 @@ class User < ActiveRecord::Base
   end
 
   def destroy
-    if(destroy_check)
-      #auctions.destroy_all
+  
+    if destroy_check
       super
     else
       false
@@ -70,7 +70,11 @@ class User < ActiveRecord::Base
 
   def destroy_check
     if bids and bids.not_cancelled.count > 0
-      errors.add("Nie można usunąć użytkownika, który ma aktualne oferty !")
+      errors.add(:s, "Nie można usunąć użytkownika, który ma aktualne oferty !")
+      return false
+    end
+    if auctions and (auctions.count - auctions.expired.count) > 0 #sprawdzamy czy liczba aukcji jeszcze otwartych (nie-expired) jest wieksza od 0
+      errors.add(:s, "Nie można usunąć użytkownika, który ma wystawione aukcje !")
       return false
     end
     
@@ -93,8 +97,13 @@ class User < ActiveRecord::Base
   def has_role!(role, object = nil)
     if(has_role?(:superuser) and (role.to_s == 'banned' || role.to_s == 'not_activated'))
      errors.add("Superużytkownika nie można zbanować ani zdezaktywować !")
-     nil
+
+     false
    else
+     if (role.to_s.capitalize == "Superuser" and Role.find_by_name("superuser") != nil)
+        errors.add("Może być tylko jeden superużytkownik !")
+        return false
+     end
      super
     end
   end
@@ -108,7 +117,7 @@ class User < ActiveRecord::Base
     has_role!(:admin)
   end
 
-    def superuser!
+  def superuser!
     has_role!(:superuser)
   end
 
@@ -120,14 +129,17 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
    c.logged_in_timeout = 10.minutes
  end
-  
+
+  def deliver_activation_instructions!(activation_url)
+    Notifier.deliver_user_activation_instructions(self, activation_url)
+  end
   
   def deliver_password_reset_instructions!  
     reset_perishable_token!  
     Notifier.deliver_password_reset_instructions(self)  
   end  
   
-  def activate! token
+  def activate! (token)
     if(token == self.single_access_token)
       reset_single_access_token!
       has_no_role!(:not_activated)

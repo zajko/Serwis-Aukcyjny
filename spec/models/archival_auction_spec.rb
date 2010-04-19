@@ -58,24 +58,27 @@ describe ArchivalAuction do
     archival_auction=ArchivalAuction.copy_attributes_between_models(auction, archival_auction, {:dont_overwrite=>'true'})
     (auction.current_price != archival_auction.current_price).should be_true
   end
-  it "should allow change attributes in old archival auction" do
-    archival_auction = create_archival_auction
-    auction = create_auction
-    auction.current_price = archival_auction.current_price
-    archival_auction.current_price = 1.0
-    (archival_auction.current_price != auction.current_price).should be_true
-    archival_auction=ArchivalAuction.copy_attributes_between_models(auction, archival_auction)
-    (auction.current_price == archival_auction.current_price).should be_true
+
+  it "should preserve Auction's id number" do
+    auction = auctions(:auction_1)
+    auction.bids.each do |b| #usuwamy oferty jesli sa jakies - po to zeby dalo sie zarchiwizowac aukcje
+      b.destroy
+    end
+    auction.destroy.should_not== false
+    archival = ArchivalAuction.find_by_id(auction.id)
+    archival.id.should==auction.id
   end
-  it "should allow change attributes in old archival auction" do
-    archival_auction = create_archival_auction
-    auction = create_auction
-    auction.current_price = archival_auction.current_price
-    archival_auction.current_price = 1.0
-    (archival_auction.current_price != auction.current_price).should be_true
-    archival_auction=ArchivalAuction.copy_attributes_between_models(auction, archival_auction, {:dont_overwrite=>'false'})
-   pending do (auction.current_price == archival_auction.current_price).should be_true end
-  end
+
+#  it "shouldn't allow attributes changing in old archival auction" do #Jarku, ja nie wiem co chciales tym przetestowac
+#    archival_auction = create_archival_auction
+#    auction = create_auction
+#    auction.current_price = archival_auction.current_price
+#    archival_auction.current_price = 1.0
+#    (archival_auction.current_price != auction.current_price).should be_true
+#    archival_auction=ArchivalAuction.copy_attributes_between_models(auction, archival_auction, {:dont_overwrite=>'true'})
+#    (auction.current_price != archival_auction.current_price).should be_true
+#  end
+  
   it "shouldn't copy current_price" do
     auction = create_auction
     archival_auction = ArchivalAuction.new
@@ -83,19 +86,21 @@ describe ArchivalAuction do
     archival_auction.current_price.should be_nil
   end
 
-
-  it "should move auction to archival auction" do
-    auction = create_auction
-    archival_auction = ArchivalAuction.from_auction(auction)
-    archival_auction.save.should be_true
-  end
-  
-  it "should move auction to archivel auction when having bids" do
+  it "shouldn't archivize auctions which have not ended and have valid bids" do
     auction = auctions(:auction_1)
-    auction.bids.count.should > 0
-    archive_auction = ArchivalAuction.from_auction(auction)
-    archive_auction.save.should be_true
-    archive_auction.archival_bids.count.should == auction.bids.count
+    if auction.auction_end < Time.now() or auction.bids.not_cancelled.count == 0
+      raise "Źle przygotowana aukcja testowa"
+    end
+    
+    auction.destroy.should == false
+  end
+
+  it "should move auction to archival auction when having no bids" do
+    auction = auctions(:auction_1)
+    auction.bids.each do |b|
+      b.destroy
+    end
+    auction.destroy.should_not==false
   end
 
 end

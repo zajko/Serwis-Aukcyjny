@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322170300) do
+ActiveRecord::Schema.define(:version => 20100419080901) do
 
   create_table "archival_auctions", :force => true do |t|
     t.integer  "archival_auction_owner_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20100322170300) do
   end
 
   create_table "archival_bids", :force => true do |t|
+    t.integer  "archival_auction_id"
     t.integer  "archival_biddable_id"
     t.string   "archival_biddable_type"
     t.integer  "archival_bid_owner_id"

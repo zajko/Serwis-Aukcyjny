@@ -1,8 +1,6 @@
 module Searchable
    def prepare_search_scopes(params = {})
-    #Kernel.const_get(product_type.classify).new(params[product_type.to_s])
-    
-    scope = self.scoped({})#search(:all)#Auction.search(:auctionable_type => params[:product_type].classify, :activated => true)
+    scope = self.scoped({})
  
     if (scope == nil || scope.count == 0)
       return nil
@@ -32,7 +30,7 @@ module Searchable
 
     scope = scope.order_scope( params[:order_by] ) if params[:order_by] && self.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
     if scope.respond_to?(:order_auction_scope) then
-      scope = scope.order_auction_scope ( params[:order_by] ) if params[:order_by] && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
+      scope = scope.order_auction_scope ( params[:order_by] ) if params[:order_by] && Auction.all.first != nil && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
     end
     return scope
   end

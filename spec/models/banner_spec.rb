@@ -5,7 +5,38 @@ describe Banner do
 
   it { should allow_value("http://www.o2.pl").for(:url) }
   it { should_not allow_value("mielonka mielonka mielonka").for(:url) }
+  it { should allow_value(5).for(:pagerank)}
+  it { should allow_value(0).for(:pagerank)}
+  it { should_not allow_value(-1).for(:pagerank)}
+  it { should_not allow_value(11).for(:pagerank)}
+  it { should_not allow_value("a").for(:pagerank)}
+
+  it { should allow_value(0).for(:users_daily)}
+  it { should allow_value(1000).for(:users_daily)}
+  it { should_not allow_value(-40).for(:users_daily)}
+  it { should_not allow_value("SS").for(:users_daily)}
   
+  it { should allow_value(100).for(:width)}
+  it { should allow_value(100).for(:height)}
+  
+  it { should_not allow_value(0).for(:width)}
+  it { should_not allow_value(0).for(:height)}
+  it { should_not allow_value("a").for(:width)}
+  it { should_not allow_value("a").for(:height)}
+
+  it { should allow_value(100).for(:x_pos)}
+  it { should allow_value(100).for(:y_pos)}
+
+  it { should_not allow_value(0).for(:x_pos)}
+  it { should_not allow_value(0).for(:y_pos)}
+  it { should_not allow_value("a").for(:x_pos)}
+  it { should_not allow_value("a").for(:y_pos)}
+  
+  context "#ssociations" do
+    it { should have_one(:auction) }
+    
+  end
+
   it "shouldn`t allow pagerank change" do
     b = banners(:banner_1)
     b.pagerank = b.pagerank+1
