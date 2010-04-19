@@ -143,6 +143,11 @@
             .search table{
                   
             }
+            .search table td select{
+                width:180px;
+                height:29px;
+                padding:2px;
+            }
                     .search table td.auction_type{
                         color: #333333;
                         font-weight:bold;
@@ -165,7 +170,8 @@
                         width:136px;
                     }
                     .search td.bottom_simple_box input{
-                        width:136px;
+                        width:100px;
+                        height:29px;
                     }
         .input{
             height:17px;

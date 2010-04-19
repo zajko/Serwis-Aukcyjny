@@ -1,16 +1,21 @@
 <% content_for :search_box do %>
         <div class="search">
-           <% form_for :search, {:controller => 'products', :action => 'simple_search'} do |f|%>
+           <% form_tag(search_path, :method => "get") do %>
           <table>
             <tr>
-              <td style="width:280px;">
+              <td style="width:265px;">
                   Typ reklamy:
-<% @options = {:SiteLink => 'Link' , :Banner => 'Banner', :PopUp => 'Pop up', :SponsoredArticle =>'Artykuł sponsorowany'} %>
+<% @options = {:Link => 'SiteLink' , :Banner => 'Banner', :PopUp => 'PopUp', :Artykuł =>'SponsoredArticle'} %>
 <%= select_tag(:product_type, options_for_select(@options)) %>
               </td>
-              <td style="width:340px;">
-                   Kategoria:
-                  <input type="text" value="Szukana kategoria" style="width:230px;" />
+              <td style="width:60px; height:20px;">Kategoria: </td><td style="width:315px;">
+                  
+                       <select id="cat" name="cat">
+                         <% for category in Category.all %>
+                                <option value="<%= category.id.to_s %>"><%=category.name%></option>
+                         <%end%>
+                       </select>
+
               </td>
               <td  class="bottom_simple_box" align="right">
                   <%= submit_tag "Szukaj" %>
