@@ -1,7 +1,5 @@
 
-*{
-        margin:0px;
-        padding:0px;
+    *{margin:0px; padding:0px;
     }
     img{border:0px}
     img.ui-datepicker-trigger{margin-left:5px;}
@@ -257,7 +255,7 @@
                 line-height:40px;
                 height:40px;
                 padding:0 20px;
-                background-image:url(/images/podkreslnik.jpg);
+                /*background-image:url(/images/podkreslnik.jpg);*/
                 background-position:top center;
                 background-repeat:no-repeat;
 

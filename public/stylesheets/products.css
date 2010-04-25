@@ -1,8 +1,49 @@
-div.product_category{
-    display:inline-block;
-    margin-right: 10px;
-    width:150px;
+    #Progresbar{
+
+        width:785px;
+        border-collapse:collapse;
+        background-color:gray;
+        margin-bottom:8px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
     }
+    #Progresbar td{
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        font-size:14px;
+        text-align:center;
+        font-weight:bold;
+        color:#ffffff;
+        padding:8px;
+        width:100px;
+        text-shadow: 2px 2px 1px #999966;
+    }
+
+
+#TabProduct{
+    margin-left:10px;
+    font-weight:normal;
+
+
+}
+
+#TabProduct .boldColl{
+    width:200px;
+
+}
+#TabProduct td{
+    padding:5px;
+    vertical-align:top;
+}
+
+.buying_way{
+    border: 1px solid #cccccc;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:5px;
+    height:100px;
+}
+
 
 h2{
     padding-bottom: 10px;
@@ -13,9 +54,9 @@ h2.last{
     padding-top:0px;
 }
 
-li {
+.auctionTypes li {
     list-style-type:none;
-    line-height:40px;
+    line-height:30px;
 }
 .auctionTypes li a{
     color:black;
@@ -31,23 +72,18 @@ li {
     color:#A1D636;
     text-decoration:underline;
 }
-#TabProduct{
-    margin-left:10px;
-    font-weight:normal;
-    
-    
-}
 
-#TabProduct .boldColl{
-    width:200px;
-    
-}
-#TabProduct td{
-    padding:10px;
-    vertical-align:top;
-}
 
-.inputCena{
+
+
+div.product_category{
+    display:inline-block;
+    margin-right: 10px;
+    width:150px;
+    }
+
+
+    .inputCena{
         width:60px;
     }
 
@@ -60,30 +96,7 @@ li {
     }
 
 
-
-    #Progresbar{
-       
-        width:785px;
-        border-collapse:collapse;
-        background-color:gray;
-        margin-bottom:30px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-         
-        
-    }
-    #Progresbar td{
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        font-size:14px;
-        text-align:center;
-        font-weight:bold;
-        color:#ffffff;
-        padding:8px;
-        width:100px;
-        text-shadow: 2px 2px 1px #999966;
-    }
- 
+ /*
 #TabListaAukcji{
     border: 1px dotted gray;
     width:785px;
@@ -103,4 +116,4 @@ li {
         line-height:30px;
     }
 
-
+*/

@@ -9,10 +9,9 @@
 <%= select_tag(:product_type, options_for_select(@options)) %>
               </td>
               <td style="width:60px; height:20px;">Kategoria: </td><td style="width:315px;">
-                  
                        <select id="search_categories" name="search[categories_attributes]">
                          <% for category in Category.all %>
-                                <option value="<%= category.id.to_s %>"><%=category.name%></option>
+                         <option value="<%= category.id.to_s %>" ><%=category.name%></option>
                          <%end%>
                        </select>
 
