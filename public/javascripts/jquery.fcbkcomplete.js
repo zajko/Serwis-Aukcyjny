@@ -105,7 +105,7 @@ jQuery(function($){
             function preSet(){
                 element.children("option").each(function(i, option){
                     option = $(option);
-                    if (option.hasClass("selected") || option.is(':selected')) {
+                    if (option.hasClass("selected") /*|| option.is(':selected')*/) {
                         addItem(option.text(), option.val(), true, option.hasClass("locked"));
                         option.attr("selected", "selected");
                     }

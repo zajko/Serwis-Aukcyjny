@@ -11,6 +11,7 @@
     <%= form.error_messages  :header_message => "Please Try Again!", :message => "We had some problems starting the game:" %>
 <h2> Dane produktu:</h2>
                   <%= render :partial => "form_#{@controller.product_type.classify}", :locals => {:form => form}%>
+<br />
 <h2> Dane aukcji:</h2>
                   <% form.fields_for :auction do |auction_form| %>
                           <%= auction_form.error_messages %>
