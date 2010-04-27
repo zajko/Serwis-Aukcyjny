@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+
+sport:
+  name:                      sport
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+filmy:
+  name:                      filmy
+  created_at:                <%= 1.days.ago.to_s :db %>
+
+
+
+ 

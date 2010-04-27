@@ -25,7 +25,7 @@ class RolesController < ApplicationController
       flash[:notice] = "Użytkownik #{@user.login} już ma rolę #{@role.name}"
   else
     @user.has_role!(@role.name)
-    
+
 #    # kod kuby
 #    if(!@user.has_role!(@role.name))
 #      flash[:notice] = "Dodano rolę"
@@ -34,14 +34,15 @@ class RolesController < ApplicationController
 #      return
 #    end
 #    # koniec kod kuby
-      
+
 #      @ru = RolesUser.new
 #      @ru.user = @user
 #      @ru.role = @role
 #      @ru.save
+flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
     end
     redirect_to :action => "manage", :user_id =>params[:user_id]
-    flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
+#    flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
   end
   
   def remove_role_from_user   
@@ -56,9 +57,10 @@ class RolesController < ApplicationController
 #        render :action => "manage", :user_id =>params[:user_id]
 #        return
 #      end
+flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
           end
     redirect_to :action => "manage", :user_id =>params[:user_id]
-    flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
+    
   end
   
   

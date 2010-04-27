@@ -24,9 +24,7 @@ class ArticlesController < ApplicationController
   
   def new
     @article = Article.new
-    3.times {
-      @article.attachments.build
-    }
+
   end
   
   def create
@@ -34,7 +32,6 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     current_user.has_role!(:owner, @article)
     
-    process_file_uploads(@article)
     if @article.save
       flash[:notice] = "Artykuł został dodany"
       #redirect_to @article

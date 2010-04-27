@@ -31,9 +31,10 @@ class CategoriesController < ApplicationController
   end
   
   def delete
-    @category = Category.new(params[:id])
-    name = @category.name
+    @category = Category.find(params[:id])
+
     if(@category.destroy)
+
       flash[:notice] = "Kategoria została usunięta"
       redirect_to :action => "index"
     else
