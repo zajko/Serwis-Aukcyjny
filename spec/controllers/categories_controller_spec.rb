@@ -50,7 +50,7 @@ describe CategoriesController, "regular user login" do
 end
 
 describe CategoriesController, "admin login" do
-  fixtures :users, :roles, :categories
+  fixtures :users, :roles
 
   before(:each) do
     activate_authlogic
@@ -93,21 +93,15 @@ describe CategoriesController, "admin login" do
     Category.should_receive(:find).and_return(@category)
     post :delete, :id => @category.id
     flash[:notice].should == "Kategoria została usunięta"
-    response.should redirect_to('index')
+    response.should redirect_to('categories')
   end
 
-#  it "should go to delete and delete success" do
-#    @category = categories(:sport)
-#    post :delete, :id=>@category.id
-#    flash[:notice].should == "Kategoria została usunięta"
-#    response.should redirect_to('index')
-#  end
 
   it "should go to delete and delete fail" do
     Category.stub!(:find).and_return(@category = mock_model(Category, :destroy=>false))
     Category.should_receive(:find).and_return(@category)
     post :delete, :id=>@category.id
     flash[:notice].should == "Kategoria NIE została usunięta"
-    response.should redirect_to('new')
+    response.should be_success
   end
 end
