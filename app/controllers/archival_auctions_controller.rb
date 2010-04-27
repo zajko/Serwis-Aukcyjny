@@ -9,7 +9,7 @@ class ArchivalAuctionsController < ApplicationController
     search = params[:search] || {}
     #search.merge!({:product_type => product_type})
     
-    @scope = ArchivalAuction.prepare_search_scopes(params[:search])#Auction.prepare_search_scopes(search)
+    @scope = ArchivalAuction.prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
   
   def index       

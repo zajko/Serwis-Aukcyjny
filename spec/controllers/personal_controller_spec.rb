@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+require "authlogic/test_case"
 describe PersonalController do
   fixtures :users, :roles
   #Delete this example and add some real ones

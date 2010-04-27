@@ -29,14 +29,14 @@ describe PasswordResetsController, "user not login" do
   end
 
    it "should go to update, set new password" do
-    User.stub!(:find_using_perishable_token).and_return(@user = mock_model(User, :save=>true))
+    User.stub!(:find_using_perishable_token).and_return(@user = mock_model(User, :save=>true, :password= =>true, :password_confirmation= =>true))
     put :update, :user=>{:password=>'nowe', :password_confirmation=>'nowe'}
     flash[:notice].should == "Hasło zostało zaktualizowane"
     response.should redirect_to(root_url)
   end
 
   it "should go to update, set new password failed" do
-    User.stub!(:find_using_perishable_token).and_return(@user = mock_model(User, :save=>false))
+    User.stub!(:find_using_perishable_token).and_return(@user = mock_model(User, :save=>false, :password= =>true, :password_confirmation= =>true))
     put :update, :user=>{:password=>'nowe', :password_confirmation=>'nowe'}
     flash[:notice].should == "Wystąpił błąd przy aktualizacji hasła"
     response.should be_success

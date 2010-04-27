@@ -52,10 +52,10 @@ describe PaymentPoliticsController, "user not login" do
   end
 
   it "should go to destroy" do
-    PaymentPolitic.stub!(:find).and_return(@paymentPolitic = mock_model(PaymentPolitic))
+    PaymentPolitic.stub!(:find).and_return(@paymentPolitic = mock_model(PaymentPolitic, :destroy=>true))
     delete :destroy, :id=>@paymentPolitic.id
     flash[:notice].should == "Successfully destroyed payment politic."
-    response.should redirect_to(payment_politics_ur)
+    response.should redirect_to(payment_politics_url)
   end
 end
 
