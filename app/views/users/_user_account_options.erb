@@ -6,10 +6,11 @@
 <% content_for :optional_menus do %>
 
                         <div id="leftMenu">
-                           <p class="naglowek">Opcje konta</p>
+                           <p class="naglowek">Moje konto</p>
                            <ul>
+                                <li><%= link_to 'Saldo', "/personal/saldo" %></li>
                                <li><%= link_to 'Edycja  danych', edit_account_path %></li>
-                               <li><%= link_to "Statystyki konta", account_path  %> </li>
+                               <li><%= link_to "Statystyki", account_path  %> </li>
                            </ul>
                         </div>
 <% end %>  

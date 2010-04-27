@@ -2,12 +2,13 @@
 <% content_for :optional_menus do %>
 
                         <div id="leftMenu">
-                           <p class="naglowek">Zarządzaj</p>
+                           <p class="naglowek">Moje aukcje</p>
                            <ul>
-                               <li><%= link_to "Dodaj aukcję", "/products/wizard_product_type" %></li>
+                               <!--<li><%= link_to "Dodaj aukcję", "/products/wizard_product_type" %></li>-->
                                <li><%= link_to "Założone aukcje", "/personal/index" %></li>
                                <li><%= link_to "Licytowane aukcje", "/personal_bids" %></li>
-                               <li><%= link_to "Saldo", "/personal/saldo" %></li>
+                               <li><%= link_to "Śledzone aukcje", "/personal/observed" %></li>
+                               <!--<li><%= link_to "Saldo", "/personal/saldo" %></li>-->
                            </ul>
                         </div>
 <% end %>

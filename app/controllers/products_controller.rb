@@ -128,9 +128,11 @@ class ProductsController < ApplicationController
     
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
-
+ 
   def index
+    
     prepare_search
+    @search_categories=params[:search_categories]
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
 

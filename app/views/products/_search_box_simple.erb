@@ -5,16 +5,21 @@
             <tr>
               <td style="width:265px;">
                   Typ reklamy:
-<% @options = {:Link => 'SiteLink' , :Banner => 'Banner', :PopUp => 'PopUp', :Artykuł =>'SponsoredArticle'} %>
-<%= select_tag(:product_type, options_for_select(@options)) %>
+                  <%
+                  if(@controller.controller_name=="products")
+                        @selected=@controller.product_type
+                  else 
+                        @selected=nil
+                  end
+                  if (@search_categories==nil)
+                      @search_categories = Array.new;
+                  end
+                 
+                  %>
+                  <%= select_tag(:product_type,options_for_select([['Link',"site_link"],['Banner', "banner"],['Artykuł sponsorowany',"sponsored_article"],["Pop up","pop_up"]],@selected)) %>
               </td>
               <td style="width:60px; height:20px;">Kategoria: </td><td style="width:315px;">
-                       <select id="search_categories" name="search[categories_attributes]">
-                         <% for category in Category.all %>
-                         <option value="<%= category.id.to_s %>" ><%=category.name%></option>
-                         <%end%>
-                       </select>
-
+                <%= select_tag(:search_categories, options_for_select(Category.all.collect{ |p| [p.name, p.id] }, @search_categories.map{|a| a.to_i}), :multiple=>true) %>
               </td>
               <td  class="bottom_simple_box" align="right">
                   <%= submit_tag "Szukaj" %>

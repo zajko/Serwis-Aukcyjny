@@ -1,37 +1,27 @@
-<table>
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "products/product_options" %> 
+<h1>Śledzone aukcje</h1>
+<table id="TabFullSize">
 	<tr>
-		<td>
-			Show
-		</td>
-		<td>
-			End
-		</td>
-		<td>
-			Current price
-		</td>
+           <td class="header">Nr aukcji</td>
+            <td class="header">Typ reklamy</td>
+            <td class="header">Pagerank</td>
+            <td class="header">Użytkownicy dziennie</td>
+            <td class="header">Zakończenie</td>
+            <td class="header">Ostatnia oferta</td>
+            <td class="header">Pokaż</td>
+		
 	</tr>
 	<% @auctions.each do |auction|%>
 	<tr>
-		
-		<td>
-			<%=link_to "Show", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%>
-		</td>
-		<td>
-			<%if !auction.auctionable%>
-			<%= auction.auctionable_type%>   <%= auction.auctionable_id%>
-			<%end%>
-			<% if auction.auctionable and auction.auctionable.attributes.has_key?("url") %>
-				<%= auction.auctionable.url %>
-			<%else%>
-				---
-			<%end%>
-		</td>
-		<td>
-			<%=auction.auction_end%>
-		</td>
-		<td>
-			<%=auction.current_price%>
-		</td>
+          
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+		<td><%=auction.auction_end.strftime("%d-%m-%Y godz.%H:%m")%></td>
+		<td><%=auction.current_price%></td>
+                <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
 	</tr>
 	<% end %>
 </table>
