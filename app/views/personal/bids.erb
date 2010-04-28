@@ -1,0 +1,10 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "personal/menu_personal" %>
+
+<h1>Licytowane aukcje </h1>
+
+<% if @auctions.count.to_int>0 %>
+  <%= render :partial => "bids_full" %>
+<% else %>
+  <%= render :partial => "bids_empty" %>
+<% end %>

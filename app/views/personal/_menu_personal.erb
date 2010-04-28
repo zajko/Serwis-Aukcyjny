@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "products" %>
+<% content_for :optional_menus do %>
+
+                        <div id="leftMenu">
+                           <p class="naglowek">Moje aukcje</p>
+                           <ul>
+                               <li><%= link_to "Założone aukcje", "/personal/created_auctions" %></li>
+                               <li><%= link_to "Licytowane aukcje", "/personal/bids" %></li>
+                               <li><%= link_to "Śledzone aukcje", "/personal/observed" %></li>
+                           </ul>
+                        </div>
+<% end %>

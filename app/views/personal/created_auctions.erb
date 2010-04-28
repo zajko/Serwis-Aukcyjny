@@ -1,0 +1,9 @@
+<%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "personal/menu_personal" %>
+<h1> Założone aukcje</h1>
+
+<% if @auctions.count.to_int>0 %>
+  <%= render :partial => "created_auctions_full" %>
+<% else %>
+  <%= render :partial => "created_auctions_empty" %>
+<% end %>

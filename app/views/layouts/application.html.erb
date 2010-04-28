@@ -36,12 +36,7 @@
                     <a href="index.html" class="logo"><img src="/images/logo.jpg" alt="setalpm" width="149" height="28" /></a>
                     <span class="slogan">Twoje aukcje reklamowe</span>
                     <ul id="menu">
-                            <li><li><%= link_to "Strona główna", "/articles"  %> </li>
-                            <li><%= link_to "Moje aukcje", "/personal/index" %> </li>
-                            <li><%= link_to "Dodaj aukcję", "/products/wizard_product_type" %> </li>
-                            <li><%= link_to "Ustawienia konta", account_path  %> </li>
-                            <li><%= link_to "Pomoc", "/help"  %></li>
-                            
+                          <%= render :partial => "/layouts/menu" %>
                     </ul>
             </div>
             <div id="content">
