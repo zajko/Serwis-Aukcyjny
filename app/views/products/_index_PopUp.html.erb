@@ -22,7 +22,10 @@
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
                 <td>(<%= product.width%>, <%= product.height%>)</td>
-                <td><%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+                <td>  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
+                  <% else %><img src="images/auction.png" />
+                  <%end%>
+                  <%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
         </tr>

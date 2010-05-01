@@ -24,7 +24,10 @@ Brak aukcji tego typu
                 <td><%=product.users_daily%></td>
                 <td><%= product.words_number%></td>
                 <td><%= product.number_of_links%></td>
-                <td><%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+                <td>  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
+                  <% else %><img src="images/auction.png" />
+                  <%end%>
+                  <%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
         </tr>

@@ -1,23 +1,28 @@
   <%= f.error_messages %>
-  <p>
-    <%= f.label :obowiązuje_od %><br />
-    <%= f.datetime_select :from %>
-  </p><br />
-  <p>
-    <%= f.label :obowiązuje_do %><br />
-    <%= f.datetime_select :to %>
-  </p><br />
-  <p>
-    <%= f.label :podstawa_zapłaty %><br />
-    <%= f.text_field :base_payment %>
-  </p><br />
-  <p>
-    <%= f.label :górna_granica %><br />
-    <%= f.text_field :upper_boundary %>
-  </p><br />
-  <p>
-    <%= f.label :procent %><br />
-    <%= f.text_field :percentage %>
-  </p><br />
+
+<table id="TabFormContainer">
+  <tr>
+    <td width="150px;"><%= f.label :obowiązuje_od %>:</td>
+    <td><%= f.text_field :from, :id=>"datepicker_from",:size=>7 %></td>
+  </tr>
+  <tr>
+     <td ><%= f.label :obowiązuje_do %>:</td>
+     <td><%= f.text_field :to, :id=>"datepicker_to",:size=>7  %></td>
+  </tr>
+  <tr>
+    <td> <%= f.label :podstawa_zapłaty %>:<br /></td>
+    <td><%= f.text_field :base_payment,:size=>7 %> zł</td>
+  </tr>
+  <tr>
+    <td><%= f.label :górna_granica %>:</td>
+    <td><%= f.text_field :upper_boundary,:size=>7 %> zł</td>
+  </tr>
+  <tr>
+    <td><%= f.label :procent %>:</td>
+    <td><%= f.text_field :percentage,:size=>7 %> %</td>
+  </tr>
+</table>
+
+<br /><br />
   <p><%= f.submit "Dodaj" %></p>
 

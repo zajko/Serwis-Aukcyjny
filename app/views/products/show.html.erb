@@ -1,13 +1,13 @@
 <%= render :partial=> "products/search_box_simple" %>
 <%= stylesheet_link_tag "products" %>
-<% render :partial => "product_options" %>
+<% render :partial => "/personal/menu_personal" %>
 <h1>Szczegóły aukcji </h1>
 
 <div class="boxcondainer">
       <% if current_user%>
             <div class="box" style=" width:280px; float:right;">
-                 <%= render :partial => "products/show_observebuttonbox" %>
                   <% if @product.auction and current_user != @product.auction.user%>
+                          <%= render :partial => "products/show_observebuttonbox" %>
                           <%= render :partial => "products/show_bidbox" %>
                   <% end %>
                   <% if @product.auction.buy_now_price == 0 %>

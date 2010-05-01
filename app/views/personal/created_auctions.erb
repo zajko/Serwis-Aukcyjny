@@ -1,5 +1,9 @@
 <%= render :partial=> "products/search_box_simple" %>
-<%= render :partial => "personal/menu_personal" %>
+<% if @user_id==current_user.id || @user_id==nil%>
+    <%= render :partial => "personal/menu_personal" %>
+<% else %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<% end %>
 <h1> Założone aukcje</h1>
 
 <% if @auctions.count.to_int>0 %>

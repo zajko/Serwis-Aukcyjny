@@ -1,14 +1,14 @@
-<%= render :partial => "payment_politics/payment_politics_options" %>
 <%= render :partial=> "products/search_box_simple" %>
+<%= render :partial => "payment_politics/menu" %>
 <h1>Zarządzanie politykami</h1>
 
 <table id="TabFullSize">
   <tr>
-    <td class="header">From</td>
-    <td class="header">To</td>
-    <td class="header">Base Payment</td>
-    <td class="header">Upper Boundary</td>
-    <td class="header">Percentage</td>
+    <td class="header">Obowiązuje od</td>
+    <td class="header">Obowiązuje do</td>
+    <td class="header">Podstawowa opłata</td>
+    <td class="header">Górna granica</td>
+    <td class="header">Procent</td>
   </tr>
   <% for payment_politic in @payment_politics %>
     <tr>

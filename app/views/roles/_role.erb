@@ -1,0 +1,14 @@
+  <% if (r.authorizable_type=="Auction") %> Aukcja
+                      <%@a=Auction.find_by_auctionable_id r.authorizable_id %>
+                      <%  if @a!=nil %>
+                            nr <%= @a.id %>
+                          (<%=link_to "Pokaż", :controller => "products", :action => "show",:id => @a.id, :product_type=>@a.auctionable_type %>)
+                      <%end%>
+                  <%  elsif (r.authorizable_type=="User") %> Konto użytkownika
+                  <% @u=User.find(r.authorizable_id) %>
+                  <% if(@u!=nil) %>
+                      <i><%=@u.login%></i>
+                      (<%= link_to "Pokaż", {:action => "show",:controller=>"users", :id => @u.id } %>)
+                  <% end %>
+                  <% else %> <%=  r.authorizable_type %>
+                  <%  end %>

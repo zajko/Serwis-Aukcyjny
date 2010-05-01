@@ -1,4 +1,12 @@
-
+.delete{
+display: block;
+width: 7px; height: 7px; font-size: 1px;
+/*background-image: url(delete.png);*/
+}
+.delete:hover{
+    image: url(delete.png);
+     
+}
     *{margin:0px; padding:0px;
     }
     img{border:0px}
@@ -389,7 +397,7 @@
             padding-top:3px;
             padding-bottom:3px;
         }
-
+        
             #TabFormContainer td.label{
                 padding-right:30px;
             }
@@ -404,6 +412,14 @@
                  font-weight:bold;
                  padding-right: 30px;
             }
+            
+    #Tab {
+        border: 1px dotted gray;
+        border-collapse:collapse;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
     #TabFullSize {
         border: 1px dotted gray;
         width:100%;
@@ -411,12 +427,12 @@
         -moz-border-radius: 5px;
         border-radius: 5px;
     }
-        #TabFullSize td{
+        #Tab td, #TabFullSize td{
             border: 1px dotted gray;
             padding:5px;
         }
 
-        #TabFullSize td.header{
+        #Tab td.header, #TabFullSize td.header{
             font-weight:bold;
             line-height:30px;
         }

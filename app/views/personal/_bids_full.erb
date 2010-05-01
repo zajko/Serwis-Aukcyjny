@@ -16,9 +16,9 @@
             <td></td>
             <td><%=  auction.current_price %></td>
             <% if auction.offered_price.to_f > auction.current_price.to_f  %>
-                <td  style="background:#f2ffd9"><b><%= auction.offered_price %></b></td>
+                <td  style="background:#7ed464"><b><%= auction.offered_price %></b></td>
             <% else %>
-                <td  style="background:#7ed464"><b><%= auction.offered_price %></b> </td>
+                <td  style="background:#fd3232"><b><%= auction.offered_price %></b> </td>
             <% end %>
             <td><%=link_to "Pokaż aukcję", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
       </tr>

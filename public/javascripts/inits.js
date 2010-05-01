@@ -22,5 +22,6 @@
             cache: true});
 
           setWizardCheckboxes();
-
+          $("#delete").hover(function(){alert("x");});
+          /*$("delete").hover(function(){$(this).fadeOut(100);$(this).fadeIn(500);});*/
         });

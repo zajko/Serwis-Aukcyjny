@@ -2,42 +2,25 @@
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
 <h1> Zarządzanie rolami użytkownika: <b style="color:#92DF01"> <%= @user.login%></b></h1>
 
+<center>
+  [<%= link_to "Wróć do listy użytkowników", :action=>"index", :controller=>"users" %>]
+</center><br /><br />
 <% form_for @user, :url => "updateRoles" do |user_form| %>
 <%= user_form.error_messages %>
+<table width="100%">
+  <tr>
+    <td valign="top"><%= render :partial=>"roles/manage_user_roles" %></td>
+    <td>&nbsp;&nbsp;</td>
+    <td valign="top"><%= render :partial=>"roles/manage_other_roles" %></td>
 
-<div class="boxcontainer">
-      <div class="box" style="float:left">
-        <h2> Usuwanie ról </h2><br />
-              <div style="width:200px ">
-              	<%@roles.each do |r|%>
-				<% if @user.roles.include? r %>
-		  			<%= label :name, r.name %>
-					<%= link_to :Remove, :action => "remove_role_from_user", :user_id => params[:user_id], :role_id => r.id%>
-					<br />
-				<% end%>
-				<%end%>
-            </div>
-      </div>
+  </tr>
+</table>
 
-      <div class="box" style="float:right">
-        <h2>Dodawanie ról</h2><br />
-        <div style="width:200px ">
-        <%@roles.each do |r|%>
-			<% unless @user.roles.include? r %>
-			  	<%= label :name, r.name %>
-				<%= link_to :Add, :action => "add_role_to_user", :user_id => params[:user_id], :role_id => r.id%>
-				<br />
-			<% end%>
-		<%end%>
-		</div>
+
+
+    
 	<%= user_form.hidden_field :id, :value => @user.id %>
 <%end%>
 
-
-
-      </div>
-
-
-</div>
 
 <!--< collection_select :user, :role_ids, @roles, :id, :name, { :selected => @user.role_ids }, { :multiple => true, :name => 'user[role_ids][]' } -%> -->
