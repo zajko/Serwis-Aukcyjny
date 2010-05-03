@@ -4,7 +4,7 @@ class Auction < ActiveRecord::Base
   has_and_belongs_to_many :observees, :class_name =>"User", :autosave => true#, :readonly => true
   has_one :charge, :as => :chargeable
   acts_as_authorization_object
-  has_many :bids, :dependent => :destroy
+  has_many :bids#, :dependent => :destroy
   belongs_to :user, :class_name => 'User', :foreign_key => "user_id" 
   belongs_to :auctionable, :polymorphic => true, :dependent => :destroy
   named_scope :active, :conditions => { :activated => true}
@@ -62,6 +62,14 @@ class Auction < ActiveRecord::Base
     return true
   end
   acts_as_authorization_object
+
+  def notify_about_auction_prize_change!
+      observees.each do |observee|
+        #TODO zastanowic sie jak to rozwiazac, to bedzie zajmowalo DUZO czasu
+      end
+      overbidded_user = bids.not_cancelled.by_offered_price.second if bids.not_cancelled.count > 1
+      Notifier.deliver_auction_bids_change_notification_to_overbidded_user(self, overbidded_user)
+  end
   
   def check_before_update
     if new_record? || id == nil
@@ -242,6 +250,34 @@ class Auction < ActiveRecord::Base
 
   def deliver_auction_activation_instructions!
     Notifier.deliver_auction_activation_instructions(self)
+  end
+
+  def notify_auction_owner!(winningBids, charge)
+    Notifier.deliver_auction_end_notification(self, winningBids, charge)
+  end
+
+  def notify_auction_winners!
+    if bids.not_cancelled.count == 0
+      return
+    end
+    
+    first = bids.not_cancelled.by_offered_price.first 
+    if first == nil
+      raise "BŁĄD ! skoro model.bids.not_cancelled.count > 0 to jakim cudem first == nil ?"
+    end
+    price = 0;
+    w = winningBids.each do |b|
+      if(first.id == b.id)
+        b.offered_price = current_price
+      end
+        deliver_auction_win_notification(b.user, b.offered_price)
+        price += b.offered_price
+    end
+    notify_auction_owner!(w, price)
+  end
+
+  def deliver_auction_win_notification(user, price)
+    Notifier.deliver_auction_win_notification(self, user, price)
   end
 
   def activate

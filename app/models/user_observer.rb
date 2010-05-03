@@ -22,6 +22,9 @@ class UserObserver < ActiveRecord::Observer
       #    archival.destroy
       #  end
       #else
+      model.roles.each do |r|
+        r.destroy if r.authorizable_id != nil
+      end
       if( (archival = ArchivalUser.id_equals(model.id).first) == nil)
         raise "Błąd przy wykonywaniu before_destroy, użytkownik archiwalny nie został utworzony."
       end

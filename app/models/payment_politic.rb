@@ -3,22 +3,24 @@ class PaymentPolitic < ActiveRecord::Base
   validate :upper_boundary_validation
       #t.decimal :upper_boundary, :precision => 14, :scale => 4, :null => false, :default => 0
      # t.decimal :percentage, :precision => 5, :scale => 5
-  validates_numericality_of :percentage, :greater_than_or_equal_to => 0, :message => "Oprocentowanie opłaty musi być większa niż 0zł"
+  validates_numericality_of :percentage, :greater_than_or_equal_to => 0, :message => "Oprocentowanie opłaty musi być większe lub równe niż 0"
+  validates_numericality_of :percentage, :less_than_or_equal_to => 99, :message => "Najwyższe oprocentowanie to 99% - sory"
+  validates_numericality_of :upper_boundary, :greater_than_or_equal_to => 0, :message => "Górna granica nie może być liczbą ujemną"
   validate :correctness_of_dates
   validate :no_colliding_politics
   def no_colliding_politics
-    #errors.add(:s, "Polityki nie mogą się pokrywać") if PaymentPolitic.colliding(from, to).count > 0
+    #errors.add("Polityki nie mogą się pokrywać") if PaymentPolitic.colliding(from, to).count > 0
   end
   def correctness_of_dates
-    if(from == nil)
-      if(to == nil)
-        return true
-      end
+    
+    if(from == nil and to == nil)
+        
     else
-      errors.add(:s, "Wartości od i do muszą być albo oba nullami albo muszą być oba zadeklarowane") if from == nil and to != nil or from != nil and to == nil
-      return false
+      errors.add("Wartości od i do muszą być albo oba nullami albo muszą być oba zadeklarowane") if from == nil and to != nil or from != nil and to == nil
     end
-    errors.add(:s, "Początek musi być przed końcem") if to - from < 1.day
+    
+    errors.add("Początek musi być przed końcem")  if (to < from) or (from == to and to == nil)
+    return errors.count == 0
   end
   def upper_boundary_validation
     if(upper_boundary == nil || upper_boundary.blank?)

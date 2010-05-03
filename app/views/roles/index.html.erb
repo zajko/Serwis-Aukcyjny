@@ -18,7 +18,7 @@
                    nie
                    <%  end %>
             </td>
-			<td><%=link_to "X", {:action=> "delete", :id => role.id}%></td>
+			<td><%=link_to "X", {:action=> "remove_role_from_user", :user_id => current_user.id, :role_id => role.id}, :confirm => "Czy na pewno chcesz usunąć tą rolę ?"%></td>
 		</tr>
 	<% end  %>
 </table>

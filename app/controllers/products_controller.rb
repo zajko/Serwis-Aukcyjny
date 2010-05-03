@@ -4,17 +4,17 @@ include ProductsHelper
 class ProductsController < ApplicationController
   #observer :bid_observer
   #TODO ustal polityke dostepu
-  before_filter :load_auction, :only => [:observe,:edit, :update, :destroy, :cancell_bid]
+  before_filter :load_auction, :only => [:unobserve,:observe,:edit, :update, :destroy, :cancell_bid]
   rescue_from Acl9::AccessDenied, :with => :deny_user_access
    access_control do
     allow all, :to => [:activate, :show, :index, :order_by, :advanced_search,:simple_search]
     allow :owner, :of => :auction, :to => [:delete, :edit, :update,:cancell_bid]
-    deny :owner, :of => :auction, :to => [:observe]
+    deny :owner, :of => :auction, :to => [:observe, :unobserve]
     allow :admin, :to => [:delete, :edit, :update, :administer, :cancell_bid]
     allow :superuser, :to => [:delete, :edit, :update, :administer, :cancell_bid]
     deny :banned, :not_activated, :to=> [:new, :create, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,                         :wizard_summary,
                              :show,:new, :create,:bid, :ask_for_bid_cancellation]
-    allow logged_in, :to => [:observe,:delete, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,
+    allow logged_in, :to => [:observe, :unobserve, :delete, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,
                              :wizard_summary, :show,:new, :create,:bid, :ask_for_bid_cancellation,:index_admin]
                            #TODO: index_admin ma być dostępny tylko dla superusera!!!
   end
@@ -308,6 +308,22 @@ class ProductsController < ApplicationController
 
 
   end
+  def unobserve
+    if(params[:id] == nil)
+      raise "Brak numeru produktu"
+      #TODO obsłużyć to z redirectem jak należy
+    end
+    @product = Kernel.const_get(product_type.classify).find(params[:id])
+    @auction = @product.auction
+    @user = current_user
+    if ! @user
+      raise "Brak aktualnego użytkownika"
+      #TODO obsłużyć to z redirectem jak należy
+    end
+    @user.observed.delete(@auction)
+    redirect_to :action => "show", :id => @product.id, :product_type => @product.class.to_s
+  end
+
   def observe
     if(params[:id] == nil)
       raise "Brak numeru produktu"
@@ -323,6 +339,7 @@ class ProductsController < ApplicationController
     @user.observed << @auction
     redirect_to :action => "show", :id => @product.id, :product_type => @product.class.to_s
   end
+
   protected
   def deny_user_access
     @user =current_user

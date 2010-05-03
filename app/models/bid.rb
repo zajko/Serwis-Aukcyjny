@@ -38,7 +38,7 @@ class Bid < ActiveRecord::Base
     errors.add(:s, "Nie można zmienić kwoty, na którą została wystawiona oferta") if @prev_stat.offered_price != offered_price
   end
   def no_two_bids_from_same_user_in_row
-    bids = auction.bids.not_cancelled.by_date
+    bids = auction.bids.not_cancelled.by_offered_price
     if bids.count > 0
       x = (bids.first.id == id or bids.first.user.id != user.id)
       errors.add(:s, "Jesteś osobą, która akutalnie wygrywa. Nie możesz w tej chwili licytować") if !x
@@ -117,6 +117,10 @@ class Bid < ActiveRecord::Base
   end
 
   def offered_price_meets_minimal
+    if !self.new_record?
+      raise "Z jakiegoś powodu baza utraciła wartość oferty o identyfikatorze : #{self.id}" if self.offered_price.nil?
+      return true
+    end
     a = Auction.find(self.auction_id)
     minimal = a.minimal_bid
     if self.offered_price.to_f < a.minimal_bid.to_f

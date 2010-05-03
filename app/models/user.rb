@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :articles , :dependent => :destroy
   has_many :charges, :as => :chargeable
   has_many :payments, :as => :payable
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles#, :dependent => :destroy
   has_and_belongs_to_many :observed, :class_name => "Auction", :autosave => true#, :readonly => true
   has_many :auctions, :dependent => :destroy
   has_and_belongs_to_many :interests
@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   def has_no_role!(role, object=nil)
     if(has_role?(:superuser) and (role.to_s == 'superuser'))
       errors.add("Sorry, uprawnienia superużytkownika nie można odebrać !")
-      nil
+      return nil
     else
       super
     end

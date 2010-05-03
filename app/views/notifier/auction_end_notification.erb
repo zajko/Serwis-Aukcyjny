@@ -1,0 +1,16 @@
+Aukcja o numerze <%= @auction_id %>, której jesteś właścicielem, zakończyła się  .
+
+<%if @winningBids == nil or @winningBids.count == 0%>
+  Aukcja zakończyła się bez nieanulowanych ofert.
+<%else%>
+  Lista zwycięzców aukcji wraz z danymi kontaktowymi :
+
+  <% @winningBids.each do |w| %>
+    w.user.email  w.offered_price
+  <%end%>
+<%end%>
+
+Twoje konto zostało obciążone sumą <%=@charge%> zł za tą aukcję.
+
+Aukcja, której dotyczy ten e-mail zostanie niedługo (lub już została) przeniesiona do archiwum. Oto link do archiwum tej aukcji :
+<%= @archival_auction_url %>

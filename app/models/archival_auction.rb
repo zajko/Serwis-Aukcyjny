@@ -6,7 +6,7 @@ class ArchivalAuction < ActiveRecord::Base
   def self.copy_attributes_between_models(from_model, to_model, options = {})
    return unless from_model && to_model
    except_list = options[:except_list] || []
-   except_list << :id
+   #except_list << :id
    to_model.attributes.each do |attr, val|
       to_model[attr] = from_model[attr] unless !to_model.attributes.has_key?(attr) || except_list.index(attr.to_sym) || (options[:dont_overwrite] and !to_model[attr].blank?)
    end

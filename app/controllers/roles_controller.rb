@@ -11,11 +11,17 @@ class RolesController < ApplicationController
   end
   def manage
     @user = User.find(params[:user_id])
-    @roles = Role.find(:all) do |role|
-      !@user.roles.include?(role) 
-      role.authorizable_type == nil 
-      role.authorizable_id == nil
-    end
+    scope = Role.scoped({})
+    scope = scope.authorizable_id_null.authorizable_type_null
+    @user_roles = @user.roles if @user != nil
+    @user_role |= []
+    @roles = scope.all
+
+      #find(:all) do |role|
+      #!@user.roles.include?(role)
+      #role.authorizable_type == nil
+      #role.authorizable_id == nil
+    #end
   end
   def add_role_to_user
     
@@ -51,14 +57,12 @@ flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
     if(! @user.roles.include?(@role))
       flash[:notice] = "Użytkownik #{@user.login} nie ma roli #{@role.name}"
     else
-      @user.has_no_role!(@role.name)
-#      if(@user.has_role?(@role.name))
-#        @roles = Role.all
-#        render :action => "manage", :user_id =>params[:user_id]
-#        return
-#      end
-flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
-          end
+     if(@user.has_no_role!(@role.name))
+      flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
+     else
+       flash[:notice] = "Operacja nie powiodła się - użytkownikowi najprawdopodobniej nie można odebrać tej roli"
+     end
+    end
     redirect_to :action => "manage", :user_id =>params[:user_id]
     
   end

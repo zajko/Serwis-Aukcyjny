@@ -15,7 +15,7 @@ class PaymentPoliticsController < ApplicationController
     @payment_politic = PaymentPolitic.new(params[:payment_politic])
     if @payment_politic.save
       flash[:notice] = "Successfully created payment politic."
-      redirect_to @payment_politic
+      redirect_to :action => 'index'
     else
       render :action => 'new'
     end
@@ -39,6 +39,6 @@ class PaymentPoliticsController < ApplicationController
     @payment_politic = PaymentPolitic.find(params[:id])
     @payment_politic.destroy
     flash[:notice] = "Successfully destroyed payment politic."
-    redirect_to payment_politics_url
+    redirect_to :action => 'index'
   end
 end
