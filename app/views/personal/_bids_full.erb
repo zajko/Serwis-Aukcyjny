@@ -14,13 +14,13 @@
             <td><%=  auction.auctionable_type %></td>
             <td></td>
             <td></td>
-            <td><%=  auction.current_price %></td>
+            <td><%= '%.2f' % auction.current_price %> zł</td>
             <% if auction.offered_price.to_f > auction.current_price.to_f  %>
-                <td  style="background:#7ed464"><b><%= auction.offered_price %></b></td>
+                <td  style="background:#7ed464"><b><%= '%.2f' % auction.offered_price.round(2) %></b> zł</td>
             <% else %>
-                <td  style="background:#fd3232"><b><%= auction.offered_price %></b> </td>
+                <td  style="background:#fd3232"><b><%= '%.2f' %  auction.offered_price.round(2) %></b> zł</td>
             <% end %>
-            <td><%=link_to "Pokaż aukcję", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
+            <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
       </tr>
       <% end %>
    </table>

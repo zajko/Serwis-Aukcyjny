@@ -5,6 +5,8 @@
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
 <% end %>
 <h1> Założone aukcje</h1>
+<center><b><a href="#">Aktywne</a></b> | <a href="#">Niezaktywowane</a> |<a href="#">Zakończone</a></center>
+<br /><br />
 
 <% if @auctions.count.to_int>0 %>
   <%= render :partial => "created_auctions_full" %>

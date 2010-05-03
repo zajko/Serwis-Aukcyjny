@@ -5,9 +5,9 @@
         <td class="header">Typ reklamy</td>
         <td class="header">Zakończenie</td>
         <td class="header">Aktualna cena</td>
-        <td class="header">Podgląd</td>
         <td class="header">Edytuj</td>
         <td class="header">Usuń</td>
+        <td class="header">Pokaż</td>
     </tr>
     <% @auctions.each do |auction|%>
     <tr>
@@ -24,10 +24,14 @@
         </td>
         <td><%=  auction.auctionable.polish_name%></td>
         <td><%= auction.auction_end.strftime("%d-%m-%Y godz.%H:%m") %></td>
-        <td><%= auction.current_price%></td>
-        <td><%=link_to "Pokaż aukcję", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
+        <td>
+            <%  if (auction.buy_now_price>0) %><img src="/images/dolar.png" />
+            <% else %><img src="/images/auction.png" /><%end%>
+          <%= '%.2f' % auction.current_price.round(2)%> zł
+        </td>
         <td><%=link_to "Edytuj", :controller => "products", :action => "edit",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
-        <td><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id => auction.auctionable_id,  :product_type => auction.auctionable_type, :confirm => "Czy jesteś pewien ?"%></td>
+        <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id => auction.auctionable_id,  :product_type => auction.auctionable_type, :confirm => "Czy jesteś pewien ?"%></center></td>
+        <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
     </tr>
     <% end %>
 </table>
