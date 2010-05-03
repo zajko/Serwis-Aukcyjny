@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100419181713) do
+ActiveRecord::Schema.define(:version => 20100503160251) do
 
   create_table "archival_auctions", :force => true do |t|
     t.integer  "archival_auction_owner_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20100419181713) do
   end
 
   create_table "archival_bids", :force => true do |t|
+    t.integer  "archival_auction_id"
     t.integer  "archival_biddable_id"
     t.string   "archival_biddable_type"
     t.integer  "archival_bid_owner_id"
@@ -181,11 +182,11 @@ ActiveRecord::Schema.define(:version => 20100419181713) do
   create_table "payment_politics", :force => true do |t|
     t.datetime "from"
     t.datetime "to"
-    t.decimal  "base_payment",   :precision => 14, :scale => 4, :default => 0.0, :null => false
-    t.decimal  "upper_boundary", :precision => 14, :scale => 4
-    t.decimal  "percentage",     :precision => 5,  :scale => 5
+    t.decimal  "base_payment",                :precision => 14, :scale => 4, :default => 0.0, :null => false
+    t.decimal  "upper_boundary",              :precision => 14, :scale => 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "percentage",     :limit => 2, :precision => 2,  :scale => 0
   end
 
   create_table "payments", :force => true do |t|

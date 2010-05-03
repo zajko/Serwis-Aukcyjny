@@ -6,11 +6,11 @@
           <% if current_user != nil and !current_user.observed.member?(@product.auction) %>
           <%= link_to "Rozpocznij śledzenie aukcji", :action => :observe, :id => @product.id, :product_type => @product.class.to_s %>
           <% else %>
-          Aukcja jest śledzona
+          <%= link_to "Przestań śledzić tę aukcję", :action => :unobserve, :id => @product.id, :product_type => @product.class.to_s %>
           <% end %>
         </td>
         <td><img src="/images/fish.png"/></td></tr>
     </table>
-  <center>
+  </center>
 
 </div>

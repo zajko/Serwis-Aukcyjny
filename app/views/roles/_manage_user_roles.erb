@@ -7,13 +7,11 @@
     <td class="header">Obiekt</td>
     <td class="header">Usuń</td>
   </tr>
-  <%@roles.each do |r|%>
-        <% if @user.roles.include? r %>
+  <%@user_roles.each do |r|%>
             <tr>
               <td><%= r.name %></td>
               <td><%= render :partial=>"role", :locals=>{:r=>r} %></td>
               <td><%= link_to "Usuń", :action => "remove_role_from_user", :user_id => params[:user_id], :role_id => r.id%></td>
             </tr>
-        <% end%>
   <%end%>
 </table>
