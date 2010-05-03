@@ -1,0 +1,12 @@
+Aukcja o numerze <%= @auction_id %> zakończyła się  .
+Jesteś jednym z użytkowników, którzy wygrali produkt na tej aukcji.
+Wylicytowana przez Ciebie cena to :
+<%= @price %>
+W celu otrzymania i opłacenia usługi skontaktuj się z właścicielem produktu :
+
+Właściciel :
+<%= @owner_email %>
+
+
+Aukcja, której dotyczy ten e-mail zostanie niedługo (lub już została) przeniesiona do archiwum. Oto link do archiwum tej aukcji :
+<%= @archival_auction_url %>
