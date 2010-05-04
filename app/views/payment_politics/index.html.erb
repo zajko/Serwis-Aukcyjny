@@ -17,9 +17,9 @@
       <td><%=h payment_politic.base_payment %></td>
       <td><%=h payment_politic.upper_boundary %></td>
       <td><%=h payment_politic.percentage %></td>
-      <td><%= link_to "Pokaż", "show/"+payment_politic.id.to_s %></td>
-      <td><%= link_to "Edytuj", edit_payment_politic_path(payment_politic) %></td>
-      <td><%= link_to "Usuń",  {:action => :remove_role_from_user, :id => payment_politic.id}, :confirm => 'Are you sure?' %></td>
+      <td><%= link_to "Pokaż", {:action => :show, :id => payment_politic.id}%></td>
+      <td><%= link_to "Edytuj", {:action => :edit, :id => payment_politic.id} %></td>
+      <td><%= link_to "Usuń",  {:action => :destroy, :id => payment_politic.id}, :confirm => 'Are you sure?' %></td>
     </tr>
   <% end %>
 </table>

@@ -1,7 +1,8 @@
+<% form_for @article ,:url => {:action => "update"} do |f| %>
 <%= render :partial => "articles_options" %>
 <h1> Edytuj artykuł</h1>
-<%= render :partial => 'form' %>
-
+<%= render :partial => 'form', :locals=>{:f=>f} %>
+<%end%>
 <p>
  Inne opcje: <%= link_to "Podgląd", @article %> |
   <%= link_to "Zobacz wszystkie", articles_path %>

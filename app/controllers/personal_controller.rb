@@ -7,6 +7,7 @@ class PersonalController < ApplicationController
 
 
   def created_auctions
+    
     if !current_user
       flash[:notice] = "Musisz się zalogować, jak tu wszedłeś ?"
       redirect_to :root

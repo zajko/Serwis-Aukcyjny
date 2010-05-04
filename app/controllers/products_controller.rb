@@ -203,10 +203,10 @@ class ProductsController < ApplicationController
     @product = Kernel.const_get(product_type.classify).find(params[:id])
 
     if(@product.destroy)
-      redirect_to :controller => "personal", :action => "index"
+      redirect_to :controller => "personal", :action => "created_auctions"
       flash[:notice] = "Aukcja została usunięta"
     else
-      render  :controller => "personal", :action => "index"
+      render  :controller => "personal", :action => "created_auctions"
       flash[:notice] = "Nie można usunąć aukcji"
     end
   end

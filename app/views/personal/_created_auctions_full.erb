@@ -14,7 +14,7 @@
         <td><%= auction.id %></td>
         <td>
                 <%if !auction.auctionable%>
-                <%= auction.auctionable_type%>   <%= auction.auctionable_id%>
+                  <%= auction.auctionable_type%>   <%= auction.auctionable_id%>
                 <%end%>
                 <% if auction.auctionable and auction.auctionable.attributes.has_key?("url") %>
                         <%= auction.auctionable.url %>
@@ -22,7 +22,7 @@
                         ---
                 <%end%>
         </td>
-        <td><%=  auction.auctionable.polish_name%></td>
+        <td><%=  auction.auctionable.polish_name if auction.auctionable %></td>
         <td><%= auction.auction_end.strftime("%d-%m-%Y godz.%H:%m") %></td>
         <td><%= auction.current_price%></td>
         <td><%=link_to "Pokaż aukcję", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>

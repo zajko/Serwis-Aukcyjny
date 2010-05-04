@@ -63,14 +63,14 @@ class UsersController < ApplicationController
       redirect_to :root
       return
     end
-    if @user.has_role?(:not_activated)
-      flash[:notice] = "Musisz zaktywować swoje konto\n#{generate_activation_url(@user)}"
-      redirect_to :root 
-      #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
-      return
-    end
-    flash[:notice] = "Nie masz uprawnień do tej części serisu"
-    redirect_to :root 
+#    if @user.has_role?(:not_activated)
+#      flash[:notice] = "Musisz zaktywować swoje konto"
+#      redirect_to :root
+#      #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
+#      return
+#    end
+#    flash[:notice] = "Nie masz uprawnień do tej części serisu"
+#    redirect_to :root
     #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
     return
   end
@@ -92,17 +92,24 @@ class UsersController < ApplicationController
   end
   
   def create
+    
     @interests = Interest.find(:all)
     @user = User.new(params[:user])
     @user.activation_token = ProductsHelper.random_string(20)
     if @user.save
       @user.has_role!(:owner, @user)
-      @user.deliver_activation_instructions!(generate_activation_url(@user))
-      redirect_back_or_default account_url
+      begin
+        @user.deliver_activation_instructions!(generate_activation_url(@user))
+      rescue
+        @user.destroy
+        flash[:notice] = "Błąd podczas wysyłania listu na adres #{@user.email}"
+        redirect_to :root
+      end
+      redirect_to :controller => "user_sessions", :action => "destroy", :instrukcje => "Konto utworzone. Na #{@user.email} wyslano instrukcje aktywacji"
+      return
     else
       render :action => :new
     end
-
   end
   
   def destroy
