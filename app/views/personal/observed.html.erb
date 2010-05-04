@@ -20,7 +20,12 @@
           <td></td>
           <td></td>
 		<td><%=auction.auction_end.strftime("%d-%m-%Y godz.%H:%m")%></td>
-		<td><%=auction.current_price%></td>
+		<td>
+                 <%  if (auction.buy_now_price>0) %><img src="/images/dolar.png" />
+                  <% else %><img src="/images/auction.png" />
+                  <%end%>
+                  <%= '%.2f' % auction.current_price%> zł
+                </td>
                 <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
 	</tr>
 	<% end %>

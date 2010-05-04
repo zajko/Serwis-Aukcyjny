@@ -25,7 +25,7 @@ Brak aukcji tego typu
                   <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
                   <% else %><img src="images/auction.png" />
                   <%end%>
-                  <%=product.auction.current_price %><!--< #TODO! CURRENT PRICE !product.current_price> -->
+                  <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
         </tr>

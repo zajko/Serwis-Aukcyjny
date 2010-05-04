@@ -9,7 +9,7 @@
 		</script> 
 	</head>
 <body>
-<%= render :partial => "product_options" %>
+<%= render :partial => "/personal/menu_personal" %>
 <h1> Edycja aukcji</h1>
 	
 <% form_for  @product, :url => {:action => "update", :product_type => @controller.product_type} do |form| %>
