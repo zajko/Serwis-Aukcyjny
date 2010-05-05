@@ -9,14 +9,15 @@
     <td class="header">Podstawowa opłata</td>
     <td class="header">Górna granica</td>
     <td class="header">Procent</td>
+    <td class="header" colspan="3">Opcje</td>
   </tr>
   <% for payment_politic in @payment_politics %>
     <tr>
-      <td><%=h payment_politic.from %></td>
-      <td><%=h payment_politic.to %></td>
-      <td><%=h payment_politic.base_payment %></td>
-      <td><%=h payment_politic.upper_boundary %></td>
-      <td><%=h payment_politic.percentage %></td>
+      <td><%=h payment_politic.from.strftime("%d-%m-%Y %H:%m") %></td>
+      <td><%=h payment_politic.to.strftime("%d-%m-%Y %H:%m") %></td>
+      <td><%=h '%.2f' % payment_politic.base_payment %> zł</td>
+      <td><%=h '%.2f' % payment_politic.upper_boundary %> zł</td>
+      <td><%=h payment_politic.percentage %> %</td>
       <td><%= link_to "Pokaż", "show/"+payment_politic.id.to_s %></td>
       <td><%= link_to "Edytuj", edit_payment_politic_path(payment_politic) %></td>
       <td><%= link_to "Usuń",  {:action => :remove_role_from_user, :id => payment_politic.id}, :confirm => 'Are you sure?' %></td>

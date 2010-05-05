@@ -27,7 +27,7 @@
     <tr>
       <td><%=h article.title %></td>
       <td><%=h article.text %></td>
-      <td><%=h article.user %></td>
+      <td><%=h article.user.login %></td>
       <td><%= link_to "Pokaż", article %>
       <%= link_to "Edytuj", edit_article_path(article) %>
       </td>
