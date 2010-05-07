@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   end
   
   def wizard_preview
-    
+
     if params[:minimal_price]
       params[product_type][:auction_attributes][:minimal_price] = params[:minimal_price]
       params.delete(:minimal_price)
@@ -51,14 +51,14 @@ class ProductsController < ApplicationController
     end
 
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
-    @product.build_auction(params[product_type][:auction_attributes])
-    @product.auction.attributes = params[product_type][:auction_attributes]
-    if params[product_type][:auction_attributes][:category_ids]
-      params[product_type][:auction_attributes][:category_ids].each do |c|
-        cat = Category.find(c.to_i)
-        @product.auction.categories << cat
-      end
-    end
+    #@product.build_auction(params[product_type][:auction_attributes])
+    #@product.auction.attributes = params[product_type][:auction_attributes]
+#    if params[product_type][:auction_attributes][:category_ids]
+#      params[product_type][:auction_attributes][:category_ids].each do |c|
+#        cat = Category.find(c.to_i)
+#        @product.auction.categories << cat
+#      end
+#    end
     if(@product.auction.minimal_price > 0)
       @product.auction.current_price = @product.auction.minimal_price
     else
@@ -74,14 +74,10 @@ class ProductsController < ApplicationController
         @product.users_daily=@product.to_parse(url)
         @product.pagerank= @product.page_rank(@product.url)
         if @product.pagerank == nil
-         # @product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
-         # render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
          @product.pagerank = 0
         end
       rescue
         @product.pagerank = 0
-        #@product.errors.add(:s, "Podany adres jest niewłaściwy lub wskazuje na nieistniejącą stronę")
-        #render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
       end
       params[product_type][:pagerank] = @product.pagerank
       params[product_type][:users_daily] = @product.users_daily
@@ -89,6 +85,7 @@ class ProductsController < ApplicationController
   end
   
   def wizard_summary
+
     product_type = params[:product_type] || "site_link"
     @product = Kernel.const_get(product_type.classify).find(params[:id])
   end
@@ -143,14 +140,12 @@ class ProductsController < ApplicationController
     end if @search_categories
     @products = @scope ? @scope.all : []
   end
+  
   def wizard_product_create
+   # raise "A"
     params[product_type.to_s][:auction_attributes].delete("user_attributes")
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
-
-    @product.auction.attributes = params[product_type][:auction_attributes]
-  #  url = @product.url
-  #  @product.users_daily= @product.to_parse(url)
-  #  @product.pagerank=@product.page_rank(url)
+    #@product.auction.attributes = params[product_type][:auction_attributes]  
 
     if(@product.auction.minimal_price > 0)
       @product.auction.current_price = @product.auction.minimal_price
@@ -175,6 +170,7 @@ class ProductsController < ApplicationController
  end
 
   def create
+    raise "METODA PRZESTARZAŁA"
     #product_type = params[:product_type] || "site_link"
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
     @product.build_auction#(params[product_type][:auction_attributes])

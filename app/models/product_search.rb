@@ -44,6 +44,15 @@ class ProductSearch < Tableless
     @cats
   end
 
+  def search_categories=(atr)
+    @cats = []
+    @cats.push(atr)
+  end
+
+  def search_categories
+    @cats
+  end
+
   def conditions=(atr)
     @conditions = {}
     @conditions.merge(atr)
