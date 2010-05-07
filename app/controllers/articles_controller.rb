@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   access_control do
     allow logged_in, :to => [:index, :show, :articles]
     allow all, :to => [:show,:index]
-    allow :superuser, :admin, :to => [:new, :create]
+    allow :superuser, :admin, :to => [:new, :create,:edit,:destroy]
     allow :superuser, :to => [:edit, :update, :destroy]
     allow :owner, :of => :article, :to => [:edit, :update, :destroy]
   end  
