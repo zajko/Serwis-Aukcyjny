@@ -18,7 +18,7 @@
                <%=  check_box_tag "ch_buyNow" %>
             <b> Kup teraz</b><br /><br />
                <%= auction_form.label :buy_now_price, "Cena kup-teraz :" %>
-               <%= auction_form.text_field :buy_now_price, :id=>"buy_now_price",:class=>"inputCena", :disabled => @product.id != nil%> zł
+               <%=   auction_form.text_field :buy_now_price, :id=>"buy_now_price",:class=>"inputCena", :disabled => @product.id != nil%> zł
             </div>
           </td>
           <td>

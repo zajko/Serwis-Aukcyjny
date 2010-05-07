@@ -7,13 +7,20 @@ class PersonalController < ApplicationController
 
 
   def created_auctions
-    
+    @tab=params[:tab]
     if !current_user
       flash[:notice] = "Musisz się zalogować, jak tu wszedłeś ?"
       redirect_to :root
       return
     end
-    @auctions = Auction.user_id_equals(current_user.id).all
+    if params[:tab]=="notactivated"
+        @auctions = Auction.find(:all,:conditions=>"activated=false AND user_id="+current_user.id.to_s)
+    elsif params[:tab]=="closed"
+      @auctions = Auction.find(:all,:conditions=>"auction_end<'"+Date.today.to_s+"'  AND user_id='"+current_user.id.to_s+"'")
+    else
+      @auctions = Auction.find(:all,:conditions=>"activated=true AND auction_end<'"+Date.today.to_s+"' AND user_id="+current_user.id.to_s)
+    end
+
 #Bid.find_all_by_user_id(current_user.id)
   end
 

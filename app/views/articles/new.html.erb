@@ -1,7 +1,5 @@
-<% form_for @article ,:url => {:action => "create"} do |f| %>
-<%= render :partial => "articles_options" %> 
-<h1> Dodaj artykuł</h1>
-
-<%= render :partial => 'form', :locals=>{:f=>f}%>
+<%form_for @article, :url => {:action => "create"} do |f|%>
+  <%# render :partial => "articles_options" %>
+  <h1> Dodaj artykuł</h1>
+  <%= render :partial => 'form', :locals => {:f => f} %>
 <%end%>
-

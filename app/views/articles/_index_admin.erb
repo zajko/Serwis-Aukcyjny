@@ -1,0 +1,22 @@
+<%= render :partial => "articles/articles_options" %>
+<table id="TabArticles">
+  <tr>
+    <td class="ArticlesTabHeader">Tytuł</td>
+    <td class="ArticlesTabHeader" width="200">Treść</td>
+    <td class="ArticlesTabHeader">Użytkownik</td>
+    <td class="ArticlesTabHeader">Opcje</td>
+    <td class="ArticlesTabHeader">Usuń</td>
+  </tr>
+
+  <% for article in @articles %>
+    <tr>
+      <td><%=h article.title %></td>
+      <td><%=h  article.text %></td>
+      <td><%=h article.user.login %></td>
+      <td><%= link_to "Pokaż", article %>
+      <%= link_to "Edytuj", edit_article_path(article) %>
+      </td>
+      <td><%= link_to "X", article, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

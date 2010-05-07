@@ -2,8 +2,6 @@
        <tr>
             <td class="header">Nr aukcji</td>
             <td class="header">Typ reklamy</td>
-            <td class="header">Pagerank</td>
-            <td class="header">Użytkownicy dziennie</td>
             <td class="header">Ostatnia oferta</td>
             <td class="header">Twoja oferta</td>
             <td class="header">Pokaż</td>
@@ -12,8 +10,6 @@
       <tr>
             <td><%=  auction.auction_id %></td>
             <td><%=  auction.auctionable_type %></td>
-            <td></td>
-            <td></td>
             <td><%= '%.2f' % auction.current_price %> zł</td>
             <% if auction.offered_price.to_f > auction.current_price.to_f  %>
                 <td  style="background:#7ed464"><b><%= '%.2f' % auction.offered_price.round(2) %></b> zł</td>

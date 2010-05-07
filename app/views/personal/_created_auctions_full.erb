@@ -1,4 +1,5 @@
 <table id="TabFullSize">
+
     <tr>
         <td class="header">Nr aukcji</td>
         <td class="header">Adres</td>
@@ -11,10 +12,11 @@
     </tr>
     <% @auctions.each do |auction|%>
     <tr>
-        <td><%= auction.id %></td>
+        <td><%= auction.id %>
+        </td>
         <td>
                 <%if !auction.auctionable%>
-                  <%= auction.auctionable_type%>   <%= auction.auctionable_id%>
+                <%= auction.auctionable_type%>   <%= auction.auctionable_id%>
                 <%end%>
                 <% if auction.auctionable and auction.auctionable.attributes.has_key?("url") %>
                         <%= auction.auctionable.url %>
@@ -22,12 +24,12 @@
                         ---
                 <%end%>
         </td>
-        <td><%=  auction.auctionable.polish_name if auction.auctionable %></td>
+        <td><%=  auction.auctionable.polish_name %></td>
         <td><%= auction.auction_end.strftime("%d-%m-%Y godz.%H:%m") %></td>
         <td>
             <%  if (auction.buy_now_price>0) %><img src="/images/dolar.png" />
             <% else %><img src="/images/auction.png" /><%end%>
-          <%= '%.2f' % auction.current_price.round(2)%> zł
+          <%= '%.2f' % auction.current_price %> zł
         </td>
         <td><%=link_to "Edytuj", :controller => "products", :action => "edit",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
         <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id => auction.auctionable_id,  :product_type => auction.auctionable_type, :confirm => "Czy jesteś pewien ?"%></center></td>

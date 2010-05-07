@@ -1,0 +1,15 @@
+<center>
+ <% if params[:tab]=="notactivated" then @nieaktywne="bold_text"
+    elsif params[:tab]=="closed" then @zakonczone="bold_text"
+    else @aktywne="bold_text" end %>
+
+
+
+  <%  %>
+  <%= link_to "Aktywne", {:tab=>"activated", :action => "created_auctions",:controller=>"personal",},:class=>@aktywne %>
+  |
+  <%= link_to "Niezaktywowane",{:tab=>"notactivated", :action => "created_auctions",:controller=>"personal"},:class=>@nieaktywne  %>
+  |
+  <%= link_to "Zakończone",{:tab=>"closed", :action => "created_auctions",:controller=>"personal"},:class=>@zakonczone  %>
+</center>
+<br /><br />

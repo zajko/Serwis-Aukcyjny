@@ -4,37 +4,18 @@
             <% if  current_user.is_admin? %>
                 <h1>Zarządzaj artykułami</h1>
             <%  else %>
-            <h1>Strona główna - artykuły</h1>
+            <h1>Strona główna</h1>
             <% end %>
 <% else %>
-<h1>Strona główna - artykuły</h1>
+<h1>Strona główna</h1>
 <% end %>
 
 
 <% if  current_user%>
-            <% if  current_user.is_admin? %>
-<%= render :partial => "articles/articles_options" %>
-<table id="TabArticles">
-  <tr>
-    <td class="ArticlesTabHeader">Tytuł</td>
-    <td class="ArticlesTabHeader">Treść</td>
-    <td class="ArticlesTabHeader">Użytkownik</td>
-    <td class="ArticlesTabHeader">Opcje</td>
-    <td class="ArticlesTabHeader">Usuń</td>
-  </tr>
-
-  <% for article in @articles %>
-    <tr>
-      <td><%=h article.title %></td>
-      <td><%=h article.text %></td>
-      <td><%=h article.user %></td>
-      <td><%= link_to "Pokaż", article %>
-      <%= link_to "Edytuj", edit_article_path(article) %>
-      </td>
-      <td><%= link_to "X", article, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-  <% end %>
-  <% end %>
+     <% if  current_user.is_admin? %>
+          <%= render :partial=>"/articles/index_admin" %>
+     <% else %>
+          <%= render :partial=>"/articles/index_users" %>
+      <% end %>
+<% end %>
 
