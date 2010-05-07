@@ -109,22 +109,24 @@ class ProductsController < ApplicationController
       @auction = Auction.find(params[:id])
       
       if @auction == nil
+        
         flash[:notice] = "Aukcja o podanym numerze nie istnieje."
         redirect_to :root
         return
       else
         if @auction.activate then
           flash[:notice] = "Auckcja została zaktywowna"
-          redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+          redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         else
-          render :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+          flash[:notice] = "Nie zaktywowano aukcji !"
+          redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         end
       end
   end
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_activated => true})
+    search.merge!({:product_type => product_type, :auction_activated => true, :categories_attributes => params[:search_categories]})
     
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
@@ -133,9 +135,12 @@ class ProductsController < ApplicationController
     
     prepare_search
     @search_categories=params[:search_categories]
+    
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
-
+    @search_categories.each do |e|
+      @search.categories_attributes=e
+    end if @search_categories
     @products = @scope ? @scope.all : []
   end
   def wizard_product_create
@@ -203,10 +208,10 @@ class ProductsController < ApplicationController
     @product = Kernel.const_get(product_type.classify).find(params[:id])
 
     if(@product.destroy)
-      redirect_to :controller => "personal", :action => "index"
+      redirect_to :controller => "personal", :action => "created_auctions"
       flash[:notice] = "Aukcja została usunięta"
     else
-      render  :controller => "personal", :action => "index"
+      render  :controller => "personal", :action => "created_auctions"
       flash[:notice] = "Nie można usunąć aukcji"
     end
   end

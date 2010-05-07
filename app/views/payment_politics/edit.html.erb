@@ -1,8 +1,10 @@
 < title "Edit Payment Politic" %>
-
-<%= render :partial => 'form' %>
-
+<% form_for @payment_politic ,:url => {:action => "update"} do |f| %>
+<%= render :partial => 'form', :locals=>{:f=>f} %>
+<% end %>
 <p>
   <%= link_to "Show", @payment_politic %> |
   <%= link_to "View All", payment_politics_path %>
 </p>
+
+

@@ -3,7 +3,7 @@ require 'tableless.rb'
 class Banner < ActiveRecord::Base
 	extend Searchable
   validates_uri_existence_of :url, :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :message => "Format adresu jest niepoprawny lub taka strona nie istnieje (nie odpowiada)."
-  has_one :auction, :as => :auctionable, :autosave => true
+  has_one :auction, :as => :auctionable, :autosave => true, :dependent => :destroy
   has_many :auctions_categories, :through => :auction
   accepts_nested_attributes_for :auction, :allow_destroy => true
   validates_numericality_of :width, :greater_than => 0
@@ -48,7 +48,7 @@ class Banner < ActiveRecord::Base
    }
   named_scope :by_categories_id, lambda{ |*categories|
     {
-      :select => "banners.*",
+      :select => "DISTINCT banners.*",
       :joins => "INNER JOIN auctions AS A ON auctionable_type = 'Banner' AND auctionable_id = banners.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }

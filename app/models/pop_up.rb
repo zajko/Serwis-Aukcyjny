@@ -45,7 +45,7 @@ class PopUp < ActiveRecord::Base
   named_scope :by_categories_id, lambda{ |*categories|
     {
       :select => "pop_ups.*",
-      :joins => "INNER JOIN auctions AS A ON auctionable_type = 'PopUp' AND auctionable_id = pop_ups.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
+      :joins => "DISTINCT INNER JOIN auctions AS A ON auctionable_type = 'PopUp' AND auctionable_id = pop_ups.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }
   }
