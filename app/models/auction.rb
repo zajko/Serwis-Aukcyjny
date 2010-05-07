@@ -14,7 +14,7 @@ class Auction < ActiveRecord::Base
   #before_save :assign_roles
   
   validate :check_before_update, :on => :update
-  accepts_nested_attributes_for :categories
+  #accepts_nested_attributes_for :categories
   attr_accessible :category_ids
   attr_accessible :categories
   attr_accessible :auction_end
