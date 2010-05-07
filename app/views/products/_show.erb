@@ -18,8 +18,7 @@
 		  <tr>
     		<td class="boldColl">Najwyższa oferta:</td>
    			<td><b style="color:red"> <%= number_to_currency(@product.auction.current_price.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%></b></td>
-  		  </tr>
-  	     <tr>		
+  		  </tr>	
   	     <tr>
     		<td class="boldColl">Minimalne podbicie:</td>
    			<td> <%= number_to_currency(@product.auction.minimal_bidding_difference.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%></td>
@@ -30,6 +29,20 @@
    <td> <b>
        <%= @product.auction.start.strftime("%d-%m-%Y") %></b> do
 		<b><%= @product.auction.auction_end.strftime("%d-%m-%Y") %> </b>
+   </td>
+  </tr>
+  <tr>
+    <td class="boldColl">Status aukcji:</td>
+   <td> <b><% if @product.auction.auction_end<Date.today  %>
+       Zakończona
+       <% elsif @product.auction.activated==false%>
+       Niezaktywowana
+       <% else %>
+       Aktywna
+       <% end %>
+
+
+     </b>
    </td>
   </tr>
 </table>
