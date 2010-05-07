@@ -2,6 +2,7 @@
 class ProductSearch < Tableless
  # has_many :categories
   #accepts_nested_attributes_for :categories
+
   column :pagerank_gte, :integer
   column :pagerank_lte, :integer
   column :pagerank_lte, :integer
@@ -38,6 +39,11 @@ class ProductSearch < Tableless
     @cats = []
     @cats.push(atr)
   end
+
+  def categories_attributes
+    @cats
+  end
+
   def conditions=(atr)
     @conditions = {}
     @conditions.merge(atr)

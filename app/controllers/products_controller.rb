@@ -126,7 +126,7 @@ class ProductsController < ApplicationController
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_activated => true})
+    search.merge!({:product_type => product_type, :auction_activated => true, :categories_attributes => params[:search_categories]})
     
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
@@ -135,9 +135,12 @@ class ProductsController < ApplicationController
     
     prepare_search
     @search_categories=params[:search_categories]
+    
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
-
+    @search_categories.each do |e|
+      @search.categories_attributes=e
+    end if @search_categories
     @products = @scope ? @scope.all : []
   end
   def wizard_product_create

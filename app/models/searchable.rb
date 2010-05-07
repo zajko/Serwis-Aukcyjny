@@ -16,16 +16,17 @@ module Searchable
       end
       #end
     end
-
-
     begin
       if(params != nil and params[:categories_attributes] != nil)
+        
         temp = params[:categories_attributes].map {|t| t.to_i}
         if(temp != nil && temp.size > 0)
+            
           scope = scope.by_categories_id(*temp)
         end
       end
     rescue NoMethodError => e
+
     end
 
     scope = scope.order_scope( params[:order_by] ) if params[:order_by] && self.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
