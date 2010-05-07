@@ -1,5 +1,5 @@
 <table id="TabProduct">
-  <% if @product.auction and (current_user == @product.auction.user or current_user.is_admin?) %>
+  <% if @product.auction and current_user and (current_user == @product.auction.user or current_user.is_admin?) %>
       <tr>
         <td class="boldColl">Adres strony:</td>
         <td><%= @product.url %></td>

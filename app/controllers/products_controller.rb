@@ -109,15 +109,17 @@ class ProductsController < ApplicationController
       @auction = Auction.find(params[:id])
       
       if @auction == nil
+        
         flash[:notice] = "Aukcja o podanym numerze nie istnieje."
         redirect_to :root
         return
       else
         if @auction.activate then
           flash[:notice] = "Auckcja została zaktywowna"
-          redirect_to :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+          redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         else
-          render :action => "show", :id => params[:id], :product_type => @auction.auctionable.class
+          flash[:notice] = "Nie zaktywowano aukcji !"
+          redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         end
       end
   end
