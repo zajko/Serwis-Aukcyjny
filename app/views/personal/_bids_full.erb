@@ -1,4 +1,5 @@
-   <table id="TabFullSize">
+<%= will_paginate @auctions, :params => {:search => params[:search]}, :class=>"paginate" %>
+<table id="TabFullSize">
        <tr>
             <td class="header">Nr aukcji</td>
             <td class="header">Typ reklamy</td>
@@ -10,11 +11,21 @@
       <tr>
             <td><%=  auction.auction_id %></td>
             <td><%=  auction.auctionable_type %></td>
-            <td><%= '%.2f' % auction.current_price %> zł</td>
+            <td>
+             <%  if (auction.buy_now_price.to_i>0) %><img src="/images/dolar.png" />
+            <% else %><img src="/images/auction.png" />&nbsp;<%end%>
+            <%= '%.2f' % auction.current_price %> zł</td>
+
             <% if auction.offered_price.to_f > auction.current_price.to_f  %>
-                <td  style="background:#7ed464"><b><%= '%.2f' % auction.offered_price.round(2) %></b> zł</td>
+                <td  style="background:#7ed464">
+                   <%  if (auction.buy_now_price.to_i>0) %><img src="/images/dolar.png" />
+                   <% else %><img src="/images/auction.png" />&nbsp;<%end%>
+                  <b><%= '%.2f' % auction.offered_price.round(2) %></b> zł</td>
             <% else %>
-                <td  style="background:#fd3232"><b><%= '%.2f' %  auction.offered_price.round(2) %></b> zł</td>
+                <td  style="background:#fd3232">
+                  <%  if (auction.buy_now_price.to_i>0) %><img src="/images/dolar.png" />
+                  <% else %><img src="/images/auction.png" />&nbsp;<%end%>
+                  <b><%= '%.2f' %  auction.offered_price.round(2) %></b> zł</td>
             <% end %>
             <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
       </tr>

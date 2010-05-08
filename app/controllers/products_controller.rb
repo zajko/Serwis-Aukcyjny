@@ -10,8 +10,8 @@ class ProductsController < ApplicationController
     allow all, :to => [:activate, :show, :index, :order_by, :advanced_search,:simple_search]
     allow :owner, :of => :auction, :to => [:delete, :edit, :update,:cancell_bid]
     deny :owner, :of => :auction, :to => [:observe, :unobserve]
-    allow :admin, :to => [:delete, :edit, :update, :administer, :cancell_bid]
-    allow :superuser, :to => [:delete, :edit, :update, :administer, :cancell_bid]
+    allow :admin, :to => [:delete, :edit, :update, :administer, :cancell_bid, :index_admin]
+    allow :superuser, :to => [:delete, :edit, :update, :administer, :cancell_bid, :index_admin]
     deny :banned, :not_activated, :to=> [:new, :create, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,                         :wizard_summary,
                              :show,:new, :create,:bid, :ask_for_bid_cancellation]
     allow logged_in, :to => [:observe, :unobserve, :delete, :wizard_product_type,:wizard_product_data,:wizard_preview,:wizard_product_create,
@@ -115,7 +115,7 @@ class ProductsController < ApplicationController
           flash[:notice] = "Auckcja została zaktywowna"
           redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         else
-          flash[:notice] = "Nie zaktywowano aukcji !"
+          flash[:notice] = "Nie zaktywowano aukcji!"
           redirect_to :action => "show", :id => @auction.auctionable.id, :product_type => @auction.auctionable.class
         end
       end
@@ -141,6 +141,16 @@ class ProductsController < ApplicationController
     @products = @scope ? @scope.all : []
   end
   
+  def index_admin
+    page = params[:page] || 1
+    @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>10
+    
+    
+    
+  end
+
+
+
   def wizard_product_create
    # raise "A"
     params[product_type.to_s][:auction_attributes].delete("user_attributes")

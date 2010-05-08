@@ -7,6 +7,12 @@ width: 7px; height: 7px; font-size: 1px;
     image: url(delete.png);
      
 }
+.paginate{
+    font-size:11px;
+    text-align:center;
+    padding-bottom:20px;
+}
+
     *{margin:0px; padding:0px;
     }
     img{border:0px}
