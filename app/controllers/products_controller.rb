@@ -123,7 +123,7 @@ class ProductsController < ApplicationController
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_activated => true, :categories_attributes => params[:search_categories]})
+    search.merge!({:product_type => product_type, :auction_opened => "byleco", :auction_activated => true, :categories_attributes => params[:search_categories]})
     
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
@@ -284,11 +284,14 @@ class ProductsController < ApplicationController
        @bid = Bid.new(params[:bid])
        @bid.bid_created_time = Time.now
        if @bid.save
+<<<<<<< HEAD:app/controllers/products_controller.rb
+=======
           if @product.auction.buy_now_price > 0
              flash[:notice] = "Twoja oferta została przyjęta - produkt jest już Twoją własnością."
           else
             flash[:notice] = "Twoja oferta została przyjęta."
           end
+>>>>>>> 5210c1bb1f606795c533370e1a6a6fdc97b35e6c:app/controllers/products_controller.rb
          redirect_to :action => "show", :id => @product.id, :product_type => @product.class.to_s
        else
          #@auction = Auction.find(params[:bid][:auction_id])

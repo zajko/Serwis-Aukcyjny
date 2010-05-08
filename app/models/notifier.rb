@@ -48,7 +48,7 @@ ActionMailer::Base.smtp_settings = {
     recipients    user.email
     sent_on       Time.now
     body          :auction_id => auction.id,
-                  :auction_url => ("http://" + default_url_options[:host] + "/auctions/show?[id]=" + auction.product.id.to_s + "&[product_type]="+auction.product.class.to_s)
+                  :auction_url => ("http://" + default_url_options[:host] + "/auctions/show?[id]=" + auction.auctionable.id.to_s + "&[product_type]="+auction.auctionable.class.to_s)
   end
 
   def auction_end_notification(auction, winningBids, charge)
