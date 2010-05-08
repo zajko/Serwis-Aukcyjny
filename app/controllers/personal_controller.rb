@@ -18,7 +18,7 @@ class PersonalController < ApplicationController
     elsif params[:tab]=="closed"
       @auctions = Auction.find(:all,:conditions=>"auction_end<'"+Date.today.to_s+"'  AND user_id='"+current_user.id.to_s+"'")
     else
-      @auctions = Auction.find(:all,:conditions=>"activated=true AND auction_end<'"+Date.today.to_s+"' AND user_id="+current_user.id.to_s)
+      @auctions = Auction.find(:all,:conditions=>"activated=true AND auction_end>'"+Date.today.to_s+"' AND user_id="+current_user.id.to_s)
     end
 
 #Bid.find_all_by_user_id(current_user.id)

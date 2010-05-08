@@ -5,15 +5,22 @@
 
 <div class="boxcondainer">
       <% if current_user%>
+
+      <% if @product.auction and !(@product.auction.buy_now_price > 0 and @product.auction.bids.not_cancelled.count>0 )
+          @kup_teraz=true;
+      end
+      %>
+
             <div class="box" style=" width:280px; float:right;">
                   <% if @product.auction and current_user != @product.auction.user%>
                           <%= render :partial => "products/show_observebuttonbox" %>
+                          <% if !@kup_teraz==false %>
                           <%= render :partial => "products/show_bidbox" %>
+                          <% end %>
                   <% end %>
-                  <% if @product.auction.buy_now_price == 0 %>
                          <%= render :partial => "products/show_offersbox" %>
                          <%= render :partial => "products/show_cancelbox" %>
-                  <% end %>
+
             </div>
       <%end%>
 </div>

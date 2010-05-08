@@ -4,19 +4,18 @@
         <table  id="TabFullSize">
         <tr>
           <td>Nr aukcji</td>
-           <td>Szczegóły</td>
           <td>Początek aukcji</td>
           <td>Koniec aukcji</td>
           <td>PR</td>
           <td>Użytkownicy dziennie</td>
           <td>Aktualna cena</td>
           <td>(Szer,Wys)</td>
+          <td>Pokaż</td>
         </tr>
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
                 <td><%= product.auction.id %></td>
-                <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "pop_up"} %></td>
                 <td><%=product.auction.start%></td>
                 <td><%=product.auction.auction_end%></td>
                 <td><%=product.pagerank%></td>
@@ -28,6 +27,7 @@
                   <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
+                <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "pop_up"} %></td>
         </tr>
         <% end %>
 
