@@ -10,6 +10,7 @@ class Auction < ActiveRecord::Base
   named_scope :active, :conditions => { :activated => true}
   named_scope :categorised, :joins => :categories, :select => 'Distinct post.*'
   named_scope :expired, :conditions => 'now() - auction_end > INTERVAL \'10 minutes\' '
+  named_scope :opened, :conditions => 'buy_now_price = 0 or 0 = (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
   accepts_nested_attributes_for :user
   #before_save :assign_roles
   
@@ -67,7 +68,7 @@ class Auction < ActiveRecord::Base
       observees.each do |observee|
         #TODO zastanowic sie jak to rozwiazac, to bedzie zajmowalo DUZO czasu
       end
-      overbidded_user = bids.not_cancelled.by_offered_price.second if bids.not_cancelled.count > 1
+      overbidded_user = (bids.not_cancelled.by_offered_price.second).user if bids.not_cancelled.count > 1
       Notifier.deliver_auction_bids_change_notification_to_overbidded_user(self, overbidded_user)
   end
   

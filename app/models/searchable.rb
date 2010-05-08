@@ -8,6 +8,7 @@ module Searchable
     if(params == nil)
       return scope
     end
+
     params.each do |key, value|
       #if self.respond_to?(key) || (key.to_s.include?("auction_") && Auction.respond_to?(key.to_s.gsub(/auction_/,'')))
       begin
