@@ -55,7 +55,7 @@ class PersonalController < ApplicationController
       redirect_to :root
       return
     end
-    page = params[:page] || 1
+     page = params[:page] || 1
     @auctions = current_user.observed.paginate :page => page, :order => 'id DESC', :per_page=>10
   end
 

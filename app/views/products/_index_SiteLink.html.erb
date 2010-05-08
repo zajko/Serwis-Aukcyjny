@@ -2,6 +2,7 @@
 <% if @products.count == 0 %>
 Brak aukcji tego typu
 <% else %>
+<%= will_paginate @products, :params => {:search => params[:search]}, :class=>"paginate" %>
         <table id="TabFullSize">
         <tr>    <td>Nr aukcji</td>
                 <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search_type => "advanced", :search => params[:search]%></td>
