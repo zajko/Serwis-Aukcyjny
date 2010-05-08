@@ -1,5 +1,8 @@
 <table id="TabProduct">
 		  <tr>
+                        <td class="boldColl">Nr aukcji:</td>
+                        <td><%=  @product.auction.id %> </td>
+                  </tr><tr>
    			<td class="boldColl">Typ sprzedaży:</td>
                         <td><b style="color:green">
                         <% if  @product.auction.buy_now_price>0 %> Kup teraz
@@ -12,16 +15,16 @@
 	<% if  @product.auction.buy_now_price>0 %>
 		  <tr>
    			<td class="boldColl">Cena:</td>
-   			<td> <%= number_to_currency(@product.auction.buy_now_price.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%></td>
+   			<td> <%= '%.2f' % @product.auction.buy_now_price.to_s%> zł</td>
   		  </tr>
 	<%else%>
 		  <tr>
     		<td class="boldColl">Najwyższa oferta:</td>
-   			<td><b style="color:red"> <%= number_to_currency(@product.auction.current_price.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%></b></td>
+   			<td><b style="color:red"> <%= '%.2f' % @product.auction.current_price.to_s%> zł</b></td>
   		  </tr>	
   	     <tr>
     		<td class="boldColl">Minimalne podbicie:</td>
-   			<td> <%= number_to_currency(@product.auction.minimal_bidding_difference.to_s, :unit => "zł", :separator => ",", :delimeter => " ")%></td>
+   			<td> <%= '%.2f' % @product.auction.minimal_bidding_difference.to_s %> zł</td>
   		 </tr>
 	<%end%>
   <tr>

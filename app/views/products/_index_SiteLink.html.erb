@@ -4,19 +4,17 @@ Brak aukcji tego typu
 <% else %>
         <table id="TabFullSize">
         <tr>    <td>Nr aukcji</td>
-                <td>Szczegóły</td>
                 <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search_type => "advanced", :search => params[:search]%></td>
                 <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "site_link", :search => params[:search]%></td>
                 <td><%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "site_link", :search => params[:search]%></td>
                 <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "site_link", :search => params[:search]%>	</td></td>
                 <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> "current_price", :product_type => "site_link", :search => params[:search]%></td>
+                <td>Pokaż</td>
         </tr>
 
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
-                <td><%= product.auction.id %>
-                </td>
-                <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "site_link"} %></td>
+                <td><%= product.auction.id %></td>
                 <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.pagerank%></td>
@@ -28,6 +26,7 @@ Brak aukcji tego typu
                   <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
+                <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "site_link"} %></td>
         </tr>
         <% end %>
 

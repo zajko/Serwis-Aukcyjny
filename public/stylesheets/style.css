@@ -126,9 +126,35 @@ width: 7px; height: 7px; font-size: 1px;
         width:1000px;
         margin:0 auto;
     }
-    .bold_text{
-        font-weight: bold;
-    }
+        .bold_text{
+            font-weight: bold;
+        }
+        .bidbox, .offersbox{
+            margin-top:20px;
+            width:280px;
+            float:right;
+            padding:10px;
+              -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .bidbox{
+            border: 1px solid gray;
+            background:#FFF286;
+        }
+        .offersbox{
+            border: 1px solid gray;
+            background:#A1D636;
+        }
+            .offersbox_offers_tab { 
+            width:280px;}
+
+            .offersbox_offers_tab td{
+                padding-bottom:5px;
+                vertical-align:top;
+
+            }
+
 
         .search{
             font-size:13px;
