@@ -99,7 +99,7 @@ describe Auction do
 
   it "should calculate winning prices" do
     a = auctions(:auction_50)
-    b = a.winningPrices()
+    b = a.winning_prices()
     b.should include(a.calculate_current_price)
   end
 

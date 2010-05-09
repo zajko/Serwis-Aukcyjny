@@ -179,7 +179,7 @@ class Auction < ActiveRecord::Base
      raise "Ta metoda jest przestarzała, w przyszłych wersjach zostanie usunięta"
    end
    
-  def winningBids
+  def winning_bids
     ret = []
     bids_not_cancelled = bids.not_cancelled.count
     number = number_of_products > bids_not_cancelled ? bids_not_cancelled : number_of_products
@@ -190,16 +190,16 @@ class Auction < ActiveRecord::Base
     return bidsArr
   end
 
-  def winningPrices
+  def winning_prices
     @current_price = calculate_current_price
-    ret = winningBids()
+    ret = winning_bids()
     ret = ret.map{|x| x.offered_price}
     if buy_now_price == 0
       if ret.length > 1
         ret[0] = ret[1] + minimal_bidding_difference
       else
         if ret.length > 0
-          ret[0] = @current_price#minimal_price #+ minimal_bidding_difference
+          ret[0] = @current_price#minimal_price #
         else
           ret[0] = 0
         end
@@ -232,7 +232,7 @@ class Auction < ActiveRecord::Base
       if(bids.not_cancelled.count > 0) 
         t = bids.not_cancelled.by_offered_price.all
         if(t.count == 1)
-          minimal_price #+ minimal_bidding_difference  
+          minimal_price > 0 ? minimal_price : minimal_bidding_difference #+ minimal_bidding_difference
         else
           t.fetch(1).offered_price 
         end
@@ -267,7 +267,7 @@ class Auction < ActiveRecord::Base
       raise "BŁĄD ! skoro model.bids.not_cancelled.count > 0 to jakim cudem first == nil ?"
     end
     price = 0;
-    w = winningBids.each do |b|
+    w = winning_bids.each do |b|
       if(first.id == b.id)
         b.offered_price = current_price
       end

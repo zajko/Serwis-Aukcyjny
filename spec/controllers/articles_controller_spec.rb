@@ -83,9 +83,9 @@ describe ArticlesController, "admin login" do
     response.should be_success
   end
 
-  it "should not go to edit" do
+  it "should go to edit" do
     Article.stub!(:find).and_return(@article = mock_model(Article))
-    lambda { post :edit, :id=>1 }.should raise_error(Acl9::AccessDenied)
+    lambda { post :edit, :id=>1 }.should_not raise_error(Acl9::AccessDenied)
   end
 
   it "should not go to update" do
@@ -93,9 +93,10 @@ describe ArticlesController, "admin login" do
     lambda { post :update, :id=>1 }.should raise_error(Acl9::AccessDenied)
   end
 
-  it "should not go to destroy" do
-    Article.stub!(:find).and_return(@article = mock_model(Article))
-    lambda { post :destroy, :id=>1 }.should raise_error(Acl9::AccessDenied)
+  it "should go to destroy" do
+    Article.stub!(:find).and_return(@article = mock_model(Article, :destroy => true))
+    @article.should_receive(:destroy)
+    lambda { post :destroy, :id=>1 }.should_not raise_error(Acl9::AccessDenied)
   end
 end
 

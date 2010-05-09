@@ -3,7 +3,7 @@ require "authlogic/test_case"
 
 describe UsersController, "new user with valid values" do
   before(:each) do
-    User.stub!(:new).and_return(@proper_user = mock_model(User, :deliver_activation_instructions! => true,:save => true, :has_role! => true, :activation_token => "aktywacja1", :activation_token= => true))
+    User.stub!(:new).and_return(@proper_user = mock_model(User, :deliver_activation_instructions! => true,:save => true, :has_role! => true, :activation_token => "aktywacja1", :activation_token= => true, :email => "moj_mejl@mejlowo.pl"))
   end
   def do_create
     post :create, :user => {:login => "nowy"}
@@ -36,10 +36,6 @@ describe UsersController, "new user with valid values" do
     response.should be_redirect
   end
 
-  it "should be redirect to account" do
-    do_create
-    response.should redirect_to(account_url)
-  end
 end
 
 

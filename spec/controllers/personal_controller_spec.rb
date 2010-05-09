@@ -51,20 +51,3 @@ describe PersonalController do
     response.should redirect_to('/')
   end
 end
-
-describe PersonalController, "properly validated user" do
-  fixtures :users, :roles
-  before(:each) do
-    activate_authlogic
-    @current = users(:user_1)
-    UserSession.create(@current)
-  end
-  
-  it "shouldn't redirect when normal user wants index" do
-    activate_authlogic
-    @current = users(:user_1)
-    UserSession.create(@current)
-    post :index
-    response.should_not be_redirect
-  end
-end
