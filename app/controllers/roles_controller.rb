@@ -29,23 +29,12 @@ class RolesController < ApplicationController
     @role = Role.find(params[:role_id])
     if(@user.roles.include?(@role))
       flash[:notice] = "Użytkownik #{@user.login} już ma rolę #{@role.name}"
-  else
-    @user.has_role!(@role.name)
-
-#    # kod kuby
-#    if(!@user.has_role!(@role.name))
-#      flash[:notice] = "Dodano rolę"
-#      @roles = Role.all
-#      render :action => "manage", :user_id =>params[:user_id]
-#      return
-#    end
-#    # koniec kod kuby
-
-#      @ru = RolesUser.new
-#      @ru.user = @user
-#      @ru.role = @role
-#      @ru.save
-flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
+    else
+      if(@user.has_role!(@role.name))
+        flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
+      else
+        flash[:notice] = "Użytkownikowi #{@user.login} NIE przyznano roli #{@role.name}. Najprawdopodobniej jest to zabronione"
+      end
     end
     redirect_to :action => "manage", :user_id =>params[:user_id]
 #    flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
@@ -57,7 +46,8 @@ flash[:notice] = "Użytkownikowi #{@user.login} przyznano rolę #{@role.name}"
     if(! @user.roles.include?(@role))
       flash[:notice] = "Użytkownik #{@user.login} nie ma roli #{@role.name}"
     else
-     if(@user.has_no_role!(@role.name))
+     @user.has_no_role!(@role.name)
+     if(@user.has_role?(@role.name) == false)
       flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
      else
        flash[:notice] = "Operacja nie powiodła się - użytkownikowi najprawdopodobniej nie można odebrać tej roli"

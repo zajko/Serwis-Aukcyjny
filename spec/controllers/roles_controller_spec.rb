@@ -119,8 +119,6 @@ describe RolesController, "add/remove role to/from user by admin" do
   end
 
   it "should add new role to user" do
-#    User.stub!(:find).with(1).and_return(@proper_user = mock_model(User,  :login=>"ktos", :roles=> []))
-#    Role.stub!(:find).with(1).and_return(@proper_role = mock_model(Role))
     @user = users(:not_activated_user)
     @role = roles(:not_activated)
     post :add_role_to_user, :role_id=>@role.id, :user_id=>@user.id
@@ -139,8 +137,6 @@ describe RolesController, "add/remove role to/from user by admin" do
   end
 
   it "should add new role to user" do
-#    User.stub!(:find).with(1).and_return(@proper_user = mock_model(User,  :login=>"ktos", :roles=> []))
-#    Role.stub!(:find).with(1).and_return(@proper_role = mock_model(Role))
     @user = users(:not_activated_user)
     @role = roles(:not_activated)
     post :remove_role_from_user  , :role_id=>@role.id, :user_id=>@user.id
@@ -148,11 +144,12 @@ describe RolesController, "add/remove role to/from user by admin" do
     flash[:notice].should == "Użytkownikowi not_active odebrano rolę not_activated"
   end
 
-  it "should add new role to user" do
+  it "should remove role from user" do
 #    User.stub!(:find).with(1).and_return(@proper_user = mock_model(User,  :login=>"ktos", :roles=> []))
 #    Role.stub!(:find).with(1).and_return(@proper_role = mock_model(Role))
     @user = users(:not_activated_user)
     @role = roles(:owner)
+    raise "Źle dobrane dane testowe" if @user.roles.include?(@role)
     post :remove_role_from_user  , :role_id=>@role.id, :user_id=>@user.id
     response.should be_redirect
     flash[:notice].should == "Użytkownik not_active nie ma roli owner"

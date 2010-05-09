@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+payment_politic_1:
+  base_payment: 2.5
+  percentage: 0
+
+payment_politic_2:
+  upper_boundary: 100
+  base_payment: 0
+  percentage: 10
+
+payment_politic_3:
+  upper_boundary: 500
+  base_payment: 0
+  percentage: 12
+
+payment_politic_inactive:
+  from: <%=Time.now() - 20.days%>
+  to: <%=Time.now() - 10.days%>
+  upper_boundary: 1000
+  base_payment: 10000
+  percentage: 0

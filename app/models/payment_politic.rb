@@ -39,7 +39,7 @@ class PaymentPolitic < ActiveRecord::Base
   named_scope :by_boundary, :order => "upper_boundary ASC"
   
   def self.charge(auction)
-    prices = auction.winningPrices
+    prices = auction.winning_prices
     politics = PaymentPolitic.actual.by_boundary.all
     if politics.length == 0
       politics = PaymentPolitic.from_nil.to_nil.by_boundary.all
@@ -54,13 +54,13 @@ class PaymentPolitic < ActiveRecord::Base
         end
         charge = charge + politic.base_payment 
         if politic.upper_boundary != nil
-          temp = (price > politic.upper_boundary ?  price - chargedSum :  politic.upper_boundary - chargedSum)
+          temp = (price > politic.upper_boundary ?  politic.upper_boundary - chargedSum : price - chargedSum)
           chargedSum = chargedSum + politic.upper_boundary
         else
           temp = price - chargedSum
           chargedSum = price + 100
         end
-        charge = charge + politic.percentage * temp
+        charge = charge + (politic.percentage/100.0) * temp
          
      end
     end
