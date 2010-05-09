@@ -17,19 +17,21 @@
 
         <td style="padding-right:5px;"><%= bid.user.created_at.strftime("%d-%m-%Y godz:%H:%m")%></td>
         <td><b style='color:red'><%= bid.offered_price %> zł</b></td>
-        <%if current_user and current_user.id == bid.user.id %>
+        <%if current_user and current_user.id == bid.user.id %> <!--składający oferte -->
         <td>
              <span style="font-size:10px;"><- TWOJA OFERTA</span>
              <%if !bid.asking_for_cancellation and !bid.cancelled %>
-                          <%=link_to "poproś o unieważnienie", :action => :ask_for_bid_cancellation, :bid_id => bid.id, :product_type => @product.class.to_s, :id=>@product.id%>
-                      <%end%>
-                  <%end%>
-                  <%if bid.asking_for_cancellation and current_user and (current_user.has_role?(:admin) or (bid.auction.user.id == current_user.id)) %>
-                          <%=link_to "anuluj", :action => :cancell_bid, :decision => true, :id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s%>
-                          <%=link_to "odrzuć anulowanie", :action => :cancell_bid, :decision => false, :id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s  if bid.asking_for_cancellation%>
-             
+                  <%=link_to "poproś o unieważnienie", :action => :ask_for_bid_cancellation, :bid_id => bid.id, :product_type => @product.class.to_s, :id=>@product.id%>
+              <%end%>
         </td>
-
+        <% elsif current_user and current_user.id== @product.auction.user.id %> <!-- właściciel aukcji -->
+        <td>
+            <%if current_user and bid.asking_for_cancellation and (current_user.has_role?(:admin) or (@product.auction.user.id == current_user.id)) %>
+                    <span style="font-size:10px;"><- PROŚBA O SKASOWANIE:</span>
+                    <%=link_to "skasuj oferte", :action => :cancell_bid, :decision => true, :id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s%><br />
+                    <%=link_to "odrzuć prośbe", :action => :cancell_bid, :decision => false, :id=>@product.id, :bid_id => bid.id, :product_type => @product.class.to_s  if bid.asking_for_cancellation%>
+            <%end%>
+        </td>
         <% elsif current_user and current_user.is_admin? and current_user.id != bid.user.id %>
         <td>
             <%=   bid.user.login %>

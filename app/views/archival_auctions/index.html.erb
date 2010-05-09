@@ -1,16 +1,18 @@
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
 
 <h1> Zarządzaj aukcjami archiwalnymi</h1>
-<table>
+<%= will_paginate @auctions, :params => {:search => params[:search]}, :class=>"paginate" %>
+<table id="TabFullSize">
   <tr>
-    <th>Name</th>
+    <td class="header">Nr aukcji</td>
+    <td class="header">Usuń</td>
+    <td class="header">Pokaż</td>
   </tr>
   <% for archival_auctions in @archival_auctions %>
     <tr>
       <td><%=h archival_auctions.id %></td>
-      <td><%= link_to "Show", archival_auctions %></td>
-      
-      <td><%= link_to "Destroy", archival_auctions, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Usuń", :id=>archival_auctions.id, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Pokaż", archival_auctions %></td>
     </tr>
   <% end %>
 </table>

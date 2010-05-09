@@ -1,12 +1,21 @@
 <%= render :partial=> "products/search_box_simple" %>
 <%= render :partial => "categories/categories_options" %>
 <h1>Lista kategorii</h1>
-
-<ul>
+<%= will_paginate @categories, :params => {:search => params[:search]}, :class=>"paginate" %>
+<b>Uwaga:</b> Usunięcie kategorii przypisanej do aukcji spowoduje jej automatyczne odjęcie ze zbioru
+kategorii przypisanych do tej aukcji.
+<br /><br />
+<table id="TabFullSize">
+    <tr>
+        <td class="header">Nazwa</td>
+        <td class="header">Usuń</td>
+    </tr>
 	<% if @categories
 		@categories.each do |c| %>
-		<li><%=  c.name %>&nbsp;&nbsp;[Tu jest przycisk usuwania kat]</li>
-
+    <tr>
+      <td><%=  c.name %></td>
+      <td><%= link_to "Usuń", :action => "delete", :id => c.id,  :confirm => "Czy jesteś pewien?"%></td>
+    </tr>
 	<%end%>
 	<%end%>
-</ul>
+</table>

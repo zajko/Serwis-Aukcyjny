@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   
   def index (page = nil)
     page = page || (params ? params[:page] : nil) || 1
-    @articles = Article.paginate :page => page, :order => 'created_at DESC'
+    @articles = Article.paginate :page => page, :order => 'created_at DESC',:per_page=>20
   end
 
   def articles
