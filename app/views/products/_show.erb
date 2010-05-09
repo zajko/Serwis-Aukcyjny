@@ -32,6 +32,12 @@
    <td> <b>
        <%= @product.auction.start.strftime("%d-%m-%Y") %></b> do
 		<b><%= @product.auction.auction_end.strftime("%d-%m-%Y") %> </b>
+                 (<%= distance_of_time_in_words(@product.auction.auction_end,@product.auction.start)%>)
+   </td>
+  </tr>
+ <tr>
+    <td class="boldColl">Pozostało:</td>
+    <td><%= distance_of_time_in_words(@product.auction.auction_end,Date.today)%>
    </td>
   </tr>
   <tr>

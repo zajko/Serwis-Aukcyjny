@@ -3,6 +3,8 @@
        <tr>
             <td class="header">Nr aukcji</td>
             <td class="header">Typ reklamy</td>
+            <td class="header">Zakończenie</td>
+            <td class="header">Pozostało</td>
             <td class="header">Ostatnia oferta</td>
             <td class="header">Twoja oferta</td>
             <td class="header">Pokaż</td>
@@ -11,6 +13,14 @@
       <tr>
             <td><%=  auction.auction_id %></td>
             <td><%=  auction.auctionable_type %></td>
+            <td><%=  Date.parse(auction.auction_end).strftime("%d-%m-%Y godz.%H:%m") %></td>
+            <td>
+            <% if DateTime.parse(auction.auction_end)>Date.today %>
+              <%=  distance_of_time_in_words(DateTime.parse(auction.auction_end),Date.today)%>
+            <% else %>
+             -
+            <% end %>
+            </td>
             <td>
              <%  if (auction.buy_now_price.to_i>0) %><img src="/images/dolar.png" />
             <% else %><img src="/images/auction.png" />&nbsp;<%end%>

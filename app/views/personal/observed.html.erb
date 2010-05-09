@@ -7,6 +7,7 @@
            <td class="header">Nr aukcji</td>
             <td class="header">Typ reklamy</td>
             <td class="header">Zakończenie</td>
+            <td class="header">Pozostało</td>
             <td class="header">Ostatnia oferta</td>
             <td class="header">Usuń</td>
             <td class="header">Pokaż</td>
@@ -15,9 +16,16 @@
 	<% @auctions.each do |auction|%>
 	<tr>
           
-          <td><%=  auction.id %></td>
-          <td><%=  auction.auctionable.polish_name %></td>
+                <td><%=  auction.id %></td>
+                <td><%=  auction.auctionable.polish_name %></td>
 		<td><%=auction.auction_end.strftime("%d-%m-%Y godz.%H:%m")%></td>
+                <td>
+                    <% if auction.auction_end>Date.today %>
+                    <%=  distance_of_time_in_words(auction.auction_end,Date.today)%>
+                    <% else %>
+                    -
+                    <% end %>
+                </td>
 		<td>
                  <%  if (auction.buy_now_price>0) %><img src="/images/dolar.png" />
                   <% else %><img src="/images/auction.png" />

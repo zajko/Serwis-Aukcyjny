@@ -14,7 +14,8 @@
   <p>
   <%= render :partial => "/categories/show_assigned_categories" %>
   </p>
-  <br /><br />
-  <center>
-  [<%= link_to "Wróć do listy swoich aukcji", "/personal/created_auctions" %>]
-  </center>
+
+  <div class="content_menu">
+<%= link_to "Twórz kolejną aukcję", "/products/wizard_product_type" %> |
+<%= link_to "Wszystkie aukcje", "/personal/created_auctions" %> 
+  </div>

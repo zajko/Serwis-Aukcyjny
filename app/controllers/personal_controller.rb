@@ -42,9 +42,9 @@ class PersonalController < ApplicationController
     end
 #    @auctions = Bid.find_all_by_user_id current_user
     page = params[:page] || 1
-    @auctions = (Bid.find_by_sql "SELECT b.auction_id, a.auctionable_type, a.current_price, a.buy_now_price, MAX(b.offered_price) AS \"offered_price\", a.auctionable_id FROM auctions a
+    @auctions = (Bid.find_by_sql "SELECT b.auction_id, a.auctionable_type, a.current_price, a.buy_now_price, MAX(b.offered_price) AS \"offered_price\", a.auctionable_id, a.auction_end FROM auctions a
     INNER JOIN bids b ON a.id=b.auction_id WHERE b.user_id="+current_user.id.to_s+"
-    GROUP BY b.auction_id, a.auctionable_type, a.current_price, a.auctionable_id, a.buy_now_price
+    GROUP BY b.auction_id, a.auctionable_type, a.current_price, a.auctionable_id, a.buy_now_price, a.auction_end
     ORDER BY b.auction_id").paginate :page => page, :order => 'id DESC', :per_page=>10
       #  @auctions = Auction.user_id_equals(current_user.id).all
   end

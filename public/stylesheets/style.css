@@ -33,6 +33,7 @@ width: 7px; height: 7px; font-size: 1px;
         margin:0 auto;
         font-family:Arial, Helvetica, sans-serif;
         font-size:11px;
+        overflow: scroll;
     }
     a{
         color:#124951;
