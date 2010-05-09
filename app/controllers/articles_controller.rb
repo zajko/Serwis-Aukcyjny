@@ -3,8 +3,8 @@ class ArticlesController < ApplicationController
   access_control do
     allow logged_in, :to => [:index, :show, :articles]
     allow all, :to => [:show,:index]
-    allow :superuser, :admin, :to => [:new, :create,:edit,:destroy]
-    allow :superuser, :to => [:edit, :update, :destroy]
+    allow :superuser, :admin
+    #allow :superuser, :to => [:edit, :update, :destroy]
     allow :owner, :of => :article, :to => [:edit, :update, :destroy]
   end  
   
@@ -47,10 +47,16 @@ class ArticlesController < ApplicationController
   end
   
   def update
+    if params[:id] == nil
+      
+      flash[:notice] = "Musisz podać numer artykułu !"
+      redirect_to :action => "index"
+      return
+    end
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
       flash[:notice] = "Artykuł został uaktualniony"
-      redirect_to @article
+      redirect_to :action => "show", :id => @article.id
     else
       render :action => 'edit'
       flash[:notice] = "Błąd: Nie udało się uaktualnić artykułu"

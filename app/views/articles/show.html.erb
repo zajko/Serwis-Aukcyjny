@@ -10,7 +10,7 @@
 </p>
 <p>
   <strong>Autor:</strong>
-  <%=h @article.user %>
+  <%=h @article.user.login if @article.user %>
 </p>
 <br /><br />
 <p>Inne opcje:
