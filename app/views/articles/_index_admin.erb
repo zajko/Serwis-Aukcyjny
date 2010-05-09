@@ -17,7 +17,7 @@
       <td><%= link_to "Edytuj",:controller => "articles", :action => "edit",:name=>"edit",:id=>article.id %></td>
       <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "articles", :action => "destroy",:name=>"destroy",:id=>article.id, :confirm => "Czy jesteś pewien ?"%></center></td>
       
-      <td><%= link_to "Pokaż", article %></td>
+      <td><%= link_to "Pokaż",:controller => "articles", :action => "show", :id=>article.id %></td>
     </tr>
   <% end %>
 </table>
