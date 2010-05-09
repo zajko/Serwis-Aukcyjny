@@ -1,12 +1,11 @@
-< title "Archival Auctions" %>
+<%= stylesheet_link_tag "style_for_no_right_panel" %>
+<h1>Archiwalna aukcja</h1>
+<%= @archival_auctions.id %>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @archival_auctions.name %>
-</p>
 
-<p>
-  <%= link_to "Edit", edit_archival_auctions_path(@archival_auctions) %> |
-  <%= link_to "Destroy", @archival_auctions, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", archival_auctions_path %>
-</p>
+
+<div class="content_menu">
+  <%= link_to "Edytuj", :action=>"edit" %> |
+  <%= link_to "Usuń", @archival_auctions, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Pokaż wszystkie", archival_auctions_path %>
+</div>

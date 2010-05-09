@@ -12,6 +12,11 @@ width: 7px; height: 7px; font-size: 1px;
     text-align:center;
     padding-bottom:20px;
 }
+.content_menu{
+    padding-top:20px;
+
+    text-align:center;
+}
 
     *{margin:0px; padding:0px;
     }
@@ -139,12 +144,12 @@ width: 7px; height: 7px; font-size: 1px;
         .bold_text{
             font-weight: bold;
         }
-        .bidbox, .offersbox{
+        .bidbox, .offersbox, .cancelbox{
             margin-top:20px;
             width:280px;
             float:right;
             padding:10px;
-              -moz-border-radius: 5px;
+            -moz-border-radius: 5px;
             border-radius: 5px;
         }
 
@@ -156,13 +161,16 @@ width: 7px; height: 7px; font-size: 1px;
             border: 1px solid gray;
             background:#A1D636;
         }
-            .offersbox_offers_tab { 
+        .cancelbox{
+            border: 1px solid gray;
+            background:#cccccc;;
+        }
+            .offersbox_offers_tab, .cancelbox_tab {
             width:280px;}
 
-            .offersbox_offers_tab td{
+            .offersbox_offers_tab td, .cancelbox_tab td{
                 padding-bottom:5px;
                 vertical-align:top;
-
             }
 
 

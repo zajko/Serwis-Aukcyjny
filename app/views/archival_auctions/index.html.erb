@@ -5,14 +5,32 @@
 <table id="TabFullSize">
   <tr>
     <td class="header">Nr aukcji</td>
+    <td class="header">Typ aukcji</td>
+    <td class="header">Początek</td>
+    <td class="header">Koniec</td>
+    <td class="header">Aktualna cena</td>
+    <td class="header">Aktywna</td>
     <td class="header">Usuń</td>
-    <td class="header">Pokaż</td>
   </tr>
-  <% for archival_auctions in @archival_auctions %>
+  <% for archival_auctions in @archival_auctions  %>
     <tr>
       <td><%=h archival_auctions.id %></td>
-      <td><%= link_to "Usuń", :id=>archival_auctions.id, :confirm => 'Are you sure?', :method => :delete %></td>
-      <td><%= link_to "Pokaż", archival_auctions %></td>
+      <td><% if archival_auctions.buy_now_price>0 %>Kup teraz
+          <% else %>Licytacja<br /> 
+          &nbsp;&nbsp; - Cena min: <%='%.2f' % archival_auctions.minimal_price%> zł<br />
+          &nbsp;&nbsp; - Min podbicie ceny: <%= '%.2f' % archival_auctions.minimal_bidding_difference%> zł
+          <% end %>
+      </td>
+      <td><%=h archival_auctions.start.strftime("%d-%m-%Y %H:%m") %></td>
+      <td><%=h archival_auctions.auction_end.strftime("%d-%m-%Y %H:%m") %></td>
+      <td>
+          <%  if (archival_auctions.buy_now_price>0) %><img src="images/dolar.png" />
+                  <% else %><img src="images/auction.png" />
+                  <%end%>
+          <%= '%.2f' % archival_auctions.current_price %></td>
+      <td><% if archival_auctions.activated %>tak<% else %> nie <% end %> </td>
+      <td>
+<center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id=>archival_auctions.id, :confirm => "Czy jesteś pewien ?"%></center>
     </tr>
   <% end %>
 </table>

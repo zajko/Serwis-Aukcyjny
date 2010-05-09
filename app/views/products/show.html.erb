@@ -2,44 +2,45 @@
 <%= stylesheet_link_tag "products" %>
 <% render :partial => "/personal/menu_personal" %>
 <h1>Szczegóły aukcji </h1>
-
 <div class="boxcondainer">
       <% if current_user%>
+          <% if @product.auction and !(@product.auction.buy_now_price > 0 and @product.auction.bids.not_cancelled.count>0 )
+              @kup_teraz=true;
+          end%>
+        <div class="box" style=" width:280px; float:right;">
+              <% if @product.auction and current_user != @product.auction.user%>
+                      <%= render :partial => "products/show_observebuttonbox" %>
+                      <% if !@kup_teraz==false %>
+                      <%= render :partial => "products/show_bidbox" %>
+                      <% end %>
+              <% end %>
+                     <%= render :partial => "products/show_offersbox" %>
+                     <%= render :partial => "products/show_cancelbox" %>
 
-      <% if @product.auction and !(@product.auction.buy_now_price > 0 and @product.auction.bids.not_cancelled.count>0 )
-          @kup_teraz=true;
-      end
-      %>
-
-            <div class="box" style=" width:280px; float:right;">
-                  <% if @product.auction and current_user != @product.auction.user%>
-                          <%= render :partial => "products/show_observebuttonbox" %>
-                          <% if !@kup_teraz==false %>
-                          <%= render :partial => "products/show_bidbox" %>
-                          <% end %>
-                  <% end %>
-                         <%= render :partial => "products/show_offersbox" %>
-                         <%= render :partial => "products/show_cancelbox" %>
-
-            </div>
+        </div>
       <%end%>
 </div>
 	   
 
+<!-- Wszystkie dane aukcji  -->
+<div class="box" style="float:left; width:460px;">
 
-      <!-- Wszystkie dane aukcji  -->
-      <div class="box" style="float:left; width:460px;">
+    <h2>Dane produktu:</h2>
+    <%= render :partial => "show_#{@product.class}"%>
+    <h2>Dane aukcji:</h2>
+    <%= render :partial => "show"%>
 
-            <h2>Dane produktu:</h2>
-            <%= render :partial => "show_#{@product.class}"%>
-            <h2>Dane aukcji:</h2>
-            <%= render :partial => "show"%>
+    <h2>Kategorie produktu:</h2>
+    <%= render :partial=>"categories/show_assigned_categories" %>
 
-            <h2>Kategorie produktu:</h2>
-            <%= render :partial=>"categories/show_assigned_categories" %>
+</div>
 
-      
+<div  class="content_menu" style="width:780px;display:table; text-align:center;">
+    <% if  current_user and current_user.id== @product.auction.user.id %>
+<span class="content_menu">
+  <%=link_to "Edytuj", :controller => "products", :action => "edit",:id => @product.auction.auctionable_id,  :product_type => @product.auction.auctionable_type%> |
+  <%=link_to "Usuń", :controller => "products", :action => "delete",:name=>"delete", :id => @product.auction.auctionable_id,  :product_type => @product.auction.auctionable_type, :confirm => "Czy jesteś pewien ?"%>
 
-
-            </div>
-
+</span>
+<% end %>
+</div>

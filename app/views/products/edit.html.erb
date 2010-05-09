@@ -10,6 +10,7 @@
 	</head>
 <body>
 <%= render :partial => "/personal/menu_personal" %>
+  <%= render :partial => "/products/search_box" %>
 <h1> Edycja aukcji</h1>
 	
 <% form_for  @product, :url => {:action => "update", :product_type => @controller.product_type} do |form| %>

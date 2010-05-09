@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   before_filter :load_peek_user, :only => [:show]
   rescue_from Acl9::AccessDenied, :with => :deny_user_access
+  before_filter :require_no_user
 
   access_control do
     deny :banned
