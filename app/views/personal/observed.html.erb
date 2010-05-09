@@ -1,6 +1,7 @@
 <%= render :partial=> "products/search_box_simple" %>
 <%= render :partial => "personal/menu_personal" %>
 <h1>Śledzone aukcje</h1>
+<%= will_paginate @auctions, :params => {:search => params[:search]}, :class=>"paginate" %>
 <table id="TabFullSize">
 	<tr>
            <td class="header">Nr aukcji</td>

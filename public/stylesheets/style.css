@@ -7,6 +7,12 @@ width: 7px; height: 7px; font-size: 1px;
     image: url(delete.png);
      
 }
+.paginate{
+    font-size:11px;
+    text-align:center;
+    padding-bottom:20px;
+}
+
     *{margin:0px; padding:0px;
     }
     img{border:0px}
@@ -37,6 +43,10 @@ width: 7px; height: 7px; font-size: 1px;
         height:36px;
         width:924px;
         overflow:hidden;
+    }
+    .meta img{
+        width:15px;
+        height:14px;
     }
     .meta a,#menuAdministratora a{
         color:#92DF01;
@@ -380,7 +390,7 @@ width: 7px; height: 7px; font-size: 1px;
         color:#454545;
     }
         #info div{
-            width:160px;
+            width:200px;
             float:left;
             padding:0 10px 0 38px;
         }
@@ -394,6 +404,9 @@ width: 7px; height: 7px; font-size: 1px;
         #info a{
             color:#454545;
             text-decoration:none
+        }
+        #info h2{
+            padding:0px;
         }
 
     /* Footer */

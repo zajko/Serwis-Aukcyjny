@@ -8,17 +8,18 @@ class PersonalController < ApplicationController
 
   def created_auctions
     @tab=params[:tab]
+    page = params[:page] || 1
     if !current_user
       flash[:notice] = "Musisz się zalogować, jak tu wszedłeś ?"
       redirect_to :root
       return
     end
     if params[:tab]=="notactivated"
-        @auctions = Auction.find(:all,:conditions=>"activated=false AND user_id="+current_user.id.to_s)
+        @auctions = Auction.find(:all,:conditions=>"activated=false AND user_id="+current_user.id.to_s).paginate :page => page, :order => 'id DESC', :per_page=>10
     elsif params[:tab]=="closed"
-      @auctions = Auction.find(:all,:conditions=>"auction_end<'"+Date.today.to_s+"'  AND user_id='"+current_user.id.to_s+"'")
+        @auctions = Auction.find(:all,:conditions=>"auction_end<'"+Date.today.to_s+"'  AND user_id='"+current_user.id.to_s+"'").paginate :page => page, :order => 'id DESC', :per_page=>10
     else
-      @auctions = Auction.find(:all,:conditions=>"activated=true AND auction_end>'"+Date.today.to_s+"' AND user_id="+current_user.id.to_s)
+        @auctions = Auction.find(:all,:conditions=>"activated=true AND auction_end>'"+Date.today.to_s+"' AND user_id="+current_user.id.to_s).paginate :page => page, :order => 'id DESC', :per_page=>10
     end
 
 #Bid.find_all_by_user_id(current_user.id)
@@ -40,13 +41,11 @@ class PersonalController < ApplicationController
       return
     end
 #    @auctions = Bid.find_all_by_user_id current_user
-
-    @auctions = Bid.find_by_sql "SELECT b.auction_id, a.auctionable_type, a.current_price, MAX(b.offered_price) AS \"offered_price\", a.auctionable_id FROM auctions a
-    INNER JOIN bids b
-    ON a.id=b.auction_id
-    WHERE b.user_id="+current_user.id.to_s+"
-    GROUP BY b.auction_id, a.auctionable_type, a.current_price, a.auctionable_id
-    ORDER BY b.auction_id";
+    page = params[:page] || 1
+    @auctions = (Bid.find_by_sql "SELECT b.auction_id, a.auctionable_type, a.current_price, a.buy_now_price, MAX(b.offered_price) AS \"offered_price\", a.auctionable_id FROM auctions a
+    INNER JOIN bids b ON a.id=b.auction_id WHERE b.user_id="+current_user.id.to_s+"
+    GROUP BY b.auction_id, a.auctionable_type, a.current_price, a.auctionable_id, a.buy_now_price
+    ORDER BY b.auction_id").paginate :page => page, :order => 'id DESC', :per_page=>10
       #  @auctions = Auction.user_id_equals(current_user.id).all
   end
 
@@ -56,7 +55,8 @@ class PersonalController < ApplicationController
       redirect_to :root
       return
     end
-    @auctions = current_user.observed
+     page = params[:page] || 1
+    @auctions = current_user.observed.paginate :page => page, :order => 'id DESC', :per_page=>10
   end
 
   def saldo

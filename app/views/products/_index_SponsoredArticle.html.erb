@@ -1,6 +1,7 @@
 <% if @products.count == 0 %>
 Brak aukcji tego typu
 <%  else %>
+<%= will_paginate @products, :params => {:search => params[:search]}, :class=>"paginate" %>
         <table  id="TabFullSize">
         <tr>
           <td>Nr aukcji</td>

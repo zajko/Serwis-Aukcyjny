@@ -1,5 +1,5 @@
 <%= render :partial=> "products/search_box_simple" %>
-<% if @user.id==current_user.id %>
+<% if current_user and @user.id==current_user.id %>
 <%= render :partial => "users/menu"  %>
 <% else %>
 <%= stylesheet_link_tag "style_for_no_right_panel" %>

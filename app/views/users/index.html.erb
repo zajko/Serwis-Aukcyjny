@@ -6,8 +6,10 @@
 <%= render :partial => "users_searcher"%>
 
 
-<span class="UzytkownicyListaStron"><%= will_paginate @posts, :params => {:search => params[:search]} %></span>
+<span class="UzytkownicyListaStron">
 
+<%= will_paginate @users, :params => {:search => params[:search]} %></span>
+<br />
     <table id="TabFullSize">
             <tr>
                     <td class="header">Login</td>

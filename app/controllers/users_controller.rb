@@ -145,7 +145,7 @@ class UsersController < ApplicationController
     page = params[:page] || 1
     prepare_search
     @search = UserSearch.new(params[:search])
-    @users = @scope.paginate :page => page, :order => 'login ASC'
+    @users = @scope.paginate :page => page, :order => 'login ASC', :per_page=>8
     @roles = Role.appliable#search(:authorizable_type => :null).all
     #User.find(:all, :order => "id")  
   end

@@ -4,19 +4,20 @@
     <td class="ArticlesTabHeader">Tytuł</td>
     <td class="ArticlesTabHeader" width="200">Treść</td>
     <td class="ArticlesTabHeader">Użytkownik</td>
-    <td class="ArticlesTabHeader">Opcje</td>
+    <td class="ArticlesTabHeader">Edytuj</td>
     <td class="ArticlesTabHeader">Usuń</td>
+    <td class="ArticlesTabHeader">Pokaż</td>
   </tr>
 
   <% for article in @articles %>
     <tr>
       <td><%=h article.title %></td>
-      <td><%=h  article.text %></td>
+      <td><%=h  article.text[1..150] %></td>
       <td><%=h article.user.login %></td>
-      <td><%= link_to "Pokaż", article %>
-      <%= link_to "Edytuj", edit_article_path(article) %>
-      </td>
-      <td><%= link_to "X", article, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Edytuj",:controller => "articles", :action => "edit",:name=>"edit",:id=>article.id %></td>
+      <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "articles", :action => "destroy",:name=>"destroy",:id=>article.id, :confirm => "Czy jesteś pewien ?"%></center></td>
+      
+      <td><%= link_to "Pokaż", article %></td>
     </tr>
   <% end %>
 </table>
