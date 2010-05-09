@@ -7,6 +7,7 @@ Brak aukcji tego typu
           <td>Nr aukcji</td>
           <td>Początek</td>
           <td>Koniec</td>
+          <td>Pozostało</td>
           <td>Pagerank</td>
           <td>Użytkownicy dziennie</td>
           <td>Liczba słów</td>
@@ -20,6 +21,14 @@ Brak aukcji tego typu
                 <td><%= product.auction.id %></td>
                 <td><%=  product.auction.start.strftime("%d-%m-%Y %H:%m") %></td>
                 <td><%=  product.auction.auction_end.strftime("%d-%m-%Y %H:%m") %></td>
+                 <td>
+                   <% if product.auction.auction_end>Date.today %>
+                    <%=  distance_of_time_in_words(product.auction.auction_end,Date.today)%>
+                    <% else %>
+                    -
+                    <% end %>
+
+                </td>
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
                 <td><%= product.words_number%></td>

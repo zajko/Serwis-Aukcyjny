@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
   
   def index
     page = params[:page] || 1
-    @categories = Category.paginate :page => page, :order => 'name ASC'
+    @categories = Category.paginate :page => page,:per_page=>20, :order => 'name ASC'
   end
 
 end

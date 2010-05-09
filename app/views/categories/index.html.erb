@@ -14,7 +14,7 @@ kategorii przypisanych do tej aukcji.
 		@categories.each do |c| %>
     <tr>
       <td><%=  c.name %></td>
-      <td><%= link_to "Usuń", :action => "delete", :id => c.id,  :confirm => "Czy jesteś pewien?"%></td>
+      <td><center><%= link_to image_tag("delete.png", :border=>0), :action => "delete", :id => c.id,  :confirm => "Czy jesteś pewien?"%></center></td>
     </tr>
 	<%end%>
 	<%end%>

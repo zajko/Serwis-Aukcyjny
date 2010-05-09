@@ -96,8 +96,8 @@ class RolesController < ApplicationController
 
 
   def index
-      
-    @roles = Role.find(:all) do |role|
+      page = params[:page] || 1
+    @roles = Role.all.paginate :page => page,:per_page=>20, :order => 'name ASC' do |role|
         role.authorizable_type == nil
         role.authorizable_id == nil
     end
