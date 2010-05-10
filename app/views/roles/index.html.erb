@@ -19,7 +19,7 @@
                    nie
                    <%  end %>
             </td>
-			<td><center><%=link_to image_tag("delete.png", :border=>0), {:action=> "remove_role_from_user", :user_id => current_user.id, :role_id => role.id}, :confirm => "Czy na pewno chcesz usunąć tą rolę ?"%></center></td>
+			<td><center><%=link_to image_tag("delete.png", :border=>0), {:action=> "delete", :id => role.id}, :confirm => "Czy na pewno chcesz usunąć tą rolę ?"%></center></td>
 		</tr>
 	<% end  %>
 </table>

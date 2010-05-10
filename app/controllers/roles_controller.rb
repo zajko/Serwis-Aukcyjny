@@ -48,7 +48,8 @@ class RolesController < ApplicationController
     if(! @user.roles.include?(@role))
       flash[:notice] = "Użytkownik #{@user.login} nie ma roli #{@role.name}"
     else
-     @user.has_no_role!(@role.name)
+     #@user.has_no_role!(@role.name)
+     @user.roles.delete(@role)
      if(@user.has_role?(@role.name) == false)
       flash[:notice] = "Użytkownikowi #{@user.login} odebrano rolę #{@role.name}"
      else
@@ -98,26 +99,32 @@ class RolesController < ApplicationController
 
 
   def index
+    page = params[:page] || 1
     scope = Role.scoped({})
     scope = scope.authorizable_id_null.authorizable_type_null
-    @roles = scope.all
+    @roles = scope.paginate :page => page, :order => 'name ASC'
     #@roles = Role.find(:all) do |role|
     #    role.authorizable_type == nil
     #    role.authorizable_id == nil
     #end
   end
   def delete
-#    @role = Role.find(params[:id])
-#    if(@role.destructible == false)
-#      flash[:notice] = "We`re sorry role #{@role.name} cannot be removed."
-#      redirect_to(:action =>'index')
-#    else
-#      name = @role.name
-#      if @role.destroy
-#        flash[:notice] = "Role #{name} destroyed."
-#        redirect_to(:action =>'index')
-#      end
-#    end    
+    if params[:id] == nil
+      flash[:notice] = "Brak numeru roli."
+      redirect_to(:action =>'index')
+      return
+    end
+    @role = Role.find(params[:id])
+    if(@role.destructible == false)
+      flash[:notice] = "Roli #{@role.name} nie da się usunąć."
+      redirect_to(:action =>'index')
+    else
+      name = @role.name
+      if @role.destroy
+        flash[:notice] = "Rola #{name} usunięta."
+        redirect_to(:action =>'index')
+      end
+    end    
   end
 
   def edit

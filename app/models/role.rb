@@ -14,5 +14,8 @@ class Role < ActiveRecord::Base
    #RolesUser.role_id_equals(id).destroy_all
    #super
   #end
+  def self.per_page
+    10 #TODO zrób tak, żeby to było w pliku konfiguracyjnym
+  end
   
 end
