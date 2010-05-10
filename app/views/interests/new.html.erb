@@ -1,0 +1,9 @@
+<%= render :partial => "interests/menu" %>
+<% form_for @interest, :url => { :action => "create" } do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :name, "Nazwa kategorii zainteresowania: " %>
+  <%= f.text_field :name%><br />
+  <br />
+
+  <%= f.submit "Utwórz" %>
+<% end %>

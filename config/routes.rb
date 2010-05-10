@@ -51,6 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :category, :controller => "categories"
   map.resources :articles
   map.resources :users
+  map.resources :interests
   map.resources :role
   map.resources :products
   map.resources :password_resets

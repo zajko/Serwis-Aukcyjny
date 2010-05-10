@@ -15,6 +15,7 @@ class Auction < ActiveRecord::Base
   #before_save :assign_roles
   
   validate :check_before_update, :on => :update
+  validates_numericality_of :time_of_service, :greater_than => 0
   #accepts_nested_attributes_for :categories
   attr_accessible :category_ids
   attr_accessible :categories
@@ -50,13 +51,8 @@ class Auction < ActiveRecord::Base
     if ApplicationController.get_static_user and (ApplicationController.get_static_user.has_role?(:admin) || ApplicationController.get_static_user.has_role?(:superuser))
       return true
     end
-#    if ApplicationController.get_static_user and user.id != ApplicationController.get_static_user.id
-#      errors.add("Nie możesz usunąć aukcję, która nie należy do ciebie !")
-#      return false
-#    end
-#ApplicationController.get_static_user and
     if auction_end > Time.now() and bids and bids.not_cancelled.count > 0
-      errors.add("Nie możesz usunąć aukcję, która ma złożone oferty !")
+      errors.add("Nie możesz usunąć aukcji, która ma złożone oferty !")
       return false
     end
     
@@ -88,10 +84,10 @@ class Auction < ActiveRecord::Base
     errors.add(:s, "Nie można zmienić daty końca aukcji zakończonej aukcji") if @prev_stat.auction_end < Time.now and @prev_stat.auction_end != auction_end
     if bids.not_cancelled.count > 0
       errors.add(:s, "Nie można zmniejszyć liczby wystawionych przedmiotów gdy są nieanulowane aukcje") if @prev_stat.number_of_products > number_of_products
-      errors.add(:s, "Nie można zmienić ceny kup teraz gdy są nieanulowane aukcje") if @prev_stat.buy_now_price != buy_now_price
+      errors.add(:s, "Nie można zmienić ceny kup teraz gdy są nieanulowane oferty") if @prev_stat.buy_now_price != buy_now_price
       errors.add(:s, "Nie można zmienić ceny minimalnej gdy są nieanulowane aukcje") if @prev_stat.minimal_price != minimal_price
-      #      kod Kuby!!!!!!!!!!
-      errors.add(:s, "Nie można przenieść końca aukcji gdy są nieanulowane aukcje") if @prev_stat.auction_end != auction_end
+      errors.add(:s, "Nie można zmienić czasu usługi gdy są nieanulowane oferty") if @prev_stat.time_of_service != time_of_service
+      errors.add(:s, "Nie można przenieść końca aukcji gdy są nieanulowane oferty") if @prev_stat.auction_end != auction_end
     end
     return errors.count == 0
   end

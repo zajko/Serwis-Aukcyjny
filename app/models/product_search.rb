@@ -32,6 +32,9 @@ class ProductSearch < Tableless
   column :order_by, :string
   column :user_login_like, :string
   column :auction_activated, :boolean
+  column :auction_opened, :string
+  column :auction_time_of_service_gte, :boolean
+  column :auction_time_of_service_lte, :boolean
   @cats
   @conditions = {}
   @order = {}

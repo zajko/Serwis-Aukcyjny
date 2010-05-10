@@ -1,0 +1,23 @@
+<%= render :partial => "interests/menu" %>
+<span class="UzytkownicyListaStron">
+
+<%= will_paginate @interests, :params => {:search => params[:search]} %></span>
+
+<br />
+<table id="TabFullSize">
+  <tr>
+    <td>Nazwa</td>
+    <td>Usuń</td>
+  </tr>
+    <% @interests.each do |interest| %>
+    <tr>
+            <td><%= interest.name%></td>
+            <td class="center">
+                    <%= link_to image_tag("delete.png", :border=>0), {:action => "destroy", :id => interest.id} %>
+            </td>
+</tr>
+    <% end %>
+
+</table>
+
+
