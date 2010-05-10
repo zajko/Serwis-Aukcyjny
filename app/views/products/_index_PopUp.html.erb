@@ -7,6 +7,7 @@
           <td>Nr aukcji</td>
           <td>Początek aukcji</td>
           <td>Koniec aukcji</td>
+          <td>Pozostało</td>
           <td>PR</td>
           <td>Użytkownicy dziennie</td>
           <td>Aktualna cena</td>
@@ -17,8 +18,16 @@
         <% @products.each do |product| %>
         <tr <%  if current_user == product.auction.user %> style="background-color:#cccccc;"<% end %> >
                 <td><%= product.auction.id %></td>
-                <td><%=product.auction.start%></td>
-                <td><%=product.auction.auction_end%></td>
+                <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
+                <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
+                 <td>
+                   <% if product.auction.auction_end>Date.today %>
+                    <%=  distance_of_time_in_words(product.auction.auction_end,Date.today)%>
+                    <% else %>
+                    -
+                    <% end %>
+
+                </td>
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
                 <td>(<%= product.width%>, <%= product.height%>)</td>

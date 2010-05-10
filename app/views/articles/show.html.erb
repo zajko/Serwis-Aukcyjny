@@ -13,8 +13,8 @@
   <%=h @article.user.login if @article.user %>
 </p>
 <br /><br />
-<p>Inne opcje:
-  <%= link_to "Edytuj", edit_article_path(@article) %> |
+<div class="content_menu">
+  <%= link_to "Edytuj",:controller => "articles", :action => "edit",:name=>"edit",:id=>@article.id %> |
   <%= link_to "Usuń", @article, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Zobacz wszystkie", articles_path %>
-</p>
+</div>

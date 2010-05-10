@@ -7,6 +7,7 @@ Brak aukcji tego typu
         <tr>    <td>Nr aukcji</td>
                 <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search_type => "advanced", :search => params[:search]%></td>
                 <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "site_link", :search => params[:search]%></td>
+                <td>Pozostało</td>
                 <td><%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "site_link", :search => params[:search]%></td>
                 <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "site_link", :search => params[:search]%>	</td></td>
                 <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> "current_price", :product_type => "site_link", :search => params[:search]%></td>
@@ -18,6 +19,14 @@ Brak aukcji tego typu
                 <td><%= product.auction.id %></td>
                 <td><%=product.auction.start.strftime("%d-%m-%Y %H:%m")%></td>
                 <td><%=product.auction.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
+                <td>
+                   <% if product.auction.auction_end>Date.today %>
+                    <%=  distance_of_time_in_words(product.auction.auction_end,Date.today)%>
+                    <% else %>
+                    -
+                    <% end %>
+
+                </td>
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
                 <td>
