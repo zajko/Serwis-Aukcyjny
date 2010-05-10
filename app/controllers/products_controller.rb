@@ -218,8 +218,13 @@ class ProductsController < ApplicationController
       redirect_to :controller => "personal", :action => "created_auctions"
       flash[:notice] = "Aukcja została usunięta"
     else
-      render  :controller => "personal", :action => "created_auctions"
-      flash[:notice] = "Nie można usunąć aukcji"
+      redirect_to :controller => "personal", :action => "created_auctions"
+      if @product.auction.bids.not_cancelled.count > 0
+        flash[:notice] = "Aukcja ma ważne (nieanulowane) oferty - nie można jej usunąć"
+      else
+        flash[:notice] = "Nie można usunąć aukcji."
+      end
+      
     end
   end
 
