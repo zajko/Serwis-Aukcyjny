@@ -121,14 +121,18 @@ class ProductsController < ApplicationController
  
   def index
     
+    if !params[:search] and params[:search_categories]
+      params[:search] = {}
+      params[:search][:categories_attributes] = params[:search_categories]
+    end
     prepare_search
-    @search_categories=params[:search_categories]
+    #@search_categories=params[:search_categories]
     page = params[:page] || 1
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])
-#    @search_categories.each do |e|
-#      @search.categories_attributes=e
-#    end if @search_categories
+    #@search_categories.each do |e|
+    #  @search.categories_attributes=e
+    #end if @search_categories
     if @scope != nil and @scope.count > 0
       @products = (@scope.paginate :page => page, :order => 'id DESC', :per_page=>20)
     else

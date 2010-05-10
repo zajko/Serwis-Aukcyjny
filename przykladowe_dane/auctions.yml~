@@ -14,7 +14,7 @@ require 'app/helpers/products_helper.rb'
 		z = rand(2)
 		if z % 2 == 0
 			kat = kat + ', ' if kat.length > 0
-			kat = kat + "categories_#{j}"
+			kat = kat + "category_#{j}"
 		end
 		j = j + 1
 	end
@@ -24,10 +24,15 @@ auction_<%= i%>:
  start: <%= Time.now()+(i/30 - 15).days %>
  auction_end: <%= Time.now() + (1 + i/30).days %>
  activated: <%= !(i%17 == 0) %>
- <%if(i%2 == 0)%>
+ <%if(i%7 == 0 || i%7 == 3 || i%7 == 4 i%7 == 6)%>
  minimal_price: <%= 10 + 20* Math.log(i+2)%>
  minimal_bidding_difference: <%= 5 + 1.2* (Math.log(i+2) + 1)%>
+ current_price: <%= 10 + 20* Math.log(i+2)%>
+ buy_now_price: 0
  <%else%>
+ minimal_price: 0
+ minimal_bidding_difference: 0
+ current_price: <%= 5 * (4 + i/10.0) %>
  buy_now_price: <%= 5 * (4 + i/10.0) %>
  <%end%>
  time_of_service: <%= 10 + Math.log(i * 5 + 2).to_i %>
