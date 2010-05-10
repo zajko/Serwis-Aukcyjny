@@ -98,7 +98,6 @@ class RolesController < ApplicationController
 
 
   def index
-<<<<<<< HEAD:app/controllers/roles_controller.rb
     scope = Role.scoped({})
     scope = scope.authorizable_id_null.authorizable_type_null
     @roles = scope.all
@@ -106,13 +105,6 @@ class RolesController < ApplicationController
     #    role.authorizable_type == nil
     #    role.authorizable_id == nil
     #end
-=======
-      page = params[:page] || 1
-    @roles = Role.all.paginate :page => page,:per_page=>20, :order => 'name ASC' do |role|
-        role.authorizable_type == nil
-        role.authorizable_id == nil
-    end
->>>>>>> f78249394924cf0e943cd8ad79d71cd4febd190e:app/controllers/roles_controller.rb
   end
   def delete
 #    @role = Role.find(params[:id])
