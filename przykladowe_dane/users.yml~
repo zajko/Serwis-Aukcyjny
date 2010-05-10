@@ -1,0 +1,82 @@
+require 'app/helpers/products_helper.rb'
+
+not_activated:
+  login: nieaktywatek
+  email: nieaktywatek@example.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_token: <%= ProductsHelper.random_string(20) %>
+  roles: user_ownership_nieaktywowany
+
+zbanowany:
+  login: banowany
+  email: banowany@example.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_token: <%= ProductsHelper.random_string(20) %>
+  roles: user_ownership_zbanowany
+
+
+
+user_superuser:
+  login: Naduser
+  email: naduser@example.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_token: <%= ProductsHelper.random_string(20) %>
+  roles: superuser, admin, user_ownership_superuser 
+
+<% 
+	a_ownership = ''
+	x = 0
+	while x < 399
+		a_ownership = a_ownership + ", " + "user_ownership_auction_#{x}"
+		x = x + 21
+	end 
+%>
+
+user_0:
+  login: Admin
+  email: admin@example.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_token: <%= ProductsHelper.random_string(20) %>
+  roles: admin, user_ownership_user_0<%=a_ownership%>
+
+<%for i in 1..20%>
+<% 
+	a_ownership = ''
+	x = i
+	while x < 399
+		a_ownership = a_ownership + ", " + "user_ownership_auction_#{x}"
+		x = x + 21
+	end 
+%>
+user_<%=i%>:
+  login: uzytkownik_<%=i%>
+  email: <%= "uzytkownik#{i}@example.com" %>
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  activation_token: <%= ProductsHelper.random_string(20) %>
+  roles: user_ownership_user_<%=i%> <%=a_ownership%>
+<%end%>

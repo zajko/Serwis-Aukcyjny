@@ -5,7 +5,7 @@ class SponsoredArticle < ActiveRecord::Base
   has_one :auction, :as => :auctionable, :autosave => true, :dependent => :destroy
   has_many :categories, :through => :auction
   accepts_nested_attributes_for :auction, :allow_destroy => true
-  attr_accessible :auction_attributes
+ # attr_accessible :auction_attributes
   attr_accessible :url
   attr_accessible :pagerank
   attr_accessible :users_daily
@@ -19,11 +19,6 @@ class SponsoredArticle < ActiveRecord::Base
       return true
     end
     @prev_stat = SponsoredArticle.find(id)
- #    kod Kuby!!!!!!
-#    if !@prev_stat
-#      errors.add(:s, "Taki rekord nie istnieje w bazie")
-#      return false
-#    end
     errors.add(:s, "Nie można zmienić pageranku") if @prev_stat.pagerank != pagerank
     errors.add(:s, "Nie można zmienić adresu strony") if @prev_stat.url != url
     errors.add(:s, "Nie można zmienić liczby dziennych użytkowników") if @prev_stat.users_daily != users_daily
@@ -34,9 +29,7 @@ class SponsoredArticle < ActiveRecord::Base
     end
     return errors.count == 0
   end
-   def SponsoredArticle.searchObject(params)
-    SponsoredArticleSearch.new(params)
-  end
+  
   named_scope :activated, { :joins => :auction, :conditions => { "auctions.activated" => true }}
   named_scope :order_scope , lambda{ |scope|
   { :order => scope }
@@ -62,7 +55,7 @@ class SponsoredArticle < ActiveRecord::Base
    def polish_name
     "Artykuł sponsorowany"
   end
-end
+
 def save
     errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
 
@@ -72,7 +65,4 @@ def save
       return false
     end
   end
-
-class SponsoredArticleSearch < Tableless
-
 end

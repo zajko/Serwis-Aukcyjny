@@ -10,7 +10,7 @@ class Auction < ActiveRecord::Base
   named_scope :active, :conditions => { :activated => true}
   named_scope :categorised, :joins => :categories, :select => 'Distinct post.*'
   named_scope :expired, :conditions => 'now() - auction_end > INTERVAL \'10 minutes\' '
-  named_scope :opened, :conditions => 'buy_now_price = 0 or number_of_products > (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
+  named_scope :opened, :conditions => '"auctions".buy_now_price = 0 or "auctions".number_of_products > (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
   accepts_nested_attributes_for :user
   #before_save :assign_roles
   

@@ -1,0 +1,22 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+<% for i in 0..99 %>
+banner_<%=i%>:
+ url: <%= "http://www.o#{i%4}.pl" %>
+ pagerank: <%=(1 + 3*(rand(101)/30.0 * i/99.0) ).to_i %>
+ users_daily: <%=(1 + 45*(rand(101)/30.0 * i/99.0) ).to_i %>
+ width: <%= 30 + ((100 *i/250).to_i) %>
+ height: <%= 30 + ((100 *i/250).to_i) %>
+ x_pos: <%= 30 + ((100 *i/250).to_i) %>
+ y_pos: <%= 30 + ((100 *i/250).to_i) %>
+ frequency: <%= ((i/250.0)/2.0 + rand(51) / 100.0) %>
+<%end%>
+#two:
+#  url: http://www.onet.pl
+#  pagerank: 2
+#  users_daily: 500
+#  width : 70
+#  height : 90
+#  x_pos : 70
+#  y_pos : 80
+#  frequency : 1

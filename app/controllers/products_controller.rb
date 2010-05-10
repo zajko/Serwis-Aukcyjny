@@ -51,14 +51,6 @@ class ProductsController < ApplicationController
     end
 
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
-    #@product.build_auction(params[product_type][:auction_attributes])
-    #@product.auction.attributes = params[product_type][:auction_attributes]
-#    if params[product_type][:auction_attributes][:category_ids]
-#      params[product_type][:auction_attributes][:category_ids].each do |c|
-#        cat = Category.find(c.to_i)
-#        @product.auction.categories << cat
-#      end
-#    end
     if(@product.auction.minimal_price > 0)
       @product.auction.current_price = @product.auction.minimal_price
     else
@@ -123,8 +115,7 @@ class ProductsController < ApplicationController
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_opened => "byleco", :auction_activated => true, :categories_attributes => params[:search_categories]})
-    
+    search.merge!({:product_type => product_type, :auction_opened => "byleco", :auction_activated => true}) #, :categories_attributes => search[:search_categories]
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
  
@@ -134,10 +125,10 @@ class ProductsController < ApplicationController
     @search_categories=params[:search_categories]
     page = params[:page] || 1
     @search_type=params[:search_type]
-    @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
-    @search_categories.each do |e|
-      @search.categories_attributes=e
-    end if @search_categories
+    @search = ProductSearch.new(params[:search])
+#    @search_categories.each do |e|
+#      @search.categories_attributes=e
+#    end if @search_categories
     if @scope != nil and @scope.count > 0
       @products = (@scope.paginate :page => page, :order => 'id DESC', :per_page=>20)
     else

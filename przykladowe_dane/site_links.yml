@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+#
+#one:
+#  url: MyString
+#  pagerank: 1
+#  users_daily: 1
+#
+#two:
+#  url: MyString
+#  pagerank: 1
+#  users_daily: 1
+
+<% for i in 0..99 %>
+site_link_<%=i%>:
+ url: <%= "http://www.o#{i%4}.pl" %>
+ pagerank: <%=(1 + 3*(rand(101)/100.0 * i/99.0) ).to_i %>
+ users_daily: <%=(1 + 45*(rand(101)/30.0 * i/99.0) ).to_i %>
+<%end%>
