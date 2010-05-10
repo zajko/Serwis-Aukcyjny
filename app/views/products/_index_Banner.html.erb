@@ -33,16 +33,16 @@
                 </td>
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
-                <td>(<%= product.width%>,
-                    <%= product.height%>)</td>
-                <td><%= product.frequency%></td>
-                <td>(<%= product.x_pos%> , <%= product.y_pos%>)</td>
-                <td>  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
+                                <td>  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
                   <% else %><img src="images/auction.png" />
                   <%end%>
                   <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
+                <td>(<%= product.width%>,
+                    <%= product.height%>)</td>
+                <td><%= product.frequency%></td>
+                <td>(<%= product.x_pos%> , <%= product.y_pos%>)</td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "banner"} %></td>
         </tr>
         <% end %>

@@ -1,4 +1,3 @@
-<%= render :partial => "home/home_options" %>
 <%= render :partial=> "products/search_box_simple" %>
 <% if  current_user%>
             <% if  current_user.is_admin? %>
@@ -10,12 +9,10 @@
 <h1>Strona główna</h1>
 <% end %>
 
-
-<% if  current_user%>
-     <% if  current_user.is_admin? %>
+     <% if current_user and  current_user.is_admin? %>
           <%= render :partial=>"/articles/index_admin" %>
      <% else %>
           <%= render :partial=>"/articles/index_users" %>
       <% end %>
-<% end %>
+
 
