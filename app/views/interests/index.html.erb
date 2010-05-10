@@ -1,13 +1,15 @@
 <%= render :partial => "interests/menu" %>
-<span class="UzytkownicyListaStron">
+<h1> Zarządzanie zainteresowaniami </h1>
+
+<span class="paginate">
 
 <%= will_paginate @interests, :params => {:search => params[:search]} %></span>
 
 <br />
 <table id="TabFullSize">
   <tr>
-    <td>Nazwa</td>
-    <td>Usuń</td>
+    <td class="header">Nazwa</td>
+    <td class="header">Usuń</td>
   </tr>
     <% @interests.each do |interest| %>
     <tr>

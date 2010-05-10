@@ -30,8 +30,8 @@ Brak aukcji tego typu
                 <td><%=product.pagerank%></td>
                 <td><%=product.users_daily%></td>
                 <td>
-                  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
-                  <% else %><img src="images/auction.png" />
+                  <%  if (product.auction.buy_now_price>0) %><img src="/images/dolar.png" />
+                  <% else %><img src="/images/auction.png" />
                   <%end%>
                   <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
