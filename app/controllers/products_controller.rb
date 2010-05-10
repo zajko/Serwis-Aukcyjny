@@ -139,7 +139,7 @@ class ProductsController < ApplicationController
       @search.categories_attributes=e
     end if @search_categories
     if @scope != nil and @scope.count > 0
-      @products = (@scope.paginate :page => page, :order => 'id DESC', :per_page=>10)
+      @products = (@scope.paginate :page => page, :order => 'id DESC', :per_page=>20)
     else
       @products = []
     end

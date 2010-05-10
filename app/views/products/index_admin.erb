@@ -39,7 +39,7 @@
             </td>
             <td><%=link_to "Edytuj", :controller => "products", :action => "edit",:id => a.auctionable_id,  :product_type => a.auctionable_type%></td>
             <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id => a.auctionable_id,  :product_type => a.auctionable_type, :confirm => "Czy jesteś pewien ?"%></center></td>
-            <td><%= link_to "Pokaż", {:action => "show", :id => a.id, :product_type => a.auctionable_type}%>
+            <td><%= link_to "Pokaż", {:action => "show", :id => a.auctionable.id, :product_type => a.auctionable_type}%>
             </td>
             </tr>
 

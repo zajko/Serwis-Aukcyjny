@@ -11,8 +11,8 @@
 </td>
 </tr><tr>
 <td class="search_param_name"><%= f.label :auction_end_between, "Zakończenie: "%></td>
-<td class="search_param_value">od: <%= f.text_field :minimum_days_until_end_of_auction, :id=>"datepicker_from", :size=>7 %></td>
-<td class="search_param_value">do: <%= f.text_field :minimum_days_until_end_of_auction, :id=>"datepicker_to", :size=>7 %></td>
+<td class="search_param_value">od: <%= f.text_field :minimum_days_until_end_of_auction, :size=>7 %> [dni]</td>
+<td class="search_param_value">do: <%= f.text_field :maximum_days_until_end_of_auction, :size=>7 %> [dni]</td>
 </tr><tr>
 <td class="search_param_name"><%= f.label :Pagerank_between, "Pagerank:"%></td>
 <td class="search_param_value">od: <%= f.text_field :pagerank_gte, :size => 7, :value=>"1"  %></td>
