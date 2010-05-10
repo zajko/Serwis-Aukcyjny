@@ -28,7 +28,7 @@ ActionMailer::Base.smtp_settings = {
     recipients auction.user.email
     sent_on    Time.now
     body        :auctionable_url => auction.auctionable.url, 
-      :auction_url => ("http://" + default_url_options[:host] + "/products/"+auction.id.to_s+"?product_type="+auction.auctionable.class.to_s.underscore ),
+      :auction_url => ("http://" + default_url_options[:host] + "/products/"+auction.auctionable.id.to_s+"?product_type="+auction.auctionable.class.to_s.underscore ),
       :auction_activate_url => ("http://" + default_url_options[:host] + "/products/activate?[id]=" + auction.id.to_s),
       :auction_activation_token => auction.activation_token
   end

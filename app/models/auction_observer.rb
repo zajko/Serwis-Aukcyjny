@@ -11,7 +11,7 @@ class AuctionObserver < ActiveRecord::Observer
     charge.chargeable = a
     charge.sum = chargeSum
     charge.charges_owner = model.user
-    charge.save
+    charge.save if charge.sum > 0
     winningBids = model.winning_bids
    # model.notify_auction_owner!(winningBids, charge.sum)
   end

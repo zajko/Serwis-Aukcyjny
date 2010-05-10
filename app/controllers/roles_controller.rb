@@ -3,12 +3,14 @@ class RolesController < ApplicationController
   access_control do
     allow :admin, :superuser
   end
+
   def new
     @role = Role.new
     @role.authorizable_type = nil
     @role.authorizable_id = nil
     #@users = User.find(:all)
   end
+  
   def manage
     @user = User.find(params[:user_id])
     scope = Role.scoped({})
@@ -96,11 +98,13 @@ class RolesController < ApplicationController
 
 
   def index
-      
-    @roles = Role.find(:all) do |role|
-        role.authorizable_type == nil
-        role.authorizable_id == nil
-    end
+    scope = Role.scoped({})
+    scope = scope.authorizable_id_null.authorizable_type_null
+    @roles = scope.all
+    #@roles = Role.find(:all) do |role|
+    #    role.authorizable_type == nil
+    #    role.authorizable_id == nil
+    #end
   end
   def delete
 #    @role = Role.find(params[:id])
