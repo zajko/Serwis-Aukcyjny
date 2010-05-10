@@ -1,0 +1,41 @@
+<% for i in 0..20 %>
+user_ownership_user_<%=i%>:
+  name: owner
+  authorizable: user_<%=i%> (User)
+<%end%>
+
+<% for i in 0..399 %>
+auction_ownership_user_<%=i%>:
+  name: owner
+  authorizable: auction_<%=i%> (User)
+<%end%>
+
+
+user_ownership_superuser:
+  name: owner
+  authorizable: user_superuser (User)
+
+user_ownership_zbanowany:
+  name: owner
+  authorizable: user_zbanowany (User)
+
+user_ownership_nieaktywowany:
+  name: owner
+  authorizable: not_activated (User)
+
+superuser:
+  name: superuser
+  destructible: false
+
+admin:
+  name: admin
+  destructible: false
+
+not_activated:
+  name: not_activated
+    
+admin:
+  name: admin
+    
+banned:
+  name: banned

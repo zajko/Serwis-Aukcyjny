@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+<% for i in 0..399%>
+auction_<%= i%>:
+ user: <%= "user#{i%21} %>
+ start: <%= Time.now()+(i/30 - 15).days %>
+ auction_end: <%= Time.now() + (1 + i/30).days %>
+ activated: <%= !(i%17 == 0) %>
+ <%if(i%2 == 0)%>
+ minimal_price: <%= 10 + 20* Math.log(i)%>
+ minimal_bidding_difference: <%= 5 + 1.2* (Math.log(i) + 1)%>
+ <%else%>
+ buy_now_price: <%= 5 * (4 + i/10.0) %>
+ <%end%>
+ time_of_service: <%= 10 + Math.log(i * 5) %>
+ created_at: <%=Time.now%>
+ auctionable: <%= case i%4
+                    when 0
+                      "site_link_#{i/4} (SiteLink)" #
+                    when 1
+                      "pop_up_#{i/4} (PopUp)" #
+                    when 2
+                      "sponsored_article_#{i/4} (SponsoredArticle)" #
+                    when 3
+                      "banner_#{i/4} (Banner)" #"
+                  end
+ %>
+<%end%>

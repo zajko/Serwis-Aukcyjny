@@ -1,0 +1,36 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% for i in 0..20 %>
+user_ownership_user_<%=i%>
+    name: owner
+    authorizable: user_<%=i%> (User)
+<%end%>
+
+user_ownership_superuser:
+    name: owner
+    authorizable: user_superuser (User)
+
+user_ownership_zbanowany:
+    name: owner
+    authorizable: user_zbanowany (User)
+
+user_ownership_nieaktywowany:
+    name: owner
+    authorizable: not_activated (User)
+
+not_activated:
+    name: not_activated
+    
+admin:
+    name: admin
+    id: 99
+    
+banned:
+    name: banned
+    id: 10
+    
+superuser:
+    name: superuser
+    
+testowa:
+    name: testowa
+

@@ -1,8 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-owner:
-    name: owner
-    
+
 not_activated:
     name: not_activated
     
