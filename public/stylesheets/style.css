@@ -17,6 +17,11 @@ width: 7px; height: 7px; font-size: 1px;
 
     text-align:center;
 }
+div.category{
+    display:inline-block;
+    margin-right: 10px;
+    width:170px;
+    }
 
     *{margin:0px; padding:0px;
     }
