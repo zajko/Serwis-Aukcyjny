@@ -126,10 +126,11 @@ class ProductsController < ApplicationController
       params[:search][:categories_attributes] = params[:search_categories]
     end
     prepare_search
-    #@search_categories=params[:search_categories]
+    @search_categories=params[:search_categories] || params[:categories_attributes]
     page = params[:page] || 1
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])
+    params[:search_categories] = @search.categories_attributes
     #@search_categories.each do |e|
     #  @search.categories_attributes=e
     #end if @search_categories
