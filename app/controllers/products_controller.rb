@@ -143,10 +143,14 @@ class ProductsController < ApplicationController
   end
   
   def index_admin
+    if !params[:search] and params[:search_categories]
+      params[:search] = {}
+      params[:search][:categories_attributes] = params[:search_categories]
+    end
+    @search_categories=params[:search_categories] || params[:categories_attributes]
     page = params[:page] || 1
-    @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>10
-    
-    
+    params[:search_categories] = @search.categories_attributes
+    @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>20
     
   end
 

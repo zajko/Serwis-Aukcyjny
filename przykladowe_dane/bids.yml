@@ -1,0 +1,27 @@
+<% glob_bid = 0 %>
+<% for i in 0..399
+ 	if !(i%17 == 0) 
+	x = rand(8)
+	z = 0
+	s = Time.now()+(i/30 - 15).days
+   	e = Time.now() + (i/30 - 2).days 
+   	period = e - s
+	while z < x
+%>
+bid_<%=glob_bid%>:
+ user: user_<%=(i + 1 + z)%21 %>
+ auction: auction_<%= i%>
+ <% if (i%7 == 0 || i%7 == 3 || i%7 == 4 || i%7 == 6) %>
+ offered_price: <%= (10 + 20* Math.log(i+2) + (z+ rand(3)) * (5 + 1.2* (Math.log(i+2) + 1))).to_i %> 
+ <%else%>
+ <%x = 0%>
+ offered_price: <%= (5 * (4 + i/10.0)).to_i %>
+ <%end%>
+ <% of_time = s + (period* z)/(x+1) %>
+ bid_created_time: <%= of_time %>
+ created_at: <%= of_time %>
+<%	z = z + 1
+	glob_bid = glob_bid + 1
+	end
+   	end
+end %>

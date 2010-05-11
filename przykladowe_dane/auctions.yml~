@@ -20,11 +20,11 @@ require 'app/helpers/products_helper.rb'
 	end
 %>
 auction_<%= i%>:
- user: <%= "user#{i%21}" %>
+ user: <%= "user_#{i%21}" %>
  start: <%= Time.now()+(i/30 - 15).days %>
- auction_end: <%= Time.now() + (1 + i/30).days %>
+ auction_end: <%= Time.now() + (i/30 - 5).days %>
  activated: <%= !(i%17 == 0) %>
- <%if(i%7 == 0 || i%7 == 3 || i%7 == 4 i%7 == 6)%>
+ <%if(i%7 == 0 || i%7 == 3 || i%7 == 4 || i%7 == 6)%>
  minimal_price: <%= 10 + 20* Math.log(i+2)%>
  minimal_bidding_difference: <%= 5 + 1.2* (Math.log(i+2) + 1)%>
  current_price: <%= 10 + 20* Math.log(i+2)%>
@@ -32,8 +32,8 @@ auction_<%= i%>:
  <%else%>
  minimal_price: 0
  minimal_bidding_difference: 0
- current_price: <%= 5 * (4 + i/10.0) %>
- buy_now_price: <%= 5 * (4 + i/10.0) %>
+ current_price: <%= (5 * (4 + i/10.0)).to_i %>
+ buy_now_price: <%= (5 * (4 + i/10.0)).to_i %>
  <%end%>
  time_of_service: <%= 10 + Math.log(i * 5 + 2).to_i %>
  activation_token: <%= ProductsHelper.random_string(20) %>

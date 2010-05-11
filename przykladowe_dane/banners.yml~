@@ -9,7 +9,7 @@ banner_<%=i%>:
  height: <%= 30 + ((100 *i/250).to_i) %>
  x_pos: <%= 30 + ((100 *i/250).to_i) %>
  y_pos: <%= 30 + ((100 *i/250).to_i) %>
- frequency: <%= ((i/250.0)/2.0 + rand(51) / 100.0) %>
+ frequency: <%= ((i/51.0)/2.0 + rand(51) / 100.0) %>
 <%end%>
 #two:
 #  url: http://www.onet.pl

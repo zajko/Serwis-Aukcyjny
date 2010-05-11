@@ -1,5 +1,16 @@
 require 'app/helpers/products_helper.rb'
-
+<%
+int = ''
+	j = 0
+	while j < 4
+		z = rand(2)
+		if z % 2 == 0
+			int = int + ', ' if int.length > 0
+			int = int + "interest_#{j}"
+		end
+		j = j + 1
+	end
+%>
 not_activated:
   login: nieaktywatek
   email: nieaktywatek@example.com
@@ -11,7 +22,21 @@ not_activated:
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
   roles: user_ownership_nieaktywowany
-
+  interests: <%= int %>
+  last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
+<%
+int = ''
+	j = 0
+	while j < 4
+		z = rand(2)
+		if z % 2 == 0
+			int = int + ', ' if int.length > 0
+			int = int + "interest_#{j}"
+		end
+		j = j + 1
+	end
+%>
 zbanowany:
   login: banowany
   email: banowany@example.com
@@ -23,9 +48,21 @@ zbanowany:
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
   roles: user_ownership_zbanowany
-
-
-
+  interests: <%= int %>
+  last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
+<%
+int = ''
+	j = 0
+	while j < 4
+		z = rand(2)
+		if z % 2 == 0
+			int = int + ', ' if int.length > 0
+			int = int + "interest_#{j}"
+		end
+		j = j + 1
+	end
+%>
 user_superuser:
   login: Naduser
   email: naduser@example.com
@@ -37,7 +74,9 @@ user_superuser:
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
   roles: superuser, admin, user_ownership_superuser 
-
+  interests: <%= int %>
+  last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <% 
 	a_ownership = ''
 	x = 0
@@ -46,7 +85,18 @@ user_superuser:
 		x = x + 21
 	end 
 %>
-
+<%
+int = ''
+	j = 0
+	while j < 4
+		z = rand(2)
+		if z % 2 == 0
+			int = int + ', ' if int.length > 0
+			int = int + "interest_#{j}"
+		end
+		j = j + 1
+	end
+%>
 user_0:
   login: Admin
   email: admin@example.com
@@ -58,7 +108,9 @@ user_0:
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
   roles: admin, user_ownership_user_0<%=a_ownership%>
-
+  interests: <%= int %>
+  last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%for i in 1..20%>
 <% 
 	a_ownership = ''
@@ -77,6 +129,18 @@ user_<%=i%>:
 		x = x + 21
 	end 
 %>
+<%
+int = ''
+	j = 0
+	while j < 4
+		z = rand(2)
+		if z % 2 == 0
+			int = int + ', ' if int.length > 0
+			int = int + "interest_#{j}"
+		end
+		j = j + 1
+	end
+%>
   login: uzytkownik_<%=i%>
   email: <%= "uzytkownik#{i}@example.com" %>
   password_salt: <%= salt = Authlogic::Random.hex_token %>
@@ -87,4 +151,7 @@ user_<%=i%>:
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
   roles: user_ownership_user_<%=i%> <%=a_ownership%>
+  interests: <%= int %>
+  last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%end%>
