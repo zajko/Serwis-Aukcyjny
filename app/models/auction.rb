@@ -263,7 +263,7 @@ class Auction < ActiveRecord::Base
         deliver_auction_win_notification(b.user, b.offered_price)
         price += b.offered_price
     end
-    notify_auction_owner!(w, price)
+    notify_auction_owner!(w, charge)
   end
 
   def deliver_auction_win_notification(user, price)
