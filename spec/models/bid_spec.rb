@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Bid do
   fixtures :auctions, :sponsored_articles, :banners, :pop_ups, :site_links, :users, :bids

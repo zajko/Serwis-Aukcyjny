@@ -47,7 +47,7 @@ zbanowany:
   perishable_token: <%= Authlogic::Random.friendly_token %>
   created_at: <%= 1.days.ago.to_s :db %>
   activation_token: <%= ProductsHelper.random_string(20) %>
-  roles: user_ownership_zbanowany
+  roles: user_ownership_zbanowany, banned
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
   last_login_at: <%=Time.now() - 1.days%>

@@ -39,7 +39,11 @@ class Banner < ActiveRecord::Base
   }
   
   named_scope :order_auction_scope , lambda{ |scope|
-  { :conditions => "banners.id =banners.id", :joins => :auction, :order => scope }
+    {
+      :conditions => "banners.id =banners.id", 
+      :joins => :auction,
+      :order => scope
+    }
   }
   named_scope :by_auctions_id, lambda{ |ids|    
     {
@@ -49,7 +53,7 @@ class Banner < ActiveRecord::Base
   named_scope :by_categories_id, lambda{ |*categories|
     {
       :select => "DISTINCT banners.*",
-      :joins => "INNER JOIN auctions AS A ON auctionable_type = 'Banner' AND auctionable_id = banners.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
+      :joins => "INNER JOIN auctions AS A ON A.auctionable_type = 'Banner' AND A.auctionable_id = banners.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }
   }

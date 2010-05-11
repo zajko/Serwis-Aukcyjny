@@ -25,7 +25,7 @@
   </tr>
     <tr>
     <td  class="boldColl">Ostatnie logowanie:</td>
-    <td><%=h @user.last_login_at.strftime("%d-%m-%Y") %></td>
+    <td><%=h @user.last_login_at.strftime("%d-%m-%Y") if @user.last_login_at %></td>
   </tr>
     <tr>
     <td  class="boldColl">IP ostatniego logowania:</td>

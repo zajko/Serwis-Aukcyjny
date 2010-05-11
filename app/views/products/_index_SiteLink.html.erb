@@ -5,12 +5,12 @@ Brak aukcji tego typu
 <%= will_paginate @products, :params => {:search => params[:search]}, :class=>"paginate" %>
         <table id="TabFullSize">
         <tr>    <td>Nr aukcji</td>
-                <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "site_link", :search_type => "advanced", :search => params[:search]%></td>
-                <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "site_link", :search => params[:search]%></td>
+                <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> 'start', :product_type => "site_link", :search_type => "advanced", :search => params[:search]%></td>
+                <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> 'auction_end', :product_type => "site_link", :search => params[:search], :search_type => "advanced"%></td>
                 <td>Pozostało</td>
-                <td><%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "site_link", :search => params[:search]%></td>
-                <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "site_link", :search => params[:search]%>	</td></td>
-                <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> "current_price", :product_type => "site_link", :search => params[:search]%></td>
+                <td><%= link_to "Pagerank", :action => 'order_by', :column_name=> "pagerank", :product_type => "site_link", :search => params[:search], :search_type => "advanced"%></td>
+                <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "site_link", :search => params[:search], :search_type => "advanced"%>	</td></td>
+                <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> 'current_price', :product_type => "site_link", :search => params[:search], :search_type => "advanced"%></td>
                 <td>Pokaż</td>
         </tr>
 

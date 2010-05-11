@@ -1,4 +1,5 @@
 module Searchable
+  
    def prepare_search_scopes(params = {})
     scope = self.scoped({})
  
@@ -10,7 +11,6 @@ module Searchable
     end
 
     params.each do |key, value|
-      #if self.respond_to?(key) || (key.to_s.include?("auction_") && Auction.respond_to?(key.to_s.gsub(/auction_/,'')))
       begin
         scope = scope.send(key.to_s, value) if value != nil && value != ""
       rescue NoMethodError => e
@@ -29,10 +29,10 @@ module Searchable
     rescue NoMethodError => e
 
     end
-
-    scope = scope.order_scope( params[:order_by] ) if params[:order_by] && self.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
-    if scope.respond_to?(:order_auction_scope) then
-      scope = scope.order_auction_scope ( params[:order_by] ) if params[:order_by] && Auction.all.first != nil && Auction.all.first.attributes.has_key? (params[:order_by].split(' ')[0])
+    
+    scope = scope.order_scope(params[:order_by] ) if params[:order_by] && self.all.first.attributes.has_key?(params[:order_by].split(' ')[0])
+    if  params[:categories_attributes] == nil and scope.respond_to?(:order_auction_scope) then
+      scope = scope.order_auction_scope(params[:order_by] ) if params[:order_by] && Auction.all.first != nil && Auction.all.first.attributes.has_key?(params[:order_by].split(' ')[0])
     end
     return scope
   end

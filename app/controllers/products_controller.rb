@@ -115,15 +115,18 @@ class ProductsController < ApplicationController
 
   def prepare_search
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_opened => "byleco", :auction_activated => true}) #, :categories_attributes => search[:search_categories]
+    search.merge!({:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true}) #, :categories_attributes => search[:search_categories]
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
  
   def index
-    
+
     if !params[:search] and params[:search_categories]
       params[:search] = {}
       params[:search][:categories_attributes] = params[:search_categories]
+    end
+    if params[:search_categories] == nil and params[:search]
+      params[:search_categories] = params[:search][:categories_attributes]
     end
     prepare_search
     @search_categories=params[:search_categories] || params[:categories_attributes]
@@ -135,7 +138,7 @@ class ProductsController < ApplicationController
     #  @search.categories_attributes=e
     #end if @search_categories
     if @scope != nil and @scope.count > 0
-      @products = (@scope.paginate :page => page, :order => 'id DESC', :per_page=>20)
+      @products = (@scope.paginate :page => page, :per_page=>20)
     else
       @products = []
     end
@@ -157,7 +160,6 @@ class ProductsController < ApplicationController
 
 
   def wizard_product_create
-   # raise "A"
     params[product_type.to_s][:auction_attributes].delete("user_attributes")
     @product = Kernel.const_get(product_type.classify).new(params[product_type.to_s])
     #@product.auction.attributes = params[product_type][:auction_attributes]  
@@ -196,16 +198,6 @@ class ProductsController < ApplicationController
     url = @product.url
     @product.users_daily=@product.to_parse(url)
     @product.pagerank=@product.page_rank(@product.url)
-# @product.users_daily =  @product.auction.to_parse(url)
-#   @product.pagerank = @product.page_rank(@product.url)
-
-   # raise params[product_type][:url].to_s
-
-   #@product.auction = @product.build_auction(params[product_type][:auction])
-   #raise params[:site_link][:auction_attributes]["start"].to_s
-   # @t = @product.auction.end
-
-   # @product.auction.end = Time.local(@t.year, @t.mon, @t.day, Time.now.hour)
     @product.auction.user = User.find(current_user.id)
    if( @product.auction.save and  @product.save )
     redirect_to :action => "wizard_summary", :id => @product.id, :product_type => @product.class

@@ -24,14 +24,16 @@ class ProductSearch < Tableless
   column :frequency_lte, :decimal, :precision => 5, :scale => 4
   column :words_number_lte, :integer
   column :words_number_gte, :integer
-  column :minimum_days_until_end_of_auction, :integer
-  column :maximum_days_until_end_of_auction, :integer
+  column :auction_auction_end_gte, :date
+  column :auction_auction_end_lte, :date
   column :product_type, :string
   column :current_price_gte, :decimal, :precision => 14, :scale =>4
   column :current_price_lte, :string, :precision => 14, :scale =>4
   column :order_by, :string
+  column :search_type, :string
   column :user_login_like, :string
   column :auction_activated, :boolean
+  column :auction_not_expired, :boolean
   column :auction_opened, :string
   column :auction_time_of_service_gte, :boolean
   column :auction_time_of_service_lte, :boolean

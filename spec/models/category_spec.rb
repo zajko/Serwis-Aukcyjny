@@ -17,8 +17,8 @@ describe Category do
     @category.save
     @category.errors.count.should > 0
   end
-  it "new category sport" do
-    @category = Category.new(:name=>'sport')
+  it "new category sportnowy" do
+    @category = Category.new(:name=>'sportnowy')
     @category.save
     @category.errors.count.should == 0
   end

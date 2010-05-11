@@ -16,7 +16,7 @@ class SiteLink < ActiveRecord::Base
   attr_accessible :users_daily
   #attr_accessible :auction_attributes
   #attr_accessible :category_ids
-  validate :check_before_update, :on => :update 
+  validate :check_before_update, :on => :update
   def check_before_update
     if new_record?
       return true
@@ -58,7 +58,10 @@ class SiteLink < ActiveRecord::Base
    } 
   named_scope :order_auction_scope , lambda{ |scope|
   { 
-    :conditions => "site_links.id =site_links.id", :joins => :auction, :order => scope }
+    :conditions => "site_links.id =site_links.id", 
+    :joins => "INNER JOIN auctions AS A2 ON A2.auctionable_type = 'SiteLink' AND A2.auctionable_id = site_links.id",
+    :order => "A2."+scope
+   }
   }
   named_scope :by_auctions_id, lambda{ |ids|    
     {
@@ -69,7 +72,7 @@ class SiteLink < ActiveRecord::Base
   named_scope :by_categories_id, lambda{ |*categories|
     {
       :select => "DISTINCT site_links.*",
-      :joins => "INNER JOIN auctions AS A ON auctionable_type = 'SiteLink' AND auctionable_id = site_links.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
+      :joins => "INNER JOIN auctions AS A ON A.auctionable_type = 'SiteLink' AND A.auctionable_id = site_links.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }
   }

@@ -5,12 +5,12 @@
         <table  id="TabFullSize">
         <tr>
           <td>Nr aukcji</td>
-          <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> "start", :product_type => "banner", :search => params[:search]%></td>
-          <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> "auction_end", :product_type => "banner", :search => params[:search]%></td>
+          <td><%= link_to "Początek aukcji", :action => 'order_by', :column_name=> 'start', :product_type => "banner", :search => params[:search]%></td>
+          <td><%= link_to "Koniec aukcji", :action => 'order_by', :column_name=> 'auction_end', :product_type => "banner", :search => params[:search]%></td>
           <td>Pozostało</td>
           <td><%= link_to "PR", :action => 'order_by', :column_name=> "pagerank", :product_type => "banner", :search => params[:search]%></td>
           <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "banner", :search => params[:search]%></td>
-          <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> "current_price", :product_type => "banner", :search => params[:search]%></td>
+          <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> 'current_price', :product_type => "banner", :search => params[:search]%></td>
           <td>(<%= link_to "Szer", :action => 'order_by', :column_name=> "width", :product_type => "banner", :search => params[:search]%>,
           <%= link_to "Wys", :action => 'order_by', :column_name=> "height", :product_type => "banner", :search => params[:search]%>)</td>
           <td><%= link_to "Częśtość wyświetlania", :action => 'order_by', :column_name=> "frequency", :product_type => "banner", :search => params[:search]%></td>

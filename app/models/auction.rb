@@ -9,7 +9,8 @@ class Auction < ActiveRecord::Base
   belongs_to :auctionable, :polymorphic => true, :dependent => :destroy
   named_scope :active, :conditions => { :activated => true}
   named_scope :categorised, :joins => :categories, :select => 'Distinct post.*'
-  named_scope :expired, :conditions => 'now() - auction_end > INTERVAL \'10 minutes\' '
+  named_scope :expired, :conditions => 'now() - "auctions".auction_end > INTERVAL \'10 minutes\' '
+  named_scope :not_expired, :conditions => 'now() - "auctions".auction_end < INTERVAL \'0 minutes\' '
   named_scope :opened, :conditions => '"auctions".buy_now_price = 0 or "auctions".number_of_products > (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
   accepts_nested_attributes_for :user
   #before_save :assign_roles
@@ -108,27 +109,27 @@ class Auction < ActiveRecord::Base
    named_scope :activated, :conditions => { :activated => true }
    named_scope :by_type, lambda{ |type|
     {
-      :conditions => ["auctions.auctionable_type = (?)", type]
+      :conditions => ['"auctions".auctionable_type = (?)', type]
     }
    }
    
    named_scope :by_auctionable_type, lambda{ |type|
     {
-      :conditions => ["activated = (?) AND auctionable_type =(?)", true, type]
+      :conditions => ['"auctions".activated = (?) AND "auctions".auctionable_type =(?)', true, type]
     }
    }
    
    named_scope :by_categories_name, lambda{ |*categories|
     {
       :include => :categories, 
-      :conditions => ["categories.name IN (?)", categories]#.map(&:name)]
+      :conditions => ['"categories".name IN (?)', categories]#.map(&:name)]
     }
    }
    
    named_scope :by_categories_id, lambda{ |*categories|
     {
       :include => :categories, 
-      :conditions => ["categories.id IN (?)", categories]#.map(&:name)]
+      :conditions => ['"categories".id IN (?)', categories]#.map(&:name)]
     }
    }
    
@@ -140,13 +141,13 @@ class Auction < ActiveRecord::Base
    
    named_scope :minimum_days_until_end_of_auction, lambda{ |*days|
     {
-      :conditions => ["auctions.auction_end - (?) >= INTERVAL '(?) days'",Time.now, days]#.map(&:name)]
+      :conditions => ['"auctions".auction_end - (?) >= INTERVAL \''+days.to_i.to_s+' days\'',Time.now]#.map(&:name)]
     }
    }
    
    named_scope :maximum_days_until_end_of_auction, lambda{ |*days|
     {
-      :conditions => ["auctions.auction_end - (?) <= INTERVAL '(?) days'",Time.now, days]#.map(&:name)]
+      :conditions => ['"auctions".auction_end - (?) <= INTERVAL \''+days.to_i.to_s+'\'',Time.now]#.map(&:name)]
     }
    }
   named_scope :order_scope , lambda{ |scope|
