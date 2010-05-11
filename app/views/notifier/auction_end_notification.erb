@@ -11,7 +11,7 @@ Aukcja o numerze <%= @auction_id %>, której jesteś właścicielem, zakończył
 <br />
 <%end%>
 
-Twoje konto zostało obciążone sumą <%=@charge%> zł za tą aukcję.
+Twoje konto zostało obciążone sumą <%=@charge != nil ? @charge : 0%> zł za tą aukcję.
 
 Aukcja, której dotyczy ten e-mail zostanie niedługo (lub już została) przeniesiona do archiwum. Oto link do archiwum tej aukcji :
 <%= @archival_auction_url %>
