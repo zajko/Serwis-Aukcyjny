@@ -4,7 +4,7 @@
 	x = rand(8)
 	z = 0
 	s = Time.now()+(i/30 - 15).days
-   	e = Time.now() + (i/30 - 2).days 
+   	e = Time.now() + (i/10 - 1).days 
    	period = e - s
 	while z < x
 %>

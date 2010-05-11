@@ -17,7 +17,7 @@ bid_<%=glob_bid%>:
  <%x = 0%>
  offered_price: <%= (5 * (4 + i/10.0)).to_i %>
  <%end%>
- <% of_time = s + period* z/(x+1) %>
+ <% of_time = s + (period* z)/(x+1) %>
  bid_created_time: <%= of_time %>
  created_at: <%= of_time %>
 <%	z = z + 1

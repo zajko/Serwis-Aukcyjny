@@ -101,13 +101,6 @@ class Auction < ActiveRecord::Base
     bids.not_cancelled.count - 1 <= number_of_products
   end
   
-  def notifyAuctionWinners
-    raise "Not implemented yet"
-  end
-  
-  def notifyAuctionWinner(user)
-    raise "Not implemented yet"
-  end
   
    def buy_now_price_null_or_numerical
        return  buy_now_price.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true unless buy_now_price.class == Fixnum
@@ -183,7 +176,7 @@ class Auction < ActiveRecord::Base
     number.times do |i|
         ret << bidsArr[i]
     end
-    return bidsArr
+    return ret
   end
 
   def winning_prices

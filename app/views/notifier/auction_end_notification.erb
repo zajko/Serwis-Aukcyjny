@@ -4,10 +4,11 @@ Aukcja o numerze <%= @auction_id %>, której jesteś właścicielem, zakończył
   Aukcja zakończyła się bez nieanulowanych ofert.
 <%else%>
   Lista zwycięzców aukcji wraz z danymi kontaktowymi :
-
-  <% @winningBids.each do |w| %>
-    w.user.email  w.offered_price
+  <br />
+<% @winningBids.each do |w| %>
+    <%=w.user.email%> <br/> <%=  w.offered_price%>
   <%end%>
+<br />
 <%end%>
 
 Twoje konto zostało obciążone sumą <%=@charge%> zł za tą aukcję.

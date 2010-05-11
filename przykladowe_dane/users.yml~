@@ -13,7 +13,7 @@ int = ''
 %>
 not_activated:
   login: nieaktywatek
-  email: nieaktywatek@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -24,6 +24,7 @@ not_activated:
   roles: user_ownership_nieaktywowany
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%
 int = ''
 	j = 0
@@ -49,6 +50,7 @@ zbanowany:
   roles: user_ownership_zbanowany
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%
 int = ''
 	j = 0
@@ -63,7 +65,7 @@ int = ''
 %>
 user_superuser:
   login: Naduser
-  email: naduser@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -74,6 +76,7 @@ user_superuser:
   roles: superuser, admin, user_ownership_superuser 
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <% 
 	a_ownership = ''
 	x = 0
@@ -96,7 +99,7 @@ int = ''
 %>
 user_0:
   login: Admin
-  email: admin@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -107,6 +110,7 @@ user_0:
   roles: admin, user_ownership_user_0<%=a_ownership%>
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%for i in 1..20%>
 <% 
 	a_ownership = ''
@@ -138,7 +142,7 @@ int = ''
 	end
 %>
   login: uzytkownik_<%=i%>
-  email: <%= "uzytkownik#{i}@example.com" %>
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -149,4 +153,5 @@ int = ''
   roles: user_ownership_user_<%=i%> <%=a_ownership%>
   interests: <%= int %>
   last_request_at: <%=Time.now()%>
+  last_login_at: <%=Time.now() - 1.days%>
 <%end%>

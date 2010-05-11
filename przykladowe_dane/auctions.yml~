@@ -22,7 +22,7 @@ require 'app/helpers/products_helper.rb'
 auction_<%= i%>:
  user: <%= "user_#{i%21}" %>
  start: <%= Time.now()+(i/30 - 15).days %>
- auction_end: <%= Time.now() + (i/30 - 5).days %>
+ auction_end: <%= Time.now() + (i/30 - 2).days %>
  activated: <%= !(i%17 == 0) %>
  <%if(i%7 == 0 || i%7 == 3 || i%7 == 4 || i%7 == 6)%>
  minimal_price: <%= 10 + 20* Math.log(i+2)%>

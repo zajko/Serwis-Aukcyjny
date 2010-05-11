@@ -13,7 +13,7 @@ int = ''
 %>
 not_activated:
   login: nieaktywatek
-  email: nieaktywatek@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -65,7 +65,7 @@ int = ''
 %>
 user_superuser:
   login: Naduser
-  email: naduser@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -99,7 +99,7 @@ int = ''
 %>
 user_0:
   login: Admin
-  email: admin@example.com
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
@@ -142,7 +142,7 @@ int = ''
 	end
 %>
   login: uzytkownik_<%=i%>
-  email: <%= "uzytkownik#{i}@example.com" %>
+  email: zajko@o2.pl
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("haselko" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
