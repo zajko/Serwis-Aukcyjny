@@ -14,10 +14,14 @@
     <td class="label"><%= f.label :password, "Hasło: " %></td>
     <td><%= f.password_field :password %></td>
   </tr>
+  <tr>
+    <td></td>
+    <td><%= link_to "Zarejestruj się", new_account_path   %></td>
+  </tr>
 </table>
 <br />
   <%= f.check_box :remember_me %> <%= f.label :remember_me, "Zapamiętaj mnie" %><br />
-  <br /><br />
+  <br />
   <%= f.submit "Loguj" %>
 <% end %>
 

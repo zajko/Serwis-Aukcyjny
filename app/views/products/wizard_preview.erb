@@ -11,7 +11,9 @@
                   <%= render :partial => "show_#{@controller.product_type.classify}" %>
 <h2> Dane aukcji:</h2>
 				<%= render :partial => "show" %>
-
+<br /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Uwaga:</b> W utworzonej aukcji nie można wprowadzać żadnych zmin.
+<br /><br />
                   <%= form.submit "Utwórz" %>
   <% end %>
 <% end %>
