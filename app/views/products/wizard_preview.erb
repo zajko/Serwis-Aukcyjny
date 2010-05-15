@@ -3,6 +3,13 @@
 <% content_for :stylesheets do %> #step3 {background-color:orange} <% end -%>
 <h1>Tworzenie aukcji</h1>
 <%= render :partial => "progres_bar" %>
+
+<div class="ui-state-highlight ui-corner-all" style=" padding:10px;">
+  <span class="ui-icon ui-icon-info" style="float: left; margin-right: 0.3em;"></span>
+
+<b>Uwaga:</b> W utworzonej aukcji nie można wprowadzać żadnych zmin.
+</div>
+
 <% if params[:product_type]!=nil%>
  <% @controller.product_type.to_s %>
   <% form_for @product,:url => {:action => "wizard_product_create",:product_type => @controller.product_type.to_s , @controller.product_type.to_s => params[@controller.product_type]}  do |form| %>
@@ -11,9 +18,6 @@
                   <%= render :partial => "show_#{@controller.product_type.classify}" %>
 <h2> Dane aukcji:</h2>
 				<%= render :partial => "show" %>
-<br /><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Uwaga:</b> W utworzonej aukcji nie można wprowadzać żadnych zmin.
-<br /><br />
                   <%= form.submit "Utwórz" %>
   <% end %>
 <% end %>
