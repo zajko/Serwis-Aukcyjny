@@ -113,9 +113,9 @@ class ProductsController < ApplicationController
       end
   end
 
-  def prepare_search
+  def prepare_search(additional_parameters = {})
     search = params[:search] || {}
-    search.merge!({:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true}) #, :categories_attributes => search[:search_categories]
+    search.merge!(additional_parameters) #, :categories_attributes => search[:search_categories]
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
  
@@ -128,7 +128,7 @@ class ProductsController < ApplicationController
     if params[:search_categories] == nil and params[:search]
       params[:search_categories] = params[:search][:categories_attributes]
     end
-    prepare_search
+    prepare_search({:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true})
     @search_categories=params[:search_categories] || params[:categories_attributes]
     page = params[:page] || 1
     @search_type=params[:search_type]
@@ -150,14 +150,17 @@ class ProductsController < ApplicationController
       params[:search] = {}
       params[:search][:categories_attributes] = params[:search_categories]
     end
+    if params[:search_categories] == nil and params[:search]
+      params[:search_categories] = params[:search][:categories_attributes]
+    end
+    prepare_search
     @search_categories=params[:search_categories] || params[:categories_attributes]
+    @search = ProductSearch.new(params[:search])
     page = params[:page] || 1
     params[:search_categories] = @search.categories_attributes
     @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>20
     
   end
-
-
 
   def wizard_product_create
     params[product_type.to_s][:auction_attributes].delete("user_attributes")
