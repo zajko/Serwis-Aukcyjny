@@ -23,7 +23,7 @@
             <tr>
             <td><%= a.id %></td>
             <td><%= a.auctionable_type %></td>
-            <td><%= a.user_id %></td>
+            <td><%= link_to a.user.login, {:action => "show",:controller=>"users", :id => a.user.id}%></td>
             <td><%=a.start.strftime("%d-%m-%Y %H:%m")%></td>
             <td><%=a.auction_end.strftime("%d-%m-%Y %H:%m")%></td>
             <td>
