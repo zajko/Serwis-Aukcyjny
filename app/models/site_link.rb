@@ -112,8 +112,3 @@ class SiteLink < ActiveRecord::Base
    
 end
 
-class SiteLinkSearch < Tableless
- # has_many :categories
-  #accepts_nested_attributes_for :categories
-  
-end

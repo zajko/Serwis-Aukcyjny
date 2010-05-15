@@ -58,9 +58,12 @@ class ProductsController < ApplicationController
     end
     @product.auction.user = User.find(current_user.id)
     url = @product.url
-
+    if url != nil
+      @product.url = "http://"+@product.url if (url =~ /^(http|https):\/\//) == nil
+    end
     if(!@product.valid?)
-        render :action => "wizard_product_data", :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
+      
+        render :action => "wizard_product_data"#, :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
     else
       begin
         @product.users_daily=@product.to_parse(url)

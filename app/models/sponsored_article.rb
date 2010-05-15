@@ -5,7 +5,7 @@ class SponsoredArticle < ActiveRecord::Base
   has_one :auction, :as => :auctionable, :autosave => true, :dependent => :destroy
   has_many :categories, :through => :auction
   accepts_nested_attributes_for :auction, :allow_destroy => true
- # attr_accessible :auction_attributes
+  attr_accessible :auction_attributes
   attr_accessible :url
   attr_accessible :pagerank
   attr_accessible :users_daily
@@ -19,13 +19,13 @@ class SponsoredArticle < ActiveRecord::Base
       return true
     end
     @prev_stat = SponsoredArticle.find(id)
-    errors.add(:s, "Nie można zmienić pageranku") if @prev_stat.pagerank != pagerank
-    errors.add(:s, "Nie można zmienić adresu strony") if @prev_stat.url != url
-    errors.add(:s, "Nie można zmienić liczby dziennych użytkowników") if @prev_stat.users_daily != users_daily
-    errors.add(:s, "Nie można zmienić aukcji produktu") if @prev_stat.auction != auction
+    errors.add( "Nie można zmienić pageranku") if @prev_stat.pagerank != pagerank
+    errors.add( "Nie można zmienić adresu strony") if @prev_stat.url != url
+    errors.add( "Nie można zmienić liczby dziennych użytkowników") if @prev_stat.users_daily != users_daily
+    errors.add( "Nie można zmienić aukcji produktu") if @prev_stat.auction != auction
     if auction.bids.not_cancelled.count > 0
-      errors.add(:s, "Nie można zmienić liczby słów artykułu gdy są nieanulowane oferty") if @prev_stat.words_number != words_number
-      errors.add(:s, "Nie można zmienić liczby linków w artykule gdy są nieanulowane oferty") if @prev_stat.number_of_links != number_of_links 
+      errors.add( "Nie można zmienić liczby słów artykułu gdy są nieanulowane oferty") if @prev_stat.words_number != words_number
+      errors.add( "Nie można zmienić liczby linków w artykule gdy są nieanulowane oferty") if @prev_stat.number_of_links != number_of_links 
     end
     return errors.count == 0
   end
@@ -57,7 +57,7 @@ class SponsoredArticle < ActiveRecord::Base
   end
 
 def save
-    errors.add(:s, "Nie można utworzyć banneru bez aukcji.") if auction == nil
+    errors.add( "Nie można utworzyć banneru bez aukcji.") if auction == nil
 
     if(errors.count == 0)
       return super

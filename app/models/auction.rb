@@ -12,7 +12,7 @@ class Auction < ActiveRecord::Base
   named_scope :expired, :conditions => 'now() - "auctions".auction_end > INTERVAL \'10 minutes\' '
   named_scope :not_expired, :conditions => 'now() - "auctions".auction_end < INTERVAL \'0 minutes\' '
   named_scope :opened, :conditions => '"auctions".buy_now_price = 0 or "auctions".number_of_products > (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
-  accepts_nested_attributes_for :user
+  #accepts_nested_attributes_for :user
   #before_save :assign_roles
   
   validate :check_before_update, :on => :update
@@ -75,25 +75,25 @@ class Auction < ActiveRecord::Base
     end
     @prev_stat = Auction.find(id)
     if !@prev_stat
-      errors.add(:s, "Taki rekord nie istnieje w bazie")
+      errors.add( "Taki rekord nie istnieje w bazie")
       return false
     end
-    errors.add(:s, "Koniec aukcji może być zmieniony tylko na datę późniejszą niż dzisiaj") if auction_end < Date.today
-    errors.add(:s, "Nie można zmienić właściciela aukcji") if @prev_stat.user_id != user_id
-    errors.add(:s, "Nie można zmienić tokenu aukcji") if @prev_stat.activation_token != activation_token
-    errors.add(:s, "Nie można zmienić produktu aukcji") if @prev_stat.auctionable_type != auctionable_type or @prev_stat.auctionable_id != auctionable_id
-    errors.add(:s, "Nie można zmienić daty końca aukcji zakończonej aukcji") if @prev_stat.auction_end < Time.now and @prev_stat.auction_end != auction_end
+    errors.add( "Koniec aukcji może być zmieniony tylko na datę późniejszą niż dzisiaj") if auction_end < Date.today
+    errors.add( "Nie można zmienić właściciela aukcji") if @prev_stat.user_id != user_id
+    errors.add( "Nie można zmienić tokenu aukcji") if @prev_stat.activation_token != activation_token
+    errors.add( "Nie można zmienić produktu aukcji") if @prev_stat.auctionable_type != auctionable_type or @prev_stat.auctionable_id != auctionable_id
+    errors.add( "Nie można zmienić daty końca aukcji zakończonej aukcji") if @prev_stat.auction_end < Time.now and @prev_stat.auction_end != auction_end
     if bids.not_cancelled.count > 0
-      errors.add(:s, "Nie można zmniejszyć liczby wystawionych przedmiotów gdy są nieanulowane aukcje") if @prev_stat.number_of_products > number_of_products
-      errors.add(:s, "Nie można zmienić ceny kup teraz gdy są nieanulowane oferty") if @prev_stat.buy_now_price != buy_now_price
-      errors.add(:s, "Nie można zmienić ceny minimalnej gdy są nieanulowane aukcje") if @prev_stat.minimal_price != minimal_price
-      errors.add(:s, "Nie można zmienić czasu usługi gdy są nieanulowane oferty") if @prev_stat.time_of_service != time_of_service
-      errors.add(:s, "Nie można przenieść końca aukcji gdy są nieanulowane oferty") if @prev_stat.auction_end != auction_end
+      errors.add( "Nie można zmniejszyć liczby wystawionych przedmiotów gdy są nieanulowane aukcje") if @prev_stat.number_of_products > number_of_products
+      errors.add( "Nie można zmienić ceny kup teraz gdy są nieanulowane oferty") if @prev_stat.buy_now_price != buy_now_price
+      errors.add( "Nie można zmienić ceny minimalnej gdy są nieanulowane aukcje") if @prev_stat.minimal_price != minimal_price
+      errors.add( "Nie można zmienić czasu usługi gdy są nieanulowane oferty") if @prev_stat.time_of_service != time_of_service
+      errors.add( "Nie można przenieść końca aukcji gdy są nieanulowane oferty") if @prev_stat.auction_end != auction_end
     end
     return errors.count == 0
   end
    def start_must_be_before_end      
-     errors.add(:s, "Pole początek aukcji musi być wypełnione datą conajmniej o jeden dzień wcześniejszą niż koniec aukcji") if
+     errors.add( "Pole początek aukcji musi być wypełnione datą conajmniej o jeden dzień wcześniejszą niż koniec aukcji") if
         id == nil and (start.blank? or self.start >= self.auction_end) #(self.start.year() * 1000 + self.start.month() * 100 +self.start.day()) >= (self.auction_end.year() * 1000 + self.auction_end.month() * 10 +self.auction_end.day())
     true 
    end
@@ -200,7 +200,7 @@ class Auction < ActiveRecord::Base
   
   def start_must_be_after_today
     a = Time.now
-      errors.add(:s, "The start of an auction can`t be dated in the past") if new_record? and !start.blank? and (start.year() * 1000 + start.month() * 100 + start.day() ) < (a.year() * 1000 + a.month() *100 + a.day())
+      errors.add( "The start of an auction can`t be dated in the past") if new_record? and !start.blank? and (start.year() * 1000 + start.month() * 100 + start.day() ) < (a.year() * 1000 + a.month() *100 + a.day())
   end
   
   def user_attributes=(attributes)
@@ -273,7 +273,7 @@ class Auction < ActiveRecord::Base
 
   def activate
     if auction_end < Time.now
-      errors.add(:s, "Aukcja już się zakończyła.")
+      errors.add( "Aukcja już się zakończyła.")
       return false
     end
     if activated
@@ -293,7 +293,7 @@ class Auction < ActiveRecord::Base
             end
           }
         rescue
-          errors.add(:s, "Podany w aukcji url jest niepoprawny lub nie odpowiada.")
+          errors.add( "Podany w aukcji url jest niepoprawny lub nie odpowiada.")
           return false
         end
     else

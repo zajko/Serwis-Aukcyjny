@@ -18,9 +18,9 @@ class Bid < ActiveRecord::Base
   named_scope :by_created_at_asc, :order => "created_at ASC"
   named_scope :by_created_at_desc, :order => "created_at DESC"
   def save
-    errors.add(:s, "Musi być zdefiniowany właściciel oferty") if user == nil
-    errors.add(:s, "Musi być zdefiniowana aukcja na którą wystawiono oferŧę") if auction == nil
-    errors.add(:s, "Aukcja, w której próbujesz wziąć udział ma charakter kup-teraz. Możesz złożyć ofertę tylko na ustaloną przez sprzedawcę cenę.") if auction and auction.buy_now_price > 0 and  auction.buy_now_price != offered_price
+    errors.add( "Musi być zdefiniowany właściciel oferty") if user == nil
+    errors.add( "Musi być zdefiniowana aukcja na którą wystawiono oferŧę") if auction == nil
+    errors.add( "Aukcja, w której próbujesz wziąć udział ma charakter kup-teraz. Możesz złożyć ofertę tylko na ustaloną przez sprzedawcę cenę.") if auction and auction.buy_now_price > 0 and  auction.buy_now_price != offered_price
 
     if(errors.count == 0)
       return super
@@ -33,15 +33,15 @@ class Bid < ActiveRecord::Base
       return true
     end
     @prev_stat = Bid.find(id)
-    errors.add(:s, "Nie można zmienić aukcji oferty") if @prev_stat.auction != auction
-    errors.add(:s, "Nie można zmienić użytkownika oferty") if @prev_stat.user != user
-    errors.add(:s, "Nie można zmienić kwoty, na którą została wystawiona oferta") if @prev_stat.offered_price != offered_price
+    errors.add( "Nie można zmienić aukcji oferty") if @prev_stat.auction != auction
+    errors.add( "Nie można zmienić użytkownika oferty") if @prev_stat.user != user
+    errors.add( "Nie można zmienić kwoty, na którą została wystawiona oferta") if @prev_stat.offered_price != offered_price
   end
   def no_two_bids_from_same_user_in_row
     bids = auction.bids.not_cancelled.by_offered_price
     if bids.count > 0
       x = (bids.first.id == id or bids.first.user.id != user.id)
-      errors.add(:s, "Jesteś osobą, która akutalnie wygrywa. Nie możesz w tej chwili licytować") if !x
+      errors.add( "Jesteś osobą, która akutalnie wygrywa. Nie możesz w tej chwili licytować") if !x
       return x
     else
       return true
@@ -58,8 +58,14 @@ class Bid < ActiveRecord::Base
     else
       if user.id == self.user.id
         self.asking_for_cancellation=true
-        self.save!
-        #self.update_attribute :asking_for_cancellation, true
+        if !self.save
+          x = ""
+          self.errors.each do |e|
+            x = x + "\n#{e}"
+          end
+          raise x
+        end
+       # self.update_attribute :asking_for_cancellation, true
         #TODO Zrob powiadomienie wlasciciela aukcji
       else
         errors.add_to_base("Tylko użytkownik, który złożył ofertę może poprosić o jej anulowanie")
@@ -81,29 +87,14 @@ class Bid < ActiveRecord::Base
     end
   end
 
-#  def cancell_bid(cancelling_user, decision = false) # tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera
-#      raise "tego trzeba się pozbyć, przenieść sprawdzanie uprawnień użytkownika do kontrolera"
-#      if ! decision
-#        decision = false
-#      end
-#      if(cancelling_user.id == auction.user.id or cancelling_user.has_role?(:admin) or cancelling_user.has_role?(:superuser))
-#        if update_attribute(:cancelled, decision) and update_attribute(:asking_for_cancellation, false)
-#          return true
-#        end
-#        #TODO Może by tak przenieść do innej tabeli ?
-#      else
-#        errors.add_to_base("Tylko właściciel aukcji i administratorzy mogą anulować oferty aukcji")
-#        return false
-#      end
-#  end
-  
   def buy_now_can_sell_limited
     if auction.buy_now_price > 0
-     errors.add_to_base("Niestety, na tej aukcji nie ma już więcej produktów do kupienia") unless auction.bids.not_cancelled.count < auction.number_of_products
+     errors.add_to_base("Niestety, na tej aukcji nie ma już więcej produktów do kupienia") unless auction.bids.not_cancelled.count < auction.number_of_products or !new_record?
    else
      return true
    end
   end
+  
   def inform_interesants
     #TODO Powiadom właściciela o złożonej ofercie
     #TODO Jeżeli jest kupt_teraz, powiadom kupującego o danych sprzedającego 
