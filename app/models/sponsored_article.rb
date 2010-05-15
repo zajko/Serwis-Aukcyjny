@@ -9,7 +9,7 @@ class SponsoredArticle < ActiveRecord::Base
   attr_accessible :url
   attr_accessible :pagerank
   attr_accessible :users_daily
-  attr_accessible :word_number
+  attr_accessible :words_number
   attr_accessible :number_of_links
   
   named_scope :active, :include => :auction, :condition => {'auctions.activated' => true }

@@ -13,6 +13,7 @@ class SiteLink < ActiveRecord::Base
   attr_accessible :auction_attributes
   attr_accessible :url
   attr_accessible :pagerank
+  
   attr_accessible :users_daily
   #attr_accessible :auction_attributes
   #attr_accessible :category_ids
