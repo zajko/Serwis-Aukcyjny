@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => :destroy
+  #before_filter :require_user, :only => :destroy
     access_control do
       allow all
     end
@@ -34,8 +34,10 @@ class UserSessionsController < ApplicationController
 
     instrukcje = params[:instrukcje]
    # raise instrukcje.to_s
-    current_user_session.destroy
-    flash[:notice] = (instrukcje == nil ? "Wylogowano poprawnie" : instrukcje.to_s)
+    if(current_user_session)
+      current_user_session.destroy
+      flash[:notice] = (instrukcje == nil ? "Wylogowano poprawnie" : instrukcje.to_s)
+    end
     redirect_to root_url
     #redirect_back_or_default root #new_user_session_url
   end

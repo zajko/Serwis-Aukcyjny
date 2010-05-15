@@ -1,22 +1,13 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fjxtures at http://ar.rubyonrajls.org/classes/Fjxtures.html
 
-<% for i in 0..99 %>
-banner_<%=i%>:
- url: <%= "http://www.o#{i%4}.pl" %>
- pagerank: <%=(1 + 3*(rand(101)/30.0 * i/99.0) ).to_i %>
- users_daily: <%=(1 + 45*(rand(101)/30.0 * i/99.0) ).to_i %>
- width: <%= 30 + ((100 *i/250).to_i) %>
- height: <%= 30 + ((100 *i/250).to_i) %>
- x_pos: <%= 30 + ((100 *i/250).to_i) %>
- y_pos: <%= 30 + ((100 *i/250).to_i) %>
- frequency: <%= ((i/51.0)/2.0 + rand(51) / 100.0) %>
+<% for j in 0..99 %>
+banner_<%=j%>:  
+  frequency: <%= 0.2 + rand(81)/100.0%>
+  url: <%= "http://www.o#{j%4}.pl" %>
+  pagerank: <%=(1 + 3*(rand(101)/30.0 * j/99.0) ).to_i %>
+  users_daily: <%=(1 + 45*(rand(101)/30.0 * j/99.0) ).to_i %>
+  width: <%= 30 + ((100 *j/250).to_i) %>
+  height: <%= 30 + ((100 *j/250).to_i) %>
+  x_pos: <%= 30 + ((100 *j/250).to_i) %>
+  y_pos: <%= 30 + ((100 *j/250).to_i) %>
 <%end%>
-#two:
-#  url: http://www.onet.pl
-#  pagerank: 2
-#  users_daily: 500
-#  width : 70
-#  height : 90
-#  x_pos : 70
-#  y_pos : 80
-#  frequency : 1

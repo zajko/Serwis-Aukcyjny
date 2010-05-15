@@ -7,7 +7,7 @@ user_ownership_user_<%=i%>:
 <% for i in 0..399 %>
 user_ownership_auction_<%=i%>:
   name: owner
-  authorizable: auction_<%=i%> (User)
+  authorizable: auction_<%=i%> (Auction)
 <%end%>
 
 
