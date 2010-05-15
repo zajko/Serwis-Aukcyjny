@@ -46,7 +46,7 @@ class SponsoredArticle < ActiveRecord::Base
    }
   named_scope :by_categories_id, lambda{ |*categories|
     {
-      :select => "DISTINCT sponsored_articles.*",
+      #:select => "DISTINCT sponsored_articles.*",
       :joins => "INNER JOIN auctions as A ON A.auctionable_type = 'SponsoredArticle' AND A.auctionable_id = sponsored_articles.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }

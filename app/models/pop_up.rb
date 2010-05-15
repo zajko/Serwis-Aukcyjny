@@ -38,14 +38,16 @@ class PopUp < ActiveRecord::Base
     }
   }
   
+  #:conditions => "banners.id =banners.id",
+
   named_scope :order_auction_scope , lambda{ |scope|
-  { :conditions => "banners.id =banners.id", :joins => :auction, :order => scope }
+  {  :joins => :auction, :order => scope }
   }
   
   named_scope :by_categories_id, lambda{ |*categories|
     {
       :select => "pop_ups.*",
-      :joins => "DISTINCT INNER JOIN auctions AS A ON A.auctionable_type = 'PopUp' AND A.auctionable_id = pop_ups.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
+      :joins => "INNER JOIN auctions AS A ON A.auctionable_type = 'PopUp' AND A.auctionable_id = pop_ups.id INNER JOIN auctions_categories AS AC ON A.id = AC.auction_id INNER JOIN categories ON categories.id = AC.category_id",
       :conditions => ["categories.id IN (?)", categories]
     }
   }
