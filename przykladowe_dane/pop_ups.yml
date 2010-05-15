@@ -12,5 +12,5 @@ pop_up_<%=i%>:
  users_daily: <%=(1 + 45*(rand(101)/30.0 * i/99.0) ).to_i %>
  width: <%= 30 + ((100 *i/250.0).to_i) %>
  height: <%= 30 + ((100 *i/250.0).to_i) %>
- frequency: <%= ((i/250.0)/2 + rand(51) / 100.0) %>
+ frequency: <%= (0.2 + rand(81)/100.0) %>
 <%end%>
