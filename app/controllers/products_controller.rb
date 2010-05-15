@@ -149,6 +149,7 @@ class ProductsController < ApplicationController
   end
   
   def index_admin
+   # raise "A"
     if !params[:search] and params[:search_categories]
       params[:search] = {}
       params[:search][:categories_attributes] = params[:search_categories]
@@ -156,12 +157,16 @@ class ProductsController < ApplicationController
     if params[:search_categories] == nil and params[:search]
       params[:search_categories] = params[:search][:categories_attributes]
     end
-    prepare_search
-    @search_categories=params[:search_categories] || params[:categories_attributes]
+    if params[:product_type]
+      params[:search].merge!({:by_auctionable_type => params[:product_type].classify})
+    end
+    search = params[:search] || {}
+    @scope = Auction.prepare_search_scopes(search)
+    @search_categories=params[:search_categories] || params[:search][:categories_attributes]
     @search = ProductSearch.new(params[:search])
     page = params[:page] || 1
-    params[:search_categories] = @search.categories_attributes
-    @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>20
+   # params[:search_categories] = @search.categories_attributes
+    @auctions = @scope.all.paginate :page => page, :per_page=>20
     
   end
 

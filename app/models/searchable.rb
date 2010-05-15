@@ -19,7 +19,6 @@ module Searchable
     end
     begin
       if(params != nil and params[:categories_attributes] != nil)
-        
         temp = params[:categories_attributes].map {|t| t.to_i}
         if(temp != nil && temp.size > 0)
             

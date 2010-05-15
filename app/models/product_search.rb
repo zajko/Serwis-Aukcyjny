@@ -35,6 +35,7 @@ class ProductSearch < Tableless
   column :auction_activated, :boolean
   column :auction_not_expired, :boolean
   column :auction_opened, :string
+  column :by_auctionable_type, :string
   column :auction_time_of_service_gte, :boolean
   column :auction_time_of_service_lte, :boolean
   @cats
