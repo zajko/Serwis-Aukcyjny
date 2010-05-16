@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag "protucts" %>
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
 <h1>Administracja aukcjami</h1>
+<% if @auctions  and @auctions.count>0%>
 <%= will_paginate @auctions, :params => {:search => params[:search]}, :class=>"paginate" %>
  <table id="TabFullSize">
             <tr>
@@ -18,7 +19,6 @@
 
 					
             </tr>
-
 <% @auctions.each do |a| %>
             <tr>
             <td><%= a.id %></td>
@@ -46,3 +46,7 @@
 <% end %>
 
  </table>
+
+<% else %>
+Brak aukcji spełniających kryteria
+<%end%>

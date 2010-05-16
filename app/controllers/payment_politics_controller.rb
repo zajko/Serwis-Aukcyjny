@@ -14,7 +14,7 @@ class PaymentPoliticsController < ApplicationController
   def create
     @payment_politic = PaymentPolitic.new(params[:payment_politic])
     if @payment_politic.save
-      flash[:notice] = "Successfully created payment politic."
+      flash[:notice] = "Polityka została utworzona."
       redirect_to :action => 'index'
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class PaymentPoliticsController < ApplicationController
   def update
     @payment_politic = PaymentPolitic.find(params[:id])
     if @payment_politic.update_attributes(params[:payment_politic])
-      flash[:notice] = "Successfully updated payment politic."
+      flash[:notice] = "Zmiany w polityce zostały zapisane."
       redirect_to @payment_politic
     else
       render :action => 'edit'
@@ -38,7 +38,7 @@ class PaymentPoliticsController < ApplicationController
   def destroy
     @payment_politic = PaymentPolitic.find(params[:id])
     @payment_politic.destroy
-    flash[:notice] = "Successfully destroyed payment politic."
+    flash[:notice] = "Polityka została usunieta."
     redirect_to :action => 'index'
   end
 end
