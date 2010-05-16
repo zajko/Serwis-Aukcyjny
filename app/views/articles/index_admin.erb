@@ -1,4 +1,5 @@
 <%= render :partial => "articles/articles_options" %>
+<h1> Zarządzanie artykułami</h1>
 <table id="TabArticles">
   <tr>
     <td class="ArticlesTabHeader">Tytuł</td>
@@ -9,6 +10,7 @@
     <td class="ArticlesTabHeader">Pokaż</td>
   </tr>
 
+  <% if @article %>
   <% for article in @articles %>
     <tr>
       <td><%=h article.title %></td>
@@ -20,4 +22,5 @@
       <td><%= link_to "Pokaż",:controller => "articles", :action => "show", :id=>article.id %></td>
     </tr>
   <% end %>
+    <%end%>
 </table>
