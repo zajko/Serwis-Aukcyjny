@@ -1,10 +1,13 @@
-<%= render :partial=> "products/search_box_simple" %>
+
 <%= render :partial => "categories/categories_options" %>
 <h1>Lista kategorii</h1>
 <%= will_paginate @categories, :params => {:search => params[:search]}, :class=>"paginate" %>
+<div class="ui-state-highlight ui-corner-all" style=" padding:10px;">
+  <span class="ui-icon ui-icon-info" style="float: left; margin-right: 0.3em;"></span>
 <b>Uwaga:</b> Usunięcie kategorii przypisanej do aukcji spowoduje jej automatyczne odjęcie ze zbioru
 kategorii przypisanych do tej aukcji.
-<br /><br />
+</div>
+<br />
 <table id="TabFullSize">
     <tr>
         <td class="header">Nazwa</td>
