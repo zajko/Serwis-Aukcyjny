@@ -1,5 +1,6 @@
 #require 'Date'
 class Auction < ActiveRecord::Base
+  extend Searchable
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :observees, :class_name =>"User", :autosave => true#, :readonly => true
   has_one :charge, :as => :chargeable
@@ -235,9 +236,9 @@ class Auction < ActiveRecord::Base
     @current_price = calculate_current_price
   end
   
-  def self.prepare_search_scopes(params = {})
-    raise "Nie powinieneś korzystać z tej metody NO MORE ! Ma ona zostać usunięta"
-  end
+#  def self.prepare_search_scopes(params = {})
+#    raise "Nie powinieneś korzystać z tej metody NO MORE ! Ma ona zostać usunięta"
+#  end
 
   def deliver_auction_activation_instructions!
     Notifier.deliver_auction_activation_instructions(self)
