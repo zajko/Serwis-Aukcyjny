@@ -164,6 +164,7 @@ class ProductsController < ApplicationController
     @scope = Auction.prepare_search_scopes(search)
     @search_categories=params[:search_categories] || params[:search][:categories_attributes]
     @search = ProductSearch.new(params[:search])
+    @search_type=params[:search_type]
     page = params[:page] || 1
    # params[:search_categories] = @search.categories_attributes
     @auctions = @scope.all.paginate :page => page, :per_page=>20
