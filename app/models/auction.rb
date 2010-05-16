@@ -201,7 +201,7 @@ class Auction < ActiveRecord::Base
   
   def start_must_be_after_today
     a = Time.now
-      errors.add( "The start of an auction can`t be dated in the past") if new_record? and !start.blank? and (start.year() * 1000 + start.month() * 100 + start.day() ) < (a.year() * 1000 + a.month() *100 + a.day())
+      errors.add( "Rozpoczęcie aukcji nie może być datą wcześniejszą niż dzień dzisiejszy") if new_record? and !start.blank? and (start.year() * 1000 + start.month() * 100 + start.day() ) < (a.year() * 1000 + a.month() *100 + a.day())
   end
   
   def user_attributes=(attributes)
