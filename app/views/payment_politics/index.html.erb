@@ -17,7 +17,7 @@
       <td><%=h '%.2f' % payment_politic.base_payment %> zł</td>
       <td><%=h '%.2f' % payment_politic.upper_boundary if payment_politic.upper_boundary %> <%="zł" if payment_politic.upper_boundary%></td>
       <td><%=h payment_politic.percentage %> %</td>
-      <td><%= link_to "Pokaż", "show/"+payment_politic.id.to_s %></td>
+      <td><%= link_to "Pokaż", {:action => :show, :id => payment_politic.id} %></td>
       <td><%= link_to "Edytuj", {:action => :edit, :id => payment_politic.id} %></td>
       <td><%= link_to "Usuń",  {:action => :destroy, :id => payment_politic.id}, :confirm => 'Czy jesteś pewien?' %></td>
     </tr>

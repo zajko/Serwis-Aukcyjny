@@ -1,28 +1,30 @@
-< title "Payment Politic" %>
+<%= render :partial => "payment_politics/menu" %>
+<h1>Szczegóły polityki</h1>
 
-<p>
-  <strong>From:</strong>
-  <%=h @payment_politic.from %>
-</p>
-<p>
-  <strong>To:</strong>
-  <%=h @payment_politic.to %>
-</p>
-<p>
-  <strong>Base Payment:</strong>
-  <%=h @payment_politic.base_payment %>
-</p>
-<p>
-  <strong>Upper Boundary:</strong>
-  <%=h @payment_politic.upper_boundary %>
-</p>
-<p>
-  <strong>Percentage:</strong>
-  <%=h @payment_politic.percentage %>
-</p>
+<table>
+  <tr>
+    <td width="200" class="bold">Obowiązuje od:</td>
+    <td><%=h @payment_politic.from.strftime("%d-%m-%Y %H:%m") %></td>
+  </tr>
+  <tr>
+    <td class="bold">Obowiązuje do:</td>
+    <td><%=h @payment_politic.to.strftime("%d-%m-%Y %H:%m") %></td>
+  </tr>
+  <tr>
+    <td class="bold">Dolna granica ceny:</td>
+    <td><%=h '%.2f' % @payment_politic.base_payment %> zł</td>
+  </tr>
+  <tr>
+    <td class="bold">Górna granica ceny:</td>
+    <td><%=h '%.2f'% @payment_politic.upper_boundary %> zł</td>
+</tr>
+<tr>
+    <td class="bold">Procent:</td>
+    <td><%=h @payment_politic.percentage %>  %</td>
+</tr>
+</table>
+<center>
+<%= link_to "Zobacz wszystkie", payment_politics_path %> |
+<%= link_to "Edytuj", {:action => :edit, :id => @payment_politic.id} %>
+</center>
 
-<p>
-  <%= link_to "Edit", edit_payment_politic_path(@payment_politic) %> |
-  <%= link_to "Destroy", @payment_politic, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", payment_politics_path %>
-</p>

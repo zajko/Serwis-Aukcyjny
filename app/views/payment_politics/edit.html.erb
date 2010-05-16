@@ -1,10 +1,12 @@
-< title "Edit Payment Politic" %>
+<%= render :partial => "payment_politics/menu" %>
+<h1>Edycja polityki</h1>
 <% form_for @payment_politic ,:url => {:action => "update"} do |f| %>
 <%= render :partial => 'form', :locals=>{:f=>f} %>
 <% end %>
-<p>
-  <%= link_to "Show", @payment_politic %> |
-  <%= link_to "View All", payment_politics_path %>
-</p>
 
+<center>
+<%= link_to "Zobacz wszystkie", payment_politics_path %> |
+<%= link_to "Edytuj", {:action => :edit, :id => @payment_politic.id} %>
+
+</center>
 
