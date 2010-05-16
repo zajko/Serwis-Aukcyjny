@@ -78,6 +78,9 @@ class Bid < ActiveRecord::Base
   end
 
   def cancell_bid (decision = false)
+    if(decision == nil)
+      decision = false
+    end
     return false if auction.auction_end < Time.now()
     self.cancelled = decision
     self.asking_for_cancellation=false
