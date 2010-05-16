@@ -1,7 +1,17 @@
-Założyłeś aukcję o adresie <%= @auction_url %> .
-Aby ją aktywować musisz umieścić token : <%= @auction_activation_token %> na podanej przez Ciebie stronie, której dotyczy aukcja ( <%= @auctionable_url %> )
-Kiedy już to uczynisz, wejdź na poniższy link : 
-<%= @auction_activate_url %>
-Jeżeli kliknięcie w link nie dało skutku, wklej adres URL do przeglądarki.
+Witaj!<br /><br />
+Twoja aukcja została utworzona, ale nie jest aktywna.<br /><br />
 
-Uwaga ! Pamiętaj, że link aktywacyjny znajduje się w szczegółach aukcji ( <%= @auction_url %> ). Będzie się tam znajdował, dopóki jej nie aktywujesz.
+<b>Adres aukcji:</b> <%= @auction_url %><br /><br />
+
+Aby zaktywować aukcję postępuj zgodnie z instrukcją:<br /><br />
+<ol>
+  <li>Umieścić token: <%= @auction_activation_token %> w treści strony, której dotyczy aukcja ( <%= @auctionable_url %> )</li>
+  <li>Kliknij w link: <%= @auction_activate_url %> <br />(Jeżeli kliknięcie w link nie dało skutku, wklej adres URL do przeglądarki.)
+</ol>
+<br /><br />
+<b>Uwaga!</b> Pamiętaj, że link aktywacyjny znajduje się pod adresem aukcji.
+Będzie tam wyświetlany do momentu aktywacji aukcji.
+
+<br /><br />
+Z wyrazami szacunku,<br />
+<i>Kram-reklam.pl</i>

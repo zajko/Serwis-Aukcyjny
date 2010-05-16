@@ -2,8 +2,23 @@
 <%= stylesheet_link_tag "products" %>
 <% render :partial => "/personal/menu_personal" %>
 <h1>Szczegóły aukcji </h1>
+
+<% if @product.auction.activated==false%>
+       <div class="ui-state-highlight ui-corner-all" style=" padding:10px;">
+      <span class="ui-icon ui-icon-info" style="float: left; margin-right: 0.3em;"></span>
+      <b>Uwaga:</b> Aukcja wymaga aktywacji<br /><br />
+      Postępuj zgodnie z instrukcją:<br /><br />
+      <ol style="padding-left:30px;">
+        <li>Umieść token aktywacyjny:<b> <%= @product.auction.activation_token%></b> na swojej stronie (<%= @product.url %>). 
+          Token może być komentarzem niewidocznym dla użytkowników serwisu. </li>
+      <li> Kliknij link aktywacyjny: <%= link_to "Aktywacja", {:action => "activate", :id => @product.auction.id.to_s} %> </li>
+        </ol>
+      </div>
+<% end %>
+
+
 <div class="boxcondainer">
-      <% if current_user%>
+      <% if current_user and  @product.auction.activated%>
           <% if @product.auction and !(@product.auction.buy_now_price > 0 and @product.auction.bids.not_cancelled.count>0 )
               @kup_teraz=true;
           end%>

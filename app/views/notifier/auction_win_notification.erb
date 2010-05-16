@@ -1,12 +1,13 @@
-Aukcja o numerze <%= @auction_id %> zakończyła się  .
-Jesteś jednym z użytkowników, którzy wygrali produkt na tej aukcji.
-Wylicytowana przez Ciebie cena to :
-<%= @price %>
-W celu otrzymania i opłacenia usługi skontaktuj się z właścicielem produktu :
+Witaj!<br /><br />
+Aukcja o numerze <%= @auction_id %> zakończyła się i jesteś jednym z użytkowników, którzy wygrali produkt na tej aukcji.
+<br /><br />
+<b>Wylicytowana przez Ciebie cena:<b> <%= @price %>
+<br /><br />
+W celu otrzymania i opłacenia usługi skontaktuj się z właścicielem produktu: <%= @owner_email %>
+<br /><br />
+Aukcja, której dotyczy ten e-mail zostanie niedługo (lub już została) przeniesiona do archiwum.<br /><br />
+<b>Link do archiwum tej aukcji:</b> <%= @archival_auction_url %>
 
-Właściciel :
-<%= @owner_email %>
-
-
-Aukcja, której dotyczy ten e-mail zostanie niedługo (lub już została) przeniesiona do archiwum. Oto link do archiwum tej aukcji :
-<%= @archival_auction_url %>
+<br /><br />
+Z wyrazami szacunku,<br />
+<i>Kram-reklam.pl</i>

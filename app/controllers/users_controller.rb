@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def cant_destroy_admins
     @u = User.find(params[:id])
     if(@u.id != current_user.id && (@u.has_role?(:admin) || @u.has_role?(:superuser)))
-      flash[:notice] = "The user you are trying to delete is an admin or a superuser"
+      flash[:notice] = "Użytkownik, którego próbujesz usunąć jest superuserem lub administratorem!"
       return false
     end
     return true
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Błąd podczas wysyłania listu na adres #{@user.email}"
         redirect_to :root
       end
-      redirect_to :controller => "user_sessions", :action => "destroy", :instrukcje => "Konto utworzone. Na #{@user.email} wyslano instrukcje aktywacji"
+      redirect_to :controller => "user_sessions", :action => "destroy", :instrukcje => "Twoje konto zostało utworzone. Instrukcja aktywacji została przesłana na adres: #{@user.email}."
       return
     else
       render :action => :new
@@ -187,11 +187,11 @@ class UsersController < ApplicationController
     @user = current_user # makes our views "cleaner" and more consistent
     params[:user][:login] = @user.login  # zapewnienie, żeby użyszkodnik nie zmienił sobie loginu
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
+      flash[:notice] = "Dane konta zostały zaktualizowane."
       redirect_to account_url
     else
       render :action => :edit
-      flash[:notice] = "Update error!"
+      flash[:notice] = "Błąd aktualizacji danych konta!"
     end
   end
 end

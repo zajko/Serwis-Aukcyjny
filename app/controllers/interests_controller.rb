@@ -10,7 +10,7 @@ class InterestsController < ApplicationController
   def create
     @interest = Interest.new(params[:interest])
     if @interest.save
-      flash[:notice] = "Utworzono !"
+      flash[:notice] = "Utworzono!"
       redirect_to(:action =>'index')
       return
     else
@@ -21,13 +21,13 @@ class InterestsController < ApplicationController
   def destroy
     id = params[:id]
     if id == nil
-      flash[:notice] = "Musisz podać id !"
+      flash[:notice] = "Musisz podać id!"
       redirect_to(:action =>'index')
       return
     end
     @interest = Interest.find(id)
     if @interest == nil
-      flash[:notice] = "Nie istnieje taka kategoria zainteresowania !"
+      flash[:notice] = "Nie istnieje taka kategoria zainteresowania!"
       redirect_to(:action =>'index')
       return
     end
