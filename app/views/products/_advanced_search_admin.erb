@@ -1,7 +1,8 @@
 <% content_for :search_box do %>
       <% form_for :search, { :url => "/products/index_admin?[product_type]=#{@controller.product_type}&search_type=advanced"} do |f|%>
-        <div class="search" style="background:#EEEEEE;">
+        <div class="search" style="background:#cccccc">
           <%= f.error_messages %>
+
           <table>
             <tr>
                     <td class="auction_type" style="width:250px;">
@@ -13,7 +14,12 @@
                               <tr>
                               <td class="search_param_name"><%= f.label :auction_end_between, "Typ aukcji: "%></td>
                               <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
-                              <%= select_tag(:product_type,options_for_select([['Link',"site_link"],['Banner', "banner"],['Artykuł sponsorowany',"sponsored_article"],["Pop up","pop_up"]],@selected)) %>
+                                  <select style="width:305px;" onchange="window.location.href='/products/index_admin?product_type='+this.options[this.selectedIndex].value+'&search_type=advanced';">
+                                    <option value="site_link" <%if @controller.product_type=="site_link" %>selected<%end%>>Link</option>
+                                    <option value="banner" <%if @controller.product_type=="banner" %>selected<%end%>>Banner</option>
+                                    <option value="pop_up"<%if @controller.product_type=="pop_up" %>selected<%end%>>Pop up</option>
+                                    <option value="sponsored_article"<%if @controller.product_type=="sponsored_article" %>selected<%end%> >Artykuł sponsorowany</option>
+                                  </select>
 
                               </td>
                               </tr><tr>
@@ -24,11 +30,11 @@
                               </tr><tr>
                               <tr>
                               <td class="search_param_name"><%= f.label :user_login_like, "Użytkownik: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %> !! poprawić nazwe pola</td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %></td>
                               </tr><tr>
                               <tr>
                               <td class="search_param_name"><%= f.label :auction_end_between, "Aktualna cena: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :current_price_gte,:size=>"19"  %> - <%= f.text_field :current_price_lte,:size=>"19"  %> zł !! poprawić nazwe pola</td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :current_price_gte,:size=>"19"  %> - <%= f.text_field :current_price_lte,:size=>"19"  %> zł </td>
                               </tr><tr>
                               <td><br /></td>
                               </tr><tr>
