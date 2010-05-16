@@ -171,13 +171,8 @@ div.category{
             border: 1px solid gray;
             background:#cccccc;;
         }
-            .offersbox_offers_tab, .cancelbox_tab {
-            width:280px;}
-
-            .offersbox_offers_tab td, .cancelbox_tab td{
-                padding-bottom:5px;
-                vertical-align:top;
-            }
+            .offersbox_offers_tab, .cancelbox_tab {width:280px;}
+            .offersbox_offers_tab td, .cancelbox_tab td{padding-bottom:5px; vertical-align:top;}
 
 
         .search{
@@ -191,15 +186,17 @@ div.category{
             -moz-border-radius: 5px;
             border-radius: 5px;
         }
-           .search div.product_category{
+           .search div.product_category,div.interests{
                 display:inline-block;
                 margin-right: 20px;
                 margin-bottom:5px;
                 width:120px;
-                
-                
 
             }
+            .search div.interests{
+                width:200px;
+            }
+
             .search table{
                   
             }

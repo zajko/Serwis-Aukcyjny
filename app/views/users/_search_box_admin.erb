@@ -1,0 +1,60 @@
+<% content_for :search_box do %>
+      <% form_for :search, {:action=>"index"} do |f|%>
+        <div class="search" style="background:#EEEEEE;">
+          <table width="100%">
+            <tr>
+                    <td class="auction_type" style="width: 100px;">
+                        <b>Szukaj</b>
+                    </td>
+                    <td>
+                            <!-- wewnetrzna tab -->
+                            <table  width="100%">
+                              <tr>
+                              <td width="120"><%= f.label :login_like, "Login:"%></td>
+                              <td><%= f.text_field :login_like%></td>
+                              <td width="50"></td>
+                              <td width="120"><%= f.label  :last_login_ip_equals, "Ostanie IP:"%></td>
+                              <td><%= f.text_field :last_login_ip_equals%></td>
+                              </tr>
+                              <tr><td><br /></td></tr>
+                              <td> <%= f.label  :first_name_like, "Imię:"%></td>
+                              <td><%= f.text_field :first_name_like%></td>
+                              <td width="50"></td>
+                              <td> <%= f.label  :first_name_like, "Nazwisko:"%></td>
+                              <td><%= f.text_field :surname_like%></td>
+                              <tr><td><br /></td></tr>
+                              <tr>
+                                <td>Zainteresowania:</td>
+                                <td colspan="4">
+                              <% for interest in Interest.all %>
+                              <div class="interests">
+                              <%= check_box_tag("search[interests_attributes][]",interest.id,  params[:search] && params[:search][:interests_attributes] && params[:search][:interests_attributes].include?(interest.id.to_s)) %>
+                              <%= interest.name %></div>
+                              <% end %>
+                              </tr>
+                              <tr><td><br /></td></tr>
+                              <tr>
+                                <td>Role:</td>
+                                <td colspan="4">
+                              <% for role in @roles %>
+                              <div class="interests">
+                              <%= check_box_tag("search[roles_attributes][]",role.id,  params[:search] && params[:search][:roles_attributes] && params[:search][:roles_attributes].include?(role.id.to_s)) %>
+                              <%= role.name %>
+                              </div>
+                              <% end %>
+                              </tr>
+                            </table>
+                            <!-- / wewnetrzna tab -->
+                    </td>
+            </tr>
+            <tr>
+            <td></td>
+                     <td  class="bottom" align="right">
+                      <%=f.submit "Szukaj" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+            </td>
+            </tr>
+          </table>
+
+          </div>
+    <% end %>
+<% end %>
