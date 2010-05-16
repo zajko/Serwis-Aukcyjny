@@ -11,7 +11,7 @@ class AddDefaultToPagerankAndUsersDailyInSiteLinkBannerPopUpSponsoredArticle < A
     end
 
   def self.down
-    execute "ALTER TABLE site_links ALTER COLUMN pagerank DOP DEFAULT 0; "
+    execute "ALTER TABLE site_links ALTER COLUMN pagerank DROP DEFAULT 0; "
     execute "ALTER TABLE site_links ALTER COLUMN users_daily DROP DEFAULT 0; "
     execute "ALTER TABLE banners ALTER COLUMN pagerank DROP DEFAULT 0; "
     execute "ALTER TABLE banners ALTER COLUMN users_daily DROP DEFAULT 0; "
