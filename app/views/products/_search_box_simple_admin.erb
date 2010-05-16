@@ -1,0 +1,34 @@
+<% content_for :search_box do %>
+        <div class="search" style="background:#cccccc">
+
+           <% form_tag(admin_search_path, :method => "get") do %>
+          <table>
+            <tr>
+              <td style="width:265px;">
+                  Typ reklamy:
+                  <%
+                  if(@controller.controller_name=="products")
+                        @selected=@controller.product_type
+                  else 
+                        @selected=nil
+                  end
+                  if (@search_categories==nil)
+                      @search_categories = Array.new;
+                  end
+                 
+                  %>
+                  <%= select_tag(:product_type,options_for_select([['Link',"site_link"],['Banner', "banner"],['Artykuł sponsorowany',"sponsored_article"],["Pop up","pop_up"]],@selected)) %>
+              </td>
+              <td style="width:60px; height:20px;">Kategoria: </td><td style="width:315px;">
+                <%= select_tag(:search_categories, options_for_select(Category.all.collect{ |p| [p.name, p.id] }, @search_categories.map{|a| a.to_i}), :multiple=>true) %>
+              </td>
+              <td  class="bottom_simple_box" align="right">
+                  <%= submit_tag "Szukaj" %>
+                  <%= link_to "Zaawansowane wyszukiwanie", {:search_type=>"advanced", :action => "index_admin",:controller=>"products", :product_type => "site_link", :search => params[:search]} %></a>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <% end %>
+<% end %>

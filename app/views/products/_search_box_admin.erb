@@ -1,0 +1,8 @@
+<% content_for :search_box do %>
+    <% if @search_type.to_s=="advanced" %>
+        <%= render :partial => "advanced_search_admin", :product_type => @controller.product_type%>
+    <%  else %>
+        <%= render :partial => "products/search_box_simple_admin" %>
+    <% end %>
+<% end %>
+

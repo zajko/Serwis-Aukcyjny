@@ -159,8 +159,10 @@ class ProductsController < ApplicationController
     prepare_search
     @search_categories=params[:search_categories] || params[:categories_attributes]
     @search = ProductSearch.new(params[:search])
+    @search_type=params[:search_type]
     page = params[:page] || 1
     params[:search_categories] = @search.categories_attributes
+
     @auctions = Auction.all.paginate :page => page, :order => 'id DESC', :per_page=>20
     
   end
