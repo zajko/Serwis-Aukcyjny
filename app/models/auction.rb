@@ -18,6 +18,7 @@ class Auction < ActiveRecord::Base
   
   validate :check_before_update, :on => :update
   validates_numericality_of :time_of_service, :greater_than => 0
+  validates_numericality_of :minimal_bidding_difference, :greater_than_or_equal_to => 0, :message => "minimalna cena podbicia musi być większa lub równa zeru."
   #accepts_nested_attributes_for :categories
   attr_accessible :category_ids
   attr_accessible :categories

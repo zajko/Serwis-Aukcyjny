@@ -11,7 +11,8 @@ class SponsoredArticle < ActiveRecord::Base
   attr_accessible :users_daily
   attr_accessible :words_number
   attr_accessible :number_of_links
-  
+  validates_numericality_of :number_of_links, :greater_than => 0, :message => "Liczba linków artykułu musi być większa od 0"
+  validates_numericality_of :words_number, :greater_than => 0, :message => "Liczba słów artykułu musi być większa od 0"
   named_scope :active, :include => :auction, :condition => {'auctions.activated' => true }
   validate :check_before_update, :on => :update 
   def check_before_update
