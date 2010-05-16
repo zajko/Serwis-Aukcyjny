@@ -1,6 +1,7 @@
 <% content_for :search_box do %>
       <% form_for :search, { :url => "/products/index_admin?[product_type]=#{@controller.product_type}&search_type=advanced"} do |f|%>
         <div class="search" style="background:#EEEEEE;">
+          <%= f.error_messages %>
           <table>
             <tr>
                     <td class="auction_type" style="width:250px;">
@@ -22,18 +23,18 @@
                               <%= select_tag(:product_type,options_for_select([['Aktywna',"active"],['Niezaktywowana', "not_activated"]],@selected)) %></td>
                               </tr><tr>
                               <tr>
-                              <td class="search_param_name"><%= f.label :auction_end_between, "Użytkownik: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :auction_auction_end_gte,:size=>"19"  %> !! poprawić nazwe pola</td>
+                              <td class="search_param_name"><%= f.label :user_login_like, "Użytkownik: "%></td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %> !! poprawić nazwe pola</td>
                               </tr><tr>
                               <tr>
                               <td class="search_param_name"><%= f.label :auction_end_between, "Aktualna cena: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :auction_auction_end_gte,:size=>"19"  %> zł !! poprawić nazwe pola</td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :current_price_gte,:size=>"19"  %> - <%= f.text_field :current_price_lte,:size=>"19"  %> zł !! poprawić nazwe pola</td>
                               </tr><tr>
                               <td><br /></td>
                               </tr><tr>
                               <td class="search_param_name"><%= f.label :auction_end_between, "Zakończenie: "%></td>
-                              <td class="search_param_value">od: <%= f.text_field :auction_auction_end_gte, :size=>7,:id=>"datepicker_from" %> </td>
-                              <td class="search_param_value">do: <%= f.text_field :auction_auction_end_lte, :size=>7,:id=>"datepicker_to" %> </td>
+                              <td class="search_param_value">od: <%= f.text_field :auction_end_gte, :size=>7,:id=>"datepicker_from" %> </td>
+                              <td class="search_param_value">do: <%= f.text_field :auction_end_lte, :size=>7,:id=>"datepicker_to" %> </td>
                               </tr>
                               <% if Category.all.count > 0 %>
                               <%= render :partial => "advanced_search_form_categories", :locals => {:f => f}%>
