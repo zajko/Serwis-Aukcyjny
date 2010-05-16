@@ -4,6 +4,21 @@ class ProductSearch < Tableless
   #accepts_nested_attributes_for :categories
   validate :sprawdz_ceny
   validate :sprawdz_daty
+  validate :sprawdz_pagerank
+
+  def sprawdz_pagerank
+      errors.add(:uwaga, "dolny pułap pageranku musi być liczbą całkowitą z przedziału <1;10>") unless czy_pagerank_ok(pagerank_gte)
+      errors.add(:uwaga, "górny pułap pageranku musi być liczbą całkowitą z przedziału <1;10>") unless czy_pagerank_ok(pagerank_lte)
+  end
+
+  def czy_pagerank_ok(pagerank_napis)
+      return true if pagerank_napis == nil or pagerank_napis.length ==0
+      return false if (pagerank_napis =~ /^[\d]+$/) == nil
+      i = pagerank_napis.to_i
+      return false if i > 10 or i < 1
+      return true
+  end
+
   def sprawdz_ceny
     errors.add(:uwaga, "dolny pułap przedziału cenowego musi być liczbą lub pozostawiony pusty ") unless current_price_gte == nil or current_price_gte.length == 0 or (current_price_gte =~ /^[\d]+(\.[\d]+){0,1}$/) != nil
     errors.add(:uwaga, "górny pułap przedziału cenowego musi być liczbą lub pozostawiony pusty ") unless current_price_lte == nil or current_price_lte.length == 0 or (current_price_lte =~ /^[\d]+(\.[\d]+){0,1}$/) != nil
@@ -28,10 +43,8 @@ class ProductSearch < Tableless
   end
 
  # validates_numericality_of :current_price_lte, :greater_than => 0
-  column :pagerank_gte, :integer
-  column :pagerank_lte, :integer
-  column :pagerank_lte, :integer
-  column :pagerank_gte, :integer
+  column :pagerank_gte, :string
+  column :pagerank_lte, :string
   column :users_daily_gte, :integer
   column :users_daily_lte, :integer  
   column :x_pos_gte, :integer

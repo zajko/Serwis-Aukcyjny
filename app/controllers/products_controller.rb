@@ -172,7 +172,7 @@ class ProductsController < ApplicationController
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])
     if(@search.valid?)
-      @scope = Auction.prepare_search_scopes(params[:search], search)
+      @scope = Auction.prepare_search_scopes(search)
       @search_categories=params[:search_categories] ||(search[:categories_attributes] || {})
       
       page = params[:page] || 1
