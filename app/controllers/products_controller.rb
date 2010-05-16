@@ -62,7 +62,6 @@ class ProductsController < ApplicationController
       @product.url = "http://"+@product.url if (url =~ /^(http|https):\/\//) == nil
     end
     if(!@product.valid?)
-      
         render :action => "wizard_product_data"#, :product_type => params[product_type],params[product_type] =>params[product_type][:auction_attributes]
     else
       begin
@@ -76,6 +75,7 @@ class ProductsController < ApplicationController
       end
       params[product_type][:pagerank] = @product.pagerank
       params[product_type][:users_daily] = @product.users_daily
+      params[product_type][:url] = @product.url
     end
   end
   
@@ -116,8 +116,10 @@ class ProductsController < ApplicationController
       end
   end
 
-  def prepare_search(additional_parameters = {})
-    search = params[:search] || {}
+  def prepare_search(search = {}, additional_parameters = {})
+    if search == nil
+      search = {}
+    end
     search.merge!(additional_parameters) #, :categories_attributes => search[:search_categories]
     @scope = Kernel.const_get(product_type.classify).prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
@@ -131,25 +133,27 @@ class ProductsController < ApplicationController
     if params[:search_categories] == nil and params[:search]
       params[:search_categories] = params[:search][:categories_attributes]
     end
-    prepare_search({:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true})
+    
     @search_categories=params[:search_categories] || params[:categories_attributes]
     page = params[:page] || 1
     @search_type=params[:search_type]
     @search = ProductSearch.new(params[:search])
-    params[:search_categories] = @search.categories_attributes
-    #@search_categories.each do |e|
-    #  @search.categories_attributes=e
-    #end if @search_categories
-    if @scope != nil and @scope.count > 0
-      @products = (@scope.paginate :page => page, :per_page=>20)
+    if(@search.valid?)
+      prepare_search(params[:search], {:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true})
     else
-      @products = []
+      prepare_search({}, {:product_type => product_type, :auction_not_expired => true, :auction_opened => "byleco", :auction_activated => true})
+    end
+    params[:search_categories] = @search.categories_attributes
+    if @scope != nil and @scope.count > 0
+        @products = (@scope.paginate :page => page, :per_page=>20)
+    else
+        @products = []
     end
     
   end
   
   def index_admin
-   # raise "A"
+    #raise "A"
     if !params[:search] and params[:search_categories]
       params[:search] = {}
       params[:search][:categories_attributes] = params[:search_categories]
@@ -165,14 +169,18 @@ class ProductsController < ApplicationController
       params[:search].merge!({:by_auctionable_type => params[:product_type].classify})
     end
     search = params[:search] || {}
-    @scope = Auction.prepare_search_scopes(search)
-    @search_categories=params[:search_categories] ||(search[:categories_attributes] || {})
-    @search = ProductSearch.new(params[:search])
     @search_type=params[:search_type]
-    page = params[:page] || 1
-   # params[:search_categories] = @search.categories_attributes
-    @auctions = @scope.all.paginate :page => page, :per_page=>20
-    
+    @search = ProductSearch.new(params[:search])
+    if(@search.valid?)
+      @scope = Auction.prepare_search_scopes(params[:search], search)
+      @search_categories=params[:search_categories] ||(search[:categories_attributes] || {})
+      
+      page = params[:page] || 1
+      @auctions = @scope.all.paginate :page => page, :per_page=>20
+    else
+
+      @auctions = Auction.all.paginate :page => page, :per_page=>20
+    end
   end
 
   def wizard_product_create
@@ -197,7 +205,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Aukcja została utworzona."
       flash[:notice] = flash[:notice] + " Na Twoją skrzynkę pocztową wysłano instrukcje do aktywacji aukcji." if ! @product.auction.activated
     else
-     # render :action => "new"
+      render :action => "wizard_product_data"
       flash[:notice] = "Nie udało się utworzyć aukcji"
     end
  end
