@@ -19,7 +19,7 @@ class PaymentPolitic < ActiveRecord::Base
       errors.add("Wartości od i do muszą być albo oba nullami albo muszą być oba zadeklarowane") if from == nil and to != nil or from != nil and to == nil
     end
     
-    errors.add("Początek musi być przed końcem")  if (to < from) or (from == to and to == nil)
+    errors.add("Początek musi być przed końcem")  if (to != nil and from != nil) and ((to < from) or (from == to and to == nil))
     return errors.count == 0
   end
   def upper_boundary_validation
