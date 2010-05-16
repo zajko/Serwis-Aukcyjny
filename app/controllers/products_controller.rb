@@ -154,6 +154,10 @@ class ProductsController < ApplicationController
       params[:search] = {}
       params[:search][:categories_attributes] = params[:search_categories]
     end
+    if !params[:search]
+      params[:search] = {}
+    end
+    params[:search] = {} if params[:search] == nil
     if params[:search_categories] == nil and params[:search]
       params[:search_categories] = params[:search][:categories_attributes]
     end
