@@ -203,7 +203,7 @@ class ProductsController < ApplicationController
       @product.auction.deliver_auction_activation_instructions!
       redirect_to :action => "wizard_summary", :id => @product.id, :product_type => product_type.to_s#@product.class
       flash[:notice] = "Aukcja została utworzona."
-      flash[:notice] = flash[:notice] + " Na Twoją skrzynkę pocztową wysłano instrukcje do aktywacji aukcji." if ! @product.auction.activated
+      flash[:notice] = flash[:notice] + " Na Twoją skrzynkę pocztową wysłano instrukcje aktywacji." if ! @product.auction.activated
     else
       render :action => "wizard_product_data"
       flash[:notice] = "Nie udało się utworzyć aukcji"
