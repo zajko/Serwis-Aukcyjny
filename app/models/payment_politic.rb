@@ -7,12 +7,26 @@ class PaymentPolitic < ActiveRecord::Base
   validates_numericality_of :percentage, :less_than_or_equal_to => 99, :message => "Najwyższe oprocentowanie to 99% - sory"
   validates_numericality_of :upper_boundary, :greater_than_or_equal_to => 0, :message => "Górna granica nie może być liczbą ujemną"
   validate :correctness_of_dates
+  validate :payment_limitation
   validate :no_colliding_politics
+
+  def payment_limitation
+    x = 0.0
+    if base_payment != nil
+      x = x + base_payment
+    end
+    if upper_boundary != nil
+      x = x + upper_boundary * percentage / 100
+      errors.add(:Uwaga, "#{upper_boundary} * #{percentage}% + #{base_payment} = #{x}, co jest więcej niż #{upper_boundary}. Nie można żądać od użytkownika, żeby zapłacił więcej niż dostanie z licytacji.") if x > upper_boundary
+    end
+
+    
+  end
   def no_colliding_politics
     #errors.add("Polityki nie mogą się pokrywać") if PaymentPolitic.colliding(from, to).count > 0
   end
+
   def correctness_of_dates
-    
     if(from == nil and to == nil)
         
     else
