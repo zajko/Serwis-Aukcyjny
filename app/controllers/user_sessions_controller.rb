@@ -31,7 +31,6 @@ class UserSessionsController < ApplicationController
   end
   
   def destroy
-
     instrukcje = params[:instrukcje]
    # raise instrukcje.to_s
     if(current_user_session)
