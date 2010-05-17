@@ -1,4 +1,5 @@
 class PaymentPoliticsController < ApplicationController
+  rescue_from Acl9::AccessDenied, :with => :deny_user_access
   def index
     @payment_politics = PaymentPolitic.all
   end
@@ -40,5 +41,30 @@ class PaymentPoliticsController < ApplicationController
     @payment_politic.destroy
     flash[:notice] = "Polityka została usunieta."
     redirect_to :action => 'index'
+  end
+   protected
+   def deny_user_access
+    @user =current_user
+    if @user == nil
+      flash[:notice] = "Musisz się zalogować"
+      redirect_to :root
+      return
+    end
+
+    if @user.has_role?(:banned)
+      flash[:notice] = "Twoje konto jest zablokowane"
+      redirect_to :root
+      return
+    end
+    if @user.has_role?(:not_activated)
+      flash[:notice] = "Musisz zaktywować swoje konto"
+      redirect_to :root
+      #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
+      return
+    end
+    flash[:notice] = flash[:notice] ? flash[:notice] : "Nie masz uprawnień do tej części serwisu"
+    redirect_to :root
+    #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
+    return
   end
 end

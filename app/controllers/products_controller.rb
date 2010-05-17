@@ -382,6 +382,7 @@ class ProductsController < ApplicationController
   end
 
   protected
+  
   def deny_user_access
     @user =current_user
     if @user == nil

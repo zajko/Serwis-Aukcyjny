@@ -4,6 +4,7 @@ class UserSessionsController < ApplicationController
     access_control do
       allow all
     end
+    rescue_from Acl9::AccessDenied, :with => :deny_user_access
   def new
     @user_session = UserSession.new
   end
@@ -43,5 +44,30 @@ class UserSessionsController < ApplicationController
     end
     redirect_to root_url
     #redirect_back_or_default root #new_user_session_url
+  end
+  protected
+  def deny_user_access
+    @user =current_user
+    if @user == nil
+      flash[:notice] = "Musisz się zalogować"
+      redirect_to :action=>"new", :controller=>"user_session"
+      return
+    end
+
+    if @user.has_role?(:banned)
+      flash[:notice] = "Twoje konto jest zablokowane"
+      redirect_to :root
+      return
+    end
+    if @user.has_role?(:not_activated)
+      flash[:notice] = "Musisz zaktywować swoje konto"
+      redirect_to :root
+      #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
+      return
+    end
+    flash[:notice] = flash[:notice] ? flash[:notice] : "Nie masz uprawnień do tej części serwisu"
+    redirect_to :root
+    #TODO Tu ma się pojawić redirect do powiadomienia o tym, że trzeba zaktywować
+    return
   end
 end
