@@ -37,7 +37,7 @@ auction_<%= i%>:
  <%end%>
  time_of_service: <%= 10 + Math.log(i * 5 + 2).to_i %>
  activation_token: <%= ProductsHelper.random_string(20) %>
- created_at: <%=Time.now%>
+ created_at: <%=Time.now() - 2.hours%>
  categories: <%= kat %>
 <% if i%4 == 2 %>
  auctionable_type: SponsoredArticle

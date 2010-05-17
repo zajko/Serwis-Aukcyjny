@@ -1,4 +1,4 @@
-#require 'Date'
+require 'open-uri'
 class Auction < ActiveRecord::Base
   extend Searchable
   has_and_belongs_to_many :categories
@@ -10,7 +10,7 @@ class Auction < ActiveRecord::Base
   belongs_to :auctionable, :polymorphic => true, :dependent => :destroy
   named_scope :active, :conditions => { :activated => true}
   named_scope :categorised, :joins => :categories, :select => 'Distinct post.*'
-  named_scope :expired, :conditions => 'now() - "auctions".auction_end > INTERVAL \'10 minutes\' '
+  named_scope :expired, :conditions => 'now() > "auctions".auction_end + INTERVAL \'5 minutes \''
   named_scope :not_expired, :conditions => 'now() - "auctions".auction_end < INTERVAL \'0 minutes\' '
   named_scope :opened, :conditions => '"auctions".buy_now_price = 0 or "auctions".number_of_products > (SELECT COUNT(*) FROM bids B WHERE B.cancelled = false and B.auction_id = "auctions".id)'
   #accepts_nested_attributes_for :user
@@ -275,7 +275,7 @@ class Auction < ActiveRecord::Base
 
   def activate
     if auction_end < Time.now
-      errors.add( "Aukcja już się zakończyła.")
+      errors.add("Aukcja już się zakończyła.")
       return false
     end
     if activated
@@ -287,6 +287,7 @@ class Auction < ActiveRecord::Base
           
           open(s) {
             |f|
+            return f
             if f.string.contains(@activation_token)
               @activated = true
               save
@@ -295,7 +296,7 @@ class Auction < ActiveRecord::Base
             end
           }
         rescue
-          errors.add( "Podany w aukcji url jest niepoprawny lub nie odpowiada.")
+          errors.add("Podany w aukcji url jest niepoprawny lub nie odpowiada.")
           return false
         end
     else
