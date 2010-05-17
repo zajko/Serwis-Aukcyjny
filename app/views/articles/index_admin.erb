@@ -10,7 +10,7 @@
     <td class="ArticlesTabHeader">Pokaż</td>
   </tr>
 
-  <% if @article %>
+  <% if @articles != nil %>
   <% for article in @articles %>
     <tr>
       <td><%=h article.title %></td>

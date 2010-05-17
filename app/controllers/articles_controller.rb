@@ -6,7 +6,13 @@ class ArticlesController < ApplicationController
     allow :superuser, :admin
     #allow :superuser, :to => [:edit, :update, :destroy]
     allow :owner, :of => :article, :to => [:edit, :update, :destroy]
-  end  
+  end
+
+  def index_admin
+    
+    page = params ? params[:page] : nil || 1
+    @articles = Article.all.paginate :page => page, :order => 'created_at DESC',:per_page=>20
+  end
   
   def index (page = nil)
     page = page || (params ? params[:page] : nil) || 1
