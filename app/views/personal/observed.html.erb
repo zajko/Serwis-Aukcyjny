@@ -9,7 +9,6 @@
             <td class="header">Zakończenie</td>
             <td class="header">Pozostało</td>
             <td class="header">Ostatnia oferta</td>
-            <td class="header">Usuń</td>
             <td class="header">Pokaż</td>
 		
 	</tr>
@@ -32,7 +31,6 @@
                   <%end%>
                   <%= '%.2f' % auction.current_price%> zł
                 </td>
-                <td><center><%= link_to image_tag("delete.png", :border=>0), :controller=>"products", :action => :unobserve, :id => auction.id, :product_type => auction.auctionable_type%></center></td>
                 <td><%=link_to "Pokaż", :controller => "products", :action => "show",:id => auction.auctionable_id,  :product_type => auction.auctionable_type%></td>
 	</tr>
 	<% end %>
