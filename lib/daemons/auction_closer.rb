@@ -27,6 +27,7 @@ while($running) do
              rescue Object => ex
                ActiveRecord::Base.logger.info "\n\n!!#{Time.now}   :    #{ex}\n\n"
              end
+             sleep 1
         end
       end
   end

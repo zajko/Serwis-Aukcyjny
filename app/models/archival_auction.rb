@@ -1,5 +1,5 @@
 class ArchivalAuction < ActiveRecord::Base
-  has_many :archival_bids
+  has_many :archival_bids, :as => :archival_biddable
   has_one :charge, :as => :chargeable
   #has_one :owner, :as => :acrhival_auction_owner
   belongs_to :archival_auction_owner, :polymorphic => true#, :dependent => :destroy
