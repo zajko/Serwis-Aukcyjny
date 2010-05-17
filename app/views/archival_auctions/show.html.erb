@@ -1,12 +1,41 @@
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
-<h1>Archiwalna aukcja</h1>
-
-<%= @archival_auctions.id %>
+<h1>Archiwalna aukcja nr <%= @archival_auction.id %> </h1>
+<center>
+  <table>
+    <% @czy_admin = current_user and current_user.is_admin?%>
+    <tr><td>Początek</td><td><%=@archival_auction.start%></td></tr>
+    <tr><td>Koniec</td><td><%=@archival_auction.auction_end%></td></tr>
+    <tr><td><b>Wylicytowana cena</b></td><td><%=@archival_auction.current_price%></td></tr>
+    <% if @archival_auction.buy_now_price > 0 then %>
+      <tr><td colspan="2"><b>Aukcja typu kup teraz</b></td></tr>
+    <%else%>
+      <tr><td colspan="2"><center><b>Licytacja</b></center></td></tr>
+      <tr><td><b>Cena minimalna</b></td><td><%=@archival_auction.minimal_price%></td></tr>
+      <tr><td><b>Minimalne podbicie ceny</b></td><td><%=@archival_auction.minimal_bidding_difference%></td></tr>
+    <%end%>
+    <% if  @czy_admin %>
+      <tr><td><b>Właściciel aukcji</b></td><td><%=@archival_auction.archival_auction_owner.login%> (<%=@archival_auction.archival_auction_owner_type%>)</td></tr>
+    <%end%>
+  </table>
+  <br/>
+  <br/>
+  <table>
+    <thead><h2>Oferty złożone na tą aukcję</h2></thead>
+  <% if @archival_auction.archival_bids.count > 0 then %>
+    <tr><td></td><td>Oferowana cena</td><td>Utworzono</td></tr>
+    <%@archival_auction.archival_bids.each do |b|%>
+      <tr><td><%= b.archival_bid_owner.login if @czy_admin %></td><td><%= b.offered_price %></td><td><%=b.created_at%></td></tr>
+    <%end%>
+  <%else%>
+    <tr><td>Na tej aukcji nie było żadnych ofert !</td></tr>
+  <%end%>
+  </table>
+  </center>
 
 
 
 <div class="content_menu">
   <%= link_to "Edytuj", :action=>"edit" %> |
-  <%= link_to "Usuń", @archival_auctions, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Usuń", @archival_auction, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "Pokaż wszystkie", archival_auctions_path %>
 </div>

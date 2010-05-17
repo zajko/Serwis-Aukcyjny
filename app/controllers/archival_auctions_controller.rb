@@ -22,7 +22,16 @@ class ArchivalAuctionsController < ApplicationController
   end
   
   def show
-    @archival_auctions = ArchivalAuction.find(params[:id])
+    begin
+      @archival_auction = ArchivalAuction.find(params[:id])
+    rescue
+      if params[:id] != nil
+        flash[:notice] = "Nie ma aukcji archiwalnej o numerze #{params[:id]}"
+      else
+        flash[:notice] = "Nie można wyświetlić aukcji archiwalnej bez podania numeru"
+      end
+      redirect_to :root
+    end
   end
   
   def new
