@@ -1,24 +1,29 @@
 class ArchivalAuctionsController < ApplicationController
   access_control do
-    allow all, :to => [:show, :index]
-    allow :superuser, :admin, :to => [:edit, :update, :destroy]
+    allow all, :to => [:show]
+    allow :superuser, :admin, :to => [:edit, :update, :destroy, :index]
   end  
   
-  def prepare_search
-    search = params[:search] || {}
+  def prepare_search(params)
+    search = params || {}
     #search.merge!({:product_type => product_type})
     
     @scope = ArchivalAuction.prepare_search_scopes(search)#Auction.prepare_search_scopes(search)
   end
   
   def index
+    #@search = ProductSearch.new(params[:search])
     page = page || (params ? params[:page] : nil) || 1
-    prepare_search
-    @search = ProductSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
     
-    @products = @scope ? @scope.all : []
+    @search = ArchivalAuctionSearch.new(params[:search])#Kernel.const_get(product_type.classify).searchObject(params[:search])
+    if @search.valid? then
+      prepare_search(params[:search])
+      @scope = @scope ? @scope.all : []
+    else
+      prepare_search(nil)
+    end
+    @archival_auctions = @scope.paginate :page => page,:per_page=>20
 
-    @archival_auctions = ArchivalAuction.all.paginate :page => page, :order => 'id DESC',:per_page=>20
   end
   
   def show

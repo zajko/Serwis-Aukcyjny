@@ -7,7 +7,11 @@ class UserSessionsController < ApplicationController
   def new
     @user_session = UserSession.new
   end
-  
+
+  def show
+    redirect_to :root
+  end
+
   def create
     @user_session = UserSession.new(params[:user_session])
     if a = User.find_by_login(params[:user_session][:login])

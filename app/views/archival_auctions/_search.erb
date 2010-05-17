@@ -1,5 +1,5 @@
 <% content_for :search_box do %>
-      <% form_for :search, { :url => "url"} do |f|%>
+      <% form_for :search, { :action => "index", :params => params} do |f|%>
         <div class="search" style="background:#cccccc">
           <%= f.error_messages %>
 
@@ -12,8 +12,8 @@
                             <!-- wewnetrzna tab -->
                             <table>
                               <tr>
-                              <td class="search_param_name"><%= f.label :user_login_like, "Użytkownik: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %>
+                              <td class="search_param_name"><%= f.label :archival_user_login_like, "Użytkownik: "%></td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :archival_auction_owner_login_like,:size=>"19"  %>
                               </tr></tr><tr><td><br /></td></tr><tr>
                               <td class="search_param_name"><%= f.label :auction_end_between, "Aktualna cena: "%></td>
                               <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :current_price_gte,:size=>"19"  %> - <%= f.text_field :current_price_lte,:size=>"19"  %> zł </td>

@@ -1,4 +1,5 @@
 class ArchivalAuction < ActiveRecord::Base
+  extend Searchable
   has_many :archival_bids, :as => :archival_biddable
   has_one :charge, :as => :chargeable
   #has_one :owner, :as => :acrhival_auction_owner
@@ -14,6 +15,13 @@ class ArchivalAuction < ActiveRecord::Base
     to_model
   end
 
+  named_scope :archival_auction_owner_login_like, lambda{ |login|
+    {
+      :joins => 'INNER JOIN "users" ON "users".id = "archival_auctions".archival_auction_owner_id',
+      :conditions => ['"archival_auctions".archival_auction_owner_type = \'User\' AND "users".login LIKE (?)', "%#{login}%"]
+    }
+   }
+
   def self.from_auction(u)
     ret = ArchivalAuction.new
     ArchivalAuction.copy_attributes_between_models(u, ret)
@@ -28,31 +36,29 @@ class ArchivalAuction < ActiveRecord::Base
     return ret
   end
   
-  def self.prepare_search_scopes(params = {})
-    scope = ArchivalAuction.scoped({})
-    if(scope == nil || params == nil)
-      return scope
-    end
-    begin
-      scope = scope.auction_end_gte(params[:auction_end_gte]) if params[:auction_end_gte] and Date.parse(params[:auction_end_gte])
-    rescue 
-      scope = scope
-    end
-    begin
-      scope = scope.auction_end_gte(params[:auction_end_lte]) if params[:auction_end_lte] and Date.parse(params[:auction_end_lte])
-    rescue 
-      scope = scope
-    end
-    
-    begin
-      scope = scope.current_price_gte(params[:current_price_gte].to_i) if params[:current_price_gte] && params[:current_price_gte].to_i > 0
-      scope = scope.current_price_lte(params[:current_price_lte].to_i) if params[:current_price_lte].to_i > 0
-      scope = scope.current_price_gte(params[:minimal_price_gte].to_i) if params[:minimal_price_gte].to_i > 0
-      scope = scope.current_price_lte(params[:minimal_price_lte].to_i) if params[:minimal_price_lte].to_i > 0
-    rescue
-      scope = scope
-    end
-    return scope
-  end
+#  def self.prepare_search_scopes(params = {})
+#    scope = ArchivalAuction.scoped({})
+#    if(scope == nil || params == nil)
+#      return scope
+#    end
+#    begin
+#      scope = scope.auction_end_gte(params[:auction_end_gte]) if params[:auction_end_gte] and Date.parse(params[:auction_end_gte])
+#    rescue
+#      scope = scope
+#    end
+#    begin
+#      scope = scope.auction_end_gte(params[:auction_end_lte]) if params[:auction_end_lte] and Date.parse(params[:auction_end_lte])
+#    rescue
+#      scope = scope
+#    end
+#
+#    begin
+#      scope = scope.current_price_gte(params[:current_price_gte].to_i) if params[:current_price_gte] && params[:current_price_gte].to_i > 0
+#      scope = scope.current_price_lte(params[:current_price_lte].to_i) if params[:current_price_lte].to_i > 0
+#    rescue
+#      scope = scope
+#    end
+#    return scope
+#  end
   
 end
