@@ -1,5 +1,5 @@
 <% content_for :search_box do %>
-      <% form_for :search, { :url => "url"} do |f|%>
+      <% form_for :search, { :controller=>"archival_auctions_controller", :method=>"index"} do |f|%>
         <div class="search" style="background:#cccccc">
           <%= f.error_messages %>
 
