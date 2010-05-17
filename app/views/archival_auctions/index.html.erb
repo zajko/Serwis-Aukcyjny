@@ -10,6 +10,7 @@
     <td class="header">Koniec</td>
     <td class="header">Aktualna cena</td>
     <td class="header">Aktywna</td>
+    <td class="header">Pokaż</td>
     <td class="header">Usuń</td>
   </tr>
   <% for archival_auctions in @archival_auctions  %>
@@ -29,6 +30,7 @@
                   <%end%>
           <%= '%.2f' % archival_auctions.current_price %></td>
       <td><% if archival_auctions.activated %>tak<% else %> nie <% end %> </td>
+      <td><%=link_to "Pokaż", :controller => "products", :action => "show",:name=>"show", :id=>archival_auctions.id %></td>
       <td>
 <center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id=>archival_auctions.id, :confirm => "Czy jesteś pewien ?"%></center>
     </tr>

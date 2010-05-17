@@ -15,7 +15,7 @@ ActionMailer::Base.smtp_settings = {
   }
 
   def user_activation_instructions(user, activation_url)    
-    subject    "Instrukcje do aktywacji użytkownika"
+    subject    "Instrukcje aktywacji konta użytkownika"
     from       "Kram-Reklam"
     recipients  user.email
     sent_on     Time.now
@@ -23,7 +23,7 @@ ActionMailer::Base.smtp_settings = {
   end
 
   def auction_activation_instructions(auction)    
-    subject     "Instrukcje do aktywacji konta"
+    subject     "Instrukcje aktywacji aukcji"
     from       "Kram-Reklam"
     recipients auction.user.email
     sent_on    Time.now
@@ -34,7 +34,7 @@ ActionMailer::Base.smtp_settings = {
   end
   
   def password_reset_instructions(user)
-    subject       "Instrukcje do zmiany hasła"
+    subject       "Instrukcja zmiany hasła użytkownika"
     from          "Kram-Reklam "
     recipients    user.email  
     sent_on       Time.now  
@@ -43,7 +43,7 @@ ActionMailer::Base.smtp_settings = {
   end
 
   def auction_bids_change_notification_to_overbidded_user(auction, user)
-    subject       "Aukcja nr #{auction.id} na którą złożyłeś ofertę została przelicytowana!"
+    subject       "Aukcja nr #{auction.id}, na którą złożyłeś ofertę została przelicytowana!"
     from          "Kram-Reklam "
     recipients    user.email
     sent_on       Time.now

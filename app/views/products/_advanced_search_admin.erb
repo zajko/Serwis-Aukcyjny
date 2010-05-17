@@ -24,11 +24,6 @@
                               </td>
                               </tr><tr>
                               <tr>
-                              <td class="search_param_name"><%= f.label :auction_end_between, "Stan aukcji: "%></td>
-                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
-                              <%= select_tag(:product_type,options_for_select([['Aktywna',"active"],['Niezaktywowana', "not_activated"]],@selected)) %></td>
-                              </tr><tr>
-                              <tr>
                               <td class="search_param_name"><%= f.label :user_login_like, "Użytkownik: "%></td>
                               <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %></td>
                               </tr><tr>

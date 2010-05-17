@@ -3,7 +3,7 @@
 <% render :partial => "/personal/menu_personal" %>
 <h1>Szczegóły aukcji </h1>
 
-<% if @product.auction.activated==false%>
+<% if @product.auction and @product.auction.activated==false %>
        <div class="ui-state-highlight ui-corner-all" style=" padding:10px;">
       <span class="ui-icon ui-icon-info" style="float: left; margin-right: 0.3em;"></span>
       <b>Uwaga:</b> Aukcja wymaga aktywacji<br /><br />
