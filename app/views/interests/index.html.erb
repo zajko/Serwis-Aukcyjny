@@ -15,7 +15,7 @@
     <tr>
             <td><%= interest.name%></td>
             <td class="center">
-                    <%= link_to image_tag("delete.png", :border=>0), {:action => "destroy", :id => interest.id} %>
+                    <%= link_to image_tag("delete.png", :border=>0), {:action => "destroy", :id => interest.id} , {:confirm => "Czy jesteś pewien?"}%>
             </td>
 </tr>
     <% end %>

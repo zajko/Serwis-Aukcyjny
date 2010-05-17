@@ -17,7 +17,7 @@
       <td><%=  article.text[1..150] %></td>
       <td><%=h article.user.login %></td>
       <td><%= link_to "Edytuj",:controller => "articles", :action => "edit",:name=>"edit",:id=>article.id %></td>
-      <td><center><%=link_to image_tag("delete.png", :border=>0), :controller => "articles", :action => "destroy",:name=>"destroy",:id=>article.id, :confirm => "Czy jesteś pewien ?"%></center></td>
+      <td><center><%=link_to image_tag("delete.png", :border=>0), {:controller => "articles", :action => "destroy",:name=>"destroy",:id=>article.id}, {:confirm => "Czy jesteś pewien ?"}%></center></td>
       
       <td><%= link_to "Pokaż",:controller => "articles", :action => "show", :id=>article.id %></td>
     </tr>

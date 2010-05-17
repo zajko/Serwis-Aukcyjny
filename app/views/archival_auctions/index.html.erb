@@ -32,7 +32,7 @@
       <td><% if archival_auctions.activated %>tak<% else %> nie <% end %> </td>
       <td><%=link_to "Pokaż", :controller => "products", :action => "show",:name=>"show", :id=>archival_auctions.id %></td>
       <td>
-<center><%=link_to image_tag("delete.png", :border=>0), :controller => "products", :action => "delete",:name=>"delete", :id=>archival_auctions.id, :confirm => "Czy jesteś pewien ?"%></center>
+<center><%=link_to image_tag("delete.png", :border=>0), {:controller => "products", :action => "delete",:name=>"delete", :id=>archival_auctions.id}, {:confirm => "Czy jesteś pewien ?"}%></center>
     </tr>
   <% end %>
 </table>
