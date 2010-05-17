@@ -10,11 +10,11 @@
           <td>Pozostało</td>
           <td><%= link_to "PR", :action => 'order_by', :column_name=> "pagerank", :product_type => "banner", :search => params[:search]%></td>
           <td><%= link_to "Użytkownicy dziennie", :action => 'order_by', :column_name=> "users_daily", :product_type => "banner", :search => params[:search]%></td>
-          <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> 'current_price', :product_type => "banner", :search => params[:search]%></td>
           <td>(<%= link_to "Szer", :action => 'order_by', :column_name=> "width", :product_type => "banner", :search => params[:search]%>,
           <%= link_to "Wys", :action => 'order_by', :column_name=> "height", :product_type => "banner", :search => params[:search]%>)</td>
           <td><%= link_to "Częśtość wyświetlania", :action => 'order_by', :column_name=> "frequency", :product_type => "banner", :search => params[:search]%></td>
           <td>Położenie</td>
+          <td><%= link_to "Aktualna cena", :action => 'order_by', :column_name=> 'current_price', :product_type => "banner", :search => params[:search]%></td>
           <td>Pokaż</td>
         </tr>
 
@@ -32,17 +32,17 @@
 
                 </td>
                 <td><%=product.pagerank%></td>
-                <td><%=product.users_daily%></td>
+                <td>(<%= product.width%>,
+                    <%= product.height%>)</td>
+                <td><%= product.frequency%></td>
+                <td>(<%= product.x_pos%> , <%= product.y_pos%>)</td>
+                 <td><%=product.users_daily%></td>
                                 <td>  <%  if (product.auction.buy_now_price>0) %><img src="images/dolar.png" />
                   <% else %><img src="images/auction.png" />
                   <%end%>
                   <%= '%.2f' % product.auction.current_price %> zł<!--< #TODO! CURRENT PRICE !product.current_price> -->
                     <% if product.auction.buy_now_price>0 %><br /><b>Kup teraz </b><% end %>
                 </td>
-                <td>(<%= product.width%>,
-                    <%= product.height%>)</td>
-                <td><%= product.frequency%></td>
-                <td>(<%= product.x_pos%> , <%= product.y_pos%>)</td>
                 <td><%= link_to "Pokaż", {:action => "show", :id => product.id, :product_type => "banner"} %></td>
         </tr>
         <% end %>
