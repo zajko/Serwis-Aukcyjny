@@ -8,4 +8,4 @@ artykul_drugi:
   title: Artykuł nowszy
   text: <%='<p>Oto treść artykułu nowszego. <br />Ma on na celu pokazanie naszym <b>szanownym</b> gościom, że możemy umieścić więcej niż jeden artykuł.</p>'%>
   user: user_0
-  created_at: <%=Time.now() - 10.days%>
+  created_at: <%=Time.now() - 30.days%>
