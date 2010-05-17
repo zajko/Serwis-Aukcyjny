@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "style_for_no_right_panel" %>
-
+<%= render :partial => "search" %>
 <h1> Zarządzaj aukcjami archiwalnymi</h1>
 <%= will_paginate @auctions, :params => {:search => params[:search]}, :class=>"paginate" %>
 <table id="TabFullSize">

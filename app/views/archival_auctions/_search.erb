@@ -1,0 +1,42 @@
+<% content_for :search_box do %>
+      <% form_for :search, { :url => "url"} do |f|%>
+        <div class="search" style="background:#cccccc">
+          <%= f.error_messages %>
+
+          <table>
+            <tr>
+                    <td class="auction_type" style="width:100px;">
+                        <b>Szukaj:</b>
+                    </td>
+                    <td>
+                            <!-- wewnetrzna tab -->
+                            <table>
+                              <tr>
+                              <td class="search_param_name"><%= f.label :user_login_like, "Użytkownik: "%></td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :user_login_like,:size=>"19"  %>
+                              </tr></tr><tr><td><br /></td></tr><tr>
+                              <td class="search_param_name"><%= f.label :auction_end_between, "Aktualna cena: "%></td>
+                              <td class="search_param_value" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp; <%= f.text_field :current_price_gte,:size=>"19"  %> - <%= f.text_field :current_price_lte,:size=>"19"  %> zł </td>
+                                
+                              </tr><tr><td><br /></td></tr><tr>
+                              <td class="search_param_name"><%= f.label :auction_end_between, "Zakończenie: "%></td>
+                              <td class="search_param_value">od: <%= f.text_field :auction_end_gte, :size=>7,:id=>"datepicker_from" %> </td>
+                              <td class="search_param_value">do: <%= f.text_field :auction_end_lte, :size=>7,:id=>"datepicker_to" %> </td>
+
+
+                              </td>
+                            </table>
+                            <!-- / wewnetrzna tab -->
+                    </td>
+            </tr>
+            <tr>
+            <td></td>
+                     <td  class="bottom" align="right">
+                      <%=f.submit "Szukaj" %>&nbsp;&nbsp;&nbsp;<br />
+            </td>
+            </tr>
+          </table>
+
+          </div>
+    <% end %>
+<% end %>
